@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Sitespeed.io - Release notes 1.8
-description: Sitespeed.io 1.8 release contains more support for Jenkins & a more detailed summary to keep track of your site.
+description: Sitespeed.io 1.8 release adds a more detailed summary to help you keep track of your site.
 author: Peter Hedenskog
 keywords: sitespeed.io, release, release-notes, 1.8, jenkins, 
 nav: 
@@ -37,12 +37,14 @@ version is not.</p>
 
 <h3>Images size are important!</h3>
 <p>
-  On the summary page, you can now see the total image size per page (median & 90 percentil values of course)
+  On the summary page, you can now see the total image size per page (median & 90 percentil values of course).
 </p>
 <a href="image-weight.png"><img src="image-weight.png"></a>
 
-<h3>sitespeed-junit.io output in data dir</h3>
-
+<h3>New way of how to output the JUnit xml</h3>
+<p>A few changes to make things easier: By default, the JUnit xml file is named XXX and put in the data dir. You can configure the 
+script of where you will output the file (see <a href=""></a>) and the script will also put a copy of the summary.xml in the same dir.
+</p>
 
 <h3>Bug fixes</h3>
 <ul>
