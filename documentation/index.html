@@ -18,6 +18,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
 <li  class="toc"><a href="#workflow">The workflow</a></li>
   <ul>
     <li  class="toc"><a href="#summarypage">Site summary page</a></li>
+    <li  class="toc"><a href="#detailedsummarypage">Detailed site summary page</a></li>
     <li  class="toc"><a href="#pages">Detailed site report</a></li>
     <li class="toc"><a href="#page">Full page analyzis</a></li>
     <li class="toc"><a href="#assets">Most used assets report</a></li>
@@ -93,6 +94,7 @@ sitespeed-result
     | -- pages.html
     | -- rules.html
     | -- assets.html
+    | -- summary-details.html
     | -- (errorurls.html)
     ` -- index.html
 </pre>
@@ -106,9 +108,10 @@ sitespeed-result
         <strong>pages.html</strong>
         is all pages data, summarized in one page.  The
         <strong>index.html</strong>
-        is the summary page, holding information on a high level.
+        is the summary page, holding information on a high level. Then the <strong>summary-details.html</strong> holds the summary info on a detailed level, here you will see the nitty gritty details of the site.
         <strong>rules.html</strong> is a presentation of the rules used to calculate the score for a page. And the images folder is created if you choose to output the summary as png:s. The <strong>errorurls.html</strong> shows the list of url:s that couldn't be fetched (the file will not exist if all url:s could be collected).
-      	The <strong>assets.html</strong> shows the top 200 most used assets across the pages.
+	      The <strong>assets.html</strong> shows the top 200 most used assets across the pages.
+
       </p>
       <p>The workflow is like this:</p>
       <p class="image">
@@ -126,11 +129,26 @@ sitespeed-result
         Sitespeed.io creates three different kind of outputs. The summary page is kind of executive summary page where green is good, yellow means that you should look into it and red is bad, sometimes really bad. The page show a summary of best practices for good web site performance.
       </p>
       <p class="image">
-        <img src="/img/summary-1.7.jpg" alt="sitespeed summary page" class="img-polaroid"/>
+        <img src="/img/summary-1.8.jpg" alt="sitespeed summary page" class="img-polaroid"/>
       </p>
     </div>
   </div>
 </div>
+
+<div class="section">
+  <div class="row-fluid">
+    <div class="span12">
+      <h2 id="detailedsummarypage">The detailed summary page</h2>
+      <p>
+        The detailed summary page will give you almost all the metrics you want for you site. You will get the average, 10th percentile, median, 95th percentile, min, max and standard deviation value for each metrics (this page is based on the <strong>summary.xml</strong> file, where you also will find the variance and the 90th percentile, if ever needed). 
+      </p>
+      <p class="image">
+        <img src="/img/summary-details-1.8.png" alt="sitespeed summary page" class="img-polaroid"/>
+      </p>
+    </div>
+  </div>
+</div>
+
 
 <div class="section">
   <div class="row-fluid">
@@ -142,7 +160,7 @@ sitespeed-result
         . Click the magnifier to see the response header of the page, and click the URL, to see all the specific collected page data.
       </p>
       <p class="image">
-        <img src="/img/pages-1.7.jpg" alt="sitespeed pages page" class="img-polaroid"/>
+        <img src="/img/pages-1.8.jpg" alt="sitespeed pages page" class="img-polaroid"/>
 
       </p>
 
@@ -178,7 +196,7 @@ sitespeed-result
         The most used assets report show you the most used assets (a.k.a which asset should you start to change for most bang for the money).
         You wil see the following for each asset: the type, the time since last modification, the cache time, the weight and the number of times the asset has been used.</p>
       <p class="image">
-        <img src="/img/assets-1.7.jpg" alt="sitespeed most used asset page" class="img-polaroid"/>
+        <img src="/img/assets-1.8.jpg" alt="sitespeed most used asset page" class="img-polaroid"/>
       </p>
     </div>
   </div>
