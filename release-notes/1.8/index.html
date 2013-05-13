@@ -3,27 +3,27 @@ layout: default
 title: Sitespeed.io - Release notes 1.8
 description: Sitespeed.io 1.8 release adds a more detailed summary to help you keep track of your site.
 author: Peter Hedenskog
-keywords: sitespeed.io, release, release-notes, 1.8, jenkins, 
+keywords: sitespeed.io, release, release-notes, 1.8, jenkins 
 nav: 
 image: http://sitespeed.io/img/sitespeed-1.7-twitter.png
-twitterdescription: xyz
+twitterdescription: It is all in the (summary) details! It is now easier to keep track how your site is doing much mor in detail.
 ---
 <div class="page-header">
   <h1>Sitespeed.io 1.8 release notes</h1>
 </div>
 
 <h3>It's all in the (summary) details</h3>
-<p>The summary page is based on the <i>summary.xml</i> file. The summary keeps information of all fields you see on the summary page for all the pages that has been tested. For all the metrics you will get the average, median, max, min, standard deviation, variance, 10 percentil, 90 percentil & the 95 percentil! Yes that is alot of difference statistics and it is quite cool!</p>
-How do you actually make use of it? Well for example, now you can easily the largest image of your site, check this out (collected from a big video site):
+<p>The summary page is based on the <i>summary.xml</i> file. The summary keeps information of all fields you see on the summary page for all the pages that has been tested. For all the metrics you will get the average, median, max, min, standard deviation, variance, 10 percentile, 90 percentile & the 95 percentile! Yes that is alot of difference statistics and it is quite cool!</p>
+How do you actually make use of it? Well for example, you can easily see which is the largest image of your site, check this out (data collected from a big video site):
 <a href="detailed-summary-large-image.png"><img src="detailed-summary-large-image.png"></a>
 
-<p>You can also use the summary xml file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a>, and create graphs betwen your test runs, keep track of what's happening with your site over your development cycle.</p>
+<p>You can also use the <i>summary.xml</i> file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a> and create graphs betwen your test runs, keep track of what's happening with your site in your development cycle.</p>
 <a href="jenkins-page-weight.png"><img src="jenkins-page-weight.png"></a>
 
-<p>There are also some new fields added, that right now only exist in the summary details page and xml. The total size of js/css & images. The full list of the XML-file is here.
+<p>There are also some new metrics: The total and individual size of js/css and images. You can check out an example of the <i>summary.xml</i> file <a href="" target="_blank">here</a>.</p>
 
-<h3>Goodbye average, hello the 90th percentil!</h3>
-The summary page used to report average values of all different scores for the pages. That has been changed so median & the 90th percentil is now standard. 
+<h3>Goodbye average, hello the 90th percentile!</h3>
+The summary page used to report average values of all different scores for the pages. That has been changed so median & the 90th percentile is now standard. 
 
 <h3>Preparing for comparing different runs</h3>
 <p>
@@ -31,11 +31,10 @@ The summary page used to report average values of all different scores for the p
 </p>
 
 <h3>New rule checking for old versions</h3>
-<p>There is a new rule in town, that checks if the latest version is used for a plugin. Right now it only checking that if JQuery is used on the page, the latest 
-version is not.</p>
+<p>There is a new rule in town that checks if the latest version is used for a plugin. Right now it only checks for the latest JQuery version, in the future other plugins will be checked.</p>
 <a href="jquery.png"><img src="jquery.png"></a>
 
-<h3>Images size are important!</h3>
+<h3>Image size are important!</h3>
 <p>
   On the summary page, you can now see the total image size per page (median & 90 percentil values of course).
 </p>
