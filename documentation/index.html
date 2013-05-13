@@ -140,7 +140,7 @@ sitespeed-result
     <div class="span12">
       <h2 id="detailedsummarypage">The detailed summary page</h2>
       <p>
-        The detailed summary page will give you almost all the metrics you want for you site. You will get the average, 10th percentile, median, 95th percentile, min, max and standard deviation value for each metrics (this page is based on the <strong>summary.xml</strong> file, where you also will find the variance and the 90th percentile, if ever needed). 
+        The detailed summary page will give you almost all the metrics you want for you site. You will get the average, 10th percentile, median, 95th percentile, min, max and standard deviation value for each metrics (this page is based on the <strong>summary.xml</strong> file, where you also will find the variance and the 90th percentile, if ever needed when comparing metrics). 
       </p>
       <p class="image">
         <img src="/img/summary-details-1.8.png" alt="sitespeed summary page" class="img-polaroid"/>
@@ -305,10 +305,11 @@ http://www.yoursite.com/where/we/are/
         <pre>
 OPTIONS:
 -h      Help
+-o      The output dir
 -r      The result base directory, default is sitespeed-result [optional]
 -l      The page score limit. Below this page score it will be a failure. Default is 90. [optional]
 -a      The average score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]       
--s      Skip these tests. A comma separeted list of the key name of the tests, for example "ycsstop,yjsbottom" [optional] 
+-s      Skip these tests. A comma separeted list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]
         </pre> 
    <p><em>Note:</em> the key name used when skip the tests, is viewed in the the Jenkins result, check the title for each page, the key is the name before the colon, for example <em>ynumreq: Make fewer HTTP requests</em> where <strong>ynumreq</strong> is the key.
   </p>
@@ -321,7 +322,7 @@ OPTIONS:
   <div class="row-fluid">
     <div class="span12">
       <h2 id="jenkins">Jenkins integration</h2>
-     <a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> is a great open source continuous integration server, that you guys already know.
+     <a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> is a great open source continuous integration server.
    <p>
     To get sitespeed.io up and running, you need to make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJs</a> in the path and
     have read/write access to the directory where you have sitespeed. When you have that, you are ready to set it up.
@@ -330,12 +331,17 @@ OPTIONS:
     In Jenkins, add a new <em>Execute shell</em> and add the two script on one line each. The first one is the standard script, and the second one will create the junit.xml, make sure to pipe the output to a file, so Jenkins can find it.</p>
         <pre>
 /Users/peter/tmp/sitespeed.io -u http://yoursite.com
-/Users/peter/tmp/sitespeed-junit.io > /Users/Shared/Jenkins/Home/workspace/sitespeed.io/junit-cc.xml
+/Users/peter/tmp/sitespeed-junit.io -o /Users/Shared/Jenkins/Home/workspace/sitespeed.io/
         </pre>
         <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output file from the script. In Jenkins, it will look something like this:
       </p>
         <p class="image">
-        <a href="jenkins-config.png"><img src="jenkins-config.png" alt="Configuration Sitespeed.io for Jenkins" class="img-polaroid"/></a>
+        <a href="jenkins-sitespeed-config.png"><img src="jenkins-sitespeed-config.png" alt="Configuration Sitespeed.io for Jenkins" class="img-polaroid"/></a>
+      </p>
+
+       <p class="image">
+          
+        <a href="jenkins-junit-setup.png"><img src="jenkins-junit-setup.png" alt="Configuration JUnit.xml file" class="img-polaroid"/></a>
       </p>
 
       <p>Each sitespeed test, is a JUnit testcase, each page tested is a testsuite and the whole test bundled as testsuites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page. The result of all the tests for all pages will look like this.
@@ -346,12 +352,21 @@ OPTIONS:
       </p>
 
       <p>
-        And for a specific page, the result will be like this:
+        And for a specific page, the result will be like this:</p>
        <p class="image">
         <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-polaroid"/></a>
       </p>
 
-      If you need help get this up & running, ping me on <a href="https://twitter.com/SiteSpeedio" target="_blank">Twitter</a>.
+      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-1.8.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong>//site/metrics/pageweight/median</strong>. In Jenkins it will look like this:</p>
+<p class="image">
+   <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-polaroid"/></a>
+</p>
+
+<p>And the graphs you create will look something like this:</p>
+<p class="image">
+<a href="plot-graph-example.png"><img src="plot-graph-example.png" alt="The graph" class="img-polaroid"/></a>
+</p>
+
     </div>
   </div>
 
@@ -373,9 +388,9 @@ before_install:
         
 before_script:
 - "./sitespeed.io/sitespeed.io -u http://127.0.0.1:8080/"
-- "./sitespeed.io/sitespeed-junit.io > junit.xml"
+- "./sitespeed.io/sitespeed-junit.io -o ../../../../"
 
-script: ./verify-junit.sh junit.xml
+script: ./verify-junit.sh sitespeed.io-junit.xml 
 </pre>
 
 The <strong>verify-junit.sh</strong> script is a simple script that fails if it find the failure tag (but of course you can do more cool things if you want, 
