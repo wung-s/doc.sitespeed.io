@@ -40,18 +40,19 @@ The summary page used to report average values of all different scores for the p
 </p>
 <a href="image-weight.png"><img src="image-weight.png"></a>
 
-<h3>New way of how to output the JUnit xml</h3>
-<p>A few changes to make things easier: By default, the JUnit xml file is named XXX and put in the data dir. You can configure the 
-script of where you will output the file (see <a href=""></a>) and the script will also put a copy of the summary.xml in the same dir.
+<h3>New way of how to output the JUnit XML</h3>
+<p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You can configure the 
+script of where you will output the file (see <a href="/documentation/#jenkins"></a>) and the script will also put a copy of the summary.xml in the same dir.
 </p>
 
 <h3>Bug fixes</h3>
 <ul>
-	<li>The check for number of DOM elements where wrong when signaling a warning .</li>
+	<li>The check for number of DOM elements where wrong when signaling a warning.</li>
+  <li>Better check for Java version (thanks Emil Breding).</li>
 </ul>
 
 </p>
 <hr>
 <p>	
-See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past and the next <a href="https://github.com/soulgalore/sitespeed.io/issues?milestone=17&state=open">milestone</a> what will come in the next release.
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
 </p>
