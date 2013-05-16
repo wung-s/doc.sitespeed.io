@@ -13,11 +13,11 @@ twitterdescription: It is all in the (summary) details! It is now easier to keep
 </div>
 
 <h3>It's all in the (summary) details</h3>
-<p>The summary page is now based on the <i>summary.xml</i> file. The XML file keeps information of all fields you see on the summary page for all the pages that has been tested. For all the metrics you will get the average, median, max, min, standard deviation, variance, 10 percentile, 90 percentile & the 95 percentile! Yes that is alot of difference statistics and it is quite cool!</p>
+<p>The summary page is now based on the <i>summary.xml</i> file. The XML file keeps information of all fields you see on the summary page for all the pages that has been tested. For all the metrics you will get the average, median, max, min, standard deviation, variance, 10 percentile, 90 percentile & the 95 percentile! Yes that is a lot of difference statistics and it is quite cool!</p>
 How do you actually make use of it? Well for example, you can easily see which is the largest image of your site, check this out (data collected from a big video site):
 <a href="detailed-summary-large-image.png"><img src="detailed-summary-large-image.png"></a>
 
-<p>You can also use the <i>summary.xml</i> file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a> and create graphs betwen your test runs, keep track of what's happening with your site in your development cycle.</p>
+<p>You can also use the <i>summary.xml</i> file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a> and create graphs between your test runs, keep track of what's happening with your site in your development cycle.</p>
 <a href="jenkins-page-weight.png"><img src="jenkins-page-weight.png"></a>
 
 <p>There are also some new metrics: The total per page and individual size of js/css and images. You can check out an example of the <i>summary.xml</i> file <a href="/documentation/summary-1.8.xml" target="_blank">here</a>.</p>
@@ -42,7 +42,7 @@ The summary page used to report average values of all different metrics. That ha
 
 <h3>New way of how to output the JUnit XML</h3>
 <p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You can configure the 
-script of where you will output the file (see <a href="/documentation/#jenkins"></a>) and the script will also put a copy of the summary.xml in the same dir.
+script of where you will output the file (see the <a href="/documentation/#jenkins">docs</a>) and the script will also put a copy of the summary.xml in the same dir.
 </p>
 
 <h3>Bug fixes</h3>
