@@ -16,11 +16,12 @@ twitterdescription: It is all in the (summary) details! It is now easier to keep
 <p>The summary page is now based on the <i>summary.xml</i> file. The XML file keeps information of all fields you see on the summary page for all the pages that has been tested. For all the metrics you will get the average, median, max, min, standard deviation, variance, 10 percentile, 90 percentile & the 95 percentile! Yes that is a lot of difference statistics and it is quite cool!</p>
 How do you actually make use of it? Well for example, you can easily see which is the largest image of your site, check this out (data collected from a big video site):
 <a href="detailed-summary-large-image.png"><img src="detailed-summary-large-image.png"></a>
+<p>You will find the link to the detailed summary on the start page of the result pages. When the new design is added, it will be in the navigation</p>
 
 <p>You can also use the <i>summary.xml</i> file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a> and create graphs between your test runs, keep track of what's happening with your site in your development cycle.</p>
 <a href="jenkins-page-weight.png"><img src="jenkins-page-weight.png"></a>
 
-<p>There are also some new metrics: The total per page and individual size of js/css and images. You can check out an example of the <i>summary.xml</i> file <a href="/documentation/summary-1.8.xml" target="_blank">here</a>.</p>
+<p>There are also some new metrics: The total per page and individual size of js/css and images. You can check out an example of the <a href="/documentation/summary-1.8.xml" target="_blank">summary.xml</a> file.</p>
 
 <h3>Goodbye average, hello the 90th percentile!</h3>
 The summary page used to report average values of all different metrics. That has been changed, now median & the 90th percentile is the standard. 
@@ -31,7 +32,7 @@ The summary page used to report average values of all different metrics. That ha
 </p>
 
 <h3>New rule checking for old versions</h3>
-<p>There is a new rule in town that checks if the latest version is used for a Javascript plugin. Right now it only checks for the latest JQuery version, in the future other plugins will be checked.</p>
+<p>There is a new rule in town that checks if the latest version is used of a Javascript plugin. Right now the only check is for the latest JQuery version, in the future other plugins will be checked.</p>
 <a href="jquery.png"><img src="jquery.png"></a>
 
 <h3>Image size are important!</h3>
@@ -41,13 +42,12 @@ The summary page used to report average values of all different metrics. That ha
 <a href="image-weight.png"><img src="image-weight.png"></a>
 
 <h3>New way of how to output the JUnit XML</h3>
-<p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You can configure the 
-script of where you will output the file (see the <a href="/documentation/#jenkins">docs</a>) and the script will also put a copy of the summary.xml in the same dir.
+<p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You need to configure the output directory (see the <a href="/documentation/#jenkins">docs</a>) and the script will also put a copy of the summary.xml in the same dir.
 </p>
 
 <h3>Bug fixes</h3>
 <ul>
-	<li>The check for number of DOM elements where wrong when signaling a warning.</li>
+	<li>The check for number of DOM elements where wrong when signalling a warning.</li>
   <li>Better check for Java version (thanks Emil Breding).</li>
 </ul>
 
