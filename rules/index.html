@@ -292,6 +292,15 @@ nav: rules
         <td>3</td>
       </tr>
       <tr>
+      <tr>
+        <td class="nobreak">Make favicon small and cacheable</td>
+	<td class="nobreak">
+	  A favicon is an icon associated with a web page; this icon resides in the favicon.ico file in the server's root. Since the browser requests this file, it needs to be present; if it is missing, the browser returns a 404 error (see "Avoid HTTP 404 (Not Found) error" above). Since favicon.ico resides in the server's root, each time the browser requests this file, the cookies for the server's root are sent. Making the favicon small and reducing the cookie size for the server's root cookies improves performance for retrieving the favicon. Making favicon.ico cacheable avoids frequent requests for it.
+        </td>
+        <td>3</td>
+      </tr>
+      <tr>
+	
         <td class="nobreak">Load third party javascript asynchronously</td>
         <td class="nobreak">
           Always load third party javascript asynchronously. Third parties that will be checked are twitter, facebook, google (api, analythics, ajax), linkedin, disqus, pinterest & jquery.
