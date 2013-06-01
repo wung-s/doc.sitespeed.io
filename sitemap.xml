@@ -2,7 +2,6 @@
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
     {% for page in site.pages %}
     {% if page.layout != nil %}
     <url>
@@ -11,10 +10,10 @@
     {% if page.url contains 'release-notes' %}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-   {% else %}
-     <changefreq>daily</changefreq>
-     <priority>1.0</priority>
-     {% endif %}
+    {% else %}
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    {% endif %}
     {% endif %}
     {% endfor %}
 </urlset>
