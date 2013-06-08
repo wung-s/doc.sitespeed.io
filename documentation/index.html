@@ -92,6 +92,7 @@ sitespeed-result
     | -- pages
     |
     | -- pages.html
+    | -- (pages.csv)
     | -- rules.html
     | -- assets.html
     | -- summary-details.html
@@ -220,7 +221,7 @@ OPTIONS:
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, default is 1024 Mb [optional]
-   -o      The output format, always output as html but you can add images (img) [optional]
+   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
@@ -266,9 +267,10 @@ http://www.yoursite.com/where/we/are/
     <pre>$ ./sitespeed.io -u http://yoursite.com  -p 10</pre>
     
     <h3>Output as images</h3>
-    <p>You can also output the result of the analyze as png:s (the html converted to png:s):</p>
+    <p>You can also output the result of the analyze as png:s (the html converted to png:s) or the pages information as a csv file:</p>
     <pre>$ ./sitespeed.io -u http://yoursite.com  -o img</pre>
-    
+    <pre>$ ./sitespeed.io -u http://yoursite.com  -o csv</pre>
+
     <h3 id="changeresult">Change the result directory</h3>
     <p>The result files will by default be created in a directory named <i>sitespeed-result</i> in the home directory of the sitespeed script. You can change that if you want your files in another place.</p>
     <pre>$ ./sitespeed.io -u http://yoursite.com  -r /place/the/files/here</pre>
