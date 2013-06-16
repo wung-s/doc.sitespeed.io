@@ -21,10 +21,10 @@ nav: rules
 
       <section id="criticalpath">
         <h3>Critical Rendering Path</h3>
-        <p>Every request fetched inside of HEAD, will postpone the rendering of the page! Do not load javascript synchronously inside of head, load files from the same domain as the main document (to avoid DNS lookups) and inline CSS for a really fast rendering path. The scoring system for this rule, will give you minus score for synchronously loaded javascript inside of head, css files requested inside of head and minus score for every DNS lookup inside of head.</p>
+        <p>Every request fetched inside of HEAD, will postpone the rendering of the page! Do not load javascript synchronously inside of head, load files from the same domain as the main document (to avoid DNS lookups) and inline CSS for a really fast rendering path. The scoring system for this rule, will give you minus score for synchronously loaded javascript inside of head, CSS files requested inside of head and minus score for every DNS lookup inside of head.</p>
 
         <p>
-          You can read more about the critical rendering path in <a href="http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank">this</a> great article by Ilya Grigorik and <a href="http://www.phpied.com/css-and-the-critical-path/" target="_blank">this</a> article by Stoyan Stefanov.
+          You can read more about the critical rendering path in <a href="http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank">this</a> article by Ilya Grigorik and <a href="http://www.phpied.com/css-and-the-critical-path/" target="_blank">this</a> post by Stoyan Stefanov.
         </p>
       </section>
 
@@ -34,7 +34,7 @@ nav: rules
       A page can be stopped to be loaded in the browser, if a single script, css and in some cases a font couldn't be fetched or loading slow (the white screen of death), and that is something you really want to avoid. Never load 3rd party components inside of head!  One important note, right now this rule treats domain and subdomains as ok, that match the document domain, all other domains is treated as a SPOF. The score is calculated like this: Synchronously loaded javascripts inside of head, hurts you the most, then CSS files inside of head hurts a little less, font face inside of css files further less, and least inline font face files. One rule SPOF rule missing is the IE specific feature, that a font face will be SPOF if a script is requested before the font face file. 
     </p>
 
-      <p>Read more about SPOF in <a href="http://www.stevesouders.com/blog/2010/06/01/frontend-spof/" target="_blank">this</a> great blog post by Steve Souders.</p>
+      <p>Read more about SPOF in <a href="http://www.stevesouders.com/blog/2010/06/01/frontend-spof/" target="_blank">this</a> nice blog post by Steve Souders.</p>
     </p>
     
     </section>
@@ -44,7 +44,7 @@ nav: rules
     </p>
   </section>
   <section id="cssprint">
-    <h3 >Do not load specific css file for print</h3>
+    <h3 >Do not load specific CSS file for print</h3>
     <p>
       Loading a specific stylesheet for print, can block rendering in your browser (depending on version) and will for almost all browsers, block the onload event to fire (even though the print stylesheet isn't even used). You can read more about it
       <a href="http://www.phpied.com/5-years-later-print-css-still-sucks/" target="_blank">here</a>.
@@ -101,9 +101,9 @@ nav: rules
 </section>
 
 <section id="yslow">
-      <h3>Modified basic Yslow rules</h3>
+      <h3>Modified basic YSlow rules</h3>
       <p>
-        Sitespeed uses 19 of the basic rules from Yslow (read about them
+        Sitespeed.io uses about 20 of the basic rules from YSlow (read about them
         <a href="http://yslow.org#web_performance_best_practices_and_rules" target="_blank">here</a> and <a href="https://github.com/marcelduran/yslow/wiki/Ruleset-Matrix">here</a>).
         You can see the exact values configured <a href="#matrix">here</a>.
       </p>
