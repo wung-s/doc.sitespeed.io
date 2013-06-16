@@ -47,7 +47,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
       <div class="page-header">
       <h2 id="workflow">Workflow</h2>
       </div>
-      <p>This is what will happen when you run sitespeed.io, first start the script:
+      <p>This is what will happen when you start the script:
   </p>
         <pre>$ ./sitespeed.io -u http://www.cybercom.com/en/</pre>
           <p>
@@ -252,7 +252,7 @@ http://www.yoursite.com/my/really/important/page/
 http://www.yoursite.com/where/we/are/
 ...
     </pre>
-    And then you feed the text file to sitespeed.io:
+    And then you feed the text file:
     <pre>$ ./sitespeed.io -f myurls.txt</pre>
 
     <h3>Fetching more than one level of links</h3>
@@ -443,11 +443,14 @@ JUNIT_XML=$1
       <h2 id="dependencies" style="word-wrap: break-word;">Dependencies</h2>
     </div>
       <p>
-        Here are the following dependencies you need to have to be able to run sitespeed.io:
+        Here are the dependencies for running sitespeed.io:
       </p>
       <dl class="dl-horizontal">
-        <dt>Linux/Unix </dt>
-        <dd>Linux/Unix or a Linux-like environment for Windows</dd>
+        <dt>Linux/Unix</dt>
+        <dd>Linux/Unix or a Linux-like environment for Windows like Git Bash</dd>
+
+        <dt>PhantomJS</dt>
+      <dd><a href="http://phantomjs.org/" target="_blank">PhantomJS</a> is a headless WebKit with JavaScript API. It is really cool product where you can do browser things without a browser. You need to have it installed to be able to run sitespeed.io.</dd>
 
       <dt>Java 1.6</dt>
       <dd>You need to have Java 1.6 (or higher) installed because many components used are written in Java.</dd>
@@ -467,15 +470,12 @@ JUNIT_XML=$1
     <div class="span12">
       <div class="page-header">
       <h2 id="components">Components</h2>
-      <p>The following components are used within sitespeed.io:</p>
+      <p>The following components are used by sitespeed.io:</p>
       <dl class="dl-horizontal">
          <dt>YSlow</dt> 
       <dd>Sitespeed.io uses the rule engine of <a href="http://yslow.org" target="_blank">Yslow</a>, because it is great! YSlow was originally developed by Yahoo and now maintained by <strong>Marcel Duran</strong>, a rule engine & browser plugin created to test your web page against <a href="http://yslow.org/#web_performance_best_practices_and_rules" target="_blank">best practices rules</a>. The version used is the <a href="https://github.com/marcelduran/yslow/wiki/PhantomJS" target="_blank">Yslow/PhantomJs</a> version. Sitespeed uses it own ruleset of best practice performance rules, and the code can be found  <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" target="_blank">here</a>.</dd>
-      <dt>PhantomJS</dt>
-      <dd><a href="http://phantomjs.org/" target="_blank">PhantomJS</a> is a headless WebKit with JavaScript API. It is really cool product where you can do browser things without a browser. You need to have it installed to be able to run sitespeed.io.</dd>
       <dt>Twitter Bootstrap</dt>
       <dd><a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a> is a front end framework to create nice looking HTML, all the front end of the result pages produced by sitespeed are built with Bootstrap.</dd>
-
       <dt>HTMLCompressor</dt>
       <dd>The <a href="http://code.google.com/p/htmlcompressor/" target="_blank">HTMLCompressor</a> Compress/minifies the HTML result pages, to do them as clean & small as possible.</dd>
       <dt>Velocity</dt>
@@ -622,7 +622,7 @@ YSLOW.registerRuleset({
          It is used when you run sitespeed to create the rule definition HTML file that is put into the results, so you always can backtrack which rules you use. </p>
         </li>
         <li>Create the new Yslow javascript file: <pre>make phantomjs</pre></li>
-        <li>Test that it works on one url (standing in root for Yslow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-1.7 -f xml http://yoururl.com</pre></li>
+        <li>Test that it works on one url (standing in root for Yslow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-1.8.3 -f xml http://yoururl.com</pre></li>
         <li>Move the newly created rulefile into your dependencies directory for sitespeed, on my local it looks like this:
           <pre>cp build/phantomjs/yslow.js ../sitespeed.io/dependencies/yslow-3.1.5-sitespeed.js</pre>
          </li>
