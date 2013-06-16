@@ -15,15 +15,16 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
 </div>  
 
 <ol class="toc">
+  <li class="toc"><a href="#installation">Download and installation</li>
+  <li class="toc"><a href="#run">How to run</a></li>
 <li  class="toc"><a href="#workflow">The workflow</a></li>
   <ul>
-    <li  class="toc"><a href="#summarypage">Site summary page</a></li>
-    <li  class="toc"><a href="#detailedsummarypage">Detailed site summary page</a></li>
-    <li  class="toc"><a href="#pages">Detailed site report</a></li>
+    <li class="toc"><a href="#summarypage">Site summary page</a></li>
+    <li class="toc"><a href="#detailedsummarypage">Detailed site summary page</a></li>
+    <li class="toc"><a href="#pages">Detailed site report</a></li>
     <li class="toc"><a href="#page">Full page analyzis</a></li>
     <li class="toc"><a href="#assets">Most used assets report</a></li>
   </ul>
-  <li class="toc"><a href="#run">How to run sitespeed.io</a></li>
   <li class="toc"><a href="#junit">Generating the JUnit XML for continous integration</a></li>
  <ul>
   <li class="toc"><a href="#jenkins">Jenkins integration</a></li>
@@ -39,7 +40,119 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
  </ul>
 </ol>
 
+<div class="section">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="page-header">
+      <h2 id="installation">Installation</h2>
+    </div>
+
+      {% include installation.html %}
       
+      <p>If you are using Windows, you need to install <a href="https://code.google.com/p/msysgit/downloads/list?q=label:Featured" target="_blank">Git Bash</a> to use sitespeed.</p>
+
+          </div>
+  </div>
+</div>
+
+<div class="section">
+<div class="row-fluid">
+  <div class="span12">
+    <div class="page-header">
+    <h2 id="run">How to run</h2>
+  </div>
+<p>You have the following options running sitespeed.io:</p>
+<pre>
+usage: ./sitespeed.io options
+
+OPTIONS:
+   -h      Help
+   -u      The start url of the crawl with the format of http[s]://host[:port][/path/]. Use this or use the -f file option.
+   -f      The path to a plain text file with one url on each row. These URL:s will be used instead crawling.
+   -d      The crawl depth, default is 1 [optional]
+   -c      Crawl only on this path [optional]
+   -s      Skip urls that contains this in the path [optional]
+   -p      The number of processes that will analyze pages, default is 5 [optional]
+   -m      The memory heap size for the java applications, default is 1024 Mb [optional]
+   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
+   -n      Give your test a name, it will be added to all HTML pages [optional]
+   -r      The result base directory, default is sitespeed-result [optional]
+   -z      Create a tar zip file of the result files, default is false [optional]
+   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
+   -t      The proxy type, default is http [optional]
+   -a      The user agent, default is "Mozilla/6.0" [optional]
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
+   -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
+   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]  
+</pre>
+
+    <h3>Standard (fetching one level of pages)</h3>
+    <p>
+      By default, sitespeed will crawl all the links that exist on the page, and fetch the pages that are on the same domain as the start url:
+    </p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com</pre>
+    <p>
+      Or of course, if you want to start the test on a specific page, you use that url:
+      </p>
+      <pre>$ ./sitespeed.io -u http://yoursite.com/my/path</pre>
+
+    <h3>Feeding sitespeed with a urls in a text file</h3>  
+    The urls needs to be one on each row, looking like this:
+    <pre>
+http://www.yoursite.com/path/
+http://www.yoursite.com/my/really/important/page/
+http://www.yoursite.com/where/we/are/
+...
+    </pre>
+    And then you feed the text file:
+    <pre>$ ./sitespeed.io -f myurls.txt</pre>
+
+    <h3>Fetching more than one level of links</h3>
+    <p>Add the depth parameter <strong>d</strong>, that will make sitespeed crawl for that depth:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com -d 2</pre>
+    <h3>Follow only specific path</h3>
+    <p>Add the path you want to follow, meaning only urls containing the passed value will be analyzed:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com  -c /the/path/</pre>
+    <h3>Fetching not url's that contains</h3>
+    <p>Add the keyword of what you want to skip, useful if you want to exclude parts of an site:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com  -s /monkey/</pre>
+    <h3>Changing the number of processes analyzing the site</h3>
+    <p>If you analyze a large web site, the analyze can take some time; then increase the number of processes that analyzes the site (default number of processes is five):</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com  -p 10</pre>
+    
+    <h3 id="imgandcsv">Output as images</h3>
+    <p>You can also output the result of the analyze as png:s (the html converted to png:s) or the pages information as a csv file:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com  -o img</pre>
+    <pre>$ ./sitespeed.io -u http://yoursite.com  -o csv</pre>
+
+    <h3 id="changeresult">Change the result directory</h3>
+    <p>The result files will by default be created in a directory named <i>sitespeed-result</i> in the home directory of the sitespeed script. You can change that if you want your files in another place.</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com  -r /place/the/files/here</pre>
+    
+    <h3 id="tar">Tar zip all the result files</h3>
+    <p>If you want all the result files tar zipped into one file, you do that like this:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com/ -z true</pre>
+    
+    <h3 id="heap">Heap size for the Java applications</h3>
+    <p>If you are analyzing a very large site, it is possible that you need to increase the memory for the java application, or if you run the test on a machine with low memory, you can change the heap size with the <i>m</i> parameter:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com/ -m 512</pre>
+
+    <h3 id="proxy">Run  behind a proxy</h3>
+    <p>Behind a proxy you can run like this:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com/ -x yourproxy.com:portnumber</pre>
+
+    <h3 id="useragent">Set the user agent and view port</h3>
+    <p>Test as Chrome with a large screen:</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com/ -a Mozilla/5.0 -v 2560x1440</pre>
+
+    <h3 id="name">Set a name of your test</h3>
+    <p>You can give your test run a name, that will be showed on all the pages</p>
+    <pre>$ ./sitespeed.io -u http://yoursite.com/ -n "Swedens top 100 sites"</pre>
+
+
+</div>
+</div>
+</div>
    
 <div class="section">
   <div class="row-fluid">
@@ -203,104 +316,7 @@ sitespeed-result
   </div>
 </div>
 
-<div class="section">
-<div class="row-fluid">
-  <div class="span12">
-    <div class="page-header">
-    <h2 id="run">How to run sitespeed.io</h2>
-  </div>
-<p>You have the following options running sitespeed:</p>
-<pre>
-usage: ./sitespeed.io options
 
-OPTIONS:
-   -h      Help
-   -u      The start url of the crawl with the format of http[s]://host[:port][/path/]. Use this or use the -f file option.
-   -f      The path to a plain text file with one url on each row. These URL:s will be used instead crawling.
-   -d      The crawl depth, default is 1 [optional]
-   -c      Crawl only on this path [optional]
-   -s      Skip urls that contains this in the path [optional]
-   -p      The number of processes that will analyze pages, default is 5 [optional]
-   -m      The memory heap size for the java applications, default is 1024 Mb [optional]
-   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
-   -n      Give your test a name, it will be added to all HTML pages [optional]
-   -r      The result base directory, default is sitespeed-result [optional]
-   -z      Create a tar zip file of the result files, default is false [optional]
-   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
-   -t      The proxy type, default is http [optional]
-   -a      The user agent, default is "Mozilla/6.0" [optional]
-   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
-   -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
-   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]  
-</pre>
-
-    <h3>Standard (fetching one level of pages)</h3>
-    <p>
-      By default, sitespeed will crawl all the links that exist on the page, and fetch the pages that are on the same domain as the start url:
-    </p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com</pre>
-    <p>
-      Or of course, if you want to start the test on a specific page, you use that url:
-      </p>
-      <pre>$ ./sitespeed.io -u http://yoursite.com/my/path</pre>
-
-    <h3>Feeding sitespeed with a urls in a text file</h3>  
-    The urls needs to be one on each row, looking like this:
-    <pre>
-http://www.yoursite.com/path/
-http://www.yoursite.com/my/really/important/page/
-http://www.yoursite.com/where/we/are/
-...
-    </pre>
-    And then you feed the text file:
-    <pre>$ ./sitespeed.io -f myurls.txt</pre>
-
-    <h3>Fetching more than one level of links</h3>
-    <p>Add the depth parameter <strong>d</strong>, that will make sitespeed crawl for that depth:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com -d 2</pre>
-    <h3>Follow only specific path</h3>
-    <p>Add the path you want to follow, meaning only urls containing the passed value will be analyzed:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com  -c /the/path/</pre>
-    <h3>Fetching not url's that contains</h3>
-    <p>Add the keyword of what you want to skip, useful if you want to exclude parts of an site:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com  -s /monkey/</pre>
-    <h3>Changing the number of processes analyzing the site</h3>
-    <p>If you analyze a large web site, the analyze can take some time; then increase the number of processes that analyzes the site (default number of processes is five):</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com  -p 10</pre>
-    
-    <h3 id="imgandcsv">Output as images</h3>
-    <p>You can also output the result of the analyze as png:s (the html converted to png:s) or the pages information as a csv file:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com  -o img</pre>
-    <pre>$ ./sitespeed.io -u http://yoursite.com  -o csv</pre>
-
-    <h3 id="changeresult">Change the result directory</h3>
-    <p>The result files will by default be created in a directory named <i>sitespeed-result</i> in the home directory of the sitespeed script. You can change that if you want your files in another place.</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com  -r /place/the/files/here</pre>
-    
-    <h3 id="tar">Tar zip all the result files</h3>
-    <p>If you want all the result files tar zipped into one file, you do that like this:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com/ -z true</pre>
-    
-    <h3 id="heap">Heap size for the Java applications</h3>
-    <p>If you are analyzing a very large site, it is possible that you need to increase the memory for the java application, or if you run the test on a machine with low memory, you can change the heap size with the <i>m</i> parameter:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com/ -m 512</pre>
-
-    <h3 id="proxy">Run  behind a proxy</h3>
-    <p>Behind a proxy you can run like this:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com/ -x yourproxy.com:portnumber</pre>
-
-    <h3 id="useragent">Set the user agent and view port</h3>
-    <p>Test as Chrome with a large screen:</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com/ -a Mozilla/5.0 -v 2560x1440</pre>
-
-    <h3 id="name">Set a name of your test</h3>
-    <p>You can give your test run a name, that will be showed on all the pages</p>
-    <pre>$ ./sitespeed.io -u http://yoursite.com/ -n "Swedens top 100 sites"</pre>
-
-
-</div>
-</div>
-</div>
 
 <div class="section">
   <div class="row-fluid">
@@ -447,7 +463,7 @@ JUNIT_XML=$1
       </p>
       <dl class="dl-horizontal">
         <dt>Linux/Unix</dt>
-        <dd>Linux/Unix or a Linux-like environment for Windows like Git Bash</dd>
+        <dd>Linux/Unix or a Linux-like environment for Windows like Git Bash.</dd>
 
         <dt>PhantomJS</dt>
       <dd><a href="http://phantomjs.org/" target="_blank">PhantomJS</a> is a headless WebKit with JavaScript API. It is really cool product where you can do browser things without a browser. You need to have it installed to be able to run sitespeed.io.</dd>
