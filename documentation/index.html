@@ -97,7 +97,7 @@ OPTIONS:
       <pre>$ ./sitespeed.io -u http://yoursite.com/my/path</pre>
 
     <h3>Feeding sitespeed with a urls in a text file</h3>  
-    The urls needs to be one on each row, looking like this:
+    The urls needs to be one on each row:
     <pre>
 http://www.yoursite.com/path/
 http://www.yoursite.com/my/really/important/page/
@@ -130,15 +130,15 @@ http://www.yoursite.com/where/we/are/
     <pre>$ ./sitespeed.io -u http://yoursite.com  -r /place/the/files/here</pre>
     
     <h3 id="tar">Tar zip all the result files</h3>
-    <p>If you want all the result files tar zipped into one file, you do that like this:</p>
+    <p>If you want all the result files tar zipped into one file:</p>
     <pre>$ ./sitespeed.io -u http://yoursite.com/ -z true</pre>
     
     <h3 id="heap">Heap size for the Java applications</h3>
     <p>If you are analyzing a very large site, it is possible that you need to increase the memory for the java application, or if you run the test on a machine with low memory, you can change the heap size with the <i>m</i> parameter:</p>
     <pre>$ ./sitespeed.io -u http://yoursite.com/ -m 512</pre>
 
-    <h3 id="proxy">Run  behind a proxy</h3>
-    <p>Behind a proxy you can run like this:</p>
+    <h3 id="proxy">Run behind a proxy</h3>
+    <p>Behind a proxy you run it like this:</p>
     <pre>$ ./sitespeed.io -u http://yoursite.com/ -x yourproxy.com:portnumber</pre>
 
     <h3 id="useragent">Set the user agent and view port</h3>
@@ -227,7 +227,7 @@ sitespeed-result
         <strong>rules.html</strong> is a presentation of the rules used to calculate the score for a page. And the images folder is created if you choose to output the summary as png:s. The <strong>errorurls.html</strong> shows the list of url:s that couldn't be fetched (the file will not exist if all url:s could be collected).
 	      The <strong>assets.html</strong> shows the top 200 most used assets across the pages.
       </p>
-      <p>The workflow is like this:</p>
+      <p>The workflow:</p>
       <p class="image">
         <img class="center" alt="sitespeed workflow" src="/img/sitespeed.io-1.6-workflow.png"/>
       </p>
@@ -287,7 +287,7 @@ sitespeed-result
     <div class="span12">
       <h2 id="page">Full page analyzis</h2>
       <p>
-      Every page that is tested, also get a corresponding html page, where all data is shown. You will see all rules that are below 100, all assets on the page together with the response headers for that asset (click on the magnifier) and a summary. These example images doesn't show everything, checkout the <a href="/example/">examples</a> section to see how it looks like. 
+      Every page that is tested, also get a corresponding html page, where all data is shown. You will see all rules that are below 100, all assets on the page together with the response headers for that asset (click on the magnifier) and a summary. These example images doesn't show everything, checkout the <a href="/example/">examples</a> section to see how it is. 
     </p>
     <p class="image">
       <img src="/img/page-1.6.jpg" alt="sitespeed page page" class="img-polaroid"/>
@@ -356,7 +356,7 @@ OPTIONS:
 /Users/peter/tmp/sitespeed.io -u http://yoursite.com
 /Users/peter/tmp/sitespeed-junit.io -o /Users/Shared/Jenkins/Home/workspace/sitespeed.io/
         </pre>
-        <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output file from the script. In Jenkins, it will look something like this:
+        <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output file from the script. In Jenkins, this is how it looks:
       </p>
         <p class="image">
         <a href="jenkins-sitespeed-config.png"><img src="jenkins-sitespeed-config.png" alt="Configuration Sitespeed.io for Jenkins" class="img-polaroid"/></a>
@@ -367,7 +367,7 @@ OPTIONS:
         <a href="jenkins-junit-setup.png"><img src="jenkins-junit-setup.png" alt="Configuration JUnit.xml file" class="img-polaroid"/></a>
       </p>
 
-      <p>Each sitespeed test, is a JUnit testcase, each page tested is a testsuite and the whole test bundled as testsuites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page. The result of all the tests for all pages will look like this.
+      <p>Each sitespeed test, is a JUnit testcase, each page tested is a testsuite and the whole test bundled as testsuites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
 
       </p>
        <p class="image">
@@ -375,17 +375,17 @@ OPTIONS:
       </p>
 
       <p>
-        And for a specific page, the result will be like this:</p>
+        And for a specific page:</p>
        <p class="image">
         <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-polaroid"/></a>
       </p>
 
-      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-1.8.1.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong>//site/metrics/pageweight/median</strong>. In Jenkins it will look like this:</p>
+      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-1.8.1.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong>//site/metrics/pageweight/median</strong>.</p>
 <p class="image">
    <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-polaroid"/></a>
 </p>
 
-<p>And the graphs you create will look something like this:</p>
+<p>And the graphs:</p>
 <p class="image">
 <a href="plot-graph-example.png"><img src="plot-graph-example.png" alt="The graph" class="img-polaroid"/></a>
 </p>
@@ -400,10 +400,10 @@ OPTIONS:
       <p>
       <a href="https://travis-ci.org/" target="_blank">Travis</a> doesn't have a built in support for JUnit XML right now (read this  
       <a href="https://github.com/travis-ci/travis-ci/issues/239" target="_blank">issue</a> about the plan for supporting it).
-      But you can of course use it and break the build if you have failures. Do like this.
+      But you can of course use it and break the build if you have failures.
       </p>
       
-      <p>Setup your <strong>.travis.yml</strong> file like this (before you run the <em>before_script</em> you need to start your server (that is not included), in this example the server runs on http://127.0.0.1:8080/.
+      <p>Setup your <strong>.travis.yml</strong> file (before you run the <em>before_script</em> you need to start your server (that is not included), in this example the server runs on http://127.0.0.1:8080/.
       <pre>
 before_install:
 - sudo apt-get update
@@ -639,7 +639,7 @@ YSLOW.registerRuleset({
         </li>
         <li>Create the new Yslow javascript file: <pre>make phantomjs</pre></li>
         <li>Test that it works on one url (standing in root for Yslow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-1.8.3 -f xml http://yoururl.com</pre></li>
-        <li>Move the newly created rulefile into your dependencies directory for sitespeed, on my local it looks like this:
+        <li>Move the newly created rulefile into your dependencies directory for sitespeed, on my local I do it this way:
           <pre>cp build/phantomjs/yslow.js ../sitespeed.io/dependencies/yslow-3.1.5-sitespeed.js</pre>
          </li>
          <li>Run sitespeed: <pre>./sitespeed.io -u http://yoururl.com</pre></li>
