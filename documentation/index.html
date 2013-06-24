@@ -84,6 +84,7 @@ OPTIONS:
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version [optional]  
+   -b      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional]    
 </pre>
 
     <h3>Standard (fetching one level of pages)</h3>
@@ -149,7 +150,119 @@ http://www.yoursite.com/where/we/are/
     <p>You can give your test run a name, that will be showed on all the pages</p>
     <pre>$ ./sitespeed.io -u http://yoursite.com/ -n "Swedens top 100 sites"</pre>
 
+    <h3 id="pagecolumns">Choose which columns to show in the table in detailed summary page</h3>
+    <p>
+      You can choose which columns you want to see in the table in the detailed summary page, by adding a comma separated list of the column names, showed in the table below:
+    </p>
 
+      <table class="table table-condensed table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>url</td>
+            <td>The URL</td>
+          </tr>
+          <tr>
+            <td>js</td>
+            <td>The number of javascripts</td>
+          </tr>
+          <tr>
+            <td>css</td>
+            <td>The number of CSS</td>
+          </tr>
+          <tr>
+            <td>img</td>
+            <td>The number of images</td>
+          </tr>
+          <tr>
+            <td>cssimg</td>
+            <td>The number of CSS images</td>
+          </tr>
+          <tr>
+            <td>font</td>
+            <td>The number of fonts</td>
+          </tr>
+          <tr>
+            <td>requests</td>
+            <td>The total number of requests</td>
+          </tr>
+          <tr>
+            <td>requestswithoutexpires</td>
+            <td>The number of requests without an cache expire</td>
+          </tr>
+          <tr>
+            <td>docsize</td>
+            <td>The document size</td>
+          </tr>
+          <tr>
+            <td>pagesize</td>
+            <td>The total page size</td>
+          </tr>
+          <tr>
+            <td>criticalpath</td>
+            <td>The score for the critical rendering path</td>
+          </tr>
+          <tr>
+            <td>loadtime</td>
+            <td>The load time</td>
+          </tr>
+          <tr>
+            <td>spof</td>
+            <td>The single point of failure score</td>
+          </tr>
+          <tr>
+            <td>syncjs</td>
+            <td>The amount of JS loaded sync inside head</td>
+          </tr>
+          <tr>
+            <td>ttfb</td>
+            <td>The time to first byte</td>
+          </tr>
+          <tr>
+            <td>domains</td>
+            <td>The number of domains</td>
+          </tr>
+          <tr>
+            <td>kbps</td>
+            <td>Kilo byte per second</td>
+          </tr>
+          <tr>
+            <td>maximgsize</td>
+            <td>The largest image size</td>
+          </tr>
+          <tr>
+            <td>totalimgsize</td>
+            <td>The total size of all images</td>
+          </tr>
+          <tr>
+            <td>totaljssize</td>
+            <td>The total size of all JS files</td>
+          </tr>
+          <tr>
+            <td>totalcsssize</td>
+            <td>The total size of all CSS files</td>
+          </tr>
+          <tr>
+            <td>browserscaledimg</td>
+            <td>The number of images scaled in the browser</td>
+          </tr>
+          <tr>
+            <td>grade</td>
+            <td>The sitespeed score</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        You do that by supplying <strong>-b</strong>
+        with the list of column names
+      </p>
+      <pre>$ ./sitespeed.io -u http://yoursite.com/ -b url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath</pre>
 </div>
 </div>
 </div>
