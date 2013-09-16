@@ -1,47 +1,59 @@
-<div class="container-fluid header">
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="navbar">
-        <div class="navbar-inner">
-          <div class="container">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
 
-	    <a href="/"><img src="/img/sitespeed-logo-one-row.gif" class="logo" width="135" height="60" alt="sitespeed.io"/></a>
-            <div class="nav-collapse">
-              <ul class="nav">
-		 <li class="divider-vertical"></li>
-                <li {% if page.nav == 'start' %}class="active" {% endif %}>
-                  <a href="/">Start</a>
-                </li>
-                <li class="divider-vertical"></li>
-                <li {% if page.nav == 'documentation' %}class="active" {% endif %}>
-                  <a href="/documentation/">Documentation</a>
-                </li>
-                <li class="divider-vertical"></li>
-                <li {% if page.nav == 'rules' %}class="active" {% endif %}>
-                  <a href="/rules/">Rules</a>
-                </li>
-		<li class="divider-vertical"></li>
-                <li {% if page.nav == 'examples' %}class="active" {% endif %}>
-                  <a href="/example/">Examples</a>
-                </li>
-		 <li class="divider-vertical"></li>
-                <li {% if page.nav == 'faq' %}class="active" {% endif %}>
-                  <a href="/faq/">FAQ</a>
-                </li>
-                <li class="divider-vertical"></li>
-                <li {% if page.nav == 'wpo-tools' %}class="active" {% endif %}>
-                  <a href="/wpo-tools/">WPO tools</a>
-                </li>
-                <li class="divider-vertical"></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="navbar-header">
+    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sitespeed-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+
+    <!-- Be sure to leave the brand out there if you want it shown -->
+    <!--<a class="navbar-brand" href="#">sitespeed.io</a>-->
+    <a href="http://sitespeed.io"><img src="/img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"/></a>
   </div>
-</div>
-<div class="visible-desktop">
+    <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+    <nav class="collapse navbar-collapse sitespeed-collapse">
+       <ul class="nav navbar-nav">
+            <li {% if page.nav == 'start' %}class="active" {% endif %}>
+               <a href="/">Start</a>
+            </li>
+	   <li class="dropdown">
+             <a href="/documentation/" class="dropdown-toggle {% if page.nav == 'documentation' %} active {% endif %}" data-toggle="dropdown">Documentation<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/documentation/#toc">Table of contents</a></li>
+          <li><a href="#">Download & installation</a></li>
+          <li><a href="#">Analyze a site</a></li>
+          <li><a href="#">Analyze & compare multiple sites</a></li>
+          <li><a href="#">Continous Integration</a></li>
+          <li><a href="#">Developers</a></li>
+          <li><a href="#">The workflow</a></li>
+        </ul>
+      </li>
+            <li {% if page.nav == 'rules' %}class="active" {% endif %}>
+                  <a href="/rules/">Rules</a>
+            </li>
+             <li {% if page.nav == 'examples' %}class="active" {% endif %}>
+                  <a href="/example/">Examples</a>
+            </li>
+<!--
+             <li {% if page.nav == 'faq' %}class="active" {% endif %}>
+                  <a href="/faq/">FAQ</a>
+            </li>
+-->  
+           <li {% if page.nav == 'wpo-tools' %}class="active" {% endif %}>
+                  <a href="/wpo-tools/">WPO tools</a>
+              </li>
+
+          </ul>
+    </nav><!-- /.nav-collapse -->
+  </div><!-- /.container -->
+</nav><!-- /.navbar -->
+
+
+<div class="visible-lg">
   <a href="https://github.com/soulgalore/sitespeed.io">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="/img/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+    <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1040;" src="/img/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 </div>

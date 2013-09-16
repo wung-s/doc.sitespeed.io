@@ -12,9 +12,8 @@ nav: faq
 </div>
 
 <div class="section">
-  <div class="row-fluid">
-    
-    <div class="span12">
+ <div class="row">
+    <div class="col-lg-12">
       <section id="knownbugs">
         <h3>Q: Are there any known bugs?</h3>
         <p style="word-wrap: break-word;">Checkout the <a href="https://github.com/soulgalore/sitespeed.io/issues?labels=bug&state=open">https://github.com/soulgalore/sitespeed.io/issues?labels=bug&state=open</a> list for latest updated list of defects within sitespeed.</p>
@@ -40,13 +39,13 @@ nav: faq
 
         <section id="onepage">
             <h3>Q: I want to test only one page, how do I do that?</h3>
-        <p><pre>$ ./sitespeed.io -u http://mysite.com -d 0</pre></p>
+        <p><code class="bash">$ ./sitespeed.io -u http://mysite.com -d 0</code></p>
         </section> 
       
       <section id="slowness">
 	<h3>Q: It takes like forever to to analyze my site, what should I do?</h3>
 	<p>You can change the amount of simultaneously processes that analyze your site (default is five). Increase the amount of processes with the <strong>p</strong> switch:</p>
-	<pre>$ ./sitespeed.io -u http://mysite.com -p 10</pre>
+	<code class="bash">$ ./sitespeed.io -u http://mysite.com -p 10</code>
 	</section>
 
       <section id="windows">

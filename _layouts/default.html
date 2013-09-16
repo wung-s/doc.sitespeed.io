@@ -32,21 +32,26 @@
 	<meta property="og:site_name" content="Sitespeed.io - How speedy is your website">
 	<meta property="og:description" content="{{ page.description | truncate:200 }}">
 	
-	<link rel="shortcut icon" href="/img/ico/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img//ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/ico/sitespeed.io-144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/mg/ico/sitespeed.io-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/ico/sitespeed.io-72.png">
+<link rel="apple-touch-icon-precomposed" href="/img/ico/sitespeed.io-57.png">
+<link rel="shortcut icon" href="/img/ico/sitespeed.io.ico">
 
 	<style>{% include all.css %}</style>
 	{% include analythics %}
 </head>
 <body>
 	{% include header.html %}
-	<div class="container-fluid page">
-		<div class="wrapper">
+	
+	{% if page.startpage %}
+	{% else %}
+	<div class="container">
+	{% endif %}
+			 
 		{{ content }}
-	</div>
 {% include footer.html %}
-	</div>
+<script src="/js/jquery-1.10.2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
