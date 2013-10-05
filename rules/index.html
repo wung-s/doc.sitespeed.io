@@ -16,7 +16,7 @@ nav: rules
     <div class="col-lg-12">
      <section>
     Sitespeed.io uses performance best practices rules to decide if a page is optimized for performance. The idea of rules for perfomance was started by Steve Souders <a href="http://stevesouders.com/hpws/rules.php" target="_blank">14 rules for faster loading websites</a> in 2007. Those rules and a couple of more is implemented in YSlow. Sitespeed.io uses these rules and aprox 20 rules more (it has happend things since 2007). You can see all rules used
-    <a href="#allrules">here</a>.
+    <a href="#allrules">here</a>. Sitespeed has two set of rules; desktop & mobile. Desktop is the default one and described on this page. The mobile rules are the same rules, but they have different weight. You can see the exact implementation <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" target="_blank">here</a>.
   </section>
 
   <section>
@@ -285,14 +285,6 @@ nav: rules
 <p>
   CSS expressions (supported in IE beginning with Version 5) are a powerful, and dangerous, way to dynamically set CSS properties. These expressions are evaluated frequently: when the page is rendered and resized, when the page is scrolled, and even when the user moves the mouse over the page. These frequent evaluations degrade the user experience.
   <em>Weigth: 3</em>
-</p>
-<h3>
-  Make JavaScript and CSS external
-  <em>(yexternal)</em>
-</h3>
-<p>
-  Using external JavaScript and CSS files generally produces faster pages because the files are cached by the browser. JavaScript and CSS that are inlined in HTML documents get downloaded each time the HTML document is requested. This reduces the number of HTTP requests but increases the HTML document size. On the other hand, if the JavaScript and CSS are in external files cached by the browser, the HTML document size is reduced without increasing the number of HTTP requests.
-  <em>Weigth: 4</em>
 </p>
 <h3>
   Reduce DNS lookups

@@ -14,7 +14,7 @@ startpage: true
 
 <h2 class="startpage">Analyze your website speed and performance</h2>
 <p>  
-        Sitespeed.io is an open source tool that helps you analyze your website <strong>speed</strong> and <strong>performance</strong> based on <strong>performance best practices</strong> and metrics. It collects data from multiple pages on your website, analyze the pages using the <a href="/rules/">rules</a> and output the result as HTML or JUnit XML. 
+        Sitespeed.io is an open source tool that helps you analyze your website <strong>speed</strong> and <strong>performance</strong> based on <strong>performance best practices</strong> and <strong>metrics</strong>. It collects data from multiple pages on your website, analyze the pages using the <a href="/rules/">rules</a> and output the result as HTML or JUnit XML. 
       </p>
       <p>
         You can analyze one site, analyze & compare multiple sites or let it run in you CI tool to make sure that your site is always built the best way for speed.
@@ -32,7 +32,10 @@ startpage: true
 <div class="page-header">
    <h2>The 2.0 release</h2>
 </div>
-<p> The current release is 2.0 version. Almost everything has been reworked sin 1.X. You can read the release notes 
+<p>Yes finally the 2.0 release is here. Almost everything has been reworked since 1.8 so please upgrade to 2.0!</p>
+<p>You can now configure the output, collect metrics from the <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" target="_blank">Navigation Timing API</a> & 
+test your site for mobile. 
+ You can read about all the new things 
   <a href="/release-notes/2.0/">here</a>.
 </p>
  </div>
@@ -45,7 +48,7 @@ startpage: true
 <p>Checkout issues and coming features at
   <a href="https://github.com/soulgalore/sitespeed.io/issues">Github</a> and follow sitespeed.io on <a href="https://twitter.com/SiteSpeedio" target="_blank">Twitter</a> to get information about new releases.</p>
 <p>
- Sitspeed.io is developed & tested on Mac OS X 10.8.4 & Ubuntu Linux 12.04 and should run on Windows if you use Git Bash.
+ Sitspeed.io is developed & tested on Mac OS X 10.8.5 & Ubuntu Linux 12.04 and should run on Windows if you use Git Bash.
 </p>
 </div>
 <div class="col-md-4">
@@ -54,9 +57,10 @@ startpage: true
 </div>
   <ol>
     <li>Analyze many pages on your site, not just one!</li>
-    <li>The latest best practice rules</li>
-    <li>The output is highly configurable</li>
+    <li>Check your site against the latest web performance best practice rules</li>
+    <li>Test for desktop or mobile</li>
     <li>Compare sites, keep track of your competitors</li>
+    <li>Fetch Navigation Timing API & your own defines user marks</li>
   </ol>
 
       </div>
@@ -70,7 +74,7 @@ startpage: true
   <h2>Credit</h2>
 </div>
 
-       <p>It is built on top of three fantastic tools/products, thank you guys for providing these great things:
+       <p>It is built on top of four fantastic tools/products, thank you guys for building them:
     </p>
           <ul>
             <li><em>Steve Souders</em>, <em>Stoyan Stefanov</em> & <em>Marcel Duran</em> (and all others that have been involved) - 
@@ -84,6 +88,10 @@ startpage: true
               &
               <em>Jacob Thornton</em> - 
                <a href="https://github.com/twbs/bootstrap/" target="_blank">Bootstrap</a>
+            </li>
+            </li>
+            <li> <em>Tobias Lidskog</em> - 
+              <a href="https://github.com/tobli/browsertime" target="_blank">BrowserTime</a>
             </li>
           </ul>
     <p>Also extra thanks to <em>Sergiy Kovalchuk</em> for the <a href="http://code.google.com/p/htmlcompressor/" target="_blank">HTMLCompressor</a>, it is used to compress the result HTML produced by sitespeed.io.</p>  
@@ -100,17 +108,11 @@ startpage: true
   <h2>Contributors</h2>
 </div>
         <p>
-          Sitespeed.io  creator is <a href="http://peterhedenskog.com" target="_blank">Peter Hedenskog</a> with the help from 
-          the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CONTRIBUTORS.md" target="_blank">contributors</a> (massive love, become a <a href="https://github.com/soulgalore/sitespeed.io/" target="_blank">contributor</a> you too! All  ):</p>
-    <ul>
-      <li><em>Tom Sutton</em> (<a href="https://github.com/tomsutton1984" target="_blank">@tomsutton1984</a>)</li>
-      <li><em>Roberto Maisl</em> (<a href="https://github.com/rob-m" target="_blank">@rob-m</a>)</li>
-      <li><em>Guillaume Lederrey</em> (<a href="https://github.com/gehel" target="_blank">@gehel</a>)</li>
-      <li><em>Tobias Lidskog</em>(<a href="https://github.com/tobli" target="_blank">@tobli</a>)</li>
-      <li><em>Emil Breding</em>(<a href="https://github.com/emilb" target="_blank">@emilb</a>)</li>
-      <li><em>Peter van Gils</em>(<a href="https://github.com/kab12" target="_blank">@kab12</a>)</li>
-    </ul>
-  </div>
+          Sitespeed.io is created by me <a href="http://peterhedenskog.com" target="_blank">Peter Hedenskog</a>, who has spent all the time when the kids are asleep the last year to make it happen. Help me out on <a href="https://www.gittip.com/soulislove/" target="_blank">GitTip</a>.
+        </p>
+        <p>
+          Contributors are very welcome, <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CONTRIBUTORS.md" target="_blank">these</a>  people has filed an issue/defect/idea or fixed bugs (massive love!).
+</p>  </div>
  
 </div>
 
