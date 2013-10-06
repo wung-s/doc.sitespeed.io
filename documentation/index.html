@@ -2,7 +2,7 @@
 layout: default
 title: Documentation - Sitespeed.io
 description: Here's the documentation of sitespeed.io, the workflow, how you run it and how you extend it as a developer.
-keywords: documentation, workflow, sitespeed.io, jenkins, travis
+keywords: documentation, workflow, sitespeed.io, jenkins, navigation timing api
 author: Peter Hedenskog
 nav: documentation
 image: http://sitespeed.io/img/sitespeed-twitter.gif
@@ -33,22 +33,20 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
         <li class="toc"><a href="#mobile">Analyze as mobile</a></li>
         <li class="toc"><a href="#limitpages">Limit pages to test</a></li>
         <li class="toc"><a href="#rules">Choose desktop or mobile rules</a></li>
-        <li class="toc"><a href="#browsertimemetrics">Browser Time Metrics a.k.a fetch Navigation Timing data</a></li>
+        <li class="toc"><a href="#browsertimemetrics">Collect Browser timings a.k.a fetch Navigation Timing data</a></li>
+         <li class="toc"><a href="#config-boxes">Boxes on summary page</a></li>
+        <li class="toc"><a href="#config-columns">Columns on pages</a></li>
       </ul>
       <li class="toc"><a href="#advanced">Advanced</a></li>
       <ul>
-        <li class="toc"><a href="#config-boxes">Boxes on summary page</a></li>
-        <li class="toc"><a href="#config-columns">Columns on pages</a></li>
         <li class="toc"><a href="#processes">Changing the number of processes analyzing the site</a></li>
         <li class="toc"><a href="#resultdir">Change the result directory</a></li>
         <li class="toc"><a href="#heap">Heap size for the Java applications</a></li>
         <li class="toc"><a href="#proxy">Run behind a proxy</a></li>
       </ul>
     </ul>
-    <li class="toc"><a href="#browsertime">Browser Time a.k.a fetch Navigation Timing data</a></li>
-
    </ul>
-   <li class="toc">Analyze & compare multiple sites</li>
+   <li class="toc"><a href="#multiple">Analyze & compare multiple sites</a></li>
   <ul>
     <li class="toc"><a href="#summarypage">Configuration</a></li>
       <ul>
@@ -56,11 +54,11 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
         <li class="toc"><a href="#summarypage">Choose columns for report</a></li>
       </ul>
    </ul>
-
+    <li class="toc"><a href="#browsertime">Collect Browser timings</a></li>
    <li class="toc"><a href="#summaryxml">The summary.xml file</a></li>
   <li  class="toc"><a href="#harfiles">HAR files</a></li>
 
-   <li class="toc"><a href="#run">Continus integration</a></li>
+   <li class="toc"><a href="#continuousintegration">Continuous integration</a></li>
   <ul>
      <li class="toc"><a href="#junit">Generating the JUnit XML for continous integration</a></li>
       <li class="toc"><a href="#jenkins">Jenkins integration</a></li>
@@ -72,6 +70,9 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
      <li class="toc"><a href="#components">Components</a></li>
      <li class="toc"><a href="#feature">Create a new feature request</a></li>
      <li class="toc"><a href="#bug">Report a bug</a></li>
+     <li class="toc"><a href="#configurerulelimits">Configure rule limits</a></li>
+     <li class="toc"><a href="#createboxes">Create your own box on the summary page</a></li>
+     <li class="toc"><a href="#createcolumns">Create your column for the pages table</a></li>
      <li class="toc"><a href="#addrule">Add your own rules</a></li>
    </ul>
  </ol>
@@ -79,9 +80,9 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
 
  <div class="section" id="introduction">
   <div class="page-header">
-      <h2>Introduction</h2>
+      <h1>Introduction</h1>
     </div>
-    <p>Sitespeed.io is an open source tool that will check your site against web performance best practice rules and the <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" target="_blank">Navigation Timing API</a> to collect metrics. It will create XML & HTML output of the result.
+    <p>Sitespeed.io is an open source tool that will check your site against web performance best practice rules and use the <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" target="_blank">Navigation Timing API</a> to collect metrics. It will create XML & HTML output of the result.
     </p>
  </div>
 
@@ -89,7 +90,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
 <div class="section" id="installation">
 
       <div class="page-header">
-      <h2>Download and installation</h2>
+      <h1>Download and installation</h1>
     </div>
 
       {% include installation.html %}
@@ -101,9 +102,9 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
 <div class="section" id="analyzeonesite">
 
       <div class="page-header">
-      <h2>Analyze a site</h2>
+      <h1>Analyze a site</h1>
     </div>
-    <p>Here's the info on how and what you can do to analyze a site.
+    <p>You can choose to analyze one site or multiple & compare them. 
       </p>
     </div>
 
@@ -424,14 +425,6 @@ You can set the user agent to <strong>iphone5</strong> or <strong>ipad</strong> 
 <div class="note note-warning">To run Chrome, you need to have the ChromeDriver installed on your computer, you can find more info <a href="https://code.google.com/p/chromedriver/" target="_blank">here</a>.</div>
 </div>
 
-<div class="section" id="advanced">
-    <div class="page-header">
-    <h2>Advanced configuration</h2>
-  </div>
- <p>The advanced configuration are things that yoy probably not need to confgure.
- </p>
- </div> 
-
 <div class="section" id="config-boxes">
     <div class="page-header">
  <h2>Boxes on summary page</h2>
@@ -701,6 +694,16 @@ Browser speed metric has some own handling ..
 
 </div>
 
+<div class="section" id="advanced">
+    <div class="page-header">
+    <h2>Advanced configuration</h2>
+  </div>
+ <p>The advanced configuration are things that yoy probably not need to confgure.
+ </p>
+ </div> 
+
+
+
 
 <div class="section" id="processes">
     <div class="page-header">
@@ -731,70 +734,13 @@ Browser speed metric has some own handling ..
     <pre class="bash">$ ./sitespeed.io -u http://yoursite.com/ -x yourproxy.com:portnumber</pre>
   </div>  
 
-<div class="section" id="browsertime">
-    <div class="page-header">
- <h2>Browser Time</h2>
-</div>
-  <p>Browser Time is the name of the open source project that collects metrics using the data in the Navigation Timing API. You can choose which browser to use (it must support the Navigation Timing API) and how many runs you want per page.
-  </p>
 
-  You will get the min, median & max time for the following timings:
-  <div class="table-responsive">
- <table class="table table-condensed table-striped table-bordered table-small">
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>definition (using Navigation Timing API)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>serverConnectionTime</td><td>connectEnd - connectStart</td>
-    </tr>
-
-<tr>
-      <td>domainLookupTime</td><td>domainLookupEnd - domainLookupStart</td>
-    </tr>
-<tr>
-      <td>pageLoadTime</td><td>loadEventStart - navigationStart</td> 
-    </tr>
-<tr>
-      <td>pageDownloadTime</td><td>responseEnd - responseStart </td>
-    </tr>
-<tr>
-      <td>serverResponseTime</td><td>responseStart - requestStart</td>
-    </tr>
-<tr>
-      <td>domContentLoadedTime</td><td>domContentLoadedEventStart - navigationStart</td>
-    </tr>
-<tr>
-      <td>domInteractiveTime</td><td>domInteractive - navigationStart</td>
-    </tr>
-<tr>
-      <td>redirectionTime</td><td>fetchStart - navigationStart</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-  <p>By default it is using FireFox but you can choose to use Chrome or Internet Explorer (if you use these, you will automatically get the first paint value reported by the browser).
-</p>
- 
- <p> As an extra bonus, it also fetch your user marks that you create! That is really cool, because you can setup your own marks. 
-</p>
-<div class="note note-warning">Browser Time is still in an early version, so there are some stability issues that wil be taken care of in future releases.
-</div>
-<div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages</div>
-
-  
-   
-
-   </div>
 
    
 
-<div class="section">
+<div class="section" id="multiple">
        <div class="page-header">
-      <h2>Analyze & compare multiple sites</h2>
+      <h1>Analyze & compare multiple sites</h1>
     </div>
     <p>From the 2.0 release, you can analyze multiple sites in one go and get a view where you can choose which data you want to compare between the sites. The script needs a plain text file with one URL on each row. By default, the script will look for a file named <em>urls.txt</em> (you can configure another name if you want). The view will be a table with each site on one row, where you choose which data from the <em>summary.xml</em> file you want to display (you can choose what kind of metric you want like number of requests per page, rule score or the time for DOMContent loaded. And you also choose which "snitt" you want: median, average, min, max and different percentiles.</p>
 
@@ -846,6 +792,66 @@ OPTIONS:
   <div class="note note-info">When doing these kind of text, choosing maximum number of pages to test for a site is really good, use the <em>j</em> parameter!</div>
 
 </div>
+
+<div class="section" id="browsertime">
+    <div class="page-header">
+ <h2>Collect Browser timings</h2>
+</div>
+  <p>You can collect Broswer timings in sitespeed.io, using the Open Source project <strong>Browser Time</strong> that collects metrics using the data in the Navigation Timing API (and also some other data/metrics). You can choose which browser to use (it must of course support the Navigation Timing API) and how many runs you want per page. It will then do a summary for each metric with the minimum, maximum, average, median and the 60, 70, 80 & 90 percentile.</p>
+
+
+  Out of the box, the following timings is collected:
+  <div class="table-responsive">
+ <table class="table table-condensed table-striped table-bordered table-small">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>definition (using Navigation Timing API)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>serverConnectionTime</td><td>connectEnd - connectStart</td>
+    </tr>
+
+<tr>
+      <td>domainLookupTime</td><td>domainLookupEnd - domainLookupStart</td>
+    </tr>
+<tr>
+      <td>pageLoadTime</td><td>loadEventStart - navigationStart</td> 
+    </tr>
+<tr>
+      <td>pageDownloadTime</td><td>responseEnd - responseStart </td>
+    </tr>
+<tr>
+      <td>serverResponseTime</td><td>responseStart - requestStart</td>
+    </tr>
+<tr>
+      <td>domContentLoadedTime</td><td>domContentLoadedEventStart - navigationStart</td>
+    </tr>
+<tr>
+      <td>domInteractiveTime</td><td>domInteractive - navigationStart</td>
+    </tr>
+<tr>
+      <td>redirectionTime</td><td>fetchStart - navigationStart</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  <p>By default <em>FireFox</em> is used but you can choose to use <em>Chrome</em> or <em>Internet Explorer</em> (if you use these, you will automatically get the first paint value reported by the browser).
+</p>
+ 
+ <p> As an extra bonus, it also fetch your user marks that you create! That is really cool, because you can setup your own marks. There will be more documentation later on how to use that!
+</p>
+<div class="note note-warning">Browser Time is still in an early version, so there can be some stability issues that wil be taken care of in future releases.
+</div>
+<div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages</div>
+
+  
+   
+
+   </div>
+
 
 <div class="section">
        <div class="page-header">
@@ -913,9 +919,18 @@ OPTIONS:
 
   </div>
 
-<div class="section">
 
+<div class="section" id="continuousintegration">
+       <div class="page-header">
+      <h2>Continuous integration</h2>
+    </div>
+    <p>Use sitespeed.io to continusley check your site, to make sure you do.</p>
+
+ </div>   
+<div class="section">
+ <div class="page-header">
       <h2 id="junit">Generating the JUnit XML for continuous integration</h2>
+    </div>
        <p>Sitespeed can output <em>junit.xml</em> that works perfect with your continuous integration tool. Jenkins, Bamboo and others support it out of the box.
         To generate the xml, you need to run the script <strong>sitespeed-junit.io</strong> after the normal script (it will take the latest created sitespeed analyze and parse it to the junit.xml).
         The junit script takes the following parameters:</p>
@@ -971,7 +986,7 @@ OPTIONS:
         <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-thumbnail"/></a>
       </p>
 
-      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-1.8.1.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong>//site/metrics/pageweight/median</strong>.</p>
+      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong>//site/metrics/pageweight/median</strong>.</p>
 <p class="text-center">
    <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
 </p>
@@ -1132,6 +1147,33 @@ JUNIT_XML=$1
     </p>
 
     </div>
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="configurerulelimit">Configure rule limits</h2>
+    </div>
+    <p>There are two different rules & limits. One is the rules system implemented in the YSlow engine, the other is the rules that chooses the colors on the summary page (green/yellow/red). You can configure & change these with a property file, located in the <pre>dependencies</pre> directory. There are actually two files, one for desktop & one for mobile rules:</p>
+      <pre>
+        dependencies/rules-desktop.properties
+        dependencies/rules-mobile.properties
+      </pre>
+      <p>
+        The rules are defined with keys & values. The keys are the rule box name, the same name you use to decide which boxes that should be shown. The values are thre values separated by a <strong>;</strong> character. The direction, the limit to get green and the limit to get yellow.
+    </p>
+    <pre>
+# The sitesped score
+ruleScore=GREATER_THAN;89.99;80
+    </pre>
+    <p>You need to have a rule score greater than 89.99 to get green, and greater than 80 to get yellow.
+    </p>
+
+    <pre>
+# The number of css images
+cssImagesPerPage=LESS_THAN;2;5
+    </pre>
+<p>You need to have less than two CSS images per page to get green and you need less than five to get yellow.
+</p>    
+</div>
 
 
 <div class="section">
