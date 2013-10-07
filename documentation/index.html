@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Documentation - Sitespeed.io
-description: Here's the documentation of sitespeed.io, the workflow, how you run it and how you extend it as a developer.
+description: Here's the documentation of sitespeed.io, the workflow, how you run it and how you use it as a developer.
 keywords: documentation, workflow, sitespeed.io, jenkins, navigation timing api
 author: Peter Hedenskog
 nav: documentation
@@ -736,13 +736,17 @@ You can choose between the following data to be shown as columns:
        <div class="page-header">
       <h1>Analyze & compare multiple sites</h1>
     </div>
-    <p>From the 2.0 release, you can analyze multiple sites in one go and get a view where you can choose which data you want to compare between the sites. The script needs a plain text file with one URL on each row. By default, the script will look for a file named <em>urls.txt</em> (you can configure another name if you want). The view will be a table with each site on one row, where you choose which data from the <em>summary.xml</em> file you want to display (you can choose what kind of metric you want like number of requests per page, rule score or the time for DOMContent loaded. And you also choose which "snitt" you want: median, average, min, max and different percentiles.</p>
-
-    <p>A result page will look like this</p>
+    <p>From the 2.0 release, you can analyze multiple sites in one go! You can choose which data you want to compare between the sites (the ones in the image are the default ones). A result page will look like this:</p>
 
   <p class="text-center">
         <img src="/img/multiple-sites-2.0.jpg" alt="sitespeed.io screenshot page" class="img-thumbnail"/>
       </p>
+
+      <p>
+  The script needs a plain text file with one URL on each row. By default, the script will look for a file named <em>urls.txt</em> (you can configure another name if you want). The view will be a table with each site on one row, where you choose which data from the <em>summary.xml</em> file you want to display (you can choose what kind of metric you want; like number of requests per page, rule score or the time for DOMContent loaded). And you also choose how you want it: median, average, min, max and different percentiles.</p>
+
+  <p>For each URL, a regular analyze will be done, so you can see all the pages & data that has been analyzed.</p>
+
 
 <h3>Configuration</h3>
 You have the options to feed the script:
@@ -760,7 +764,7 @@ OPTIONS:
 
 
 <h3>Choose values to be displayed</h3>
-<p>By default, the following median values will be showed (they are named exactky thius way when you fetch them):</p>
+<p>By default, the following median values will be showed:</p>
   <ul>
   <li>median-ruleScore</li>
   <li>median-criticalPathScore</li>
@@ -832,10 +836,10 @@ OPTIONS:
   </tbody>
 </table>
 </div>
-  <p>By default <em>FireFox</em> is used but you can choose to use <em>Chrome</em> or <em>Internet Explorer</em> (if you use these, you will automatically get the first paint value reported by the browser).
+  <p>By default <em>FireFox</em> is used but you can choose to use <em>Chrome</em> or <em>Internet Explorer</em> (if you use these, you will automatically get the first paint value reported by the browser!).
 </p>
  
- <p> As an extra bonus, it also fetch your user marks that you create! That is really cool, because you can setup your own marks. There will be more documentation later on how to use that!
+ <p> As an extra bonus, it also fetch your user marks that you create! That is really cool, because you can setup your own marks. There will be more documentation later on how to use this!
 </p>
 <div class="note note-warning">Browser Time is still in an early version, so there can be some stability issues that wil be taken care of in future releases.
 </div>
@@ -870,34 +874,8 @@ OPTIONS:
 &lt;/ruleScore&gt;
   </pre>
 
-  <p>Yoy can see a full summary.xml file <a href="">here</a>.
-  <p>When testing many pages, this is a really pleasent view! Today is is used for the summary page, detailed summary and in Jenkins to greate charts over time,</p>
-
-
-      <h3>Add your own metrics to the summary.xml file</h3>
-      <p>You can add your own metrics to the file. For Browser metrics, it will be add automatically (yes!), for rule metrics, you need to add them yourself</p>
-      <ol>
-        <li>Create a file (or preferable a symbolic link) <pre>report/velocity/logic/custom/site.summary.xml.logic.vm</pre> file. Do that so you can keep the changes betweeb releases.</li>
-        <li>Create your own statistics object (<em>com.soulgalore.velocity.NamedDescriptiveStatistics</em>):
-          <pre>#set($statsCriticalPath = $stats.newInstance("criticalPathScore","Critical Rendering Path Score","","","",1))</pre>
-        </li>
-        <li>Add the stats object to the statistics holder, a simple Map that holds all objects
-          <pre>#set($hide = $allStats.add($statsCriticalPath))</pre>
-        </li>
-
-        <li>Now loop through the YSlow/sitespeed.io xml, and add the data you want. In this example we take the rule score for the critical path rule and adds it to the statistics 
-          <pre>
-#foreach ($results in $document.getRootElement().getChildren())
-  #if($!{results.getChild("g").getChild("criticalpath").getChild("score")})
-    $statsCriticalPath.addValue($math.toInteger($results.getChild("g").getChild("criticalpath").getChild("score").getValue()))
-  #end
-#end
-          </pre>
-        </li>
-        <li>Voila, now the stats will end up in the summary.xml file and you can add it to your views with the parameters to the script</li>
-      </ol>
-
-
+  <p>Yoy can see a full summary.xml file <a href="summary-2.0.xml" target="_blank">here</a>.
+  <p>When testing many pages, this is a really pleasent view! Today is is used for the summary page, detailed summary and in Jenkins to create charts.</p>
 
 </div>
 
@@ -906,9 +884,9 @@ OPTIONS:
        <div class="page-header">
       <h2>HAR-files</h2>
     </div>
-    <p>Today HAR-fiels are created for each page (using PhantomJS) and located <em>data/har/</em>. You cannot see them in the result page (that will be implemented in later releases), but you can take them and view them yourself in for example HARviewer.</p>
+    <p>Today HAR-files are created for each page (using PhantomJS) and located in <em>data/har/</em>. You cannot see them in the result page (that will be implemented in later releases), but you can use them and view them yourself in the <a href="http://www.softwareishard.com/har/viewer/" target="_blank">HARviewer</a>.</p>
 
-    <div class="note note-warning">The HAR files from PhantomJS only displays one timing for each asset (missing specifying DNS lookup time etc) and is not containing loading metrics. </div>
+    <div class="note note-warning">The HAR files from PhantomJS only displays one timing for each asset (missing specifying DNS lookup and other timings) and is not containing any loading metrics.</div>
 
 
   </div>
@@ -918,7 +896,7 @@ OPTIONS:
        <div class="page-header">
       <h2>Continuous integration</h2>
     </div>
-    <p>Use sitespeed.io to continusley check your site, to make sure you do.</p>
+    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the rules before it is release!</p>
 
  </div>   
 <div class="section">
@@ -1114,7 +1092,7 @@ JUNIT_XML=$1
       <dt>Stupid Table Plugin</dt>
       <dd><a href="https://github.com/joequery/Stupid-Table-Plugin" target="_blank">Stupid Table Plugin</a> is a really small table column sorter (yes two different is used today, one needs to go away).</dd>
        <dt>BrowserTime</dt>
-        <dd><a href="https://github.com/tobli/browsertime" target="_blank">BrowserTime</a> is a Selenium driven Browsers that collect timing data from your browser.</dd>
+        <dd><a href="https://github.com/tobli/browsertime" target="_blank">BrowserTime</a> collects browser timings using the Navigation Timing API.</dd>
 
       </dl>
 
@@ -1174,6 +1152,28 @@ cssImagesPerPage=LESS_THAN;2;5
       <div class="page-header">
       <h2 id="createbox">Create your own box on the summary page</h2>
       <p>
+      You create your own box by adding your own metrics to the summary.xml file. For Browser metrics, it will be added automatically (yes!), for rule metrics you need to add them yourself:</p>
+      <ol>
+        <li>Create a file (or preferable a symbolic link) <pre>report/velocity/logic/custom/site.summary.xml.logic.vm</pre> file. Do that so you can keep the changes betweeb releases.</li>
+        <li>Create your own statistics object (<em>com.soulgalore.velocity.NamedDescriptiveStatistics</em>):
+          <pre>#set($statsCriticalPath = $stats.newInstance("criticalPathScore","Critical Rendering Path Score","","","",1))</pre>
+        </li>
+        <li>Add the stats object to the statistics holder, a simple Map that holds all objects
+          <pre>#set($hide = $allStats.add($statsCriticalPath))</pre>
+        </li>
+
+        <li>Now loop through the YSlow/sitespeed.io xml, and add the data you want. In this example we take the rule score for the critical path rule and adds it to the statistics 
+          <pre>
+#foreach ($results in $document.getRootElement().getChildren())
+  #if($!{results.getChild("g").getChild("criticalpath").getChild("score")})
+    $statsCriticalPath.addValue($math.toInteger($results.getChild("g").getChild("criticalpath").getChild("score").getValue()))
+  #end
+#end
+          </pre>
+        </li>
+        <li>Voila, now the stats will end up in the summary.xml file and you can add it to your views with the parameters to the script.</li>
+      </ol>
+
     </div>
  </div>   
 
