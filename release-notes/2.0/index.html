@@ -1,57 +1,58 @@
 ---
 layout: default
 title: Sitespeed.io - Release notes 2.0
-description: Sitespeed.io 2.0 is finally here!
+description: The 2.0 release is here. Test multiple sites @ once, configure what you want to see, and fetch timings using the Navigation Timing API.
 author: Peter Hedenskog
 keywords: sitespeed.io, release, release-notes, 2.0
 nav: 
 image: http://sitespeed.io/img/sitespeed-1.5-twitter.jpg
-twitterdescription: XXX
+twitterdescription: The 2.0 release is here. Test multiple sites @ once, configure what you want to see, and fetch timings using the Navigation Timing API.
 ---
 <div class="page-header">
   <h1>Sitespeed.io 2.0 release notes</h1>
 </div>
+<p>Well, it took all summer and almost the autumn to get it ready and now it is here! Almost everything has been reworked & cleaned up,  here are the new major changes: </p>
 
-<h3>It's all in the (summary) details</h3>
-<p>The summary page is now based on the <i>summary.xml</i> file. The XML file keeps information of all fields you see on the summary page for all the pages that has been tested. For all the metrics you will get the average, median, max, min, standard deviation, variance, 10 percentile, 90 percentile & the 95 percentile! Yes that is a lot of difference statistics and it is quite cool!</p>
-How do you actually make use of it? Well for example, you can easily see which is the largest image of your site, check this out (data collected from a big video site):
-<a href="detailed-summary-large-image.png"><img src="detailed-summary-large-image.png"></a>
-<p>You will find the link to the detailed summary on the start page of the result pages. When the new design is added, it will be in the navigation</p>
-
-<p>You can also use the <i>summary.xml</i> file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a> and create graphs between your test runs, keep track of what's happening with your site in your development cycle.</p>
-<a href="jenkins-page-weight.png"><img src="jenkins-page-weight.png"></a>
-
-<p>There are also some new metrics: The total per page and individual size of js/css and images. You can check out an example of the <a href="/documentation/summary-1.8.1.xml" target="_blank">summary.xml</a> file.</p>
-
-<h3>Goodbye average, hello the 90th percentile!</h3>
-The summary page used to report average values of all different metrics. That has been changed, now median & the 90th percentile is the standard. 
-
-<h3>Preparing for comparing different runs</h3>
-<p>
-  The report dir name & structure has been changed, to make it easier to compare runs in the future. The old structure was sitespeed-HOST-DATE, now it is HOST/DATE.
+<h2>Configurable summary boxes</h2>
+<p>You can now <a href="/documentation/#config-boxes">choose which data that is showed</a> in the summary boxes on the first page. You can also create your own boxes (with your own data) and set the rule limits (when to signal red/yellow/green).</p>
+<p class="text-center">
+<a href="summary.png" target="_blank"><img class="img-responsive img-thumbnail" src="summary.png" alt="The summary boxes, now you can change them"></a>
 </p>
+<h2>Configurable columns</h2>
+<p>Yes, you can also <a href="/documentation/#config-columns">choose & create</a> your own data to be showed in the detailed summary columns.</p>
+<p class="text-center"><a href="columns.png" target="_blank"><img class="img-responsive img-thumbnail" src="columns.png" alt="Configure which colums to see!"></a></p>
+<h2>Fetch real browser timings</h2>
+<p>Fetch Navigation Timing API data from real browser, using <a href="https://github.com/tobli/browsertime" target="_blank">Browser Time</a>. You will get the info in the summary page:</p>
+<p class="text-center"><a href="time-summary.png" target="_blank"><img class="img-responsive img-thumbnail" src="time-summary.png" alt="See the timings in the summary"></a></p>
+<p>In the summary detailed page:</p>
+<p class="text-center"><a href="columns-time.png" target="_blank"><img class="img-responsive img-thumbnail" src="columns-time.png" alt="See the timings in the detailed summary"></a></p>
+<p>And specific timings on each page that has been tested:</p>
+<p class="text-center"><a href="page-specific-metrics.png" target="_blank"><img class="img-responsive img-thumbnail" src="page-specific-metrics.png" alt="See the timings for each page"></a></p>
+<p>Read <a href="/documentation/#browsertime">more</a> about the measured browser timings.</p>
+<h2>New rule: Browser scaled images</h2>
+<p>The YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule compare the image browser width and the real image width.</p>
+<h2>Test multiple sites & compare them</h2>
+<p>You can now <a href="/documentation/#multiple">test multiple sites and compare them</a> using the sitespeed-sites.io script (you can choose what kind of data to compare).</p>
+<p class="text-center"><a href="sites.png" target="_blank"><img class="img-responsive img-thumbnail" src="sites.png" alt="Test multiple sites"></a></p>
+<h2>Test for mobile or desktop</h2>
+<p>There are now two different rule-sets, one for desktop & one for mobile.</p>
 
-<h3>New rule checking for old versions</h3>
-<p>There is a new rule in town that checks if the latest version is used of a Javascript plugin. Right now the only check is for the latest JQuery version, in the future other plugins will be checked.</p>
-<a href="jquery.png"><img src="jquery.png"></a>
+<h2>Rewrite</h2>
+<p>The main script (sitespeed.io) has been cleaned up & Velocity templates has been restructured.</p>
 
-<h3>Image size are important!</h3>
-<p>
-  On the summary page, you can now see the total image size per page (median & 90 percentile values of course).
-</p>
-<a href="image-weight.png"><img src="image-weight.png"></a>
-
-<h3>New way of how to output the JUnit XML</h3>
-<p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You need to configure the output directory (see the <a href="/documentation/#jenkins">docs</a>) and the script will also put a copy of the summary.xml in the same dir.
-</p>
-
-<h3>Bug fixes</h3>
-<ul>
-	<li>The check for number of DOM elements where wrong when signalling a warning.</li>
-  <li>Better check for Java version (thanks Emil Breding).</li>
+<h2>Minor changes</h2>
+<ul> 
+	<li>Phone view on detailed summary page now only contains url & score to make it simpler to maintain.</li>
+	<li>You can now see the IP of the computer running the test in the result.xml file.</li>
+	<li>You can now set the max pages to test & the name of the test (displayed on every HTML page).</li>
+	<li>Simplified user agent by choosing between iphone, ipad or nexus and a real agent & viewport is set.</li>
+<li>Output as CSV: Choose which column to output and always output ip, start url & date.</li>
+<li>Fix for Windows-users that is having spaces in their path to Java.</li>
+<li>Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml.</li>
+<li>Bug fix: The JUnit script can now output files to a relative path.</li>
+<li>Bug fix: User Agent is now correctly set.</li>
 </ul>
 
-</p>
 <hr>
 <p>	
 See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.

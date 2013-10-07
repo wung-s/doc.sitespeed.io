@@ -27,7 +27,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
       <li class="toc"><a href="#basic">The basics</a></li>
       <ul>
         <li class="toc"><a href="#analyzebycrawling">Analyze by crawling</a></li>
-        <li class="toc"><a href="#analyzebyfile">Analyze by file</a></li>
+        <li class="toc"><a href="#analyzebyurls">Analyze by URL:s</a></li>
         <li class="toc"><a href="#includeexclude">Include/exclude URL:s when crawling</a></li>
         <li class="toc"><a href="#screenshots">Screenshots</a></li>
         <li class="toc"><a href="#mobile">Analyze as mobile</a></li>
@@ -104,7 +104,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
       <div class="page-header">
       <h1>Analyze a site</h1>
     </div>
-    <p>You can choose to analyze one site or multiple & compare them. 
+    <p>You can choose to analyze one site or multiple sites & compare them. Here's the workflow when analying one site. 
       </p>
     </div>
 
@@ -176,8 +176,8 @@ sitespeed-result
 
       <p>
         The <strong>data</strong>
-        directory hold all the raw data files that's the result from the analyze. The <strong>errorurls.xml</strong> contains URL:s that couldn't be fetched. The <strong>har</strong> directory holds all the HAR-files produced when testing the pages. The <strong>metrics</strong> contains Browser Time XML, the metrics collecteted form the Navigation Timing API. The <strong>result.xml</strong> contains all the analyzed data for all pages. The 
-        <strong>summary.xml</strong> is the XML representation of all the tests, that is used in the summary page.
+        directory hold all the raw data files that's the result from the analyze. The <strong>errorurls.xml</strong> contains URL:s that couldn't be fetched. The <strong>har</strong> directory holds all the HAR-files produced when testing the pages. The <strong>metrics</strong> contains Browser Time XML, the metrics collected from the Navigation Timing API. The <strong>result.xml</strong> contains all the analyzed data for all pages. The 
+        <strong>summary.xml</strong> is the XML representation of all the tests (that is used in the summary page).
          <strong>Pages</strong>
         hold the result (as HTML) for all unique page tests. The
         <strong>pages.html</strong>
@@ -193,7 +193,7 @@ sitespeed-result
 
       <h2 id="summarypage">Site summary page</h2>
       <p>
-        Sitespeed.io creates a couple of different views/outputs. The summary page is a executive summary page where green is good, yellow means that you should look into it and red is bad (sometimes really bad). The page show a summary of best practices for good web site performance and site speed metrics if configured. You can choose which boxes/best practices that will be shown on this page, so you can create different views for alternate use cases.
+        Sitespeed.io creates a couple of different views/outputs. The summary page is a executive summary page where green is good, yellow means that you should look into it and red is bad (sometimes really bad). The page show a summary of best practices for good web site performance (and site speed metrics if configured). You can choose which boxes/best practices that will be shown on this page, so you can create different views for different use cases.
       </p>
      <p class="text-center">
         <img src="/img/summary-2.0.jpg" alt="sitespeed.io summary page" class="img-thumbnail img-responsive"/>
@@ -227,7 +227,7 @@ sitespeed-result
 
       <h2 id="page">Full page analyzis</h2>
       <p>
-      Every page that is tested, also get a corresponding HTML page, where all in deep data is shown. Checkout the <a href="/example/">examples</a> section to see how it is. 
+      Every page that is tested, also get a corresponding HTML page, where all in deep data is shown. Checkout the <a href="/example/">examples</a> section to see what it looks like.
     </p>
     <p class="text-center">
       <img src="/img/page-2.0.jpg" alt="sitespeed page page" class="img-thumbnail"/>
@@ -241,8 +241,8 @@ sitespeed-result
 
       <h2 id="assets">Most used assets report</h2>
       <p>
-        The most used assets report show you the most used assets (a.k.a which asset should you start to change for most bang for the money).
-        You wil see the following for each asset: the type, the time since last modification, the cache time, the weight and the number of times the asset has been used.</p>
+        The most used assets report show you the most used assets (a.k.a which asset should you start to change to get the most bang for the money).
+        You will see the following for each asset: the type, the time since last modification, the cache time, the weight and the number of times the asset has been used.</p>
       <p class="text-center">
         <img src="/img/assets-2.0.jpg" alt="sitespeed most used asset page" class="img-thumbnail"/>
       </p>
@@ -252,7 +252,7 @@ sitespeed-result
 <div class="section">
       <h2 id="screenshots">Screenshots</h2>
       <p>
-       You can choose to take screenshots of every tested page for the used viewport. You will then have this page where you can scroll down to see all the screenshots.</p>
+       You can choose to take screenshots of every tested page for the used viewport.</p>
       <p class="text-center">
         <img src="/img/screenshots-2.0.jpg" alt="sitespeed.io screenshot page" class="img-thumbnail"/>
       </p>
@@ -266,7 +266,7 @@ sitespeed-result
       <div class="page-header">
       <h2>Configuration</h2>
     </div>
-    <p>Sitespeed.io is highly configurable. The configartion is separated in two parts: The basic & the advanced.</p>
+    <p>Sitespeed.io is highly configurable. Here follows what uou can do.</p>
   </div>
 
 <div class="section" id="theoptions">
@@ -297,12 +297,12 @@ OPTIONS:
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
-   -g      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
-   -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]
+   -g      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns for more info [optional] 
+   -b      The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes for more info [optional]
    -j      The max number of pages to test [optional]   
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional] 
    -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional] 
-   -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3". 
+   -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3".
 </pre>
 
 </div>
@@ -326,13 +326,13 @@ OPTIONS:
 </p>
 <pre class="bash">$ ./sitespeed.io -u http://www.yoursite.com -d 4</pre>
 
-<div class="note note-info">Remember that you can start your crawl deep into your path structure like <strong>http://yoursite.com/my/path</strong>. It is also good practice to use the crawler in you CI-tool, to make sure you fetch new URL:s that are created!</div>
+<div class="note note-info">Remember that you can start your crawl deep into your path structure like <strong>http://yoursite.com/my/path</strong>.</div>
 </div>
 
 
-<div class="section" id="analyzebyfile">
+<div class="section" id="analyzebyurls">
     <div class="page-header">
-    <h2>Analyze by file</h2>
+    <h2>Analyze by URL:s</h2>
 </div>
 <p>Instead of giving a start URL for the crawl, you can supply a plain text file with one URL on each row. Then each of these URL will be analyzed, no more or no less. A file like this will do:</p>
 
@@ -343,7 +343,7 @@ http://www.yoursite.com/where/we/are/
 </pre>
 <p>Then you feed the file to the script:</p>
 <pre class="bash">$ ./sitespeed.io -f myurls.txt</pre>
-<div class="note note-info">This is good for testing and keep track of your site in production and you have a LARGE site with thousend/million pages and a couple of them are more important than the rest. </div>
+<div class="note note-info">This is good for testing and keep track of your site in production and you have a LARGE site with many pages and a couple of them are more important than the rest. </div>
 </div>
 
 <div class="section" id="includeexclude">
@@ -364,7 +364,7 @@ http://www.yoursite.com/where/we/are/
 </p>
 <pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -k true</pre>
 
-<div class="note note-info">If you have <em>pngcrush</em> installed on your system, the screenshots size will be reduced by it.</div>
+<div class="note note-info">If you have <em>pngcrush</em> installed on your system, the screenshots file size will be reduced.</div>
 
 </div>
 
@@ -380,7 +380,7 @@ http://www.yoursite.com/where/we/are/
 <pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -v 400x300 -a "My SUPER BROWSER"</pre>
 
 <div class="note note-info">
-You can set the user agent to <strong>iphone5</strong> or <strong>ipad</strong> That will automatically set the viewport to 320x444 or 768x1024 and set the Safari user agent.
+You can set the user agent to <strong>iphone5</strong>, <strong>nexus</strong> or <strong>ipad</strong> That will automatically set the viewport to 320x444 or 768x1024 and set the Safari or Chrome user agent.
 </div>
 </div>
 
@@ -407,7 +407,7 @@ You can set the user agent to <strong>iphone5</strong> or <strong>ipad</strong> 
     <div class="page-header">
  <h2>Set a name of your test</h2>
 </div>
-    <p>You can give your test run a name, that will be showed on all the pages</p>
+    <p>You can give your test run a name, that will be showed on all the pages.</p>
     <pre class="bash">$ ./sitespeed.io -u http://yoursite.com/ -n "Swedens top 100 sites"</pre>
 </div>
 
@@ -415,10 +415,10 @@ You can set the user agent to <strong>iphone5</strong> or <strong>ipad</strong> 
     <div class="page-header">
  <h2>Collect Browser Time metrics</h2>
 </div>
-<p>By default, the collecting of metrics is turned off, so you need to turn it on.</p>
+<p>By default, the collecting of timing metrics is turned off, so you need to turn it on.</p>
 <pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -c true</pre>
 
-<p>By default it then will use Firefox & collect metrics for each page 3 times. You can change that with the <em>z</em> parameter. That full String is sent to the Browser Time application (more documentation <a href="https://github.com/tobli/browsertime" target="_blank">here</a>). Changing it to Chrome and test each page 5 times, needs the following paarmeters</p>
+<p>Firefox is used to collect metrics for each page. Each page is tested 3 times. You can change that with the <em>z</em> parameter. That full String is sent to the Browser Time application (more documentation <a href="https://github.com/tobli/browsertime" target="_blank">here</a>). Changing it to Chrome and test each page 5 times, looks like this:</p>
 
 <pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -c true "-b chrome -n 5"</pre>
 
@@ -429,7 +429,7 @@ You can set the user agent to <strong>iphone5</strong> or <strong>ipad</strong> 
     <div class="page-header">
  <h2>Boxes on summary page</h2>
 </div>
-<p>You can choose (and <a href="#createbox">create</a> your own) boxes you want to show on the summary page. You will see a couple of boxes by default (and when running BrowserTime you will also have some timings). If you want to change boxes, you do that with the parameter <em>b</em> and comma separated list of the name of the boxes. The boxes are generated from the summary.xml file, meaning you can show whatever kind of data you want, as long as it exists in the summary xml file. </p>
+<p>You can choose (and <a href="#createbox">create</a> your own) boxes you want to show on the summary page. You will see a couple of boxes by default (and when running BrowserTime you will also have some timing boxes). If you want to change boxes, you do that with the parameter <em>b</em> and comma separated list of the name of the boxes. The boxes are generated from the summary.xml file, meaning you can show whatever kind of data you want, as long as it exists in the summary xml file. </p>
 <p>For examle, you want to focus on images, and only want to show image data:</p>
 <pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -b imagesPerPage,imageWeight,imageWeightPerPage</pre>
 
@@ -663,7 +663,7 @@ You can choose between the following data to be shown as columns:
       <td>firstPaintTime</td><td>The time to first paint (if you use Chrome or Internet Explorer)</td>
     </tr>
     <tr>
-      <td>domainLookupTime</td><td>The domaion lookup time</td>
+      <td>domainLookupTime</td><td>The domain lookup time</td>
     </tr>
     <tr>
       <td>pageLoadTime</td><td>The page load time</td>
@@ -686,19 +686,13 @@ You can choose between the following data to be shown as columns:
   </tbody>
 </table>
 
-<p>
-Browser speed metric has some own handling ..
-</p>
-
-<pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -g </pre>
-
 </div>
 
 <div class="section" id="advanced">
     <div class="page-header">
     <h2>Advanced configuration</h2>
   </div>
- <p>The advanced configuration are things that yoy probably not need to confgure.
+ <p>The advanced configuration are things that you probably not need to confgure.
  </p>
  </div> 
 
