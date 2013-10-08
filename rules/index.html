@@ -15,7 +15,7 @@ nav: rules
   <div class="row">
     <div class="col-lg-12">
      <section>
-    Sitespeed.io uses performance best practices rules to decide if a page is optimized for performance. The idea of rules for perfomance was started by Steve Souders <a href="http://stevesouders.com/hpws/rules.php" target="_blank">14 rules for faster loading websites</a> in 2007. Those rules and a couple of more is implemented in YSlow. Sitespeed.io uses these rules and aprox 20 rules more (it has happend things since 2007). You can see all rules used
+    Sitespeed.io uses performance best practices rules to decide if a page is optimized for performance. The idea of rules for performance was started by Steve Souders <a href="http://stevesouders.com/hpws/rules.php" target="_blank">14 rules for faster loading websites</a> in 2007. Those rules and a couple of more is implemented in YSlow. Sitespeed.io uses these rules and approx. 20 rules more (it has happened things since 2007). You can see all rules used
     <a href="#allrules">here</a>. Sitespeed has two set of rules; desktop & mobile. Desktop is the default one and described on this page. The mobile rules are the same rules, but they have different weight. You can see the exact implementation <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" target="_blank">here</a>.
   </section>
 
@@ -30,7 +30,7 @@ nav: rules
         <div class="page-header">
         <h3>Critical Rendering Path</h3>
       </div>
-        <p>Every request fetched inside of HEAD, will postpone the rendering of the page! Do not load javascript synchronously inside of head, load files from the same domain as the main document (to avoid DNS lookups) and inline CSS for a really fast rendering path. The scoring system for this rule, will give you minus score for synchronously loaded javascript inside of head, CSS files requested inside of head and minus minus for every DNS lookup inside of head. If you want to have a really fast first paint (and you always want that), make sure to score high on this rule.</p>
+        <p>Every request fetched inside of HEAD, will postpone the rendering of the page! Do not load javascript synchronously inside of head, load files from the same domain as the main document (to avoid DNS lookups) and inline CSS for a really fast rendering path. The scoring system for this rule, will give you minus score for synchronously loaded javascript inside of head, CSS files requested inside of head and minus for every DNS lookup inside of head. If you want to have a really fast first paint (and you always want that), make sure to score high on this rule.</p>
 
         <p>
           <div class="note note-info">

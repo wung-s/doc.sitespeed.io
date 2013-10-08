@@ -5,7 +5,7 @@ description: Here's the documentation of sitespeed.io, the workflow, how you run
 keywords: documentation, workflow, sitespeed.io, jenkins, navigation timing api
 author: Peter Hedenskog
 nav: documentation
-image: http://sitespeed.io/img/sitespeed-twitter.gif
+image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Add your own rules to sitespeed.io is easy, because of the use of YSlow as the rule engine. Read here how you do it!
 ---
  <div class="row">
@@ -60,7 +60,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
 
    <li class="toc"><a href="#continuousintegration">Continuous integration</a></li>
   <ul>
-     <li class="toc"><a href="#junit">Generating the JUnit XML for continous integration</a></li>
+     <li class="toc"><a href="#junit">Generating the JUnit XML for continuous integration</a></li>
       <li class="toc"><a href="#jenkins">Jenkins integration</a></li>
   <li class="toc"><a href="#travis">Travis integration</a></li>
 </ul>
@@ -104,7 +104,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
       <div class="page-header">
       <h1>Analyze a site</h1>
     </div>
-    <p>You can choose to analyze one site or multiple sites & compare them. Here's the workflow when analying one site. 
+    <p>You can choose to analyze one site or multiple sites & compare them. Here's the workflow when analyzing one site. 
       </p>
     </div>
 
@@ -183,8 +183,8 @@ sitespeed-result
         <strong>pages.html</strong>
         is all pages data, summarized in one page.  The
         <strong>index.html</strong>
-        is the summary page, holding information on a high level. Then the <strong>summary-details.html</strong> holds the summary info on a detailed level, here you will see the nitty gritty details of the site.
-        <strong>rules.html</strong> is a presentation of the rules used to calculate the score for a page. And the images folder is created if you choose to output the summary as png:s. The <strong>errorurls.html</strong> shows the list of url:s that couldn't be fetched (the file will not exist if all url:s could be collected).
+        is the summary page, holding information on a high level. Then the <strong>summary-details.html</strong> holds the summary info on a detailed level, here you will see the nitti gritty details of the site.
+        <strong>rules.html</strong> is a presentation of the rules used to calculate the score for a page. And the images folder is created if you choose to output the summary as png:s. The <strong>errorurls.html</strong> shows the list of URL:s that couldn't be fetched (the file will not exist if all url:s could be collected).
         The <strong>assets.html</strong> shows the top 200 most used assets across the pages.
       </p>
 </div>
@@ -193,7 +193,7 @@ sitespeed-result
 
       <h2 id="summarypage">Site summary page</h2>
       <p>
-        Sitespeed.io creates a couple of different views/outputs. The summary page is a executive summary page where green is good, yellow means that you should look into it and red is bad (sometimes really bad). The page show a summary of best practices for good web site performance (and site speed metrics if configured). You can choose which boxes/best practices that will be shown on this page, so you can create different views for different use cases.
+        Sitespeed.io creates a couple of different views/outputs. The summary page is a executive summary page where green is good, yellow means that you should look into it and red is bad (sometimes really bad). The page shows a summary of best practices for good web site performance (and site speed metrics if configured). You can choose which boxes/best practices that will be shown on this page, so you can create different views for different use cases.
       </p>
      <p class="text-center">
         <img src="/img/summary-2.0.jpg" alt="sitespeed.io summary page" class="img-thumbnail img-responsive"/>
@@ -225,7 +225,7 @@ sitespeed-result
 
 <div class="section">
 
-      <h2 id="page">Full page analyzis</h2>
+      <h2 id="page">Full page analyzes</h2>
       <p>
       Every page that is tested, also get a corresponding HTML page, where all in deep data is shown. Checkout the <a href="/example/">examples</a> section to see what it looks like.
     </p>
@@ -266,7 +266,7 @@ sitespeed-result
       <div class="page-header">
       <h2>Configuration</h2>
     </div>
-    <p>Sitespeed.io is highly configurable. Here follows what uou can do.</p>
+    <p>Sitespeed.io is highly configurable, both what you can do and what you will see. Let's check it out!</p>
   </div>
 
 <div class="section" id="theoptions">
@@ -430,7 +430,7 @@ You can set the user agent to <strong>iphone5</strong>, <strong>nexus</strong> o
  <h2>Boxes on summary page</h2>
 </div>
 <p>You can choose (and <a href="#createbox">create</a> your own) boxes you want to show on the summary page. You will see a couple of boxes by default (and when running BrowserTime you will also have some timing boxes). If you want to change boxes, you do that with the parameter <em>b</em> and comma separated list of the name of the boxes. The boxes are generated from the summary.xml file, meaning you can show whatever kind of data you want, as long as it exists in the summary xml file. </p>
-<p>For examle, you want to focus on images, and only want to show image data:</p>
+<p>For example, you want to focus on images, and only want to show image data:</p>
 <pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -b imagesPerPage,imageWeight,imageWeightPerPage</pre>
 
 <p>That will generate a summary page with the following three boxes:</p>
@@ -692,7 +692,7 @@ You can choose between the following data to be shown as columns:
     <div class="page-header">
     <h2>Advanced configuration</h2>
   </div>
- <p>The advanced configuration are things that you probably not need to confgure.
+ <p>The advanced configuration are things that you probably not need to configure.
  </p>
  </div> 
 
@@ -754,7 +754,7 @@ You have the options to feed the script:
 OPTIONS:
  -h      Help
  -r      The result base directory, default is sitespeed-result/sites [optional]
- -e      The colums to display in the result table [optional]
+ -e      The columns to display in the result table [optional]
  -i      The path to a plain text file with one url on each row. Default name is urls.txt [optional]
  </pre>
   <p>All other parameters will then be feed to the original sitespeed.io script, meaning you can configure that one exactly as you are used to. So if you want to also collect browser timings data, you can do that like this:
@@ -795,7 +795,7 @@ OPTIONS:
     <div class="page-header">
  <h2>Collect Browser timings</h2>
 </div>
-  <p>You can collect Broswer timings in sitespeed.io, using the Open Source project <strong>Browser Time</strong> that collects metrics using the data in the Navigation Timing API (and also some other data/metrics). You can choose which browser to use (it must of course support the Navigation Timing API) and how many runs you want per page. It will then do a summary for each metric with the minimum, maximum, average, median and the 60, 70, 80 & 90 percentile.</p>
+  <p>You can collect Browser timings in sitespeed.io, using the Open Source project <strong>Browser Time</strong> that collects metrics using the data in the Navigation Timing API (and also some other data/metrics). You can choose which browser to use (it must of course support the Navigation Timing API) and how many runs you want per page. It will then do a summary for each metric with the minimum, maximum, average, median and the 60, 70, 80 & 90 percentile.</p>
 
 
   Out of the box, the following timings is collected:
@@ -839,9 +839,9 @@ OPTIONS:
   <p>By default <em>FireFox</em> is used but you can choose to use <em>Chrome</em> or <em>Internet Explorer</em> (if you use these, you will automatically get the first paint value reported by the browser!).
 </p>
  
- <p> As an extra bonus, it also fetch your user marks that you create! That is really cool, because you can setup your own marks. There will be more documentation later on how to use this!
+ <p> As an extra bonus, it also fetches your user marks that you have! That is really cool, because you can setup your own marks. There will be more documentation later on how to use this!
 </p>
-<div class="note note-warning">Browser Time is still in an early version, so there can be some stability issues that wil be taken care of in future releases.
+<div class="note note-warning">Browser Time is still in an early version, so there can be some stability issues that will be taken care of in future releases.
 </div>
 <div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages</div>
 
@@ -874,8 +874,8 @@ OPTIONS:
 &lt;/ruleScore&gt;
   </pre>
 
-  <p>Yoy can see a full summary.xml file <a href="summary-2.0.xml" target="_blank">here</a>.
-  <p>When testing many pages, this is a really pleasent view! Today is is used for the summary page, detailed summary and in Jenkins to create charts.</p>
+  <p>You can see a full summary.xml file <a href="summary-2.0.xml" target="_blank">here</a>.
+  <p>When testing many pages, this is a really pleasent view! Today is used for the summary page, detailed summary and in Jenkins to create charts.</p>
 
 </div>
 
@@ -884,7 +884,7 @@ OPTIONS:
        <div class="page-header">
       <h2>HAR-files</h2>
     </div>
-    <p>Today HAR-files are created for each page (using PhantomJS) and located in <em>data/har/</em>. You cannot see them in the result page (that will be implemented in later releases), but you can use them and view them yourself in the <a href="http://www.softwareishard.com/har/viewer/" target="_blank">HARviewer</a>.</p>
+    <p>The HAR-files are created for each page (using PhantomJS) and located in <em>data/har/</em>. You cannot see them in the result page (that will be implemented in later releases), but you can use them and view them yourself in the <a href="http://www.softwareishard.com/har/viewer/" target="_blank">HARviewer</a>.</p>
 
     <div class="note note-warning">The HAR files from PhantomJS only displays one timing for each asset (missing specifying DNS lookup and other timings) and is not containing any loading metrics.</div>
 
@@ -905,7 +905,7 @@ OPTIONS:
     </div>
        <p>Sitespeed can output <em>junit.xml</em> that works perfect with your continuous integration tool. Jenkins, Bamboo and others support it out of the box.
         To generate the xml, you need to run the script <strong>sitespeed-junit.io</strong> after the normal script (it will take the latest created sitespeed analyze and parse it to the junit.xml).
-        The junit script takes the following parameters:</p>
+        The JUnit script takes the following parameters:</p>
         <pre>
 OPTIONS:
 -h      Help
@@ -913,7 +913,7 @@ OPTIONS:
 -r      The result base directory, default is sitespeed-result [optional]
 -l      The page score limit. Below this page score it will be a failure. Default is 90. [optional]
 -a      The average score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]       
--s      Skip these tests. A comma separeted list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]
+-s      Skip these tests. A comma separated list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]
         </pre> 
    <p><em>Note:</em> the key name used when skip the tests, is viewed in the the Jenkins result, check the title for each page, the key is the name before the colon, for example <em>ynumreq: Make fewer HTTP requests</em> where <strong>ynumreq</strong> is the key.
   </p>
@@ -945,7 +945,7 @@ OPTIONS:
         <a href="jenkins-junit-setup.png"><img src="jenkins-junit-setup.png" alt="Configuration JUnit.xml file" class="img-thumbnail"/></a>
       </p>
 
-      <p>Each sitespeed test, is a JUnit testcase, each page tested is a testsuite and the whole test bundled as testsuites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
+      <p>Each sitespeed test, is a JUnit testcase, each page tested is a test suite and the whole test bundled as test suites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
 
       </p>
        <p class="text-center">
@@ -968,7 +968,7 @@ OPTIONS:
 <a href="plot-graph-example.png"><img src="plot-graph-example.png" alt="The graph" class="img-thumbnail"/></a>
 </p>
 
-<div class="note note-warning">Sitespeed.io with Jenkins don't have support to add limit and break test for the time measueremnts done by Browser Time, that will happen in the upcoming 2.1 release.</div>
+<div class="note note-warning">Sitespeed.io with Jenkins don't have support to add limit and break test for the time measurements done by Browser Time, that will happen in the upcoming 2.1 release.</div>
 
   </div>
 
@@ -1126,11 +1126,11 @@ JUNIT_XML=$1
     </div>
     <p>There are two different rules & limits. One is the rules system implemented in the YSlow engine, the other is the rules that chooses the colors on the summary page (green/yellow/red). You can configure & change these with a property file, located in the <pre>dependencies</pre> directory. There are actually two files, one for desktop & one for mobile rules:</p>
       <pre>
-        dependencies/rules-desktop.properties
-        dependencies/rules-mobile.properties
+dependencies/rules-desktop.properties
+dependencies/rules-mobile.properties
       </pre>
       <p>
-        The rules are defined with keys & values. The keys are the rule box name, the same name you use to decide which boxes that should be shown. The values are thre values separated by a <strong>;</strong> character. The direction, the limit to get green and the limit to get yellow.
+        The rules are defined with keys & values. The keys are the rule box name, the same name you use to decide which boxes that should be shown. The values are three values separated by a <strong>;</strong> character. The direction, the limit to get green and the limit to get yellow.
     </p>
     <pre>
 # The sitesped score
