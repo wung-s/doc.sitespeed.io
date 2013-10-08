@@ -32,11 +32,10 @@ nav: rules
       </div>
         <p>Every request fetched inside of HEAD, will postpone the rendering of the page! Do not load javascript synchronously inside of head, load files from the same domain as the main document (to avoid DNS lookups) and inline CSS for a really fast rendering path. The scoring system for this rule, will give you minus score for synchronously loaded javascript inside of head, CSS files requested inside of head and minus for every DNS lookup inside of head. If you want to have a really fast first paint (and you always want that), make sure to score high on this rule.</p>
 
-        <p>
           <div class="note note-info">
           You can read more about the critical rendering path in <a href="http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank">this</a> article by Ilya Grigorik and <a href="http://www.phpied.com/css-and-the-critical-path/" target="_blank">this</a> post by Stoyan Stefanov.
         </div>
-        </p>
+  
       </section>
 
 
@@ -59,11 +58,11 @@ nav: rules
       A page can be stopped to be loaded in the browser, if a single script, css and in some cases a font couldn't be fetched or loading slow (the white screen of death!). You really want to avoid that. Never load 3rd party components inside of head!  One important note, right now this rule treats domain and subdomains as ok, that match the document domain, all other domains is treated as a SPOF. The score is calculated like this: Synchronously loaded javascripts inside of head, hurts you the most, then CSS files inside of head hurts a little less, font face inside of css files further less, and least inline font face files. One rule SPOF rule missing is the IE specific feature, that a font face will be SPOF if a script is requested before the font face file. 
     </p>
 
-      <p>
+
  <div class="note note-info">
         Read more about SPOF in <a href="http://www.stevesouders.com/blog/2010/06/01/frontend-spof/" target="_blank">this</a> nice blog post by Steve Souders.
       </div>
-    </p>
+
 
     
     </section>
@@ -89,11 +88,11 @@ nav: rules
   </div>
     <p>
       Loading a specific stylesheet for print, can block rendering in your browser (depending on version) and will for almost all browsers, block the onload event to fire (even though the print stylesheet isn't even used). In the old times, it was ok to have own print styles, but nowdays you can keep them in the same CSS file. 
-
+ </p>
        <div class="note note-info">You can read more about it
       <a href="http://www.phpied.com/5-years-later-print-css-still-sucks/" target="_blank">here</a>.
     </div>
-    </p>
+   
   </section>
 
    <section id="cssinheaddomain">
@@ -118,11 +117,11 @@ nav: rules
     <h3>Avoid use of web fonts</h3>
   </div>
     <p>
-      Avoid use of web fonts because they will decrease the performance of the page. Web fonts are fatser today then they ever has been, but still they will decrease performance.
+      Avoid use of web fonts because they will decrease the performance of the page. Web fonts are fatser today then they ever has been, but still they will decrease performance.</p>
        <div class="note note-info">
       Read <a href="http://www.stevesouders.com/blog/2009/10/13/font-face-and-performance/">more</a> about avoiding web fonts.
     </div>
-    </p>
+    
 </section>
   <section id="expires">
     <div class="page-header">
@@ -496,3 +495,7 @@ nav: rules
 </p>
 
 </section>
+
+</div>
+</div>
+</div>

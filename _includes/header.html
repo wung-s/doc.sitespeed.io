@@ -20,16 +20,8 @@
             <li {% if page.nav == 'start' %}class="active" {% endif %}>
                <a href="/">Start</a>
             </li>
-	   <li class="dropdown">
-             <a href="/documentation/" class="dropdown-toggle {% if page.nav == 'documentation' %} active {% endif %}" data-toggle="dropdown">Documentation<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="/documentation/#toc">Table of contents</a></li>
-          <li><a href="/documentation/#installation">Download & installation</a></li>
-          <li><a href="/documentation/#analyzeonesite">Analyze a site</a></li>
-          <li><a href="/documentation/#multiple">Analyze & compare multiple sites</a></li>
-          <li><a href="/documentation/#continuousintegration">Continous Integration</a></li>
-          <li><a href="/documentation/#developers">Developers</a></li>
-        </ul>
+	   <li {% if page.nav == 'documentation' %} class="active" {% endif %}>
+             <a href="/documentation/">Documentation</a>
       </li>
             <li {% if page.nav == 'rules' %}class="active" {% endif %}>
                   <a href="/rules/">Rules</a>
