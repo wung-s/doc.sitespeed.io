@@ -48,11 +48,9 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
    </ul>
    <li class="toc"><a href="#multiple">Analyze & compare multiple sites</a></li>
   <ul>
-    <li class="toc"><a href="#summarypage">Configuration</a></li>
-      <ul>
-        <li class="toc"><a href="#summarypage">Basic configuration</a></li>
-        <li class="toc"><a href="#summarypage">Choose columns for report</a></li>
-      </ul>
+    <li class="toc"><a href="#multipleconfiguration">Configuration</a></li> 
+        <li class="toc"><a href="#multiplecolumns">Choose columns for report</a></li>
+    
    </ul>
     <li class="toc"><a href="#browsertime">Collect Browser timings</a></li>
    <li class="toc"><a href="#summaryxml">The summary.xml file</a></li>
@@ -747,9 +745,12 @@ You can choose between the following data to be shown as columns:
   The script needs a plain text file with one URL on each row. By default, the script will look for a file named <em>urls.txt</em> (you can configure another name if you want). The view will be a table with each site on one row, where you choose which data from the <em>summary.xml</em> file you want to display (you can choose what kind of metric you want; like number of requests per page, rule score or the time for DOMContent loaded). And you also choose how you want it: median, average, min, max and different percentiles.</p>
 
   <p>For each URL, a regular analyze will be done, so you can see all the pages & data that has been analyzed.</p>
+</div>
 
-
-<h3>Configuration</h3>
+<div class="section" id="multipleconfiguration">
+    <div class="page-header">
+ <h2>Configuration</h2>
+</div>
 You have the options to feed the script:
   <pre>
 OPTIONS:
@@ -762,9 +763,13 @@ OPTIONS:
   </p>
   <pre class="bash">./sitespeed-sites.io -c true
   </pre>
+</div>
 
 
-<h3>Choose values to be displayed</h3>
+<div class="section" id="multiplecolumns">
+    <div class="page-header">
+ <h2>Choose values to be displayed</h2>
+</div>
 <p>By default, the following median values will be showed:</p>
   <ul>
   <li>median-ruleScore</li>
@@ -791,6 +796,7 @@ OPTIONS:
   <div class="note note-info">When doing these kind of text, choosing maximum number of pages to test for a site is really good, use the <em>j</em> parameter!</div>
 
 </div>
+
 
 <div class="section" id="browsertime">
     <div class="page-header">
