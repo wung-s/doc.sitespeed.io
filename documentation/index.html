@@ -15,7 +15,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
     Documentation
   </h1>
 </div>  
-<ul id="toc">
+<ul id="toc" class="hidden-xs">
   <li class="toc"><a href="#introduction">Introduction</a></li>
   <li class="toc"><a href="#installation">Download and installation</a></li> 
   <li class="toc"><a href="#analyzeonesite">Analyze a site</a></li>
@@ -326,7 +326,7 @@ OPTIONS:
 </p>
 <pre class="bash">$ ./sitespeed.io -u http://www.yoursite.com -d 4</pre>
 
-<div class="note note-info">Remember that you can start your crawl deep into your path structure like <strong>http://yoursite.com/my/path</strong>.</div>
+<div class="note note-info">Remember that you can start your crawl deep into your path structure like <strong style="word-wrap: break-word; white-space: normal;">http://yoursite.com/my/path</strong>.</div>
 </div>
 
 
@@ -440,7 +440,7 @@ You can set the user agent to <strong>iphone5</strong>, <strong>nexus</strong> o
 </p>
 
 <p>You can choose by the between the following summary boxes (by specifying the name):</p>
-
+<div class="table-responsive">
 <table class="table table-condensed table-striped table-bordered table-small">
   <thead>
     <tr>
@@ -555,7 +555,7 @@ You can set the user agent to <strong>iphone5</strong>, <strong>nexus</strong> o
     </tr>
   </tbody>
 </table>
-
+</div>
 </div>
 
 <div class="section" id="config-columns">
@@ -575,6 +575,7 @@ You can choose (and <a href="#createcolumns">create</a> your own) data to be sho
 
 You can choose between the following data to be shown as columns:
 </p>
+<div class="table-responsive">
 <table class="table table-condensed table-striped table-bordered table-small">
   <thead>
     <tr>
@@ -685,7 +686,7 @@ You can choose between the following data to be shown as columns:
     </tr>
   </tbody>
 </table>
-
+</div>
 </div>
 
 <div class="section" id="advanced">
@@ -843,7 +844,7 @@ OPTIONS:
 </p>
 <div class="note note-warning">Browser Time is still in an early version, so there can be some stability issues that will be taken care of in future releases.
 </div>
-<div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages</div>
+<div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages.</div>
 
   
    
@@ -958,7 +959,7 @@ OPTIONS:
         <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-thumbnail"/></a>
       </p>
 
-      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong>//site/metrics/pageweight/median</strong>.</p>
+      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
 <p class="text-center">
    <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
 </p>
@@ -1155,7 +1156,7 @@ cssImagesPerPage=LESS_THAN;2;5
       You create your own box by adding your own metrics to the summary.xml file. For Browser metrics, it will be added automatically (yes!), for rule metrics you need to add them yourself:</p>
       <ol>
         <li>Create a file (or preferable a symbolic link) <pre>report/velocity/logic/custom/site.summary.xml.logic.vm</pre> file. Do that so you can keep the changes betweeb releases.</li>
-        <li>Create your own statistics object (<em>com.soulgalore.velocity.NamedDescriptiveStatistics</em>):
+        <li>Create your own statistics object (<em style="word-wrap: break-word; white-space: normal;">com.soulgalore.velocity.NamedDescriptiveStatistics</em>):
           <pre>#set($statsCriticalPath = $stats.newInstance("criticalPathScore","Critical Rendering Path Score","","","",1))</pre>
         </li>
         <li>Add the stats object to the statistics holder, a simple Map that holds all objects

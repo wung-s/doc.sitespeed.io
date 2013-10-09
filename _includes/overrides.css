@@ -17,6 +17,16 @@ font-size: 16px;
       font-family: Tahoma,Verdana,sans-serif;
     }
 
+  .navbar {
+        border: 0;
+        border-radius: 0;
+    }
+
+    .navbar-collapse {
+        border: 0;
+        box-shadow: none;
+    }
+
 .navbar-brand {
       padding: 0px 10px;
       max-width: 250px;
@@ -55,6 +65,8 @@ border-bottom-left-radius:10px;
   border-bottom-right-radius:10px;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
+margin-top: 5px;
+margin-bottom: 5px;
 }
 
 v .navbar-default .navbar-toggle {
