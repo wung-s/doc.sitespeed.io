@@ -1183,16 +1183,16 @@ cssImagesPerPage=LESS_THAN;2;5
       <h2 id="createpagecolum">Create your column for the pages table</h2>
       <p>It is possible to add your own columns with whatever data you want in the pages table. If you want to add your own Browser Time metrics, it is easy, just you just have to name your metric name end with <em>time</em> then it will automatically be possible to view. Say that you on your page has added your own measurement called <em>atfTime</em>, then you just add that as a column like this</p>
       <pre class="bash">./sitespeed.io -u http://www.peterhedenskog.com -c true -g aftTime</pre>
-      <p>In the real world you probably want to show something more ...</p>
-      <p>Adding a column for rules needs a little more, you need to create a file for the column headers and a file for displaying the actual column data. For example, you have a rule in your 
-        ruleset that checks XXX, name the rule example. </p>
-      <ol>
+     
+      <p>Adding a column for rules needs a little more work, you need to create a file for the column headers and a file for displaying the actual column data. More info will be added later!</p>
+      <!--
         <li>Create a symbolic link to 
-          <pre>report/velocity/inc/pages/column-headers/custom/example.vm</pre>
+          <pre>report/velocity/inc/pages/column-headers/custom/largeImage.vm</pre>
         </li>
         <li>Also create a symbolic link to <pre>report/velocity/inc/pages/columns/custom/example.vm</pre>
         </li>
       </ol>
+    -->
     </div>
  </div>   
 
