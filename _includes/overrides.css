@@ -9,6 +9,12 @@ body {
     text-align: center;
 }
 
+.url {
+word-wrap: break-word;
+white-space: normal;
+}
+
+
 .table-small {
 font-size: 16px;
 }
@@ -159,6 +165,28 @@ color: #fff;
 
 .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover, .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
 color: #fff;
+}
+
+body {
+   font-size: 16px;
+   line-height: 1.250em;
+}
+
+h1 {
+font-size: 36px;
+}
+
+h2 {
+font-size: 30px;
+}
+
+h3 {
+font-size:24px;
+}
+
+h1, h2, h3 {
+margin-top: 20px;
+margin-bottom: 10px;
 }
 
 }
