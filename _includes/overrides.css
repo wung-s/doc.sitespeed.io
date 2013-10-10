@@ -168,25 +168,29 @@ color: #fff;
 }
 
 body {
-   font-size: 16px;
-   line-height: 1.250em;
+   font-size: 18px;
+   line-height: 1.438em;
+}
+
+.btn-xlg{
+font-size:22px;
 }
 
 h1 {
-font-size: 36px;
-}
-
-h2 {
 font-size: 30px;
 }
 
+h2 {
+font-size: 24px;
+}
+
 h3 {
-font-size:24px;
+font-size:22px;
 }
 
 h1, h2, h3 {
-margin-top: 20px;
-margin-bottom: 10px;
+margin-top: 16px;
+margin-bottom: 8px;
 }
 
 }
