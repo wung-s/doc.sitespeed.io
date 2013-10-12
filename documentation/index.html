@@ -30,7 +30,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
         <li class="toc"><a href="#analyzebyurls">Analyze by URL:s</a></li>
         <li class="toc"><a href="#includeexclude">Include/exclude URL:s when crawling</a></li>
         <li class="toc"><a href="#screenshots">Screenshots</a></li>
-        <li class="toc"><a href="#mobile">Analyze as mobile</a></li>
+        <li class="toc"><a href="#mobile">Viewport/user agent & mobile</a></li>
         <li class="toc"><a href="#limitpages">Limit pages to test</a></li>
         <li class="toc"><a href="#rules">Choose desktop or mobile rules</a></li>
         <li class="toc"><a href="#browsertimemetrics">Collect Browser timings a.k.a fetch Navigation Timing data</a></li>
@@ -379,6 +379,10 @@ http://www.yoursite.com/where/we/are/
 
 <div class="note note-info">
 You can set the user agent to <strong>iphone5</strong>, <strong>nexus</strong> or <strong>ipad</strong> That will automatically set the viewport to 320x444 or 768x1024 and set the Safari or Chrome user agent.
+</div>
+
+<div class="note note-warning">
+Mobile testing is always best on mobile devices. For tips on how to best do that, read Andy Davies <a href="http://andydavies.me/" target="_blank">blog</a>.
 </div>
 </div>
 
@@ -846,14 +850,11 @@ OPTIONS:
   <p>By default <em>FireFox</em> is used but you can choose to use <em>Chrome</em> or <em>Internet Explorer</em> (if you use these, you will automatically get the first paint value reported by the browser!).
 </p>
  
- <p> As an extra bonus, it also fetches custom measurements! That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page. There will be more documentation later on how to do & use this!
+ <p> As an extra bonus, custom measurements are also fetched! That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page. There will be more documentation later on how to do & use this!
 </p>
 <div class="note note-warning">Browser Time is still in an early version, so there can be some stability issues that will be taken care of in future releases.
 </div>
 <div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages.</div>
-
-  
-   
 
    </div>
 

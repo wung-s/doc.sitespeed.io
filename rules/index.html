@@ -55,7 +55,7 @@ nav: rules
     <h3>Frontend single point of failure (SPOF)</h3>
   </div>
     <p>
-      A page can be stopped to be loaded in the browser, if a single script, css and in some cases a font couldn't be fetched or loading slow (the white screen of death!). You really want to avoid that. Never load 3rd party components inside of head!  One important note, right now this rule treats domain and subdomains as ok, that match the document domain, all other domains is treated as a SPOF. The score is calculated like this: Synchronously loaded javascripts inside of head, hurts you the most, then CSS files inside of head hurts a little less, font face inside of css files further less, and least inline font face files. One rule SPOF rule missing is the IE specific feature, that a font face will be SPOF if a script is requested before the font face file. 
+      A page can be stopped to be loaded in the browser, if a single script, css and in some cases a font couldn't be fetched or loading slow (the white screen of death!). You really want to avoid that. Never load 3rd party components inside of head!  One important note, right now this rule treats domain and subdomains as ok, that match the document domain, all other domains is treated as a SPOF. The score is calculated like this: Synchronously loaded javascripts inside of head, hurts you the most & then CSS files inside of head hurts a little less. You can also look for Font Face inside of CSS files and  inline font face files, but they are considered minor and not turned on by default. One rule SPOF rule missing is the IE specific feature, that a font face will be SPOF if a script is requested before the font face file. 
     </p>
 
 
