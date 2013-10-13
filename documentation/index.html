@@ -1130,7 +1130,7 @@ JUNIT_XML=$1
 
 <div class="section">
       <div class="page-header">
-      <h2 id="configurerulelimit">Configure rule limits</h2>
+      <h2 id="configurerulelimits">Configure rule limits</h2>
     </div>
     <p>There are two different rules & limits. One is the rules system implemented in the YSlow engine, the other is the rules that chooses the colors on the summary page (green/yellow/red). You can configure & change these with a property file, located in the <pre>dependencies</pre> directory. There are actually two files, one for desktop & one for mobile rules:</p>
       <pre>
@@ -1158,7 +1158,7 @@ cssImagesPerPage=LESS_THAN;2;5
 
 <div class="section">
       <div class="page-header">
-      <h2 id="createbox">Create your own box on the summary page</h2>
+      <h2 id="createboxes">Create your own box on the summary page</h2>
       <p>
       You create your own box by adding your own metrics to the summary.xml file. For Browser metrics, it will be added automatically (yes!), for rule metrics you need to add them yourself:</p>
       <ol>
@@ -1187,7 +1187,7 @@ cssImagesPerPage=LESS_THAN;2;5
 
  <div class="section">
       <div class="page-header">
-      <h2 id="createpagecolum">Create your column for the pages table</h2>
+      <h2 id="createcolumns">Create your column for the pages table</h2>
       <p>It is possible to add your own columns with whatever data you want in the pages table. If you want to add your own Browser Time metrics, it is easy, just you just have to name your metric name end with <em>time</em> then it will automatically be possible to view. Say that you on your page has added your own measurement called <em>atfTime</em>, then you just add that as a column like this</p>
       <pre class="bash">./sitespeed.io -u http://www.peterhedenskog.com -c true -g aftTime</pre>
      
