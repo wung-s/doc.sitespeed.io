@@ -1,2 +1,2 @@
-{% include bootstrap.min.css %}
+{% include bootstrap.css %}
 {% include overrides.css %}
