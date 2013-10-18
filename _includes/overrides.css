@@ -34,7 +34,7 @@ font-size: 16px;
     }
 
 .navbar-brand {
-      padding: 0px 10px;
+      padding: 0px 0px;
       max-width: 250px;
 }
 
@@ -61,7 +61,7 @@ font-size: 16px;
 
 .jumbotron{background-color: #e1f6fd;}
 
-.img-big{padding-right: 20px;}
+.img-big{margin-right: 20px;}
 
 .btn-xlg{
 font-size:26px;
