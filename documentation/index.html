@@ -422,7 +422,7 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
 
 <p>Firefox is used to collect metrics for each page. Each page is tested 3 times. You can change that with the <em>z</em> parameter. That full String is sent to the Browser Time application (more documentation <a href="https://github.com/tobli/browsertime" target="_blank">here</a>). Changing it to Chrome and test each page 5 times, looks like this:</p>
 
-<pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -c true "-b chrome -n 5"</pre>
+<pre class="bash">$ ./sitespeed.io -u http://yoursite.com  -c true -z "-b chrome -n 5"</pre>
 
 <div class="note note-warning">To run Chrome, you need to have Chrome & the ChromeDriver installed on your computer, you can find more info <a href="https://code.google.com/p/chromedriver/" target="_blank">here</a>. To run FireFox you only need FireFox :)</div>
 </div>
