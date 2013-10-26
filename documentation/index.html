@@ -986,38 +986,34 @@ OPTIONS:
       <p>
       <a href="https://travis-ci.org/" target="_blank">Travis</a> doesn't have a built in support for JUnit XML right now (read this  
       <a href="https://github.com/travis-ci/travis-ci/issues/239" target="_blank">issue</a> about the plan for supporting it).
-      But you can of course use it and break the build if you have failures.
+      But you can still use sitespeed.io with Travis. Travis will breake your build if your pages breakes your rule limits or break the timing limits you have setup. To get it to 
+      work, you need to do three things:
       </p>
-      
-      <p>Setup your <strong>.travis.yml</strong> file (before you run the <em>before_script</em> you need to start your server (that is not included), in this example the server runs on http://127.0.0.1:8080/.
-      <pre>
+      <ol><li>Add the latest sitespeed.io tar in your project (in this example, it is in the folder <em>/test/</em></li>
+      <li>Create a <strong>.travis.yml</strong> file in your project that looks something like this (changing the URL/parameters as you want):
+<pre>
 before_install:
+## We need the xsltproc for the XSLT transformation
 - sudo apt-get update
 - sudo apt-get install xsltproc
-        
+## Display used by Firefox
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+
 before_script:
-- "./sitespeed.io/sitespeed.io -u http://127.0.0.1:8080/"
-- "./sitespeed.io/sitespeed-junit.io -o ../../../../"
+- "tar -xzf test/sitespeed.io-2.1.tar.gz"
+- "./sitespeed.io-2.1/sitespeed.io -u http://www.peterhedenskog.com -c true -j 5 -z \"-n 5 \""
+- "./sitespeed.io-2.1/sitespeed-junit.io -o ../ -t ../test/timings.xml -s textcontent"
 
-script: ./verify-junit.sh sitespeed.io-junit.xml 
+script: 
+- "./sitespeed.io-2.1/travis-ci.sh sitespeed.io-rules-junit.xml"
+- "./sitespeed.io-2.1/travis-ci.sh sitespeed.io-timings-junit.xml"
 </pre>
-
-The <strong>verify-junit.sh</strong> script is a simple script that fails if it find the failure tag (but of course you can do more cool things if you want, 
-this is just a super simple example):
-<pre>
-#! /bin/bash
-JUNIT_XML=$1
- if grep -c "&lt;/failure&gt;" "$JUNIT_XML" > 0; 
- then
-   FAILURES=$(grep -o "&lt;/failure"&gt;" $JUNIT_XML | wc -l)
-   echo "We have a $FAILURES failure(s)"
-   cat $JUNIT_XML
-   exit 1;
- else
-  echo 'No failures from sitespeed.io'
- fi   
-</pre>      
-      
+</li>
+<li>Edit your own timings.xml file (put it in the test folder) and setup the timing levels you want.</li>
+</ol>        
+ <p>You can check the example project <a href="https://github.com/sitespeedio/travis-ci-example" target="_blank">https://github.com/sitespeedio/travis-ci-example</a> to see a working example.</p>         
+  
       </div>
 
 
