@@ -904,7 +904,7 @@ OPTIONS:
        <div class="page-header">
       <h2>Continuous integration</h2>
     </div>
-    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the rules before it is release!</p>
+    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the rules before the changes are released. Also browser timings can break the build using sitespeed.io.</p>
 
  </div>   
 <div class="section">
@@ -919,9 +919,10 @@ OPTIONS:
 -h      Help
 -o      The output dir
 -r      The result base directory, default is sitespeed-result [optional]
--l      The page score limit. Below this page score it will be a failure. Default is 90. [optional]
--a      The average score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]       
--s      Skip these tests. A comma separated list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]
+-l      The page rule score limit. Below this page score it will be a failure. Default is 90. [optional]
+-a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional] 
+-s      Skip these rule tests. A comma separated list of the key name of the rules; for example "ycsstop,yjsbottom" [optional]
+-t      The XML timing limit file, setting limits when a timing fails. Default file is dependencies/timing-limits-default.xml [optional]
         </pre> 
    <p><em>Note:</em> the key name used when skip the tests, is viewed in the the Jenkins result, check the title for each page, the key is the name before the colon, for example <em>ynumreq: Make fewer HTTP requests</em> where <strong>ynumreq</strong> is the key.
   </p>
@@ -931,29 +932,51 @@ OPTIONS:
 
 <div class="section">
       <h2 id="jenkins">Jenkins integration</h2>
-     <a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> is a great open source continuous integration server.
-   <p>
-    To get sitespeed.io up and running, you need to make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJs</a> in the path and
+      <p><a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> is a great open source continuous integration server.
+  
+    To get sitespeed.io up and running, you need to make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJS</a> in the path and
     have read/write access to the directory where you have sitespeed. When you have that, you are ready to set it up.
   </p>
   <p>
-    In Jenkins, add a new <em>Execute shell</em> and add the two script on one line each. The first one is the standard script, and the second one will create the junit.xml, make sure to pipe the output to a file, so Jenkins can find it.</p>
+    In Jenkins, add a new <em>Execute shell</em> and add the two script on one line each. The first one is the standard script, and the second one will create the two junit.xml:s. In this example, I have setup my own timings.xml file that are in the same dir as sitespeed.io script, where I define my timing limits:</p>
         <pre>
-/Users/peter/tmp/sitespeed.io -u http://yoursite.com
-/Users/peter/tmp/sitespeed-junit.io -o /Users/Shared/Jenkins/Home/workspace/sitespeed.io/
+/Users/peter/tmp/sitespeed.io -u http://www.cybercom.com -c true
+/Users/peter/tmp/sitespeed-junit.io -o $WORKSPACE -t timings.xml
         </pre>
-        <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output file from the script. In Jenkins, this is how it looks:
-      </p>
+        <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output files from the script. Add these two:</p>
+<pre>
+sitespeed.io-rules-junit.xml,sitespeed.io-timings-junit.xml
+</pre>
+  <p>Sitespeed.io will produce two different junit files, one with the result of the rules and one with the timings (if you configured to fetch browser timings). The timings, will use an XML file to set the limits on when to break the build. By default, the file <em>dependencies/timing-limits-default.xml</em> will be used. But you can choose to use your own configuration with the parameter <em>t</em> pointing out the file to use. The limit file looks like this:</p>
+  <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;limits type="median"&gt;
+  &lt;default&gt;                             
+  &lt;!-- All timings are in ms --&gt;                        
+  &lt;serverResponseTime&gt;300&lt;/serverResponseTime&gt;
+  &lt;domContentLoadedTime&gt;800&lt;/domContentLoadedTime&gt;
+  &lt;redirectionTime&gt;0&lt;/redirectionTime&gt;
+  &lt;/default&gt; 
+  &lt;!-- Example setup for setting values for a specific url --&gt;      
+  &lt;urls&gt;
+    &lt;page&gt;
+     &lt;url&gt;http://www.cybercom.com&lt;/url&gt;
+     &lt;limits&gt;
+     &lt;serverResponseTime&gt;250&lt;/serverResponseTime&gt;
+     &lt;domContentLoadedTime&gt;500&lt;/domContentLoadedTime&gt;
+     &lt;/limits&gt;
+    &lt;/page&gt;     
+  &lt;/urls&gt;
+&lt;/limits&gt;
+  </pre>
+  <p>Meaning you can setup default values that will be used for all URL:s but they will be overriden if you have a matching url in the urls section. The name of the XML timing fields match fields from BrowserTime, so if you have a custom user measurement named <em>headerTime</em> the field needs to named the same.</p>
+
        <p class="text-center">
-        <a href="jenkins-sitespeed-config.png"><img src="jenkins-sitespeed-config.png" alt="Configuration Sitespeed.io for Jenkins" class="img-thumbnail"/></a>
+        <a href="jenkins-sitespeed-config-2.png"><img src="jenkins-sitespeed-config-2.png" alt="Configuration Sitespeed.io for Jenkins" class="img-thumbnail"/></a>
       </p>
 
-      <p class="text-center">
-          
-        <a href="jenkins-junit-setup.png"><img src="jenkins-junit-setup.png" alt="Configuration JUnit.xml file" class="img-thumbnail"/></a>
-      </p>
 
-      <p>Each sitespeed test, is a JUnit testcase, each page tested is a test suite and the whole test bundled as test suites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
+      <p>Each sitespeed.io test, is a JUnit testcase, each page tested is a test suite and the whole test bundled as test suites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
 
       </p>
        <p class="text-center">
@@ -966,7 +989,7 @@ OPTIONS:
         <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-thumbnail"/></a>
       </p>
 
-      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want, add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
+      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
 <p class="text-center">
    <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
 </p>
@@ -975,8 +998,6 @@ OPTIONS:
 <p class="text-center">
 <a href="plot-graph-example.png"><img src="plot-graph-example.png" alt="The graph" class="img-thumbnail"/></a>
 </p>
-
-<div class="note note-warning">Sitespeed.io with Jenkins don't have support to add limit and break test for the time measurements done by Browser Time, that will happen in the upcoming 2.1 release.</div>
 
   </div>
 
@@ -1014,6 +1035,9 @@ script:
 </ol>        
  <p>You can check the example project <a href="https://github.com/sitespeedio/travis-ci-example" target="_blank">https://github.com/sitespeedio/travis-ci-example</a> to see a working example.</p>         
   
+<div class="note note-info">Travis-CI has Firefox installed by default on their boxes so that will work out of the box. Using Chrome don't work today.</div>
+</div>
+
       </div>
 
 
