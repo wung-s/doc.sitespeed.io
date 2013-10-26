@@ -1,0 +1,35 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 2.1
+description: The 2.1 release makes it possible to break builds using Jenkins & Travis-CI if the browser timings hits the limits.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 2.1
+nav: 
+image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: The 2.1 release makes it possible to break builds using Jenkins & Travis-CI if the browser timings hits the limits. And fixes some bugs.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 2.1 release notes</h1>
+</div>
+<p>This release focus on one thing: Break builds for Jenkins & Travis-CI if your browser timings doesn't match your limits.</p>
+
+<h2>JUnit support for Browser timings</h2>
+<p></p>
+<h2>Added an easy way of include sitespeed.io in Travis-CI</h2>
+<p></p>
+
+<h2>Minor changes</h2>
+<ul>
+<li>Prepared for HTTP2.0 rules & renamed the current rulesets, new names: sitespeed.io-desktop & sitespeed.io-mobile</li>
+<li>Output the the input parameters to the error.log fle so it is easy to reproduce the error</li>
+<li>Centralized the error logging</li>
+<li>Made it possible to analyze sites with non signed certificates</li>
+<li>Finetuned the logo</li>
+<li>Bug fix: The crawler sometimes picked up URL:s linking to other content types than HTML</li>
+<li>Bug fix: The JUnit XSLT outputted timings metrics</li>
+</ul>
+
+<hr>
+<p>	
+See the <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

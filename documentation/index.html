@@ -989,7 +989,7 @@ sitespeed.io-rules-junit.xml,sitespeed.io-timings-junit.xml
         <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-thumbnail"/></a>
       </p>
 
-      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the xpath to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
+      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
 <p class="text-center">
    <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
 </p>
