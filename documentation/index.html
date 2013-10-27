@@ -904,7 +904,7 @@ OPTIONS:
        <div class="page-header">
       <h2>Continuous integration</h2>
     </div>
-    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the rules before the changes are released. Also browser timings can break the build using sitespeed.io.</p>
+    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the performance best practice rules <em>before</em> your changes are released. Your build can also be broken if your page timings (choose whatever timing you need from the Navigation Timing API or your own custom timing) reach your limits!</p>
 
  </div>   
 <div class="section">
@@ -912,7 +912,7 @@ OPTIONS:
       <h2 id="junit">Generating the JUnit XML for continuous integration</h2>
     </div>
        <p>Sitespeed can output <em>junit.xml</em> that works perfect with your continuous integration tool. Jenkins, Bamboo and others support it out of the box.
-        To generate the xml, you need to run the script <strong>sitespeed-junit.io</strong> after the normal script (it will take the latest created sitespeed analyze and parse it to the junit.xml).
+        To generate the xml, you need to run the script <strong>sitespeed-junit.io</strong> after the normal script (it will take the latest created sitespeed analyze and parse it to junit.xml files).
         The JUnit script takes the following parameters:</p>
         <pre>
 OPTIONS:
@@ -969,7 +969,9 @@ sitespeed.io-rules-junit.xml,sitespeed.io-timings-junit.xml
   &lt;/urls&gt;
 &lt;/limits&gt;
   </pre>
-  <p>Meaning you can setup default values that will be used for all URL:s but they will be overriden if you have a matching url in the urls section. The name of the XML timing fields match fields from BrowserTime, so if you have a custom user measurement named <em>headerTime</em> the field needs to named the same.</p>
+  <p>Meaning you can setup default values that will be used for all URL:s but they will be overriden if you have a matching url in the urls section. With the <em>limits type</em> you can choose if you want to compare median, max or different percentiles (the values from the browser time).</p>
+
+    The name of the XML timing fields match fields from BrowserTime, so if you have a custom user measurement named <em>headerTime</em> the field needs to named the same.</p>
 
        <p class="text-center">
         <a href="jenkins-sitespeed-config-2.png"><img src="jenkins-sitespeed-config-2.png" alt="Configuration Sitespeed.io for Jenkins" class="img-thumbnail"/></a>
@@ -1010,7 +1012,7 @@ sitespeed.io-rules-junit.xml,sitespeed.io-timings-junit.xml
       But you can still use sitespeed.io with Travis. Travis will breake your build if your pages breakes your rule limits or break the timing limits you have setup. To get it to 
       work, you need to do three things:
       </p>
-      <ol><li>Add the latest sitespeed.io tar in your project (in this example, it is in the folder <em>/test/</em></li>
+      <ol><li>Add the latest sitespeed.io tar in your project (in this example, it is in the folder <em>/test/</em>)</li>
       <li>Create a <strong>.travis.yml</strong> file in your project that looks something like this (changing the URL/parameters as you want):
 <pre>
 before_install:
