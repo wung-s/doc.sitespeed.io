@@ -1001,6 +1001,11 @@ sitespeed.io-rules-junit.xml,sitespeed.io-timings-junit.xml
 <a href="plot-graph-example.png"><img src="plot-graph-example.png" alt="The graph" class="img-thumbnail"/></a>
 </p>
 
+<p style="word-wrap: break-word;">You can also setup graphs for the timings. This one is fetching median (xpath <em>//site/metrics/domContentLoadedTime/median</em>) & the 90th percentile (xpath <em>//site/metrics/domContentLoadedTime/percentile90</em>) for domContentLoadedTime:</p>
+<p class="text-center">
+<a href="domContentLoadedTime.png"><img src="domContentLoadedTime.png" alt="Timings graph" class="img-thumbnail"/></a>
+</p>
+
   </div>
 
 <div class="section">
@@ -1035,7 +1040,7 @@ script:
 </li>
 <li>Edit your own timings.xml file (put it in the test folder) and setup the timing levels you want.</li>
 </ol>        
- <p>You can check the example project <a href="https://github.com/sitespeedio/travis-ci-example" target="_blank">https://github.com/sitespeedio/travis-ci-example</a> to see a working example.</p>         
+ <p style="word-wrap: break-word;">You can check the example project <a href="https://github.com/sitespeedio/travis-ci-example" target="_blank">https://github.com/sitespeedio/travis-ci-example</a> to see a working example.</p>         
   
 <div class="note note-info">Travis-CI has Firefox installed by default on their boxes so that will work out of the box. Using Chrome don't work today.</div>
 </div>
