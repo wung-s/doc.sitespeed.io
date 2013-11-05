@@ -3,7 +3,7 @@ layout: default
 title: Frequently asked questions for sitespeed.io
 description: Questions and answers for sitespeed.io.
 author: Peter Hedenskog
-keywords: sitespeed.io, faq, questions, frequently, asked 
+keywords: sitespeed.io, faq, questions, frequently, asked
 nav: faq
 
 ---
@@ -15,15 +15,15 @@ nav: faq
 <div class="page-header">
   <h1>FAQ</h1>
   </div>
-  
+
   <p>If you don't find the answer here or in the <a href="/documentation/">documentation</a>, please ping me on <a href="https://twitter.com/SiteSpeedio" target="blank">Twitter</a> or add an issue on <a href="https://github.com/sitespeedio/sitespeed.io/issues?state=open" target="blank">Github</a>.</p>
 </section>
 
 
  <section id="mavericks">
-     
+
   <div class="page-header"><h3>Can I upgrade to OS X Mavericks?</h3></div>
-    <p>Well, there are two known defects that impacts sitespeed.io: One is that the Chromedriver (latest version 2.4) doesn't work, that means you cannot collect timings using Chrome until a new Chromedriver is released. The second problem is that PhantomJS logs a lot about CoreText, you can check the <a href="https://github.com/ariya/phantomjs/issues/11418" target="_blank">issue</a>.</p>
+    <p>Yes, now is it ok to upgrade :) The Chromedriver (2.6) now works on Mavericks. </p>
  </section>
 
 <section id="unsupported"> <div class="page-header"><h3 style="word-wrap: break-word;">I get java.io.UnsupportedEncodingException: gzip, what does that mean?</h3></div>
@@ -44,15 +44,15 @@ nav: faq
 	<ul>
 	  <li>The gzipped size of a component is not working so right now the unzipped size is showed everywhere. See original defect <a href="http://code.google.com/p/phantomjs/issues/detail?id=156">here</a>. However, the document size in sitespeed is displayed correctly.</li>
   </ul>
-  
+
 	<p>If you found other bugs, please report them <a href="https://github.com/sitespeedio/sitespeed.io/issues">here</a>.</p>
-        </section> 
+        </section>
 
 
       <section id="addrules">
         <div class="page-header"><h3>I want to add my own rules, how do I do that?</h3></div>
         <p>Check out the <a href="/documentation/#addrule">documentation</a>.</p>
-        </section> 
+        </section>
 
         <section id="skip">
         <div class="page-header"><h3>Is there a option to exclude a given directory?</h3></div>
@@ -63,8 +63,8 @@ nav: faq
         <section id="onepage">
             <div class="page-header"><h3>I want to test only one page, how do I do that?</h3></div>
         <p><pre class="bash">$ ./sitespeed.io -u http://mysite.com -d 0</pre></p>
-        </section> 
-      
+        </section>
+
       <section id="slowness">
 	<div class="page-header"><h3>It takes like forever to to analyze my site, what should I do?</h3></div>
 	<p>You can change the amount of simultaneously processes that analyze your site (default is five). Increase the amount of processes with the <strong>p</strong> switch:</p>
