@@ -19,16 +19,16 @@ nav: faq
   <p>If you don't find the answer here or in the <a href="/documentation/">documentation</a>, please ping me on <a href="https://twitter.com/SiteSpeedio" target="blank">Twitter</a> or add an issue on <a href="https://github.com/sitespeedio/sitespeed.io/issues?state=open" target="blank">Github</a>.</p>
 </section>
 
-<section id="unsupported"> <div class="page-header"><h3 style="word-wrap: break-word;">I get java.io.UnsupportedEncodingException: gzip, what does that mean?</h3></div>
-<p>The crawler used in sitespeed.io doesn't fetch content using GZIP (sending header that accepts gzip), however some sites sends content gzipped to all clients and then is when you get this exception.</p>
-</section>
-
 <!--
 <section id="selenium"><div class="page-header"><h3>Sometimes collecting Browser timings fails, why is that?</h3></div>
 <p>Well
 </p>
 </section>
 -->
+  <section id="urldontwork">
+        <div class="page-header"><h3>I have a URL that can't be analyzed, what should I do?</h3></div>
+        <p>Please report it as an <a href="https://github.com/sitespeedio/sitespeed.io/issues/new">issue</a>. I love getting error reports so sitespeed.io can get better. </p>
+      </section>
 
       <section id="knownbugs">
         <div class="page-header"><h3>Are there any known bugs?</h3></div>
@@ -41,6 +41,16 @@ nav: faq
 	<p>If you found other bugs, please report them <a href="https://github.com/sitespeedio/sitespeed.io/issues">here</a>.</p>
         </section>
 
+<section id="unsupported"> <div class="page-header"><h3 style="word-wrap: break-word;">I get java.io.UnsupportedEncodingException: gzip, what does that mean?</h3></div>
+<p>The crawler used in sitespeed.io doesn't fetch content using GZIP (sending header that accepts gzip), however some sites sends content gzipped to all clients and then is when you get this exception.</p>
+</section>
+
+ <section id="readtimeout">
+        <div class="page-header"><h3 style="word-wrap: break-word;">I get java.net.SocketTimeoutException: Read timed out. Why?</h3></div>
+        <p>The crawler has a configurable timeout time (you find it in <em>dependencies/crawler.properties</em>).  The crawler crawls your site by first fetching the start page and then the rest of the pages using a thread pool (that you
+          can configure in the same property file). Default is five threads, meaning that it will be maximum five concurrent threads accessing your site. If your site has problem with five (yes that has actually happen) concurrent users, the crawler can timeout.
+          The solution is to increase the timeout time in the properties file.</p>
+        </section>
 
       <section id="addrules">
         <div class="page-header"><h3>I want to add my own rules, how do I do that?</h3></div>
@@ -49,7 +59,7 @@ nav: faq
 
         <section id="skip">
         <div class="page-header"><h3>Is there a option to exclude a given directory?</h3></div>
-        <p style="word-wrap: break-word;"> Yes, kind of, checkout <a href="http://sitespeed.io/documentation/#run">http://sitespeed.io/documentation/#run</a>. Use the option <strong>-s</strong> that will skip urls that contains the specified text in the path.
+        <p style="word-wrap: break-word;"> Yes, kind of, checkout <a href="/documentation/#includeexclude">http://www.sitespeed.io/documentation/#includeexclude</a>. Use the option <strong>-s</strong> that will skip urls that contains the specified text in the path.
 </p>
         </section>
 
