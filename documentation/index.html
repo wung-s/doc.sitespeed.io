@@ -33,7 +33,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
         <li class="toc"><a href="#mobile">Viewport/user agent & mobile</a></li>
         <li class="toc"><a href="#limitpages">Limit pages to test</a></li>
         <li class="toc"><a href="#rules">Choose desktop or mobile rules</a></li>
-        <li class="toc"><a href="#browsertimemetrics">Collect Browser timings a.k.a fetch Navigation Timing data</a></li>
+        <li class="toc"><a href="#browsertimemetrics">Fetch Navigation Timing data (using Browser Time)</a></li>
          <li class="toc"><a href="#config-boxes">Boxes on summary page</a></li>
         <li class="toc"><a href="#config-columns">Columns on pages</a></li>
       </ul>
@@ -52,7 +52,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
         <li class="toc"><a href="#multiplecolumns">Choose columns for report</a></li>
 
    </ul>
-    <li class="toc"><a href="#browsertime">Collect Browser timings</a></li>
+    <li class="toc"><a href="#browsertime">Collect Navigation Timing data</a></li>
    <li class="toc"><a href="#summaryxml">The summary.xml file</a></li>
   <li  class="toc"><a href="#harfiles">HAR files</a></li>
 
@@ -80,7 +80,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
   <div class="page-header">
       <h1>Introduction</h1>
     </div>
-    <p>Sitespeed.io is an open source tool that will check your site against web performance best practice rules and use the <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" target="_blank">Navigation Timing API</a> to collect metrics. It will create XML & HTML output of the result.
+    <p>Sitespeed.io is an open source tool that will check your site against web performance best practice rules and use the <a href="http://kaaes.github.io/timing/info.html" target="_blank">Navigation Timing API</a> to collect metrics. It will create XML & HTML output of the result.
     </p>
  </div>
 
@@ -416,7 +416,7 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
 
 <div class="section" id="browsertimemetrics">
     <div class="page-header">
- <h2>Collect Browser Time metrics</h2>
+ <h2>Collect Navigation Timing metrics (using Browser Time)</h2>
 </div>
 <p>The tool Browser Time is bundled with sitespeed.io, so you don't need to do any special installation to get it to work. If you use the Homebrew version, you can update Browser Time independently of sitespeed, that is good because when
   a new version Chrome/Firefox is released, it could happen that Browser Time needs to be updated.</p>
@@ -960,9 +960,9 @@ OPTIONS:
         <pre>
 /Users/peter/jenkins-jobs/sitespeed.io/bin/sitespeed.io -u http://www.cybercom.com -c true -d 0
 /Users/peter/jenkins-jobs/sitespeed.io/bin/sitespeed.io-junit -o $WORKSPACE -t /Users/peter/jenkins-jobs/sitespeed.io/timings.xml</pre>
-        <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output files from the script. Add these two:</p>
+        <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output files from the script. Add this:</p>
 <pre>
-sitespeed.io-rules-junit.xml,sitespeed.io-timings-junit.xml</pre>
+junit/*.xml</pre>
   <p>Sitespeed.io will produce two different junit files, one with the result of the rules and one with the timings (if you configured to fetch browser timings). The timings, will use an XML file to set the limits on when to break the build. By default, the file <em>dependencies/timing-limits-default.xml</em> will be used. But you can choose to use your own configuration with the parameter <em>t</em> pointing out the file to use. The limit file looks like this:</p>
   <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;limits type="median"&gt;
