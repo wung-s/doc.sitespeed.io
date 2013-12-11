@@ -59,7 +59,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
    <li class="toc"><a href="#continuousintegration">Continuous integration</a></li>
   <ul>
      <li class="toc"><a href="#junit">Generating the JUnit XML for continuous integration</a></li>
-      <li class="toc"><a href="#jenkins">Jenkins integration</a></li>
+     <li class="toc"><a href="#jenkinsplugin">Jenkins plugin</a></li>
   <li class="toc"><a href="#travis">Travis integration</a></li>
 </ul>
  <li class="toc"><a href="#developers">Developers</a></li>
@@ -923,7 +923,7 @@ OPTIONS:
        <div class="page-header">
       <h2>Continuous integration</h2>
     </div>
-    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the performance best practice rules <em>before</em> your changes are released. Your build can also be broken if your page timings (choose whatever timing you need from the Navigation Timing API or your own custom timing) reach your limits!</p>
+    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the performance best practice rules <em>before</em> your changes are released. Your build can also be broken if your page timings (choose whatever timing you need from the Navigation Timing API or your own custom timing) break your limits.</p>
 
  </div>
 <div class="section">
@@ -942,28 +942,52 @@ OPTIONS:
 -a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]
 -s      Skip these rule tests. A comma separated list of the key name of the rules; for example "ycsstop,yjsbottom" [optional]
 -t      The XML timing limit file, setting limits when a timing fails. Default file is dependencies/timing-limits-default.xml [optional]</pre>
-   <p><em>Note:</em> the key name used when skip the tests, is viewed in the the Jenkins result, check the title for each page, the key is the name before the colon, for example <em>ynumreq: Make fewer HTTP requests</em> where <strong>ynumreq</strong> is the key.
-  </p>
+   <p><em>Note:</em> the key name used when skipping tests is the rule key, you can see that on the <a href="/rules/#allrules">rule</a> page (all keys are in parenthesis after the rule name) . </p>
 
 </div>
 
 
 <div class="section">
-      <h2 id="jenkins">Jenkins integration</h2>
-      <p><a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> is a great open source continuous integration server.
+      <h2 id="jenkinsplugin">Jenkins plugin</h2>
+       <p><a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> is a great open source continuous integration server that have a plugin for almost everything and now also sitespeed.io! The plugin wraps the sitespeed-junit.io script and
+      sets up all the paths so the result files ends up in Jenkins workspace. The plugin can also send  metrics to <a href="http://graphite.wikidot.com/" target="_blank">Graphite</a>.
 
-    To get sitespeed.io up and running, you need to make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJS</a> in the path and
-    have read/write access to the directory where you have sitespeed. When you have that, you are ready to set it up.
   </p>
-  <p>
-    In Jenkins, add a new <em>Execute shell</em> and add the two script on one line each. The first one is the standard script, and the second one will create the two junit.xml:s. In this example, I have setup my own timings.xml file that are in the same dir as sitespeed.io script, where I define my timing limits:</p>
-        <pre>
-/Users/peter/jenkins-jobs/sitespeed.io/bin/sitespeed.io -u http://www.cybercom.com -c true -d 0
-/Users/peter/jenkins-jobs/sitespeed.io/bin/sitespeed.io-junit -o $WORKSPACE -t /Users/peter/jenkins-jobs/sitespeed.io/timings.xml</pre>
-        <p>Then add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output files from the script. Add this:</p>
-<pre>
-junit/*.xml</pre>
-  <p>Sitespeed.io will produce two different junit files, one with the result of the rules and one with the timings (if you configured to fetch browser timings). The timings, will use an XML file to set the limits on when to break the build. By default, the file <em>dependencies/timing-limits-default.xml</em> will be used. But you can choose to use your own configuration with the parameter <em>t</em> pointing out the file to use. The limit file looks like this:</p>
+
+      <h3>Installation</h3>
+      <p>
+        The plugin is not distributed with Jenkins at the moment, you need to manually install it. </p>
+        <ol>
+          <li><a href="https://github.com/sitespeedio/jenkins.sitespeed.io/releases">Download</a> the latest version of the plugin from Github.</li>
+          <li>Install the HPI file in Jenkins.</li>
+          <li><a href="https://github.com/sitespeedio/sitespeed.io/releases" target="_blank">Download</a> the latest version of sitespeed.io and add it to the same server that runs Jenkins.</li>
+          <li>Make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJS</a> in the path.</lI>
+          <li>Configure the plugin and set it up to run as often as you need.</li>
+        </ol>
+
+        <h3>Configuration</h3>
+        <p>The configuration is easy, you have four different parts:</p>
+        <ol>
+          <li><strong>Home dir of sitespeed.io</strong> - locate where you have installed sitespeed.io on your server.</li>
+          <li><strong>Sitespeed.io configuration</strong> - add the parameters passed to the sitespeed.io script, exact the same way as you do locally. Only exception is that you don't set the result base directory (with the parameter <em>-r</em>) that is done automatically. </li>
+         <li><strong> JUnit configuration</strong> - the parameters sent to the JUnit script. The result base directory (<em>-r</em>) and the output dir (<em>-o</em>) is set automatically, so that the result ends up in Jenkins workspace.</li>
+          <li><strong>Send to Graphite</strong> - choose if you want to send the metrics to Graphite.</li>
+        </ol>
+
+        <p>It looks like this:</p>
+        <p class="text-center">
+       <a href="plugin-configuration.png"><img src="plugin-configuration.png" alt="Sitespeed.io plugin configuration" class="img-thumbnail"/></a>
+      </p>
+
+         <h3>Configuring JUnit</h3>
+                 <p>Add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output files from the script. Add this:</p>
+
+  <p class="text-center">
+       <a href="post-build-adding-junit.png"><img src="post-build-adding-junit.png" alt="Adding the post build action" class="img-thumbnail"/></a>
+      </p>
+
+
+  <p>Sitespeed.io will produce two different JUnit XML files, one with the result of the rules and one with the timings (if you configured to fetch browser timings). The timings will use an XML file to set the limits on when to break the build. By default, the file <em>dependencies/timing-limits-default.xml</em> will be used. But you can choose to use your own configuration with the parameter <em>t</em> pointing out the file to use. The limit file looks like this:</p>
   <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;limits type="median"&gt;
   &lt;default&gt;
@@ -983,18 +1007,13 @@ junit/*.xml</pre>
     &lt;/page&gt;
   &lt;/urls&gt;
 &lt;/limits&gt;</pre>
-  <p>Meaning you can setup default values that will be used for all URL:s but they will be overriden if you have a matching url in the urls section. With the <em>limits type</em> you can choose if you want to compare median, max or different percentiles (the values from the browser time).</p>
+  <p>You can setup default values that will be used for all URL:s but they will be overridden if you have a matching URL in the URLs section. With the <em>limits type</em> you can choose if you want to compare median, max or different percentiles (the values from the browser time).</p>
 
     The name of the XML timing fields match fields from BrowserTime, so if you have a custom user measurement named <em>headerTime</em> the field needs to named the same.</p>
 
-       <p class="text-center">
-        <a href="jenkins-sitespeed-config-2.2.png"><img src="jenkins-sitespeed-config-2.2.png" alt="Configuration Sitespeed.io for Jenkins" class="img-thumbnail"/></a>
-      </p>
 
+ <p>Each sitespeed.io test, is a JUnit testcase, each page tested is a test suite and the whole test bundled as test suites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
 
-      <p>Each sitespeed.io test, is a JUnit testcase, each page tested is a test suite and the whole test bundled as test suites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
-
-      </p>
        <p class="text-center">
        <a href="jenkins-test-all-pages.jpg"><img src="jenkins-test-all-pages.jpg" alt="All the tested pages" class="img-thumbnail"/></a>
       </p>
@@ -1005,7 +1024,19 @@ junit/*.xml</pre>
         <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-thumbnail"/></a>
       </p>
 
-      <p>Running the sitespeed JUnit script, will also copy the <em>summary.xml</em> file to the output directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
+         <h3>Graphite</h3>
+         <p>To be able to send metrics to Graphite you need to configure your Graphite <strong>host</strong>, <strong>port</strong> and the <strong>namespace</strong> of the keys sent to
+          Graphite (the namespace is the first part of the key so that you easy can identify the keys sent from Jenkins).
+          You also choose what kind of metrics you want to send:</p>
+<ul>
+  <li><strong>Rule score per page</strong> - Each score per rule is sent for all pages.</li>
+  <li><strong>Timing metrics per page</strong> -  Each page that has been tested will have have all metrics from the Navigation Timing API and custom User Timings.</li>
+<li><strong>Page metrics per page</strong> - The following metrics per page: Number of hosts, number of assets per type (js/css/images etc) and the size per type.</li>
+<li><strong>Site summary</strong> -   You will have a summary of the rules score and the Navigation Timing metrics reported with median and different percentiles.</li>
+</ul>
+
+         <h3>Graphs without using Graphite</h3>
+      <p>If you don't use Graphite, you can still create simple graphs in Jenkins. The script will copy the <em>summary.xml</em> file to Jenkins workspace directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
 <p class="text-center">
    <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
 </p>
@@ -1019,6 +1050,9 @@ junit/*.xml</pre>
 <p class="text-center">
 <a href="domContentLoadedTime.png"><img src="domContentLoadedTime.png" alt="Timings graph" class="img-thumbnail"/></a>
 </p>
+
+<div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" target="_blank">this</a> blog  post by Dashboard Dude.</div>
+</div>
 
   </div>
 
@@ -1043,13 +1077,13 @@ before_install:
 - "sh -e /etc/init.d/xvfb start"
 
 before_script:
-- "tar -xzf test/sitespeed.io-2.1.tar.gz"
-- "./sitespeed.io-2.1/bin/sitespeed.io -u http://www.peterhedenskog.com -c true -j 5 -z \"-n 5 \""
-- "./sitespeed.io-2.1/bin/sitespeed.io-junit -o ../ -t ../test/timings.xml -s textcontent"
+- "tar -xzf test/sitespeed.io-2.3.tar.gz"
+- "./sitespeed.io-2.3/bin/sitespeed.io -u http://www.peterhedenskog.com -c true -j 5 -z \"-n 5 \""
+- "./sitespeed.io-2.3/bin/sitespeed.io-junit -o ../ -t ../test/timings.xml -s textcontent"
 
 script:
-- "./sitespeed.io-2.1/bin/travis-ci.sh sitespeed.io-rules-junit.xml"
-- "./sitespeed.io-2.1/bin/travis-ci.sh sitespeed.io-timings-junit.xml"
+- "./sitespeed.io-2.3/bin/travis-ci.sh junit/sitespeed.io-rules-junit.xml"
+- "./sitespeed.io-2.3/bin/travis-ci.sh junit/sitespeed.io-timings-junit.xml"
 </pre>
 </li>
 <li>Edit your own timings.xml file (put it in the test folder) and setup the timing levels you want.</li>
