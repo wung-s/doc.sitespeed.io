@@ -968,10 +968,10 @@ OPTIONS:
         <h3>Configuration</h3>
         <p>The configuration is easy, you have four different parts:</p>
         <ol>
-          <li><strong>Home dir of sitespeed.io</strong> - locate where you have installed sitespeed.io on your server.</li>
-          <li><strong>Sitespeed.io configuration</strong> - add the parameters passed to the sitespeed.io script, exact the same way as you do locally. Only exception is that you don't set the result base directory (with the parameter <em>-r</em>) that is done automatically. </li>
-         <li><strong> JUnit configuration</strong> - the parameters sent to the JUnit script. The result base directory (<em>-r</em>) and the output dir (<em>-o</em>) is set automatically, so that the result ends up in Jenkins workspace.</li>
-          <li><strong>Send to Graphite</strong> - choose if you want to send the metrics to Graphite.</li>
+          <li><em>Home dir of sitespeed.io</em> - locate where you have installed sitespeed.io on your server.</li>
+          <li><em>Sitespeed.io configuration</em> - add the parameters passed to the sitespeed.io script, exact the same way as you do locally. Only exception is that you don't set the result base directory (with the parameter <em>-r</em>) that is done automatically. </li>
+         <li><em> JUnit configuration</em> - the parameters sent to the JUnit script. The result base directory (<em>-r</em>) and the output dir (<em>-o</em>) is set automatically, so that the result ends up in Jenkins workspace.</li>
+          <li><em>Send to Graphite</em> - choose if you want to send the metrics to Graphite.</li>
         </ol>
 
         <p>It looks like this:</p>
@@ -1029,11 +1029,22 @@ OPTIONS:
           Graphite (the namespace is the first part of the key so that you easy can identify the keys sent from Jenkins).
           You also choose what kind of metrics you want to send:</p>
 <ul>
-  <li><strong>Rule score per page</strong> - Each score per rule is sent for all pages.</li>
-  <li><strong>Timing metrics per page</strong> -  Each page that has been tested will have have all metrics from the Navigation Timing API and custom User Timings.</li>
-<li><strong>Page metrics per page</strong> - The following metrics per page: Number of hosts, number of assets per type (js/css/images etc) and the size per type.</li>
-<li><strong>Site summary</strong> -   You will have a summary of the rules score and the Navigation Timing metrics reported with median and different percentiles.</li>
+  <li><em>Rule score per page</em> - Each score per rule is sent for all pages.</li>
+  <li><em>Timing metrics per page</em> -  Each page that has been tested will have have all metrics from the Navigation Timing API and custom User Timings.</li>
+<li><em>Page metrics per page</em> - The following metrics per page: Number of hosts, number of assets per type (js/css/images etc) and the size per type.</li>
+<li><em>Site summary</em> -   You will have a summary of the rules score and the Navigation Timing metrics reported with median and different percentiles.</li>
 </ul>
+
+
+<p>What will the data look like? This is the timings you get when you fetch the http://www.sitespeed.io/documentation/:</p>
+     <p class="text-center">
+        <img src="graphite/timings.png" alt="Navigation Timings in Graphite" class="img-thumbnail"/>
+      </p>
+
+      <p style="word-wrap: break-word;">The  Graphite key in this case is created like this:  &lt;NAMESPACE&gt;.timings.&lt;BROWSER&gt;.&lt;PROTOCOL&gt;.&lt;PATH&gt;.&lt;METRIC&gt;.&lt;STATISTIC&gt;</p>
+
+      <div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" target="_blank">this</a> blog  post by Dashboard Dude.</div>
+</div>
 
          <h3>Graphs without using Graphite</h3>
       <p>If you don't use Graphite, you can still create simple graphs in Jenkins. The script will copy the <em>summary.xml</em> file to Jenkins workspace directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
@@ -1050,9 +1061,6 @@ OPTIONS:
 <p class="text-center">
 <a href="domContentLoadedTime.png"><img src="domContentLoadedTime.png" alt="Timings graph" class="img-thumbnail"/></a>
 </p>
-
-<div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" target="_blank">this</a> blog  post by Dashboard Dude.</div>
-</div>
 
   </div>
 
