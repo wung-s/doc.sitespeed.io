@@ -1036,12 +1036,12 @@ OPTIONS:
 </ul>
 
 
-<p>What will the data look like? This is the timings you get when you fetch the http://www.sitespeed.io/documentation/:</p>
+<p>What will the data look like? This is the timings you get when you fetch http://www.sitespeed.io/documentation/:</p>
      <p class="text-center">
         <img src="graphite/timings.png" alt="Navigation Timings in Graphite" class="img-thumbnail"/>
       </p>
 
-      <p style="word-wrap: break-word;">The  Graphite key in this case is created like this:  &lt;NAMESPACE&gt;.timings.&lt;BROWSER&gt;.&lt;PROTOCOL&gt;.&lt;PATH&gt;.&lt;METRIC&gt;.&lt;STATISTIC&gt;</p>
+      <p style="word-wrap: break-word;">The  Graphite key in this case is created like this:  <small>&lt;NAMESPACE&gt;.timings.&lt;BROWSER&gt;.&lt;PROTOCOL&gt;.&lt;PATH&gt;.&lt;METRIC&gt;.&lt;STATISTIC&gt;</small></p>
 
       <div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" target="_blank">this</a> blog  post by Dashboard Dude.</div>
 </div>
@@ -1384,7 +1384,7 @@ YSLOW.registerRuleset({
          It is used when you run sitespeed to create the rule definition HTML file that is put into the results, so you always can backtrack which rules you use. </p>
         </li>
         <li>Create the new YSlow javascript file: <pre>make phantomjs</pre></li>
-        <li>Test that it works on one url (standing in root for YSlow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-2.0-desktop -f xml http://yoururl.com</pre></li>
+        <li>Test that it works on one url (standing in root for YSlow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-desktop -f xml http://yoururl.com</pre></li>
         <li>Move the newly created rulefile into your dependencies directory for sitespeed, on my local I do it this way:
           <pre>cp build/phantomjs/yslow.js ../sitespeed.io/dependencies/yslow-3.1.5-sitespeed.js</pre>
          </li>
