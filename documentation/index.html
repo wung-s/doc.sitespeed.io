@@ -819,7 +819,7 @@ OPTIONS:
 
 <div class="section" id="browsertime">
     <div class="page-header">
- <h2>Collect Browser timings</h2>
+ <h2>Collect Navigation Timing data</h2>
 </div>
   <p>You can collect Browser timings in sitespeed.io, using the Open Source project <strong>Browser Time</strong> that collects metrics using the data in the Navigation Timing API (and also some other data/metrics). You can choose which browser to use (it must of course support the Navigation Timing API) and how many runs you want per page. It will then do a summary for each metric with the minimum, maximum, average, median and the 60, 70, 80 & 90 percentile.</p>
 
@@ -871,12 +871,18 @@ OPTIONS:
   <p>By default <em>Firefox</em> is used but you can choose to use <em>Chrome</em> or <em>Internet Explorer</em> (if you use these, you will automatically get the first paint value reported by the browser!).
 </p>
 
+  <p>If you run on Linux and want to emulate a screen (a.k.a running a browser without a screen), you need to do this before running:</p>
+  <ul>
+  <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml">XVFB</a></li>
+  <li><em>export DISPLAY=:99.0</em></li>
+  <li><em>sh -e /etc/init.d/xvfb start</em></li>
+</ul>
+
  <p> As an extra bonus, custom measurements (User timings) are also fetched! That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page. There will be more documentation later on how to do & use this!
 </p>
 <div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages.</div>
 
    </div>
-
 
 <div class="section" id="summaryxml">
        <div class="page-header">
