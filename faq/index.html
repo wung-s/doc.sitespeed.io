@@ -27,7 +27,7 @@ nav: faq
 -->
   <section id="urldontwork">
         <div class="page-header"><h3>I have a URL that can't be analyzed, what should I do?</h3></div>
-        <p>Please report it as an <a href="https://github.com/sitespeedio/sitespeed.io/issues/new">issue</a>. I love getting error reports so sitespeed.io can get better. </p>
+        <p>Please report it as an <a href="https://github.com/sitespeedio/sitespeed.io/issues/new">issue</a>. </p>
       </section>
 
       <section id="knownbugs">
@@ -44,6 +44,17 @@ nav: faq
 <section id="unsupported"> <div class="page-header"><h3 style="word-wrap: break-word;">I get java.io.UnsupportedEncodingException: gzip, what does that mean?</h3></div>
 <p>The crawler used in sitespeed.io doesn't fetch content using GZIP (sending header that accepts gzip), however some sites sends content gzipped to all clients and then is when you get this exception.</p>
 </section>
+
+<section id="nodisplayspecified"> <div class="page-header"><h3 style="word-wrap: break-word;">I get <em>Error: no display specified</em></h3></div>
+<p>If you run on Linux and want to emaulate a display (a.k.a running a browser without a screen) you need to do this before running:</p>
+<ul>
+<li>Install XVFB</li>
+<li><em>export DISPLAY=:99.0</em></li>
+<li><em>sh -e /etc/init.d/xvfb start</em></li>
+</ul>
+<p>You can check out the projects Travis  configuration <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/.travis.yml" target="_blank">file</a> for an example.</p>
+</section>
+
 
  <section id="readtimeout">
         <div class="page-header"><h3 style="word-wrap: break-word;">I get java.net.SocketTimeoutException: Read timed out. Why?</h3></div>
