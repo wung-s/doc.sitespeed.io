@@ -1015,11 +1015,11 @@ OPTIONS:
 &lt;/limits&gt;</pre>
   <p>You can setup default values that will be used for all URL:s but they will be overridden if you have a matching URL in the URLs section. With the <em>limits type</em> you can choose if you want to compare median, max or different percentiles (the values from the browser time).</p>
 
-    The name of the XML timing fields match fields from BrowserTime, so if you have a custom user measurement named <em>headerTime</em> the field needs to named the same.</p>
+    <p>The name of the XML timing fields match fields from BrowserTime, so if you have a custom user measurement named <em>headerTime</em> the field needs to named the same.</p>
 
 
  <p>Each sitespeed.io test, is a JUnit testcase, each page tested is a test suite and the whole test bundled as test suites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
-
+</p>
        <p class="text-center">
        <a href="jenkins-test-all-pages.jpg"><img src="jenkins-test-all-pages.jpg" alt="All the tested pages" class="img-thumbnail"/></a>
       </p>
@@ -1047,10 +1047,9 @@ OPTIONS:
         <img src="graphite/timings.png" alt="Navigation Timings in Graphite" class="img-thumbnail"/>
       </p>
 
-      <p style="word-wrap: break-word;">The  Graphite key in this case is created like this:  <small>&lt;NAMESPACE&gt;.timings.&lt;BROWSER&gt;.&lt;PROTOCOL&gt;.&lt;PATH&gt;.&lt;METRIC&gt;.&lt;STATISTIC&gt;</small></p>
+      <p >The  Graphite key in this case is created like this:  <small>&lt;NAMESPACE&gt;.timings.&lt;BROWSER&gt;.&lt;PROTOCOL&gt;.&lt;PATH&gt;.&lt;METRIC&gt;.&lt;STATISTIC&gt;</small></p>
 
       <div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" target="_blank">this</a> blog  post by Dashboard Dude.</div>
-</div>
 
          <h3>Graphs without using Graphite</h3>
       <p>If you don't use Graphite, you can still create simple graphs in Jenkins. The script will copy the <em>summary.xml</em> file to Jenkins workspace directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
@@ -1063,7 +1062,7 @@ OPTIONS:
 <a href="plot-graph-example.png"><img src="plot-graph-example.png" alt="The graph" class="img-thumbnail"/></a>
 </p>
 
-<p style="word-wrap: break-word;">You can also setup graphs for the timings. This one is fetching median (xpath <em>//site/metrics/domContentLoadedTime/median</em>) & the 90th percentile (xpath <em>//site/metrics/domContentLoadedTime/percentile90</em>) for domContentLoadedTime:</p>
+<p >You can also setup graphs for the timings. This one is fetching median (xpath <em>//site/metrics/domContentLoadedTime/median</em>) & the 90th percentile (xpath <em>//site/metrics/domContentLoadedTime/percentile90</em>) for domContentLoadedTime:</p>
 <p class="text-center">
 <a href="domContentLoadedTime.png"><img src="domContentLoadedTime.png" alt="Timings graph" class="img-thumbnail"/></a>
 </p>
@@ -1106,8 +1105,6 @@ script:
 
 <div class="note note-info">Travis-CI has Firefox installed by default on their boxes so that will work out of the box. Chrome is not supported.</div>
 </div>
-
-      </div>
 
 
 <!--
@@ -1187,7 +1184,7 @@ script:
       <dt>XMLToVelocity</dt>
       <dd><a href="https://github.com/soulgalore/xml-velocity" target="_blank">XMLToVelocity</a> is a small Java component that parses a XML-file with a Velocity template.</dd>
       <dt>Stupid Table Plugin</dt>
-      <dd><a href="https://github.com/joequery/Stupid-Table-Plugin" target="_blank">Stupid Table Plugin</a> is a really small table column sorter (yes two different is used today, one needs to go away).</dd>
+      <dd><a href="https://github.com/joequery/Stupid-Table-Plugin" target="_blank">Stupid Table Plugin</a> is a really small table column sorter. </dd>
        <dt>BrowserTime</dt>
         <dd><a href="https://github.com/tobli/browsertime" target="_blank">BrowserTime</a> collects browser timings using the Navigation Timing API.</dd>
 
