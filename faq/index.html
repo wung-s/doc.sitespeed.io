@@ -29,7 +29,8 @@ nav: faq
       <li><a href="#skip">Is there a option to exclude a given directory?</a></li>
       <li><a href="#onepage">I want to test only one page, how do I do that?</a></li>
       <li><a href="#slowness">It takes like forever to to analyze my site, what should I do?</a></li>
-       <li><a href="#windows">Can I use sitespeed on Windows?</a></li>
+      <li><a href="#outofmemory">I get Out Of Memory error when parsing the files?</a></li>
+       <li><a href="#windows">Can I use sitespeed.io on Windows?</a></li>
         <!--
         <li><a href="#"></a></li>
          -->
@@ -95,6 +96,13 @@ nav: faq
 	<p>You can change the amount of simultaneously processes that analyze your site (default is five). Increase the amount of processes with the <strong>p</strong> switch:</p>
 	<pre class="bash">$ ./bin/sitespeed.io -u http://mysite.com -p 10</pre>
 	</section>
+
+  <section id="outofmemory">
+  <div class="page-header"><h3>I get Out Of Memory error when parsing the files?</h3></div>
+  <p>Parsing  the data for all pages from XML to the HTML output can be very memory intensive if you test many (hundred/thousends) of pages. You can configure the max memory level with the <em>m<em> parameter. Default
+    value is 512, change that if your box have more memory and you will test many pages: </p>
+  <pre class="bash">$ ./bin/sitespeed.io -u http://mysite.com -m 1024</pre>
+  </section>
 
       <section id="windows">
         <div class="page-header"><h3>Can I use sitespeed on Windows?</h3></div>
