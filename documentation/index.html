@@ -871,9 +871,10 @@ OPTIONS:
 
   <p>If you run on Linux and want to emulate a screen (a.k.a running a browser without a screen), you need to do this before running:</p>
   <ul>
-  <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml">XVFB</a></li>
-  <li><em>export DISPLAY=:99.0</em></li>
-  <li><em>sh -e /etc/init.d/xvfb start</em></li>
+  <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml" target="_blank">XVFB</a>.</li>
+  <li>Setup a start script, something like <a href="https://gist.github.com/jterrace/2911875" target="_blank">this</a>.</li>
+  <li>Export the display, make sure to have the same number as in the examle in the Gist: <em>export DISPLAY=:99.0</em></li>
+  <li>Start Xvfb: <em>sh -e /etc/init.d/xvfb start</em></li>
 </ul>
 
  <p> As an extra bonus, custom measurements (User Timing) are also fetched! That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page. There will be more documentation later on how to do & use this!
@@ -983,6 +984,10 @@ OPTIONS:
        <a href="plugin-configuration.png"><img src="plugin-configuration.png" alt="Sitespeed.io plugin configuration" class="img-thumbnail"/></a>
       </p>
 
+      <h3>Running headless</h3>
+      <p>You probably want to run headless (without opening a browser window). On Linux you can do that easily by installing the Jenkins <a href="https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin" target="blank">Xvfb plugin</a>. Configure it with the default configuration and it will
+        work out of the box.</p>
+
          <h3>Configuring JUnit</h3>
                  <p>Add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output files from the script. Add this (if you are running both rules and timing metrics, if you are using only rules, specify only that XML file):</p>
 
@@ -1052,7 +1057,7 @@ OPTIONS:
          <h3>Graphs without using Graphite</h3>
       <p>If you don't use Graphite, you can still create simple graphs in Jenkins. The script will copy the <em>summary.xml</em> file to Jenkins workspace directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
 <p class="text-center">
-   <a href="jenkins-plot-setup.png"><img src="jenkins-plot-setup.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
+   <a href="jenkins-plot-setup2.png"><img src="jenkins-plot-setup2.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
 </p>
 
 <p>And the graphs:</p>
