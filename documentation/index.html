@@ -297,8 +297,9 @@ OPTIONS:
    -b      The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes for more info [optional]
    -j      The max number of pages to test [optional]
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional]
-   -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional]
-   -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3".
+   -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
+   -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
+   -V      Show the version of sitespeed.io
 </pre>
 
 </div>
@@ -419,12 +420,15 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
 <p>The tool Browser Time is bundled with sitespeed.io, so you don't need to do any special installation to get it to work. If you use the Homebrew version, you can update Browser Time independently of sitespeed, that is good because when
   a new version Chrome/Firefox is released, it could happen that Browser Time needs to be updated.</p>
 
-<p>By default, the collecting of timing metrics is turned off, so you need to turn it on.</p>
-<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c true</pre>
+<p>Ad d the parameter <em>c</em> followed by the browser name. </p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c firefox</pre>
 
-<p>Firefox is used to collect metrics for each page. Each page is tested 3 times. You can change that with the <em>z</em> parameter. That full String is sent to the Browser Time application (more documentation <a href="https://github.com/tobli/browsertime" target="_blank">here</a>). Changing it to Chrome and test each page 5 times, looks like this:</p>
+<p>Each page is tested 3 times by default. You can change that with the <em>z</em> parameter.  Test using  Chrome and test each page 5 times, looks like this:</p>
 
-<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c true -z "-b chrome -n 5"</pre>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c chrome -z 5</pre>
+
+<p>If you want to test in multiple browsers, you add them in a comma separated list (this example only works on Winows since it uses Internet Explorer (IE):</p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c firefox,chrome,ie -z 5</pre>
 
 <div class="note note-warning">To run Chrome, you need to have Chrome & the ChromeDriver installed on your computer, you can find more info <a href="https://code.google.com/p/chromedriver/" target="_blank">here</a>.  For Internet Explorer (Windows only) you need the
   <a href="https://code.google.com/p/selenium/wiki/InternetExplorerDriver" target="_blank">IE driver</a>. To run FireFox you only need FireFox :)</div>
