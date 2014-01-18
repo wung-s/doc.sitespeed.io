@@ -1,7 +1,7 @@
 ---
 layout: default
 title: The performace best practices rules used by Sitespeed.io
-description: Here are the list of performance best practices rules used by sitespeed.io when analyzing your website. It will check for SPOF, synchronously loaded javascripts inside head and a lot of more things. 
+description: Here are the list of performance best practices rules used by sitespeed.io when analyzing your website. It will check for SPOF, synchronously loaded javascripts inside head and a lot of more things.
 author: Peter Hedenskog
 keywords: sitespeed.io, rules, wpo, fast, speed, web performance optimization, best practices
 nav: rules
@@ -15,15 +15,18 @@ nav: rules
   <div class="row">
     <div class="col-lg-12">
      <section>
-    Sitespeed.io uses performance best practices rules to decide if a page is optimized for performance. The idea of rules for performance was started by Steve Souders <a href="http://stevesouders.com/hpws/rules.php" target="_blank">14 rules for faster loading websites</a> in 2007. Those rules and a couple of more is implemented in YSlow. Sitespeed.io uses these rules and approx. 20 rules more (it has happened things since 2007). You can see all rules used
-    <a href="#allrules">here</a>. Sitespeed has two set of rules; desktop & mobile. Desktop is the default one and described on this page. The mobile rules are the same rules, but they have different weight. You can see the exact implementation <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" target="_blank">here</a>.
+    Sitespeed.io uses performance best practices rules to decide if a page is optimized for performance. The idea of rules for performance was started by Steve Souders
+    <a href="http://stevesouders.com/hpws/rules.php" target="_blank">14 rules for faster loading websites</a> in 2007. Those rules and a couple of more is implemented in YSlow.
+    Sitespeed.io uses these rules and approx. 20 more (it has happened things since 2007). You can see all rules used
+    <a href="#allrules">here</a>. There are two set of rules; desktop & mobile. Desktop is the default one and described on this page. The mobile rules are the same rules, but they have different weight.
+    You can see the exact implementation <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" target="_blank">here</a>.
   </section>
 
   <section>
     <div class="page-header">
   <h2>Don't break the rules!</h2>
 </div>
- Sitespeed.io is very demanding on your site, it will test/analyze and punish hard if you have broken the most important rules. Here's some of the sitespeed.io specific rules. 
+ Sitespeed.io is very demanding on your site, it will test/analyze and punish hard if you have broken the most important rules. Here's some of the sitespeed.io specific rules.
   </section>
 
       <section id="criticalpath">
@@ -35,7 +38,7 @@ nav: rules
           <div class="note note-info">
           You can read more about the critical rendering path in <a href="http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/" target="_blank">this</a> article by Ilya Grigorik and <a href="http://www.phpied.com/css-and-the-critical-path/" target="_blank">this</a> post by Stoyan Stefanov.
         </div>
-  
+
       </section>
 
 
@@ -50,12 +53,12 @@ nav: rules
 
       </section>
 
-     <section id="spof"> 
+     <section id="spof">
       <div class="page-header">
     <h3>Frontend single point of failure (SPOF)</h3>
   </div>
     <p>
-      A page can be stopped to be loaded in the browser, if a single script, css and in some cases a font couldn't be fetched or loading slow (the white screen of death!). You really want to avoid that. Never load 3rd party components inside of head!  One important note, right now this rule treats domain and subdomains as ok, that match the document domain, all other domains is treated as a SPOF. The score is calculated like this: Synchronously loaded javascripts inside of head, hurts you the most & then CSS files inside of head hurts a little less. You can also look for Font Face inside of CSS files and  inline font face files, but they are considered minor and not turned on by default. One rule SPOF rule missing is the IE specific feature, that a font face will be SPOF if a script is requested before the font face file. 
+      A page can be stopped to be loaded in the browser, if a single script, css and in some cases a font couldn't be fetched or loading slow (the white screen of death!). You really want to avoid that. Never load 3rd party components inside of head!  One important note, right now this rule treats domain and subdomains as ok, that match the document domain, all other domains is treated as a SPOF. The score is calculated like this: Synchronously loaded javascripts inside of head, hurts you the most & then CSS files inside of head hurts a little less. You can also look for Font Face inside of CSS files and  inline font face files, but they are considered minor and not turned on by default. One rule SPOF rule missing is the IE specific feature, that a font face will be SPOF if a script is requested before the font face file.
     </p>
 
 
@@ -64,10 +67,10 @@ nav: rules
       </div>
 
 
-    
+
     </section>
 
-    <section id="totalrequests"> 
+    <section id="totalrequests">
       <div class="page-header">
      <h3>Low number of total requests</h3>
    </div>
@@ -79,12 +82,12 @@ nav: rules
     <h3 >Do not load specific CSS file for print</h3>
   </div>
     <p>
-      Loading a specific stylesheet for print, can block rendering in your browser (depending on version) and will for almost all browsers, block the onload event to fire (even though the print stylesheet isn't even used). In the old times, it was ok to have own print styles, but nowdays you can keep them in the same CSS file. 
+      Loading a specific stylesheet for print, can block rendering in your browser (depending on version) and will for almost all browsers, block the onload event to fire (even though the print stylesheet isn't even used). In the old times, it was ok to have own print styles, but nowdays you can keep them in the same CSS file.
  </p>
        <div class="note note-info">You can read more about it
       <a href="http://www.phpied.com/5-years-later-print-css-still-sucks/" target="_blank">here</a>.
     </div>
-   
+
   </section>
 
    <section id="cssinheaddomain">
@@ -113,14 +116,14 @@ nav: rules
        <div class="note note-info">
       Read <a href="http://www.stevesouders.com/blog/2009/10/13/font-face-and-performance/">more</a> about avoiding web fonts.
     </div>
-    
+
 </section>
   <section id="expires">
     <div class="page-header">
         <h3>Have expire headers for static components</h3>
       </div>
     <p> This is a modified version of Yslow expire rule, it will look for assets without any expire headers, meaning all assets without any expitre headers will be reported.
- 
+
     </p>
 </section>
 
@@ -129,7 +132,7 @@ nav: rules
         <h3>Have expires headers equals or longer than one year</h3>
       </div>
     <p> Having really long cache headers are beneficial for caching.
- 
+
     </p>
 </section>
 
@@ -164,10 +167,10 @@ nav: rules
     <div class="page-header">
      <h3>Load third party JS asynchronously</h3>
    </div>
-    Always load third party javascript asynchronously. Third parties that will be checked are Twitter, Facebook, Google (api, analytics, ajax), LinkedIn, Disqus, Pinterest & JQuery. 
+    Always load third party javascript asynchronously. Third parties that will be checked are Twitter, Facebook, Google (api, analytics, ajax), LinkedIn, Disqus, Pinterest & JQuery.
 
      <div class="note note-info">
-    Read more about asynchronously third party scripts 
+    Read more about asynchronously third party scripts
     <a href="http://www.phpied.com/3PO#async" target="_blank">here</a>. This rule is borrowed from Stoyan Stefanov :)
   </div>
 </section>
