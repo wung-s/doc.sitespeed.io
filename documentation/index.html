@@ -80,7 +80,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
   <div class="page-header">
       <h1>Introduction</h1>
     </div>
-    <p>Sitespeed.io is an open source tool that will check your site against web performance best practice rules and use the <a href="http://kaaes.github.io/timing/info.html" target="_blank">Navigation Timing API</a> to collect metrics. It will create XML & HTML output of the result.
+    <p>Sitespeed.io is an open source tool that will check your site against web performance best practice rules and use the <a href="http://kaaes.github.io/timing/info.html" >Navigation Timing API</a> to collect metrics. It will create XML & HTML output of the result.
     </p>
  </div>
 
@@ -382,7 +382,7 @@ You can set the user agent to <strong>iphone5</strong>, <strong>nexus</strong> o
 </div>
 
 <div class="note note-warning">
-Mobile testing is always best on mobile devices. For tips on how to best do that, read Andy Davies <a href="http://andydavies.me/" target="_blank">blog</a>.
+Mobile testing is always best on mobile devices. For tips on how to best do that, read Andy Davies <a href="http://andydavies.me/" >blog</a>.
 </div>
 </div>
 
@@ -430,8 +430,8 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
 <p>If you want to test in multiple browsers, you add them in a comma separated list (this example only works on Winows since it uses Internet Explorer (IE):</p>
 <pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c firefox,chrome,ie -z 5</pre>
 
-<div class="note note-warning">To run Chrome, you need to have Chrome & the ChromeDriver installed on your computer, you can find more info <a href="https://code.google.com/p/chromedriver/" target="_blank">here</a>.  For Internet Explorer (Windows only) you need the
-  <a href="https://code.google.com/p/selenium/wiki/InternetExplorerDriver" target="_blank">IE driver</a>. To run FireFox you only need FireFox :)</div>
+<div class="note note-warning">To run Chrome, you need to have Chrome & the ChromeDriver installed on your computer, you can find more info <a href="https://code.google.com/p/chromedriver/" >here</a>.  For Internet Explorer (Windows only) you need the
+  <a href="https://code.google.com/p/selenium/wiki/InternetExplorerDriver" >IE driver</a>. To run FireFox you only need FireFox :)</div>
 </div>
 
 <div class="note note-warning">One warning running IE: There's a problem today with clearing the cache, therefor timing metrics can be really really optimistic.
@@ -885,15 +885,15 @@ OPTIONS:
 
   <p>If you run on Linux and want to emulate a screen (a.k.a running a browser without a screen), you need to do this before running:</p>
   <ul>
-  <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml" target="_blank">XVFB</a>.</li>
-  <li>Setup a start script, something like <a href="https://gist.github.com/jterrace/2911875" target="_blank">this</a>.</li>
+  <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml" >XVFB</a>.</li>
+  <li>Setup a start script, something like <a href="https://gist.github.com/jterrace/2911875" >this</a>.</li>
   <li>Export the display, make sure to have the same number as in the examle in the Gist: <em>export DISPLAY=:99.0</em></li>
   <li>Start Xvfb: <em>sh -e /etc/init.d/xvfb start</em></li>
 </ul>
 
  <p> As an extra bonus, custom measurements (User Timing) are also fetched! That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page. There will be more documentation later on how to do & use this!
 </p>
-<div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" target="_blank">this</a> blog post by Patrick Meenan on how to instrumenting your pages.</div>
+<div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" >this</a> blog post by Patrick Meenan on how to instrumenting your pages.</div>
 
    </div>
 
@@ -920,7 +920,7 @@ OPTIONS:
 &lt;/ruleScore&gt;
   </pre>
 
-  <p>You can see a full summary.xml file <a href="summary-2.0.xml" target="_blank">here</a>.
+  <p>You can see a full summary.xml file <a href="summary-2.0.xml" >here</a>.
   <p>When testing many pages, this is a really pleasent view! Today is used for the summary page, detailed summary and in Jenkins to create charts.</p>
 
 </div>
@@ -930,7 +930,7 @@ OPTIONS:
        <div class="page-header">
       <h2>HAR-files</h2>
     </div>
-    <p>The HAR-files are created for each page (using PhantomJS) and located in <em>data/har/</em>. You cannot see them in the result page (that will be implemented in later releases), but you can use them and view them yourself in the <a href="http://www.softwareishard.com/har/viewer/" target="_blank">HARviewer</a>.</p>
+    <p>The HAR-files are created for each page (using PhantomJS) and located in <em>data/har/</em>. You cannot see them in the result page (that will be implemented in later releases), but you can use them and view them yourself in the <a href="http://www.softwareishard.com/har/viewer/" >HARviewer</a>.</p>
 
     <div class="note note-warning">The HAR files from PhantomJS only displays one timing for each asset (missing specifying DNS lookup and other timings) and is not containing any loading metrics.</div>
 
@@ -968,8 +968,8 @@ OPTIONS:
 
 <div class="section">
       <h2 id="jenkinsplugin">Jenkins plugin</h2>
-       <p><a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> is a great open source continuous integration server that have a plugin for almost everything and now also sitespeed.io! The plugin wraps the sitespeed-junit.io script and
-      sets up all the paths so the result files ends up in Jenkins workspace. The plugin can also send  metrics to <a href="http://graphite.wikidot.com/" target="_blank">Graphite</a>.
+       <p><a href="http://jenkins-ci.org/" >Jenkins</a> is a great open source continuous integration server that have a plugin for almost everything and now also sitespeed.io! The plugin wraps the sitespeed-junit.io script and
+      sets up all the paths so the result files ends up in Jenkins workspace. The plugin can also send  metrics to <a href="http://graphite.wikidot.com/" >Graphite</a>.
 
   </p>
 
@@ -979,7 +979,7 @@ OPTIONS:
         <ol>
           <li><a href="https://github.com/sitespeedio/jenkins.sitespeed.io/releases">Download</a> the latest version of the plugin from Github.</li>
           <li>Install the HPI file in Jenkins.</li>
-          <li><a href="https://github.com/sitespeedio/sitespeed.io/releases" target="_blank">Download</a> the latest version of sitespeed.io and add it to the same server that runs Jenkins.</li>
+          <li><a href="https://github.com/sitespeedio/sitespeed.io/releases" >Download</a> the latest version of sitespeed.io and add it to the same server that runs Jenkins.</li>
           <li>Make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJS</a> in the path.</lI>
           <li>Configure the plugin and set it up to run as often as you need.</li>
         </ol>
@@ -1066,10 +1066,10 @@ OPTIONS:
 
       <p >The  Graphite key in this case is created like this:  <small>&lt;NAMESPACE&gt;.timings.&lt;BROWSER&gt;.&lt;PROTOCOL&gt;.&lt;PATH&gt;.&lt;METRIC&gt;.&lt;STATISTIC&gt;</small></p>
 
-      <div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" target="_blank">this</a> blog  post by Dashboard Dude.</div>
+      <div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" >this</a> blog  post by Dashboard Dude.</div>
 
          <h3>Graphs without using Graphite</h3>
-      <p>If you don't use Graphite, you can still create simple graphs in Jenkins. The script will copy the <em>summary.xml</em> file to Jenkins workspace directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
+      <p>If you don't use Graphite, you can still create simple graphs in Jenkins. The script will copy the <em>summary.xml</em> file to Jenkins workspace directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" >Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
 <p class="text-center">
    <a href="jenkins-plot-setup2.png"><img src="jenkins-plot-setup2.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
 </p>
@@ -1090,8 +1090,8 @@ OPTIONS:
 
       <h2 id="travis">Travis integration</h2>
       <p>
-      <a href="https://travis-ci.org/" target="_blank">Travis</a> doesn't have a built in support for JUnit XML right now (read this
-      <a href="https://github.com/travis-ci/travis-ci/issues/239" target="_blank">issue</a> about the plan for supporting it).
+      <a href="https://travis-ci.org/" >Travis</a> doesn't have a built in support for JUnit XML right now (read this
+      <a href="https://github.com/travis-ci/travis-ci/issues/239" >issue</a> about the plan for supporting it).
       But you can still use sitespeed.io with Travis. Travis will breake your build if your pages breakes your rule limits or break the timing limits you have setup. To get it to
       work, you need to do three things:
       </p>
@@ -1118,7 +1118,7 @@ script:
 </li>
 <li>Edit your own timings.xml file (put it in the test folder) and setup the timing levels you want.</li>
 </ol>
- <p style="word-wrap: break-word;">You can check the example project <a href="https://github.com/sitespeedio/travis-ci-example" target="_blank">https://github.com/sitespeedio/travis-ci-example</a> to see a working example.</p>
+ <p style="word-wrap: break-word;">You can check the example project <a href="https://github.com/sitespeedio/travis-ci-example" >https://github.com/sitespeedio/travis-ci-example</a> to see a working example.</p>
 
 <div class="note note-info">Travis-CI has Firefox installed by default on their boxes so that will work out of the box. Chrome is not supported.</div>
 </div>
@@ -1147,7 +1147,7 @@ script:
       <h2 id="developers">Developers</h2>
     </div>
     <p style="word-wrap: break-word;">
-    You can fork the project at <a href="https://github.com/soulgalore/sitespeed.io" target="_blank">https://github.com/soulgalore/sitespeed.io</a> and create
+    You can fork the project at <a href="https://github.com/soulgalore/sitespeed.io" >https://github.com/soulgalore/sitespeed.io</a> and create
     your own version or contribute to the existing one. There are two branches: <strong>master</strong> is the latest release. No development happens in master. The other branch is <strong>versionnumber-wip</strong>, meaning <strong>2.0-wip</strong> that are the branch that is work in progress, and the next coming release.
     </p>
 
@@ -1168,7 +1168,7 @@ script:
         <dd>Linux/Unix or a Linux-like environment for Windows like Git Bash.</dd>
 
         <dt>PhantomJS</dt>
-      <dd><a href="http://phantomjs.org/" target="_blank">PhantomJS</a> is a headless WebKit with JavaScript API. It is really cool product where you can do browser things without a browser. You need to have it installed to be able to run sitespeed.io.</dd>
+      <dd><a href="http://phantomjs.org/" >PhantomJS</a> is a headless WebKit with JavaScript API. It is really cool product where you can do browser things without a browser. You need to have it installed to be able to run sitespeed.io.</dd>
 
       <dt>Java 1.6</dt>
       <dd>You need to have Java 1.6 (or higher) installed because many components used are written in Java.</dd>
@@ -1189,21 +1189,21 @@ script:
       <p>The following components are used by sitespeed.io:</p>
       <dl class="dl-horizontal">
          <dt>YSlow</dt>
-      <dd>Sitespeed.io uses the rule engine of <a href="http://yslow.org" target="_blank">YSlow</a>, because it is great! YSlow was originally developed by Yahoo and now maintained by <strong>Marcel Duran</strong>, a rule engine & browser plugin created to test your web page against <a href="http://yslow.org/#web_performance_best_practices_and_rules" target="_blank">best practices rules</a>. The version used is the <a href="https://github.com/marcelduran/yslow/wiki/PhantomJS" target="_blank">YSlow/PhantomJs</a> version. Sitespeed uses it own ruleset of best practice performance rules, and the code can be found  <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" target="_blank">here</a>.</dd>
+      <dd>Sitespeed.io uses the rule engine of <a href="http://yslow.org" >YSlow</a>, because it is great! YSlow was originally developed by Yahoo and now maintained by <strong>Marcel Duran</strong>, a rule engine & browser plugin created to test your web page against <a href="http://yslow.org/#web_performance_best_practices_and_rules" >best practices rules</a>. The version used is the <a href="https://github.com/marcelduran/yslow/wiki/PhantomJS" >YSlow/PhantomJs</a> version. Sitespeed uses it own ruleset of best practice performance rules, and the code can be found  <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" >here</a>.</dd>
       <dt>Bootstrap</dt>
-      <dd><a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> is a front end framework to create nice looking HTML, all the front end of the result pages produced by sitespeed are built with Bootstrap.</dd>
+      <dd><a href="http://getbootstrap.com/" >Bootstrap</a> is a front end framework to create nice looking HTML, all the front end of the result pages produced by sitespeed are built with Bootstrap.</dd>
       <dt>HTMLCompressor</dt>
-      <dd>The <a href="http://code.google.com/p/htmlcompressor/" target="_blank">HTMLCompressor</a> Compress/minifies the HTML result pages, to do them as clean & small as possible.</dd>
+      <dd>The <a href="http://code.google.com/p/htmlcompressor/" >HTMLCompressor</a> Compress/minifies the HTML result pages, to do them as clean & small as possible.</dd>
       <dt>Velocity</dt>
-      <dd><a href="http://velocity.apache.org/" target="_blank">Apache Velocity</a> is an (old but great  Java template engine, the reason it is used, it because gives the possibility of getting hold of whatever Java library that is needed to do things in the front end. The statistics calculated on the summary page (median & averages) are using the Apache Commons <a href="http://commons.apache.org/math/" target="_blank">Math library</a>. </dd>
+      <dd><a href="http://velocity.apache.org/" >Apache Velocity</a> is an (old but great  Java template engine, the reason it is used, it because gives the possibility of getting hold of whatever Java library that is needed to do things in the front end. The statistics calculated on the summary page (median & averages) are using the Apache Commons <a href="http://commons.apache.org/math/" >Math library</a>. </dd>
       <dt>Crawler</dt>
-      <dd>This is a simple  <a href="https://github.com/soulgalore/crawler" target="_blank">Java crawler</a> that output all links within a domain to a file, it can follow a specific path or make sure urls containing X not will be fetched. In the backend it uses Java:s best HTTP framework: <a href="http://hc.apache.org/" target="_blank">HttpComponents</a> that makes sure it can pretty sure do whatever you want.</dd>
+      <dd>This is a simple  <a href="https://github.com/soulgalore/crawler" >Java crawler</a> that output all links within a domain to a file, it can follow a specific path or make sure urls containing X not will be fetched. In the backend it uses Java:s best HTTP framework: <a href="http://hc.apache.org/" >HttpComponents</a> that makes sure it can pretty sure do whatever you want.</dd>
       <dt>XMLToVelocity</dt>
-      <dd><a href="https://github.com/soulgalore/xml-velocity" target="_blank">XMLToVelocity</a> is a small Java component that parses a XML-file with a Velocity template.</dd>
+      <dd><a href="https://github.com/soulgalore/xml-velocity" >XMLToVelocity</a> is a small Java component that parses a XML-file with a Velocity template.</dd>
       <dt>Stupid Table Plugin</dt>
-      <dd><a href="https://github.com/joequery/Stupid-Table-Plugin" target="_blank">Stupid Table Plugin</a> by Joseph McCullough is a really small table column sorter. </dd>
+      <dd><a href="https://github.com/joequery/Stupid-Table-Plugin" >Stupid Table Plugin</a> by Joseph McCullough is a really small table column sorter. </dd>
        <dt>BrowserTime</dt>
-        <dd><a href="https://github.com/tobli/browsertime" target="_blank">BrowserTime</a> collects browser timings using the Navigation Timing API.</dd>
+        <dd><a href="https://github.com/tobli/browsertime" >BrowserTime</a> collects browser timings using the Navigation Timing API.</dd>
 
       </dl>
 
@@ -1215,7 +1215,7 @@ script:
       <h2 id="feature" style="word-wrap: break-word;">Create a new feature/improvement request</h2>
     </div>
     <p>
-      If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=&milestone=&page=1&state=open" target="_blank">issue list</a>.
+      If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=&milestone=&page=1&state=open" >issue list</a>.
     </p>
 
     </div>
@@ -1226,7 +1226,7 @@ script:
       <h2 id="bug">Report a bug</h2>
     </div>
     <p style="word-wrap: break-word;">
-     If you find a bug, go through the current known bug list <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open" target="_blank">https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open</a>. If it doesn't exist there, please add it!
+     If you find a bug, go through the current known bug list <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open" >https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open</a>. If it doesn't exist there, please add it!
     </p>
 
     </div>
@@ -1311,12 +1311,12 @@ cssImagesPerPage=LESS_THAN;2;5
       <h2>Add your own rules</h2>
     </div>
     <p style="word-wrap: break-word;">
-      Sitspeed uses <a href="http://yslow.org/" target="_blank">YSlow</a> as the engine for creating and managing the rules that decides how good the web page is optimized for performance.  <a href="https://twitter.com/stoyanstefanov" target="_blank">Stoyan Stefanov</a> has written three good blog posts of how you develop and write rules for YSlow:
+      Sitspeed uses <a href="http://yslow.org/" >YSlow</a> as the engine for creating and managing the rules that decides how good the web page is optimized for performance.  <a href="https://twitter.com/stoyanstefanov" >Stoyan Stefanov</a> has written three good blog posts of how you develop and write rules for YSlow:
     </p>
       <ul>
-        <li><a href="http://www.phpied.com/yslow-development-getting-started/" target="_blank">Getting started</a></li>
-        <li><a href="http://www.phpied.com/yslow-development-setup/" target="_blank">Setup</a></li>
-        <li><a href="http://www.phpied.com/yslow-development-custom-rulesets/" target="_blank">Custom ruleset</a></li>
+        <li><a href="http://www.phpied.com/yslow-development-getting-started/" >Getting started</a></li>
+        <li><a href="http://www.phpied.com/yslow-development-setup/" >Setup</a></li>
+        <li><a href="http://www.phpied.com/yslow-development-custom-rulesets/" >Custom ruleset</a></li>
       </ul>
 
       <p>
@@ -1328,7 +1328,7 @@ cssImagesPerPage=LESS_THAN;2;5
         </p>
         </li>
         <li><p style="word-wrap: break-word;">There are two files that you need to change, first the rule file, where you actually add your own rule:
-          <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" target="_blank">https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js</a>. </p>
+          <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" >https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js</a>. </p>
 
           <p>You need to do two changes: Add your rule <i>YSLOW.registerRule(...)</i> and register your rule to the ruleset <i>YSLOW.registerRuleset(...)</i></p>
           <p>In this example, I will add a rule called <b>cssprint</b> that will check for css files used only for printing the page:</p>
@@ -1394,7 +1394,7 @@ YSLOW.registerRuleset({
 
         </li>
 
-        <li><p style="word-wrap: break-word;">The next step is adding the documentation for the rule, you do that in the file: <a href="https://github.com/soulgalore/yslow/blob/master/src/common/doc.js" target="_blank">https://github.com/soulgalore/yslow/blob/master/src/common/doc.js</a>.</p> <p>You add one row where you put in the rule info:
+        <li><p style="word-wrap: break-word;">The next step is adding the documentation for the rule, you do that in the file: <a href="https://github.com/soulgalore/yslow/blob/master/src/common/doc.js" >https://github.com/soulgalore/yslow/blob/master/src/common/doc.js</a>.</p> <p>You add one row where you put in the rule info:
           <pre>YSLOW.doc.addRuleInfo('rulename','title','description')</pre>
 
           For the <b>cssprint</b> rule, it looks like this:

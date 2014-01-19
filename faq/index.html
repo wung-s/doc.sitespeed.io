@@ -61,12 +61,12 @@ nav: faq
 <p>If you run on Linux and want to emulate a display (a.k.a running a browser without a screen) then you can do two things. If you are using Jenkins, then  use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin" target="blank">Xvfb plugin</a>.
   Else you need to:</p>
 <ul>
- <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml" target="_blank">XVFB</a>.</li>
-  <li>Setup a start script, something like <a href="https://gist.github.com/jterrace/2911875" target="_blank">this</a>.</li>
+ <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml" >XVFB</a>.</li>
+  <li>Setup a start script, something like <a href="https://gist.github.com/jterrace/2911875" >this</a>.</li>
   <li>Export the display, make sure to have the same number as in the examle in the Gist: <em>export DISPLAY=:99.0</em></li>
   <li>Start Xvfb: <em>sh -e /etc/init.d/xvfb start</em></li>
 </ul>
-<p>You can check out the projects Travis configuration <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/.travis.yml" target="_blank">file</a> for an example.</p>
+<p>You can check out the projects Travis configuration <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/.travis.yml" >file</a> for an example.</p>
 </section>
 
 
