@@ -15,6 +15,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
     Documentation
   </h1>
 </div>
+<div class="visible-xs">You need to use a larger screen to see the table of contents.</div>
 <ul id="toc" class="hidden-xs">
   <li class="toc"><a href="#introduction">Introduction</a></li>
   <li class="toc"><a href="#installation">Download and installation</a></li>
@@ -36,6 +37,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
         <li class="toc"><a href="#browsertimemetrics">Fetch Navigation Timing data (using Browser Time)</a></li>
          <li class="toc"><a href="#config-boxes">Boxes on summary page</a></li>
         <li class="toc"><a href="#config-columns">Columns on pages</a></li>
+        <li class="toc"><a href="#user-config">User specific config file</a></li>
       </ul>
       <li class="toc"><a href="#advanced">Advanced</a></li>
       <ul>
@@ -719,6 +721,24 @@ You can choose between the following data to be shown as columns:
 </div>
 </div>
 
+<div class="section" id="user-config">
+    <div class="page-header">
+ <h2>User specific config files</h2>
+</div>
+<p>If you often test the same things, you can simplify the parameters you send to the script by configure your own default values. You do that
+  in your home directory, naming the file <em>.sitespeedio</em> that will override all the configuration variables configured in the beginning of the script.
+  Here's an example, say you want to always fetch browser timings user Chrome, always test 30 times, want a specific setup of boxes on the summary page & columns on  pages.</p>
+  <pre class="bash">
+NUMBER_OF_RUNS=30
+BROWSERS=chrome
+SUMMARY_BOXES=jsPerPage,jsWeight,jsWeightPerPage,jsSyncInHead,firstPaintTime,ruleScore
+PAGES_COLUMNS=jsPerPage,jsSyncInHead,jsWeightPerPage,firstPaintTime</pre>
+
+<p>Thanks <a href="https://github.com/AD7six">Andy Dawson</a> for the idea & implementation!</p>
+</div>
+
+
+
 <div class="section" id="advanced">
     <div class="page-header">
     <h2>Advanced configuration</h2>
@@ -983,6 +1003,11 @@ OPTIONS:
           <li>Make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJS</a> in the path.</lI>
           <li>Configure the plugin and set it up to run as often as you need.</li>
         </ol>
+
+        <div class="note note-info">The Jenkins plugin has been tested on Mac OS X, Ubuntu & CentOS. When Using CentOS you need to make sure all your normal binaries is in the path for the user that runs the job, you do that by  adding them to
+          the PATH in the Jenkins configuration page, http://JENKINS/configure . Then go to <em>Global properties -> Environment variables -> List of key-value pairs -> Add  </em> and add your path, something like
+          <em>name</em> <strong>NAME</strong> <em>value</em><strong>/usr/local/bin:/bin/:/usr/bin:$PATH </strong>. Then if you have problems with the right to execute the sitespeed.io scripts, put them in your Jenkins workspace.</div>
+
 
         <h3>Configuration</h3>
         <p>The configuration is easy, you have four different parts:</p>
