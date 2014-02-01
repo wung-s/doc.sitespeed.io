@@ -919,11 +919,11 @@ OPTIONS:
  <h2>Collect User Timing data</h2>
 </div>
 <p>As an extra bonus, custom measurements using the <a href="http://www.w3.org/TR/user-timing/">User Timing API</a> are fetched. That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page.</p>
-<p>Patrick Meenan have write a great blog <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" >post</a> how this is used on WebPageTest, read that and the <a href="http://www.html5rocks.com/en/tutorials/webperformance/usertiming/">post</a> by Alex Danilo on HTML5Rocks.
+<p>Patrick Meenan wrote a great blog <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" >post</a> how this is used on WebPageTest, read that and the <a href="http://www.html5rocks.com/en/tutorials/webperformance/usertiming/">post</a> by Alex Danilo on HTML5Rocks.
   That's a great start.</p>
-<p>If you want to test it out, you can run sitespeed and access this documentation site:</p>
+<p>If you want to test it out, you can run sitespeed and access this documentation site (it uses the example <a href="https://gist.github.com/pmeenan/5902672#file-user-timing-rum-js">user-timing.js</a> by Patrick Meenan):</p>
 <pre class="bash">bin/sitespeed.io -u http://www.sitespeed.io -d 0 -c chrome</pre>
-<p>When it is finished, go to the result page. The individual page will automatically pick up the User Timings you have created (click on the Page Metrics link). You will see two new values there <em>headerTime</em> and <em>logoTime</em>.
+<p>When it is finished, go to the result page. The individual page will automatically pick up the User Timings you have created (click on the <em>Page Metrics</em> link). You will see two new values there <em>headerTime</em> and <em>logoTime</em>.
   The header measurement is fired when the header content is ready and the logo is when the big logo onload is fired.
  </p>
 <p class="text-center">
@@ -932,7 +932,11 @@ OPTIONS:
 
 
  <p>If you name your measurement so they end with <strong>Time</strong> it will automatically be picked up in the <em>summary.xml</em>, meaning you can show it on the summary page by passing the name using the <em>-b</em> parameter:</p>
- <pre class="bash">bin/sitespeed.io -u http://www.sitespeed.io -d 0 -c chrome -b logoTime,headerTime</pre>
+ <pre class="bash">bin/sitespeed.io -u http://www.sitespeed.io -d 0 -c chrome -b logoTime,headerTime -z 30</pre>
+ <p>And it will look something like this:</p>
+<p class="text-center">
+        <img src="userTimingSummary.png" alt="example of user timing values on the summary page" class="img-thumbnail img-responsive"/>
+ </p>
 </div>
 
 <div class="section" id="summaryxml">
