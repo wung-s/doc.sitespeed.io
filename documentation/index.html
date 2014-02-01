@@ -55,6 +55,7 @@ twitterdescription: Add your own rules to sitespeed.io is easy, because of the u
 
    </ul>
     <li class="toc"><a href="#browsertime">Collect Navigation Timing data</a></li>
+    <li class="toc"><a href="#usertiming">Collect User Timing data</a></li>
    <li class="toc"><a href="#summaryxml">The summary.xml file</a></li>
   <li  class="toc"><a href="#harfiles">HAR files</a></li>
 
@@ -853,7 +854,7 @@ OPTIONS:
     <div class="page-header">
  <h2>Collect Navigation Timing data</h2>
 </div>
-  <p>You can collect Browser timings in sitespeed.io, using the Open Source project <strong>Browser Time</strong> that collects metrics using the data in the Navigation Timing API (and also some other data/metrics). You can choose which browser to use (it must of course support the Navigation Timing API) and how many runs you want per page. It will then do a summary for each metric with the minimum, maximum, average, median and the 60, 70, 80 & 90 percentile.</p>
+  <p>You can collect Browser timings in sitespeed.io, using the Open Source project <strong>Browser Time</strong> that collects metrics using the data in the <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html">Navigation Timing API</a> (and also some other data/metrics). You can choose which browser to use (it must of course support the Navigation Timing API) and how many runs you want per page. It will then do a summary for each metric with the minimum, maximum, average, median and the 60, 70, 80 & 90 percentile.</p>
 
 
   Out of the box, the following timings is collected:
@@ -910,12 +911,24 @@ OPTIONS:
   <li>Export the display, make sure to have the same number as in the examle in the Gist: <em>export DISPLAY=:99.0</em></li>
   <li>Start Xvfb: <em>sh -e /etc/init.d/xvfb start</em></li>
 </ul>
+</div>
 
- <p> As an extra bonus, custom measurements (<a href="http://www.html5rocks.com/en/tutorials/webperformance/usertiming/">User Timing</a>) are also fetched! That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page. There will be more documentation later on how to do & use this!
-</p>
-<div class="note note-info">Read <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" >this</a> blog post by Patrick Meenan on how to instrumenting your pages.</div>
 
-   </div>
+<div class="section" id="usertiming">
+    <div class="page-header">
+ <h2>Collect User Timing data</h2>
+</div>
+<p>As an extra bonus, custom measurements using the <a href="http://www.w3.org/TR/user-timing/">User Timing API</a> are fetched. That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page.</p>
+<p>Patrick Meenan have write a great blog <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" >post</a> how this is used on WebPageTest, read that and the <a href="http://www.html5rocks.com/en/tutorials/webperformance/usertiming/">post</a> by Alex Danilo on HTML5Rocks.
+  That's a great start.</p>
+<p>If you want to test it out, you can run sitespeed and access this documentation site:</p>
+<pre class="bash">bin/sitespeed.io -u http://www.sitespeed.io -d 0 -c chrome</pre>
+<p>When it is finished, go to the result page. The individual page will automatically pick up the User Timings you have created (click on the Page Metrics link). You will see two new values there <em>headerTime</em> and <em>logoTime</em>.
+  The header measurement is fired when the header content is ready and the logo is when the big logo onload is fired.
+ </p>
+ <p>If you name your measurement so they end with <strong>Time</strong> it will automatically be picked up in the <em>summary.xml</em>, meaning you can show it on the summary page by passing the name using the <em>-b</em> parameter:</p>
+ <pre class="bash">bin/sitespeed.io -u http://www.sitespeed.io -d 0 -c chrome -b logoTime,headerTime</pre>
+</div>
 
 <div class="section" id="summaryxml">
        <div class="page-header">
