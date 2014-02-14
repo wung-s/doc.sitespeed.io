@@ -446,7 +446,7 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
     <div class="page-header">
  <h2>Boxes on summary page</h2>
 </div>
-<p>You can choose (and <a href="#createbox">create</a> your own) boxes you want to show on the summary page. You will see a couple of boxes by default (and when running BrowserTime you will also have some timing boxes). If you want to change boxes, you do that with the parameter <em>b</em> and comma separated list of the name of the boxes. The boxes are generated from the summary.xml file, meaning you can show whatever kind of data you want, as long as it exists in the summary xml file. </p>
+<p>You can choose (and <a href="#createbox">create</a> your own) boxes you want to show on the summary page. You will see a couple of boxes by default (and when running BrowserTime you will also have the timing boxes). If you want to change boxes, you do that with the parameter <em>b</em> and comma separated list of the name of the boxes. The boxes are generated from the summary.xml file, meaning you can show whatever kind of data you want, as long as it exists in the summary xml file. </p>
 <p>For example, you want to focus on images, and only want to show image data:</p>
 <pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -b imagesPerPage,imageWeight,imageWeightPerPage</pre>
 
@@ -746,7 +746,7 @@ PAGES_COLUMNS=jsPerPage,jsSyncInHead,jsWeightPerPage,firstPaintTime</pre>
     <div class="page-header">
     <h2>Advanced configuration</h2>
   </div>
- <p>The advanced configuration are things that you probably not need to configure.
+ <p>The advanced configuration are things that you not need to configure very often.
  </p>
  </div>
 
@@ -757,7 +757,7 @@ PAGES_COLUMNS=jsPerPage,jsSyncInHead,jsWeightPerPage,firstPaintTime</pre>
     <div class="page-header">
  <h2>Changing the number of processes analyzing the site</h2>
 </div>
-    <p>If you analyze a large web site, the analyze can take some time; then increase the number of processes that analyzes the site (default number of processes is five):</p>
+    <p>If you analyze a large web site, the analyze can take time; then increase the number of processes that analyzes the site (default number of processes is five):</p>
     <pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -p 10</pre>
 </div>
 <div class="section" id="resultdir">
@@ -771,7 +771,7 @@ PAGES_COLUMNS=jsPerPage,jsSyncInHead,jsWeightPerPage,firstPaintTime</pre>
     <div class="page-header">
  <h2>Heap size for the Java applications</h2>
 </div>
-    <p>If you are analyzing a very large site, it is possible that you need to increase the memory for the java application, or if you run the test on a machine with low memory, you can change the heap size with the <i>m</i> parameter:</p>
+    <p>If you are analyzing a large site, it is possible that you need to increase the memory for the java application, or if you run the test on a machine with low memory, you can change the heap size with the <i>m</i> parameter:</p>
     <pre class="bash">$ ./bin/sitespeed.io-u http://yoursite.com/ -m 512</pre>
 </div>
 <div class="section" id="proxy">
@@ -965,7 +965,7 @@ OPTIONS:
 &lt;/ruleScore&gt;
   </pre>
 
-  <p>You can see a full summary.xml file <a href="summary-2.0.xml" >here</a>.
+  <p>See the summary.xml file <a href="summary-2.0.xml" >here</a>.
   <p>When testing many pages, this is a really pleasent view! Today is used for the summary page, detailed summary and in Jenkins to create charts.</p>
 
 </div>
@@ -1035,7 +1035,7 @@ OPTIONS:
 
 
         <h3>Configuration</h3>
-        <p>The configuration is easy, you have four different parts:</p>
+        <p>You have four different parts:</p>
         <ol>
           <li><em>Home dir of sitespeed.io</em> - locate where you have installed sitespeed.io on your server.</li>
           <li><em>Sitespeed.io configuration</em> - add the parameters passed to the sitespeed.io script, exact the same way as you do locally. Only exception is that you don't set the result base directory (with the parameter <em>-r</em>) that is done automatically. </li>
@@ -1049,7 +1049,7 @@ OPTIONS:
       </p>
 
       <h3>Running headless</h3>
-      <p>You probably want to run headless (without opening a browser window). On Linux you can do that easily by installing the Jenkins <a href="https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin" target="blank">Xvfb plugin</a>. Configure it with the default configuration and it will
+      <p>You want to run headless (without opening a browser window). On Linux you can do that easily by installing the Jenkins <a href="https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin" target="blank">Xvfb plugin</a>. Configure it with the default configuration and it will
         work out of the box.</p>
 
          <h3>Configuring JUnit</h3>
@@ -1099,7 +1099,7 @@ OPTIONS:
 
          <h3>Graphite</h3>
          <p>To be able to send metrics to Graphite you need to configure your Graphite <strong>host</strong>, <strong>port</strong> and the <strong>namespace</strong> of the keys sent to
-          Graphite (the namespace is the first part of the key so that you easy can identify the keys sent from Jenkins).
+          Graphite (the namespace is the first part of the key so that you can identify the keys sent from Jenkins).
           You also choose what kind of metrics you want to send:</p>
 <ul>
   <li><em>Rule score per page</em> - Each score per rule is sent for all pages.</li>
@@ -1249,7 +1249,7 @@ script:
       <dt>Velocity</dt>
       <dd><a href="http://velocity.apache.org/" >Apache Velocity</a> is an (old but great  Java template engine, the reason it is used, it because gives the possibility of getting hold of whatever Java library that is needed to do things in the front end. The statistics calculated on the summary page (median & averages) are using the Apache Commons <a href="http://commons.apache.org/math/" >Math library</a>. </dd>
       <dt>Crawler</dt>
-      <dd>This is a simple  <a href="https://github.com/soulgalore/crawler" >Java crawler</a> that output all links within a domain to a file, it can follow a specific path or make sure urls containing X not will be fetched. In the backend it uses Java:s best HTTP framework: <a href="http://hc.apache.org/" >HttpComponents</a> that makes sure it can pretty sure do whatever you want.</dd>
+      <dd>This is a simple  <a href="https://github.com/soulgalore/crawler" >Java crawler</a> that output all links within a domain to a file, it can follow a specific path or make sure urls containing X not will be fetched. In the backend it uses Java:s best HTTP framework: <a href="http://hc.apache.org/" >HttpComponents</a> that makes sure it can do whatever you want.</dd>
       <dt>XMLToVelocity</dt>
       <dd><a href="https://github.com/soulgalore/xml-velocity" >XMLToVelocity</a> is a small Java component that parses a XML-file with a Velocity template.</dd>
       <dt>Stupid Table Plugin</dt>
@@ -1287,7 +1287,7 @@ script:
       <div class="page-header">
       <h2 id="configurerulelimits">Configure rule limits</h2>
     </div>
-    <p>There are two different rules & limits. One is the rules system implemented in the YSlow engine, the other is the rules that chooses the colors on the summary page (green/yellow/red). You can configure & change these with a property file, located in the <pre>dependencies</pre> directory. There are actually two files, one for desktop & one for mobile rules:</p>
+    <p>There are two different rules & limits. One is the rules system implemented in the YSlow engine, the other is the rules that chooses the colors on the summary page (green/yellow/red). You can configure & change these with a property file, located in the <pre>dependencies</pre> directory. There are two files, one for desktop & one for mobile rules:</p>
       <pre>
 dependencies/rules-desktop.properties
 dependencies/rules-mobile.properties
@@ -1343,7 +1343,7 @@ cssImagesPerPage=LESS_THAN;2;5
  <div class="section">
       <div class="page-header">
       <h2 id="createcolumns">Create your column for the pages table</h2>
-      <p>It is possible to add your own columns with whatever data you want in the pages table. If you want to add your own Browser Time metrics, it is easy, just you just have to name your metric name end with <em>time</em> then it will automatically be possible to view. Say that you on your page has added your own measurement called <em>atfTime</em>, then you just add that as a column like this</p>
+      <p>It is possible to add your own columns with whatever data you want in the pages table. If you want to add your own Browser Time metrics, you just have to name your metric name end with <em>time</em> then it will automatically be possible to view. Say that you on your page has added your own measurement called <em>atfTime</em>, then you just add that as a column like this</p>
       <pre class="bash">./bin/sitespeed.io -u http://www.peterhedenskog.com -c true -g aftTime</pre>
 
       <p>Adding a column for rules needs a little more work, you need to create a file for the column headers and a file for displaying the actual column data. More info will be added later!</p>
@@ -1379,7 +1379,7 @@ cssImagesPerPage=LESS_THAN;2;5
           <pre>git clone git@github.com:soulgalore/yslow.git</pre>
         </p>
         </li>
-        <li><p style="word-wrap: break-word;">There are two files that you need to change, first the rule file, where you actually add your own rule:
+        <li><p style="word-wrap: break-word;">There are two files that you need to change, first the rule file, where you add your own rule:
           <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" >https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js</a>. </p>
 
           <p>You need to do two changes: Add your rule <i>YSLOW.registerRule(...)</i> and register your rule to the ruleset <i>YSLOW.registerRuleset(...)</i></p>
