@@ -833,19 +833,19 @@ OPTIONS:
   <li>median-pageWeight</li>
   <li>median-requestsWithoutExpires</li>
   <li>median-assetsCacheTime</li>
-  <li>median-domainsPerPage</li>
+  <li>median-maxRequestsPerDomainPerPage</li>
   </ul>
 
   And if you collect browser timings these two are also added:
   <ul>
   <li>median-serverResponseTime</li>
-  <li>median-domContentLoadedTime</li>
+  <li>median-domContentLoadedTime or median-firstPaintTime (if your browser supports it)</li>
 </ul>
 
   <p>The naming convention is what kind of measure (median/max etc) followed by the actual metric</p>
 
  <p>Here's an example focus on comparing image data between sites:</p>
- <pre class="bash">./bin/sitespeed.io-sites -e median-imageWeightPerPage,max-imageWeightPerPage,median-imageWeight,max-imageWeight,median-imagesPerPage,median-cssImagesPerPage,median-browserScaledImages,max-browserScaledImages</pre>
+ <pre class="bash">./bin/sitespeed.io-sites -e median-imageWeightPerPage,max-imageWeightPerPage,median-imageWeight,percentile95-imageWeight,median-imagesPerPage,median-cssImagesPerPage,median-browserScaledImages,percentile95-browserScaledImages</pre>
 
   <div class="note note-info">When doing these kind of text, choosing maximum number of pages to test for a site is really good, use the <em>j</em> parameter!</div>
 
