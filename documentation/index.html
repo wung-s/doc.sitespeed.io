@@ -22,8 +22,6 @@ twitterdescription: Documentation for the coming 3.0 release.
 <ul id="toc" class="hidden-xs">
   <li class="toc"><a href="#introduction">Introduction</a></li>
   <li class="toc"><a href="#installation">Download and installation</a></li>
-  <li class="toc"><a href="#analyzeonesite">Analyze a site</a></li>
-  <ul>
     <li class="toc"><a href="#configuration">Configuration</a></li>
     <ul>
       <li class="toc"><a href="#theoptions">The options</a></li>
@@ -31,24 +29,26 @@ twitterdescription: Documentation for the coming 3.0 release.
       <ul>
         <li class="toc"><a href="#analyzebycrawling">Analyze by crawling</a></li>
         <li class="toc"><a href="#analyzebyurls">Analyze by URL:s</a></li>
+        <li class="toc"><a href="#analyzesites">Analyze sites and benchmark</a></li>
         <li class="toc"><a href="#includeexclude">Include/exclude URL:s when crawling</a></li>
-        <li class="toc"><a href="#browsertimemetrics">Fetch timing metrics</a></li>
-        <li class="toc"><a href="#profiles">Choose desktop or mobile</a></li>
-        <li class="toc"><a href="#mobile">Setting explicit viewport/user agent & mobile</a></li>
         <li class="toc"><a href="#screenshots">Screenshots</a></li>
+        <li class="toc"><a href="#profiles">Profiles: test as desktop or mobile</a></li>
+        <li class="toc"><a href="#mobile">Setting explicit viewport/user agent & mobile</a></li>
         <li class="toc"><a href="#limitpages">Limit pages to test</a></li>
-        <li class="toc"><a href="#config-boxes">Boxes on summary page</a></li>
-        <li class="toc"><a href="#config-columns">Columns on pages</a></li>
+        <li class="toc"><a href="#browsertimemetrics">Collect timing metrics</a></li>
+        <li class="toc"><a href="#gpsi">Fetch data Google Page Speed Insights</a></li>
+        <li class="toc"><a href="#wpt">Fetch data from WebPageTest</a></li>
+        <li class="toc"><a href="#graphite">Send your data to Graphite</a></li>
+        <li class="toc"><a href="#requestHeaders">Set request headers</a></li>
       </ul>
     </ul>
-   </ul>
-   <li class="toc"><a href="#wpt">Using WebPageTest</a></li>
-   <li class="toc"><a href="#wpt">Fetch data from Google Page Speed Insights</a></li>
+   <li class="toc"><a href="#usingwpt">Using WebPageTest</a></li>
+   <li class="toc"><a href="#usinggpsi">Fetch data from Google Page Speed Insights</a></li>
    <li class="toc"><a href="#continuousintegration">Continuous integration</a></li>
   <ul>
-     <li class="toc"><a href="#junit">JUnit</a></li>
-     <li class="toc"><a href="#tap">TAP</a></li>
-     <li class="toc"><a href="#ci-config">CI configuration</a></li>
+     <li class="toc"><a href="#junitandTAP">JUnit and TAP</a></li>
+     <li class="toc"><a href="#configurelimits">Configure when to break a test</a></li>
+     <li class="toc"><a href="#skiptests">Skip rule tests</a></li>
      <li class="toc"><a href="#headless">Fetching timings headless</a></li>
      <li class="toc"><a href="#jenkins">Jenkins</a></li>
   <li class="toc"><a href="#travis">Travis</a></li>
@@ -56,10 +56,7 @@ twitterdescription: Documentation for the coming 3.0 release.
 
 </ul>
   <li class="toc"><a href="#graphite">Graphite</a></li>
-   <li class="toc"><a href="#">Use cases</a></li>
-   <li class="toc"><a href="#">Test one site</a></li>
-   <li class="toc"><a href="#">Test and compare multiple sites</a></li>
-
+  <li class="toc"><a href="#postTasks">Add your own post tasks</a></li>
 
  <li class="toc"><a href="#developers">Developers</a></li>
   <ul>
@@ -128,53 +125,56 @@ $ npm install sitespeed.io -g
 Usage: node sitespeed.js [options]
 
 Options:
-
-   -u &lt;URL&gt;, --url &lt;URL&gt;                                  The start url that will be used when crawling.
-   -f &lt;FILE&gt;, --file &lt;FILE&gt;                               The path to a plain text file with one URL on each row. Each URL will be analyzed.
-   --sites &lt;FILE&gt;                                         The path to a plain text file with one URL on each row. Each URL is crawled.
-   -v, --version                                          Display the sitespeed.io version.
-   -d &lt;INTEGER&gt;, --deep &lt;INTEGER&gt;                         How deep to crawl.  [1]
-   -c &lt;KEYWORD&gt;, --containInPath &lt;KEYWORD&gt;                Only crawl URLs that contains this in the path.
-   -s &lt;KEYWORD&gt;, --skip &lt;KEYWORD&gt;                         Do not crawl pages that contains this in the path.
-   -t &lt;NOOFTHREADS&gt;, --threads &lt;NOOFTHREADS&gt;              The number of threads/processes that will analyze pages.  [5]
-   --name &lt;NAME&gt;                                          Give your test a name, it will be added to all HTML pages.
-   --memory &lt;INTEGER&gt;                                     How much memory the Java processed will have (in mb).  [1024]
-   -r &lt;DIR&gt;, --resultBaseDir &lt;DIR&gt;                        The result base directory, the base dir where the result ends up.  [sitespeed-result]
-   --outputFolderName                                     Default the folder name is a date of format yyyy-mm-dd-HH-MM-ss
-   --userAgent &lt;USER-AGENT&gt;                               The full User Agent string, default is Chrome for MacOSX. [userAgent|ipad|iphone].  [Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36]
-   --viewPort &lt;WidthxHeight&gt;                              The view port, the page viewport size WidthxHeight like 400x300.  [1280x800]
-   -y &lt;FILE&gt;, --yslow &lt;FILE&gt;                              The compiled YSlow file.  [phantomjs/yslow-3.1.8-sitespeed.js]
-   --ruleSet &lt;RULE-SET&gt;                                   Which ruleset to use.  [sitespeed.io-desktop]
-   --limitFile &lt;PATH&gt;                                     The path to the limit configuration file.  [../conf/desktopRules.json]
-   --basicAuth &lt;USERNAME:PASSWORD&gt;                        Basic auth user & password.
-   -b &lt;BROWSER&gt;, --browser &lt;BROWSER&gt;                      Choose which browser to use to collect timing data. Use multiple browsers in a comma separated list (firefox|chrome|phantomjs)
-   --profile &lt;desktop|mobile&gt;                             Choose between testing for desktop or mobile. Testing for desktop will use desktop rules & user agents and vice verca.  [desktop]
-   -n &lt;NUMBEROFTIMES&gt;, --no &lt;NUMBEROFTIMES&gt;               The number of times you should test each URL when fetching timing metrics. Default is 3 times.  [3]
-   --screenshot                                           Take screenshots for each page (using the configured view port).
-   --junit                                                Create JUnit output to the console.
-   --tap                                                  Create TAP output to the console.
-   --skipTest &lt;ruleid1,ruleid2,...&gt;                       A comma separated list of rules to skip when generating JUnit/TAP output.
-   --testData                                             Choose which data to send test when generating TAP/JUnit output. Default is all availible [rules,timings,wpt,gpsi]  [all]
-   --thresholdFile &lt;FILE&gt;                                 A file containing JSON like  {"rules": {"default": 88}}
-   --threshold &lt;JSON&gt;                                     JSON like  {\"timings\": {\"domContentLoadedTime\": 700}}
-   -m &lt;NUMBEROFPAGES&gt;, --maxPagesToTest &lt;NUMBEROFPAGES&gt;   The max number of pages to test. Default is no limit.
-   -p &lt;PROXY&gt;, --proxy &lt;PROXY&gt;                            http://proxy.soulgalore.com:80
-   --cdns &lt;cdn1,cdn2&gt;                                     A comma separated list of additional CDNs.
-   --boxes &lt;box1,box2&gt;                                    The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes
-   -c &lt;column1,column2&gt;, --columns &lt;column1,column2&gt;      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns
-   --configFile &lt;PATH&gt;                                    The path to a sitespeed.io config.json file, if it exists all other input parameters will be overidden.
-   --aggregators &lt;PATH&gt;                                   The path to a directory with extra aggregators.
-   --collectors &lt;PATH&gt;                                    The path to a directory with extra collectors.
-   --graphiteHost &lt;HOST&gt;                                  The Graphite host.
-   --graphitePort &lt;INTEGER&gt;                               The Graphite port.  [2003]
-   --graphiteNamespace &lt;NAMESPACE&gt;                        The namespace of the data sent to Graphite.  [sitespeed.io]
-   --graphiteData                                         Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings]  [all]
-   --gpsiKey                                              Your Google API Key, configure it to also fetch data from Google Page Speed Insights.
-   --noYslow                                              Set to true to turn of collecting metrics using YSlow.
-   --wptLocation &lt;STRING&gt;                                 WebPageTest location, something like Dulles:Chrome
-   --wptUrl &lt;URL&gt;                                         The URL to your private webpagetest instance.
-   --wptKey &lt;KEY&gt;                                         The API key if running on webpagetest on the public instances.
-   --requestHeaders &lt;JSON&gt;                                Any request headers to use, in the JSON form of {\"name\":\"value\",\"name2\":\"value\"}. Not supported for WPT & GPSI.
+-u &lt;URL&gt;, --url &lt;URL&gt;                                  The start url that will be used when crawling.
+-f &lt;FILE&gt;, --file &lt;FILE&gt;                               The path to a plain text file with one URL on each row. Each URL will be analyzed.
+--sites &lt;FILE&gt;                                         The path to a plain text file with one URL on each row. Each URL is crawled.
+-V, --version                                          Display the sitespeed.io version.
+-d &lt;INTEGER&gt;, --deep &lt;INTEGER&gt;                         How deep to crawl.  [1]
+-c &lt;KEYWORD&gt;, --containInPath &lt;KEYWORD&gt;                Only crawl URLs that contains this in the path.
+-s &lt;KEYWORD&gt;, --skip &lt;KEYWORD&gt;                         Do not crawl pages that contains this in the path.
+-t &lt;NOOFTHREADS&gt;, --threads &lt;NOOFTHREADS&gt;              The number of threads/processes that will analyze pages.  [5]
+--name &lt;NAME&gt;                                          Give your test a name, it will be added to all HTML pages.
+--memory &lt;INTEGER&gt;                                     How much memory the Java processed will have (in mb).  [1024]
+-r &lt;DIR&gt;, --resultBaseDir &lt;DIR&gt;                        The result base directory, the base dir where the result ends up.  [sitespeed-result]
+--outputFolderName                                     Default the folder name is a date of format yyyy-mm-dd-HH-MM-ss
+--userAgent &lt;USER-AGENT&gt;                               The full User Agent string, default is Chrome for MacOSX. [userAgent|ipad|iphone].
+--viewPort &lt;WidthxHeight&gt;                              The view port, the page viewport size WidthxHeight like 400x300.  [1280x800]
+-y &lt;FILE&gt;, --yslow &lt;FILE&gt;                              The compiled YSlow file.  [phantomjs/yslow-3.1.8-sitespeed.js]
+--ruleSet &lt;RULE-SET&gt;                                   Which ruleset to use.  [sitespeed.io-desktop]
+--limitFile &lt;PATH&gt;                                     The path to the limit configuration file.  [../conf/desktopRules.json]
+--basicAuth &lt;USERNAME:PASSWORD&gt;                        Basic auth user & password.
+-b &lt;BROWSER&gt;, --browser &lt;BROWSER&gt;                      Choose which browser to use to collect timing data. Use multiple browsers in a comma separated list (firefox|chrome|phantomjs)
+--connection                                           Limit the speed by simulating connection types. Choose between mobile3g,mobile3gfast,cable,native  [native]
+--btConfig &lt;JSON&gt;                                      Additional BrowserTime configuration
+--profile &lt;desktop|mobile&gt;                             Choose between testing for desktop or mobile. Testing for desktop will use desktop rules & user agents and vice verca.  [desktop]
+-n &lt;NUMBEROFTIMES&gt;, --no &lt;NUMBEROFTIMES&gt;               The number of times you should test each URL when fetching timing metrics. Default is 3 times.  [3]
+--screenshot                                           Take screenshots for each page (using the configured view port).
+--junit                                                Create JUnit output to the console.
+--tap                                                  Create TAP output to the console.
+--skipTest &lt;ruleid1,ruleid2,...&gt;                       A comma separated list of rules to skip when generating JUnit/TAP output.
+--testData                                             Choose which data to send test when generating TAP/JUnit output. Default is all availible [rules,timings,wpt,gpsi]  [all]
+--thresholdFile &lt;FILE&gt;                                 A file containing JSON like  {"rules": {"default": 88}}
+--threshold &lt;JSON&gt;                                     JSON like  {\"timings\": {\"domContentLoadedTime\": 700}}
+-m &lt;NUMBEROFPAGES&gt;, --maxPagesToTest &lt;NUMBEROFPAGES&gt;   The max number of pages to test. Default is no limit.
+--storeJson                                            Store all collected data as JSON.
+-p &lt;PROXY&gt;, --proxy &lt;PROXY&gt;                            http://proxy.soulgalore.com:80
+--cdns &lt;cdn1,cdn2&gt;                                     A comma separated list of additional CDNs.
+--postTasksDir &lt;dir&gt;                                   The directory where you have your extra post tasks.
+--boxes &lt;box1,box2&gt;                                    The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes
+-c &lt;column1,column2&gt;, --columns &lt;column1,column2&gt;      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns
+--configFile &lt;PATH&gt;                                    The path to a sitespeed.io config.json file, if it exists all other input parameters will be overidden.
+--aggregators &lt;PATH&gt;                                   The path to a directory with extra aggregators.
+--collectors &lt;PATH&gt;                                    The path to a directory with extra collectors.
+--graphiteHost &lt;HOST&gt;                                  The Graphite host.
+--graphitePort &lt;INTEGER&gt;                               The Graphite port.  [2003]
+--graphiteNamespace &lt;NAMESPACE&gt;                        The namespace of the data sent to Graphite.  [sitespeed.io]
+--graphiteData                                         Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings]  [all]
+--gpsiKey                                              Your Google API Key, configure it to also fetch data from Google Page Speed Insights.
+--noYslow                                              Set to true to turn of collecting metrics using YSlow.
+--wptConfig &lt;JSON&gt;                                     WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method 
+--wptUrl &lt;URL&gt;                                         The URL to your private webpagetest instance.
+--wptKey &lt;KEY&gt;                                         The API key if running on webpagetest on the public instances.
+--requestHeaders &lt;JSON&gt;                                Any request headers to use, in the JSON form of {\"name\":\"value\",\"name2\":\"value\"}. Not supported for WPT & GPSI.
 
    </pre>
    <p>
@@ -286,6 +286,16 @@ http://www.nytimes.com/pages/fashion/index.html
 <pre class="bash">$ sitespeed.io -u http://yoursite.com  --screenshot</pre>
 </div>
 
+<div class="section" id="profiles">
+    <div class="page-header">
+ <h2>Shortcut: test as desktop or mobile</h2>
+</div>
+<p>By default you test as desktop, if you turn on mobile by just setting the profile. If you do that, you will automatically test with
+with mobile rules, an IOS user agent, view port of 320x444 and on a throttled connection simulating a mobile 3g connection.</p>
+<pre class="bash">$ sitespeed.io -u http://yoursite.com  --profile desktop</pre>
+<pre class="bash">$ sitespeed.io -u http://yoursite.com  --profile mobile</pre>
+</div>
+
 <div class="section" id="mobile">
     <div class="page-header">
  <h2>Viewport/user agent and mobile</h2>
@@ -301,7 +311,6 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
 </div>
 </div>
 
-
 <div class="section" id="limitpages">
     <div class="page-header">
  <h2>Limit pages to test</h2>
@@ -309,17 +318,6 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
 <p>Sometimes you want to limit the amount to test (I do that when I compare sites). That will test maximum the amount of pages you supply.</p>
 <pre class="bash">$ sitespeed.io -u http://yoursite.com  -m 10</pre>
 </div>
-
-<div class="section" id="profiles">
-    <div class="page-header">
- <h2>Shortcut: test as desktop or mobile</h2>
-</div>
-<p>By default you test as desktop, if you turn on mobile by just setting the profile. If you do that, you will automatically test with
-with mobile rules, an IOS user agent, view port of 320x444 and on a throttled connection simulating a mobile 3g connection.</p>
-<pre class="bash">$ sitespeed.io -u http://yoursite.com  --profile desktop</pre>
-<pre class="bash">$ sitespeed.io -u http://yoursite.com  --profile mobile</pre>
-</div>
-
 
 <div class="section" id="name">
     <div class="page-header">
@@ -362,7 +360,7 @@ Chrome, Firefox and PhantomJS 2.0. And hopefully more browsers in the future.</p
 
 <div class="section" id="wpt">
     <div class="page-header">
- <h2>Fetch data from WebPageTest </h2>
+ <h2>Fetch data from WebPageTest</h2>
 </div>
 
 <p>Yep, it is true! You can drive WebPageTest from sitespeed.io. You need to either have your own private instance or an API key.
@@ -406,10 +404,26 @@ You configure four things: the host, port, the namespace and which data to send.
     <div class="page-header">
  <h2>Set request headers</h2>
 </div>
-<p>
+<p>The headers can be set if you collect rule and timings. It will not work for WPT and GPSI.
 </p>
 <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io --requestHeaders {\"mysupercoolheader\":\"value\",\"coolheader2\":\"value2\"}</pre>
 </div>
+
+<div class="section" id="usingwpt">
+       <div class="page-header">
+      <h2>Using WebPageTest</h2>
+    </div>
+    <p>To be added.</p>
+</div>
+
+<div class="section" id="usinggpsi">
+       <div class="page-header">
+      <h2>Using Google Page Speed Insights</h2>
+    </div>
+    <p>To be added.</p>
+</div>
+
+
 
 <div class="section" id="continuousintegration">
        <div class="page-header">
@@ -606,10 +620,46 @@ and the result:
     <a href="grafana-wpt-dark.png"><img src="grafana-wpt-dark.png" alt="sitespeed.io running WebPageTest and graphing the data" class="img-thumbnail"/></a>
   </p>
 </p>
-
-
-
 </div>
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="postTasks">Add your own post tasks</h2>
+    </div>
+    <p>When sitespeed.io collected all the metrics, you have the possibility to add your own post tasks,
+      meaning writing your own nodejs code to take all the metrics and do whatever you want with it (store it to a database etc).
+      </p>
+      <p>
+        You add your own post task (you can have multiple) in an directory and feed the directory name and path to sitespeed, like this:
+<pre class="bash">
+$ sitespeed.io -u http://www.sitespeed.io --postTasksDir myPostTaskDir
+</pre>
+      </p>
+      <p>
+        In that directory, create a file and follow the following standard:
+<pre>
+exports.task = function(result, config, cb) {
+  console.log('yep this is my task running!')
+  cb();
+};
+</pre>
+The task will be called with the following:
+<ul>
+  <li>
+    <strong>result</strong> - a JSON containg all the metrics collected. Print it out to see exactly how it is constructed
+  </li>
+  <li>
+    <strong>config</strong> -  the sitespeed.io configuration object, contains info about the run and where to store the data
+  </li>
+  <li>
+    <strong>cb</strong> - the callback to call when you are finished.
+  </li>
+</ul>
+       All post tasks runs in parallell.
+      </p>
+
+    </div>
+
 
 <div class="section">
       <div class="page-header">
