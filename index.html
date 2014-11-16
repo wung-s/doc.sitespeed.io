@@ -14,28 +14,19 @@ startpage: true
 
 <h2 class="startpage">Analyze your website speed and performance</h2>
 <p>
-        Sitespeed.io is an open source tool that helps you analyze your website <strong>speed</strong> and <strong>performance</strong> based on <strong>performance best practices</strong> and <strong>metrics</strong>. It collects data from multiple pages on your website, analyze the pages using the <a href="/rules/">rules</a> and output the result as HTML or JUnit XML.
+        Sitespeed.io is an open source tool that helps you analyze your website <strong>speed</strong> and <strong>performance</strong> based on <strong>performance best practices</strong> and <strong>metrics</strong>. It collects data from multiple pages on your website, analyze the pages using the <a href="/rules/">rules</a> and output the result as HTML or send the metrics to <a href="http://graphite.wikidot.com/">Graphite</a>.
       </p>
       <p>
-        You can analyze one site, analyze & compare multiple sites or let it run in your CI tool to make sure that your site is always built the best way for speed.
+        You can analyze one site, analyze and compare multiple sites or let it run in your CI tool and break build if your site doesn't meet your speed needs.
       </p>
       <p>
-        IMPORTANT: To install on OS X Yosemite, you need to install the coming 3.0 release (you need <a href="http://nodejs.org/">NodeJS</a> and <a href="https://www.npmjs.org/">npm</a>):
-      </p>
-      <p>
+        Installing using <a href"https://www.npmjs.org/">npm</a> on Mac OS X (instructions for <a href="">Linux</a> & <a href="">Windows</a>):
         <pre class="bash">
-npm install sitespeed.io@3.0.0-alpha-8 -g</pre>
-      </p>
-      <p>
-        Installing using <a href="http://brew.sh/" >Homebrew</a> on Mac OS X (instructions for <a href="/documentation/#install-linux">Linux</a> & <a href="/documentation/#install-windows">Windows</a>):
-           <pre class="bash">
-$ brew tap sitespeedio/sitespeedio
-$ brew tap tobli/browsertime
-$ brew install sitespeed.io
+$ npm install sitespeed.io@3.0.0-beta-4 -g
 $ sitespeed.io -h</pre>
-Else you can
-<a class="btn btn-success btn-xlg" href="https://github.com/sitespeedio/sitespeed.io/releases/" onclick="_gaq.push(['_trackEvent','Start page action', 'Download', 'Download 2.4']);">download</a> or <a class="btn btn-success btn-xlg" href="https://github.com/sitespeedio/sitespeed.io">clone or fork</a> the project at Github.
-</p><p>If you like sitespeed.io, please <a href="https://github.com/sitespeedio/sitespeed.io">star the project on GitHub</a>!</p>
+      </p>
+
+Else you can  <a class="btn btn-success btn-xlg" href="https://github.com/sitespeedio/sitespeed.io">clone or fork</a> and if you like sitespeed.io, please <a class="btn btn-success btn-xlg" href="https://github.com/sitespeedio/sitespeed.io">star</a> the project on GitHub!</p>
 </div>
 </div>
 <div class="container">
@@ -46,8 +37,8 @@ Else you can
 <div class="page-header">
    <h2>The latest release</h2>
 </div>
-<p>The latest stable release is 2.5.7, read about the changes in the <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG">CHANGELOG</a>.
-  The latest release is 3.0.0-alpha, you can test it <a href="https://github.com/sitespeedio/sitespeed.io">here</a>. The goal is to release the real 3.0 the 3rd of November.</p>
+<p>The latest stable release is 3.0.0-beta, read about the changes in the <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG">CHANGELOG</a>.
+  We are aiming for a stable release in December 2014.
 </p>
  </div>
 
@@ -59,7 +50,7 @@ Else you can
 <p>Checkout issues and coming features at
   <a href="https://github.com/sitespeedio/sitespeed.io/issues">Github</a> and follow sitespeed.io on <a href="https://twitter.com/SiteSpeedio" >Twitter</a> to get information about new releases.</p>
 <p>
- Sitspeed.io is developed & tested on Mac OS X 10.9.
+ Sitspeed.io is developed & tested on Mac OS X 10.10.
 </p>
 </div>
 <div class="col-md-4">
@@ -69,9 +60,9 @@ Else you can
   <ol>
     <li>Check your site against the latest web performance best practice rules.</li>
     <li>Analyze many pages on your site, not just one!</li>
-    <li>Test for desktop or mobile!</li>
+    <li>Continously monitor your application and create beautiful graphs using Graphite & Grafana.</li>
     <li>Fetch Navigation Timing API metrics and your own custom measurements (User Timing).</li>
-    <li>Compare sites, keep track of your competitors.</li>
+    <li>Compare sites and keep track of your competitors.</li>
     <li>It's Open Source!</li>
   </ol>
       </div>
@@ -104,23 +95,24 @@ Else you can
               <a href="https://github.com/tobli/browsertime" >BrowserTime</a>
             </li>
           </ul>
-    <p>Also extra thanks to <em>Sergiy Kovalchuk</em> for the <a href="http://code.google.com/p/htmlcompressor/" >HTMLCompressor</a>, it is used to compress the result HTML produced by sitespeed.io.</p>
-</div>
+        </div>
 
       <div class="col-md-4">
 <div class="page-header">
 <h2>License</h2>
 </div>
-  <p>Sitespeed.io is released under the terms of the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/LICENSE" >Apache License Version 2.0</a></p>
+  <p>Sitespeed.io is released under the terms of the <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE" >Apache License Version 2.0</a></p>
 </div>
 <div class="col-md-4">
 <div class="page-header">
   <h2>Contributors</h2>
 </div>
         <p>
-          Sitespeed.io is created by me <a href="http://peterhedenskog.com" >Peter Hedenskog</a>, who has spent all the time when the kids are asleep the last year to make it happen.<p>
-          Contributors are very welcome, <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CONTRIBUTORS.md" >these</a>  people has filed an issue/defect/idea or fixed bugs (massive love!).
-</p>  </div>
+          Sitespeed.io is created by me <a href="http://peterhedenskog.com" >Peter Hedenskog</a>, who has spent all the time when the kids are asleep the last years to make it happen. Today we are a two member team
+          that works on sitespeed.io, say hello to <a href="https://twitter.com/tobiaslidskog">Tobias Lidskog</a>!<p>
+          Contributors are very welcome, <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/CONTRIBUTORS.md" >these</a>  people has filed an issue/defect/idea or fixed bugs (massive love!).
+        </p>
+</div>
 
 </div>
 

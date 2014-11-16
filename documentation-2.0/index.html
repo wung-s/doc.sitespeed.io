@@ -1,0 +1,1476 @@
+---
+layout: default
+title: Documentation - Sitespeed.io
+description: Here's the documentation of sitespeed.io, the workflow, how you run it and how you use it as a developer.
+keywords: documentation, workflow, sitespeed.io, jenkins, navigation timing api
+author: Peter Hedenskog
+nav: documentation
+image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: Add your own rules to sitespeed.io is easy, because of the use of YSlow as the rule engine. Read here how you do it!
+---
+ <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+  <h1>
+    Documentation
+  </h1>
+</div>
+<div class="visible-xs">You need to use a larger screen to see the table of contents.</div>
+<ul id="toc" class="hidden-xs">
+  <li class="toc"><a href="#introduction">Introduction</a></li>
+  <li class="toc"><a href="#installation">Download and installation</a></li>
+  <li class="toc"><a href="#analyzeonesite">Analyze a site</a></li>
+  <ul>
+    <li class="toc"><a href="#workflow">The workflow</a></li>
+    <li class="toc"><a href="#configuration">Configuration</a></li>
+    <ul>
+      <li class="toc"><a href="#theoptions">The options</a></li>
+      <li class="toc"><a href="#basic">The basics</a></li>
+      <ul>
+        <li class="toc"><a href="#analyzebycrawling">Analyze by crawling</a></li>
+        <li class="toc"><a href="#analyzebyurls">Analyze by URL:s</a></li>
+        <li class="toc"><a href="#includeexclude">Include/exclude URL:s when crawling</a></li>
+        <li class="toc"><a href="#screenshots">Screenshots</a></li>
+        <li class="toc"><a href="#mobile">Viewport/user agent & mobile</a></li>
+        <li class="toc"><a href="#limitpages">Limit pages to test</a></li>
+        <li class="toc"><a href="#rules">Choose desktop or mobile rules</a></li>
+        <li class="toc"><a href="#browsertimemetrics">Fetch Navigation Timing data (using Browser Time)</a></li>
+         <li class="toc"><a href="#config-boxes">Boxes on summary page</a></li>
+        <li class="toc"><a href="#config-columns">Columns on pages</a></li>
+        <li class="toc"><a href="#user-config">User specific config file</a></li>
+      </ul>
+      <li class="toc"><a href="#advanced">Advanced</a></li>
+      <ul>
+        <li class="toc"><a href="#processes">Changing the number of processes analyzing the site</a></li>
+        <li class="toc"><a href="#resultdir">Change the result directory</a></li>
+        <li class="toc"><a href="#heap">Heap size for the Java applications</a></li>
+        <li class="toc"><a href="#proxy">Run behind a proxy</a></li>
+      </ul>
+    </ul>
+   </ul>
+   <li class="toc"><a href="#multiple">Analyze & compare multiple sites</a></li>
+  <ul>
+    <li class="toc"><a href="#multipleconfiguration">Configuration</a></li>
+        <li class="toc"><a href="#multiplecolumns">Choose columns for report</a></li>
+
+   </ul>
+    <li class="toc"><a href="#browsertime">Collect Navigation Timing data</a></li>
+    <li class="toc"><a href="#usertiming">Collect User Timing data</a></li>
+   <li class="toc"><a href="#summaryxml">The summary.xml file</a></li>
+  <li  class="toc"><a href="#harfiles">HAR files</a></li>
+
+   <li class="toc"><a href="#continuousintegration">Continuous integration</a></li>
+  <ul>
+     <li class="toc"><a href="#junit">Generating the JUnit XML for continuous integration</a></li>
+     <li class="toc"><a href="#jenkinsplugin">Jenkins plugin</a></li>
+  <li class="toc"><a href="#travis">Travis integration</a></li>
+</ul>
+ <li class="toc"><a href="#developers">Developers</a></li>
+  <ul>
+  <li class="toc"><a href="#dependencies">Dependencies</a></li>
+     <li class="toc"><a href="#components">Components</a></li>
+     <li class="toc"><a href="#feature">Create a new feature request</a></li>
+     <li class="toc"><a href="#bug">Report a bug</a></li>
+     <li class="toc"><a href="#configurerulelimits">Configure rule limits</a></li>
+     <li class="toc"><a href="#createboxes">Create your own box on the summary page</a></li>
+     <li class="toc"><a href="#createcolumns">Create your column for the pages table</a></li>
+     <li class="toc"><a href="#addrule">Add your own rules</a></li>
+   </ul>
+ </ul>
+
+
+ <div class="section" id="introduction">
+  <div class="page-header">
+      <h1>Introduction</h1>
+    </div>
+    <p>Sitespeed.io is an open source tool that will check your site against web performance best practice rules and use the <a href="http://kaaes.github.io/timing/info.html" >Navigation Timing API</a> to collect metrics. It will create XML & HTML output of the result.
+    </p>
+ </div>
+
+
+<div class="section" id="installation">
+
+      <div class="page-header">
+      <h1>Download and installation</h1>
+    </div>
+
+      {% include installation.html %}
+
+    </div>
+
+<div class="section" id="analyzeonesite">
+
+      <div class="page-header">
+      <h1>Analyze a site</h1>
+    </div>
+    <p>You can choose to analyze one site or multiple sites & compare them. Here's the workflow when analyzing one site.
+      </p>
+    </div>
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="workflow">The workflow</h2>
+      </div>
+      <p>This is what will happen when you start the script:
+  </p>
+        <pre class="bash">$./bin/sitespeed.io -u http://www.cybercom.com/en/</pre>
+          <p>
+        The script will log what is happening, it will look something like this:
+  </p>
+    <pre>
+$ Will crawl from start point http://www.cybercom.com/en/ with User-Agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36 and viewport 1280x800 with crawl depth 1 using ruleset sitespeed.io-desktop ... this can take a while
+$ Using PhantomJS version 1.9.1
+$ Using Java version 1.6.0_27
+$ Will analyze 19 pages
+$ Analyzing http://www.cybercom.com/en/
+$ Analyzing http://www.cybercom.com/fi/Suomi/
+$ ...
+$ Create all the result pages
+$ Create result.xml
+$ Create the summary.xml
+$ Create the summary-details.html
+$ Create the pages.html
+$ Create the summary index.html
+$ Create the assets.html
+$ Create the rules.html
+$ Finished analyzing www.cybercom.com
+</pre>
+
+      <p>
+        It will create the following directory structure (the first directory is named after the site you are testing and when the test was executed):
+  </p>
+        <pre>
+sitespeed-result
+|
+`--www.cybercom.com
+    `
+    2013-10-02-19-14-59
+    |
+    | -- assets.html
+    | -- css
+    |
+    | -- data
+      | -- error.log
+      | -- phantomjs.error.log
+      | -- errorurls.xml
+      | -- har
+      | -- metrics
+      | -- pages
+      | -- result.xml
+      ` -- summary.xml
+    |
+    | -- img
+    | -- (images)
+    |
+    | -- js
+    |
+    | -- pages
+    |
+    | -- pages.html
+    | -- rules.html
+    | -- screenshots
+    | -- screenshots.html
+    | -- summary-details.html
+    | -- (errorurls.html)
+    ` -- index.html
+</pre>
+
+      <p>
+        The <strong>data</strong>
+        directory hold all the raw data files that's the result from the analyze. The <strong>errorurls.xml</strong> contains URL:s that couldn't be fetched. The <strong>har</strong> directory holds all the HAR-files produced when testing the pages. The <strong>metrics</strong> contains Browser Time XML, the metrics collected from the Navigation Timing API. The <strong>result.xml</strong> contains all the analyzed data for all pages. The
+        <strong>summary.xml</strong> is the XML representation of all the tests (that is used in the summary page).
+         <strong>Pages</strong>
+        hold the result (as HTML) for all unique page tests. The
+        <strong>pages.html</strong>
+        is all pages data, summarized in one page.  The
+        <strong>index.html</strong>
+        is the summary page, holding information on a high level. Then the <strong>summary-details.html</strong> holds the summary info on a detailed level, here you will see the nitti gritty details of the site.
+        <strong>rules.html</strong> is a presentation of the rules used to calculate the score for a page. And the images folder is created if you choose to output the summary as png:s. The <strong>errorurls.html</strong> shows the list of URL:s that couldn't be fetched (the file will not exist if all url:s could be collected).
+        The <strong>assets.html</strong> shows the top 200 most used assets across the pages.
+      </p>
+</div>
+
+<div class="section">
+
+      <h2 id="summarypage">Site summary page</h2>
+      <p>
+        Sitespeed.io creates a couple of different views/outputs. The summary page is a executive summary page where green is good, yellow means that you should look into it and red is bad (sometimes really bad). The page shows a summary of best practices for good web site performance (and site speed metrics if configured). You can choose which boxes/best practices that will be shown on this page, so you can create different views for different use cases.
+      </p>
+     <p class="text-center">
+        <img src="/img/summary-2.0.jpg" alt="sitespeed.io summary page" class="img-thumbnail img-responsive"/>
+      </p>
+</div>
+
+<div class="section">
+
+      <h2 id="detailedsummarypage">The detailed summary page</h2>
+      <p>
+        The detailed summary page will give you almost all the metrics you want for you site. You will get the average, 10th percentile, median, 95th percentile, min, max and standard deviation value for each metrics (this page is based on the <strong>summary.xml</strong> file, where you also will find the variance and the 90th percentile, if ever needed when comparing metrics).
+      </p>
+      <p class="text-center">
+        <img src="/img/summary-details-2.0.png" alt="sitespeed summary page" class="img-thumbnail img-responsive"/>
+      </p>
+</div>
+
+
+<div class="section">
+
+      <h2 id="pages">Detailed site report</h2>
+      <p>
+        The detailed site report page shows data collected for each page. You can configure which metrics/data that you want to show in the columns, so you can choose what is extra important for you.
+      </p>
+      <p class="text-center">
+        <img src="/img/pages-2.0.jpg" alt="sitespeed pages page" class="img-thumbnail"/>
+  </p>
+</div>
+
+<div class="section">
+
+      <h2 id="page">Full page analyzes</h2>
+      <p>
+      Every page that is tested, also get a corresponding HTML page, where all in deep data is shown. Checkout the <a href="/example/">examples</a> section to see what it looks like.
+    </p>
+    <p class="text-center">
+      <img src="/img/page-2.0.jpg" alt="sitespeed page page" class="img-thumbnail"/>
+     </p>
+
+
+</div>
+
+<div class="section">
+
+
+      <h2 id="assets">Most used assets report</h2>
+      <p>
+        The most used assets report show you the most used assets (a.k.a which asset should you start to change to get the most bang for the money).
+        You will see the following for each asset: the type, the time since last modification, the cache time, the weight and the number of times the asset has been used.</p>
+      <p class="text-center">
+        <img src="/img/assets-2.0.jpg" alt="sitespeed most used asset page" class="img-thumbnail"/>
+      </p>
+
+</div>
+
+<div class="section">
+      <h2 id="screenshots-pages">Screenshots</h2>
+      <p>
+       You can choose to take screenshots of every tested page for the used viewport.</p>
+      <p class="text-center">
+        <img src="/img/screenshots-2.0.jpg" alt="sitespeed.io screenshot page" class="img-thumbnail"/>
+      </p>
+
+</div>
+
+
+
+<div class="section" id="configuration">
+
+      <div class="page-header">
+      <h2>Configuration</h2>
+    </div>
+    <p>Sitespeed.io is highly configurable, both what you can do and what you will see. Let's check it out!</p>
+  </div>
+
+<div class="section" id="theoptions">
+
+      <div class="page-header">
+      <h2>The options</h2>
+    </div>
+
+<p>You have the following options running sitespeed.io:</p>
+<pre>
+usage: ./bin/sitespeed.io options
+
+OPTIONS:
+   -h      Help
+   -u      The start URL of the crawl: http[s]://host[:port][/path/]. Use this or use the -f file option.
+   -f      The path to a plain text file with one URL on each row.
+   -d      The crawl depth, default is 1 (one page and all links pointing to the same domain on that page) [optional]
+   -q      Crawl URLs only URLs that contains this keyword in the path [optional]
+   -s      Skip URLs that contains this keyword in the path [optional]
+   -p      The number of processes that will analyze pages, default is 5 [optional]
+   -m      The memory heap size for the Java applications, default is 1024 Mb [optional]
+   -n      Give your test a name, it will be added to all HTML pages [optional]
+   -o      The output format, always output as HTML and you can also output a CSV file for the detailed site summary page  (csv) [optional]
+   -r      The result base directory, default is sitespeed-result [optional]
+   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional]
+   -t      The proxy type, default is http [optional]
+   -a      The full User Agent string, default is Chrome for MacOSX. You can also set the value as iphone or ipad (will automagically change the viewport) [optional]
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
+   -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
+   -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
+   -g      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns for more info [optional]
+   -b      The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes for more info [optional]
+   -j      The max number of pages to test [optional]
+   -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional]
+   -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
+   -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
+   -V      Show the version of sitespeed.io
+   -B      Basic auth user & password <username:password> Note: Only works for analyzing rules at the moment [optional]
+   -C      A comma separated list of additional CDNs [optional]
+</pre>
+
+</div>
+
+
+<div class="section" id="basic">
+    <div class="page-header">
+    <h2>The basics</h2>
+  </div>
+
+<p>If you installed via Homebrew, run the command <em>sitespeed.io</em> else run the script <em>bin/sitespeed.io</em>.  In the examples we will use the script but you know what to do if you have it installed! </p>
+  <p>You can analyze a site either by crawling or feed sitespeed.io with the URL:s you want to analyze.
+</p>
+</div>
+
+<div class="section" id="analyzebycrawling">
+    <div class="page-header">
+    <h2>Analyze by crawling</h2>
+</div>
+<p>The crawler need a start URL (the parameter <strong>u</strong>, from where it will start the crawl. It will fetch all links within the same domain as the URL that you provide. You can then choose how deep you want to crawl with the <strong>d</strong> parameter. Zero will fetch only that
+  URL that you provide. One will fetch all links on that page and analyze these, two will go one level deeper and so on. If you want to analyze a site and the links with a depth of four, you do like this:
+</p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://www.yoursite.com -d 4</pre>
+
+<div class="note note-info">Remember that you can start your crawl deep into your path structure like <strong style="word-wrap: break-word; white-space: normal;">http://yoursite.com/my/path</strong>.</div>
+</div>
+
+
+<div class="section" id="analyzebyurls">
+    <div class="page-header">
+    <h2>Analyze by URL:s</h2>
+</div>
+<p>Instead of giving a start URL for the crawl, you can supply a plain text file with one URL on each row. Then each of these URL will be analyzed, no more or no less. A file like this will do:</p>
+
+<pre>
+http://www.yoursite.com/path/
+http://www.yoursite.com/my/really/important/page/
+http://www.yoursite.com/where/we/are/
+</pre>
+<p>Then you feed the file to the script:</p>
+<pre class="bash">$ ./bin/sitespeed.io -f myurls.txt</pre>
+<div class="note note-info">This is good for testing and keep track of your site in production and you have a LARGE site with many pages and a couple of them are more important than the rest. </div>
+</div>
+
+<div class="section" id="includeexclude">
+    <div class="page-header">
+    <h2>Include/exclude URL:s when crawling</h2>
+</div>
+<p>You want to make sure that parts of your site isn't included in your analyze, then you can add the parameter <strong>s</strong> and a keyword. Every URL with that keyword will not be included.</p>
+ <pre class="bash">$./bin/sitespeed.io -u http://yoursite.com  -s /monkey/</pre>
+<p>You can also do it the other way around, with the <strong>q</strong> and a keyword. In this case, the analyze will only include URL:s with the keyword.</p>
+<pre class="bash">$  ./bin/sitespeed.io -u http://yoursite.com  -q /the/path/</pre>
+</div>
+
+<div class="section" id="screenshots">
+    <div class="page-header">
+ <h2>Screenshots</h2>
+</div>
+<p>You can get screenshots of every page that you analyze. These will end up on a screenshot page where you can check them all. The screenshots will be taken for the chosen viewport.
+</p>
+<pre class="bash">$ ./bin/sitespeed.io-u http://yoursite.com  -k true</pre>
+
+<div class="note note-info">If you have <em>pngcrush</em> installed on your system, the screenshots file size will be reduced.</div>
+
+</div>
+
+<div class="section" id="mobile">
+    <div class="page-header">
+ <h2>Viewport/user agent & mobile</h2>
+</div>
+<p>You can set the viewport & user agent, so that you can fake testing a site as a mobile device.</p>
+
+<p>By default the viewport is 1280x800 with the folowing user agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
+(that is Chrome on MacOSX).</p>
+
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -v 400x300 -a "My SUPER BROWSER"</pre>
+
+<div class="note note-info">
+You can set the user agent to <strong>iphone</strong>, <strong>nexus</strong> or <strong>ipad</strong> That will automatically set the viewport to 320x444 or 768x1024 and set the Safari or Chrome user agent.
+</div>
+
+<div class="note note-warning">
+Mobile testing is always best on mobile devices. For tips on how to best do that, read Andy Davies <a href="http://andydavies.me/" >blog</a>.
+</div>
+</div>
+
+
+<div class="section" id="limitpages">
+    <div class="page-header">
+ <h2>Limit pages to test</h2>
+</div>
+<p>Sometimes you want to limit the amount to test (I do that when I compare sites). That will test maximum the amount of pages ju supply.</p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -j 10</pre>
+</div>
+
+<div class="section" id="rules">
+    <div class="page-header">
+ <h2>Choose desktop or mobile rules</h2>
+</div>
+<p>By default you can choose between sitespeed.io desktop rules or mobile rules.</p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -l sitespeed.io-desktop</pre>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -l sitespeed.io-mobile</pre>
+</div>
+
+
+<div class="section" id="name">
+    <div class="page-header">
+ <h2>Set a name of your test</h2>
+</div>
+    <p>You can give your test run a name, that will be showed on all the pages.</p>
+    <pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com/ -n "Swedens top 100 sites"</pre>
+</div>
+
+<div class="section" id="browsertimemetrics">
+    <div class="page-header">
+ <h2>Collect Navigation Timing metrics (using Browser Time)</h2>
+</div>
+<p>The tool Browser Time is bundled with sitespeed.io, so you don't need to do any special installation to get it to work. If you use the Homebrew version, you can update Browser Time independently of sitespeed, that is good because when
+  a new version Chrome/Firefox is released, it could happen that Browser Time needs to be updated.</p>
+
+<p>Ad d the parameter <em>c</em> followed by the browser name. </p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c firefox</pre>
+
+<p>Each page is tested 3 times by default. You can change that with the <em>z</em> parameter.  Test using  Chrome and test each page 5 times, looks like this:</p>
+
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c chrome -z 5</pre>
+
+<p>If you want to test in multiple browsers, you add them in a comma separated list (this example only works on Winows since it uses Internet Explorer (IE):</p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -c firefox,chrome,ie -z 5</pre>
+
+<div class="note note-warning">To run Chrome, you need to have Chrome & the ChromeDriver installed on your computer, you can find more info <a href="https://code.google.com/p/chromedriver/" >here</a>.  For Internet Explorer (Windows only) you need the
+  <a href="https://code.google.com/p/selenium/wiki/InternetExplorerDriver" >IE driver</a>. To run FireFox you only need FireFox :)</div>
+</div>
+
+<div class="note note-warning">One warning running IE: There's a problem today with clearing the cache, therefor timing metrics can be really really optimistic.
+  </div>
+
+<div class="section" id="config-boxes">
+    <div class="page-header">
+ <h2>Boxes on summary page</h2>
+</div>
+<p>You can choose (and <a href="#createbox">create</a> your own) boxes you want to show on the summary page. You will see a couple of boxes by default (and when running BrowserTime you will also have the timing boxes). If you want to change boxes, you do that with the parameter <em>b</em> and comma separated list of the name of the boxes. The boxes are generated from the summary.xml file, meaning you can show whatever kind of data you want, as long as it exists in the summary xml file. </p>
+<p>For example, you want to focus on images, and only want to show image data:</p>
+<pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -b imagesPerPage,imageWeight,imageWeightPerPage</pre>
+
+<p>That will generate a summary page with the following three boxes:</p>
+
+<p class="text-center">
+        <img class="img-responsive img-thumbnail" alt="sitespeed.io image boxes" src="/img/images-boxes.png"/>
+</p>
+
+<p>You can choose by the between the following summary boxes (by specifying the name):</p>
+<div class="table-responsive">
+<table class="table table-condensed table-striped table-bordered table-small">
+  <thead>
+    <tr>
+    <th>name</th><th>info</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>jsPerPage</td><td>Number of JS</td>
+    </tr>
+<tr>
+      <td>cssPerPage</td><td>Number of CSS</td>
+    </tr>
+<tr>
+      <td>imagesPerPage</td><td>Number of images</td>
+    </tr>
+<tr>
+      <td>cssImagesPerPage</td><td>Number of CSS images</td>
+    </tr>
+<tr>
+      <td>requests</td><td>Number of requests</td>
+    </tr>
+<tr>
+      <td>pageWeight</td><td>Total page weight</td>
+    </tr>
+<tr>
+      <td>imageWeight</td><td>Image weight</td>
+    </tr>
+<tr>
+      <td>jsWeight</td><td>JS weight</td>
+    </tr>
+<tr>
+      <td>cssWeight</td><td>CSS weight</td>
+    </tr>
+<tr>
+      <td>imageWeightPerPage</td><td>Total images weight per page</td>
+    </tr>
+<tr>
+      <td>cssWeightPerPage</td><td>CSS weight per page</td>
+    </tr>
+<tr>
+      <td>jsWeightPerPage</td><td>JS weight per page</td>
+    </tr>
+<tr>
+      <td>ruleScore</td><td>Rule score</td>
+    </tr>
+<tr>
+      <td>docWeight</td><td>Document weight</td>
+    </tr>
+<tr>
+      <td>spofPerPage</td><td>Number of SPOF per page</td>
+    </tr>
+<tr>
+      <td>spofPages</td><td>Pages with SPOF</td>
+    </tr>
+<tr>
+      <td>browserScaledImages</td><td>Images scaled by the browser</td>
+    </tr>
+<tr>
+      <td>jsSyncInHead</td><td>Number of JS synchronously in head</td>
+    </tr>
+<tr>
+      <td>requestsWithoutExpires</td><td>Requests without expires</td>
+    </tr>
+<tr>
+      <td>criticalPathScore</td><td>Critical Rendering Path Score</td>
+    </tr>
+<tr>
+      <td>textContent</td><td>Amount of text content</td>
+    </tr>
+<tr>
+      <td>timeSinceLastModification</td><td>Time since last modification</td>
+    </tr>
+<tr>
+      <td>assetsCacheTime</td><td>Cache time</td>
+    </tr>
+<tr>
+      <td>domElements</td><td>Number of DOM elements</td>
+    </tr>
+<tr>
+      <td>domainsPerPage</td><td>Number of domains</td>
+    </tr>
+    <tr class="success">
+      <td colspan="2"><strong>Browser timing</strong></td>
+    </tr>
+    <tr>
+      <td>serverConnectionTime</td><td>The server connnection time</td>
+    </tr>
+    <tr>
+      <td>firstPaintTime</td><td>The time to first paint (if you use Chrome or Internet Explorer)</td>
+    </tr>
+    <tr>
+      <td>domainLookupTime</td><td>The domain lookup time</td>
+    </tr>
+    <tr>
+      <td>pageLoadTime</td><td>The page load time</td>
+    </tr>
+    <tr>
+      <td>pageDownloadTime</td><td>The page download time</td>
+    </tr>
+    <tr>
+      <td>serverResponseTime</td><td>The server response time</td>
+    </tr>
+    <tr>
+      <td>domContentLoadedTime</td><td>The time to DOM content loaded</td>
+    </tr>
+    <tr>
+      <td>domInteractiveTime</td><td>The time to DOM interactive</td>
+    </tr>
+    <tr>
+      <td>redirectionTime</td><td>The redirect time</td>
+    </tr>
+    <tr>
+      <td>backEndTime</td><td>Time spent in backend</td>
+    </tr>
+     <tr>
+      <td>frontEndTime</td><td>Time spent in frontend</td>
+    </tr>
+     <tr class="success">
+      <td colspan="2"><strong>Browser timing per browser</strong></td>
+    </tr>
+    <tr>
+      <td colspan="2">All the names with the browser name appended, so if you want <em>frontEndTime</em> for all three tested browser you add: <em>frontEndTimeChrome, frontEndTimeFirefox, frontEndTimeIE<em>.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="section" id="config-columns">
+    <div class="page-header">
+ <h2>Columns on pages</h2>
+</div>
+<p>
+You can choose (and <a href="#createcolumns">create</a> your own) data to be showed as columns showed on detailed page summary table. Use the parameter <strong>g</strong> to choose what to show. The table will always show the URL of the page & the rule score, the rest will can you configure.
+
+<pre class="bash">$./bin/sitespeed.io -u http://yoursite.com  -g browserScaledImages,requests,domContentLoadedTime,domInteractiveTime -c true</pre>
+
+<p>That will generate a detailed summary page with the following columns:</p>
+<p class="text-center">
+        <img class="img-responsive img-thumbnail" alt="sitespeed.io columns" src="/img/columns.png"/>
+</p>
+
+<p>
+You can choose between the following data to be shown as columns:
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-striped table-bordered table-small">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>info</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>cssPerPage</td>
+  <td>number of CSS files per page</td>
+  </tr>
+  <tr>
+    <td>fontsPerPage</td>
+    <td>number of font files per page</td>
+  </tr>
+
+<tr>
+    <td>jsPerPage</td>
+    <td>number of javascript files per page</td>
+  </tr>
+  <tr>
+    <td>maxImageWeight</td>
+    <td>the largest size of an image</td>
+  </tr>
+  <tr>
+    <td>browserScaledImages</td>
+    <td>the number of images scaled by the browser</td>
+  </tr>
+  <tr><td>cssWeightPerPage</td>
+    <td>the amount of CSS per page</td>
+  </tr>
+  <tr>
+    <td>jsSyncInHead</td>
+    <td>the number of javascript files loaded synchronous inside of the head tag</td>
+  </tr>
+  <tr>
+    <td>pageWeight</td>
+    <td>the weight of the page, including all assets</td>
+  </tr>
+  <tr>
+    <td>criticalPathScore</td>
+    <td>the score for the critical path rule</td>
+  </tr>
+  <tr><td>docWeight</td>
+    <td>the weight of the document</td>
+  </tr>
+  <tr><td>imageWeightPerPage</td>
+    <td>the weight of the images per page</td>
+  </tr>
+  <tr>
+    <td>requests</td>
+    <td>the number of requests per page</td>
+  </tr>
+  <tr>
+  <td>cssImagesPerPage</td>
+  <td>the amount of CSS images per page</td>
+</tr>
+<tr>
+  <td>domainsPerPage</td>
+  <td>the number of domains used per page</td>
+</tr>
+<tr>
+  <td>imagesPerPage</td>
+  <td>the number of images per page</td>
+</tr>
+<tr>
+  <td>jsWeightPerPage</td>
+  <td>the weight of the javascipt files per page</td>
+</tr>
+<tr>
+  <td>requestsWithoutExpires</td>
+  <td>the number of requests missing expire date</td>
+</tr>
+<tr>
+  <td>spof</td>
+  <td>the number of SPOF per page</td>
+</tr>
+<tr class="success">
+      <td colspan="2"><strong>Browser timing</strong></td>
+    </tr>
+ <tr>
+      <td>serverConnectionTime</td><td>The server connnection time</td>
+    </tr>
+    <tr>
+      <td>firstPaintTime</td><td>The time to first paint (if you use Chrome or Internet Explorer)</td>
+    </tr>
+    <tr>
+      <td>domainLookupTime</td><td>The domain lookup time</td>
+    </tr>
+    <tr>
+      <td>pageLoadTime</td><td>The page load time</td>
+    </tr>
+    <tr>
+      <td>pageDownloadTime</td><td>The page download time</td>
+    </tr>
+    <tr>
+      <td>serverResponseTime</td><td>The server response time</td>
+    </tr>
+    <tr>
+      <td>domContentLoadedTime</td><td>The time to DOM content loaded</td>
+    </tr>
+    <tr>
+      <td>domInteractiveTime</td><td>The time to DOM interactive</td>
+    </tr>
+    <tr>
+      <td>redirectionTime</td><td>The redirect time</td>
+    </tr>
+       <tr>
+      <td>backEndTime</td><td>Time spent in backend</td>
+    </tr>
+     <tr>
+      <td>frontEndTime</td><td>Time spent in frontend</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="section" id="user-config">
+    <div class="page-header">
+ <h2>User specific config files</h2>
+</div>
+<p>If you often test the same things, you can simplify the parameters you send to the script by configure your own default values. You do that
+  in your home directory, naming the file <em>.sitespeedio</em> that will override all the configuration variables configured in the beginning of the script.
+  Here's an example, say you want to always fetch browser timings user Chrome, always test 30 times, want a specific setup of boxes on the summary page & columns on  pages.</p>
+  <pre class="bash">
+NUMBER_OF_RUNS=30
+BROWSERS=chrome
+SUMMARY_BOXES=jsPerPage,jsWeight,jsWeightPerPage,jsSyncInHead,firstPaintTime,ruleScore
+PAGES_COLUMNS=jsPerPage,jsSyncInHead,jsWeightPerPage,firstPaintTime</pre>
+
+<p>Thanks <a href="https://github.com/AD7six">Andy Dawson</a> for the idea & implementation!</p>
+</div>
+
+
+
+<div class="section" id="advanced">
+    <div class="page-header">
+    <h2>Advanced configuration</h2>
+  </div>
+ <p>The advanced configuration are things that you not need to configure very often.
+ </p>
+ </div>
+
+
+
+
+<div class="section" id="processes">
+    <div class="page-header">
+ <h2>Changing the number of processes analyzing the site</h2>
+</div>
+    <p>If you analyze a large web site, the analyze can take time; then increase the number of processes that analyzes the site (default number of processes is five):</p>
+    <pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -p 10</pre>
+</div>
+<div class="section" id="resultdir">
+    <div class="page-header">
+ <h2>Change the result directory</h2>
+</div>
+    <p>The result files will by default be created in a directory named <i>sitespeed-result</i> in the home directory of the sitespeed script. You can change that if you want your files in another place.</p>
+    <pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com  -r /place/the/files/here</pre>
+</div>
+<div class="section" id="heap">
+    <div class="page-header">
+ <h2>Heap size for the Java applications</h2>
+</div>
+    <p>If you are analyzing a large site, it is possible that you need to increase the memory for the java application, or if you run the test on a machine with low memory, you can change the heap size with the <i>m</i> parameter:</p>
+    <pre class="bash">$ ./bin/sitespeed.io-u http://yoursite.com/ -m 512</pre>
+</div>
+<div class="section" id="proxy">
+    <div class="page-header">
+ <h2>Run behind a proxy</h2>
+</div>
+    <p>Behind a proxy you run it like this:</p>
+    <pre class="bash">$ ./bin/sitespeed.io -u http://yoursite.com/ -x yourproxy.com:portnumber</pre>
+  </div>
+
+
+
+
+
+<div class="section" id="multiple">
+       <div class="page-header">
+      <h1>Analyze & compare multiple sites</h1>
+    </div>
+    <p>From the 2.0 release, you can analyze multiple sites in one go! You can choose which data you want to compare between the sites (the ones in the image are the default ones). A result page will look like this:</p>
+
+  <p class="text-center">
+        <img src="/img/multiple-sites-2.0.jpg" alt="sitespeed.io screenshot page" class="img-thumbnail"/>
+      </p>
+
+      <p>
+  The script needs a plain text file with one URL on each row. By default, the script will look for a file named <em>urls.txt</em> (you can configure another name if you want). The view will be a table with each site on one row, where you choose which data from the <em>summary.xml</em> file you want to display (you can choose what kind of metric you want; like number of requests per page, rule score or the time for DOMContent loaded). And you also choose how you want it: median, average, min, max and different percentiles.</p>
+
+  <p>For each URL, a regular analyze will be done, so you can see all the pages & data that has been analyzed.</p>
+</div>
+
+<div class="section" id="multipleconfiguration">
+    <div class="page-header">
+ <h2>Configuration</h2>
+</div>
+You have the options to feed the script:
+  <pre>
+OPTIONS:
+ -h      Help
+ -r      The result base directory, default is sitespeed-result/sites [optional]
+ -e      The columns to display in the result table [optional]
+ -i      The path to a plain text file with one url on each row.
+ </pre>
+  <p>All other parameters will then be feed to the original sitespeed.io script, meaning you can configure that one exactly as you are used to. So if you want to also collect browser timings data, you can do that like this:
+  </p>
+  <pre class="bash">./bin/sitespeed.io-sites -c true</pre>
+</div>
+
+
+<div class="section" id="multiplecolumns">
+    <div class="page-header">
+ <h2>Choose values to be displayed</h2>
+</div>
+<p>By default, the following median values will be showed:</p>
+  <ul>
+  <li>median-ruleScore</li>
+  <li>median-criticalPathScore</li>
+  <li>median-requests</li>
+  <li>median-imageWeightPerPage</li>
+  <li>median-pageWeight</li>
+  <li>median-requestsWithoutExpires</li>
+  <li>median-assetsCacheTime</li>
+  <li>median-maxRequestsPerDomainPerPage</li>
+  </ul>
+
+  And if you collect browser timings these two are also added:
+  <ul>
+  <li>median-serverResponseTime</li>
+  <li>median-domContentLoadedTime or median-firstPaintTime (if your browser supports it)</li>
+</ul>
+
+  <p>The naming convention is what kind of measure (median/max etc) followed by the actual metric</p>
+
+ <p>Here's an example focus on comparing image data between sites:</p>
+ <pre class="bash">./bin/sitespeed.io-sites -e median-imageWeightPerPage,max-imageWeightPerPage,median-imageWeight,percentile95-imageWeight,median-imagesPerPage,median-cssImagesPerPage,median-browserScaledImages,percentile95-browserScaledImages</pre>
+
+  <div class="note note-info">When doing these kind of text, choosing maximum number of pages to test for a site is really good, use the <em>j</em> parameter!</div>
+
+</div>
+
+
+<div class="section" id="browsertime">
+    <div class="page-header">
+ <h2>Collect Navigation Timing data</h2>
+</div>
+  <p>You can collect Browser timings in sitespeed.io, using the Open Source project <strong>Browser Time</strong> that collects metrics using the data in the <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html">Navigation Timing API</a> (and also some other data/metrics). You can choose which browser to use (it must of course support the Navigation Timing API) and how many runs you want per page. It will then do a summary for each metric with the minimum, maximum, average, median and the 60, 70, 80 & 90 percentile.</p>
+
+
+  Out of the box, the following timings is collected:
+  <div class="table-responsive">
+ <table class="table table-condensed table-striped table-bordered table-small">
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>definition (using Navigation Timing API)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>serverConnectionTime</td><td>connectEnd - connectStart</td>
+    </tr>
+
+<tr>
+      <td>domainLookupTime</td><td>domainLookupEnd - domainLookupStart</td>
+    </tr>
+<tr>
+      <td>pageLoadTime</td><td>loadEventStart - navigationStart</td>
+    </tr>
+<tr>
+      <td>pageDownloadTime</td><td>responseEnd - responseStart </td>
+    </tr>
+<tr>
+      <td>serverResponseTime</td><td>responseStart - requestStart</td>
+    </tr>
+<tr>
+      <td>domContentLoadedTime</td><td>domContentLoadedEventStart - navigationStart</td>
+    </tr>
+<tr>
+      <td>domInteractiveTime</td><td>domInteractive - navigationStart</td>
+    </tr>
+<tr>
+      <td>redirectionTime</td><td>fetchStart - navigationStart</td>
+    </tr>
+    <tr>
+      <td>backEndTime</td><td>responseStart - navigationStart</td>
+    </tr>
+    <tr>
+      <td>frontEndTime</td><td>loadEventStart - responseEnd</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  <p>By default <em>Firefox</em> is used but you can choose to use <em>Chrome</em> or <em>Internet Explorer</em> (if you use these, you will automatically get the first paint value reported by the browser!).
+</p>
+
+  <p>If you run on Linux and want to emulate a screen (a.k.a running a browser without a screen), you need to do this before running:</p>
+  <ul>
+  <li>Install <a href="http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml" >XVFB</a>.</li>
+  <li>Setup a start script, something like <a href="https://gist.github.com/jterrace/2911875" >this</a>.</li>
+  <li>Export the display, make sure to have the same number as in the examle in the Gist: <em>export DISPLAY=:99.0</em></li>
+  <li>Start Xvfb: <em>sh -e /etc/init.d/xvfb start</em></li>
+</ul>
+</div>
+
+
+<div class="section" id="usertiming">
+    <div class="page-header">
+ <h2>Collect User Timing data</h2>
+</div>
+<p>As an extra bonus, custom measurements using the <a href="http://www.w3.org/TR/user-timing/">User Timing API</a> are fetched. That is really cool, because you can setup your own marks & measurement and measure how long time it takes to load specific parts of a page.</p>
+<p>Patrick Meenan wrote a great blog <a href="http://blog.patrickmeenan.com/2013/07/measuring-performance-of-user-experience.html" >post</a> how this is used on WebPageTest, read that and the <a href="http://www.html5rocks.com/en/tutorials/webperformance/usertiming/">post</a> by Alex Danilo on HTML5Rocks.
+  That's a great start.</p>
+<p>If you want to test it out, you can run sitespeed and access this documentation site (it uses the example <a href="https://gist.github.com/pmeenan/5902672#file-user-timing-rum-js">user-timing.js</a> by Patrick Meenan):</p>
+<pre class="bash">bin/sitespeed.io -u http://www.sitespeed.io -d 0 -c chrome</pre>
+<p>When it is finished, go to the result page. The individual page will automatically pick up the User Timings you have created (click on the <em>Page Metrics</em> link). You will see two new values there <em>headerTime</em> and <em>logoTime</em>.
+  The header measurement is when the header content is ready and the logo is when the big logo onload is fired.
+ </p>
+<p class="text-center">
+        <img src="user-timing.png" alt="example of user timing value" class="img-thumbnail img-responsive"/>
+ </p>
+
+
+ <p>If you name your measurement so they end with <strong>Time</strong> it will automatically be picked up in the <em>summary.xml</em>, meaning you can show it on the summary page by passing the name using the <em>-b</em> parameter:</p>
+ <pre class="bash">bin/sitespeed.io -u http://www.sitespeed.io -d 0 -c chrome -b logoTime,headerTime -z 30</pre>
+ <p>And it will look something like this:</p>
+<p class="text-center">
+        <img src="userTimingSummary.png" alt="example of user timing values on the summary page" class="img-thumbnail img-responsive"/>
+ </p>
+ <p>You see that the boxes is blue, if you want to configure the limits to show red/yellow/green for you own measurements, go to the  <a href="#configurerulelimits">Configure rule limits</a> section.
+</div>
+
+<div class="section" id="summaryxml">
+       <div class="page-header">
+      <h2>The summary.xml file</h2>
+    </div>
+    <p>The summary.xml file is the heart of you analyze, because it collects all data. Each metric will look like this (where the first tag is the metric name):
+      <pre>
+&lt;ruleScore friendlyName="Rule score" type="" unit="" decimals="1"&gt;
+  &lt;avg&gt;99.0&lt;/avg&gt;
+  &lt;median&gt;99.0&lt;/median&gt;
+  &lt;max&gt;99.0&lt;/max&gt;
+  &lt;min&gt;99.0&lt;/min&gt;
+  &lt;standardDev&gt;0.0&lt;/standardDev&gt;
+  &lt;variance&gt;0.0&lt;/variance&gt;
+  &lt;percentile10&gt;99.0&lt;/percentile10&gt;
+  &lt;percentile60&gt;99.0&lt;/percentile60&gt;
+  &lt;percentile70&gt;99.0&lt;/percentile70&gt;
+  &lt;percentile80&gt;99.0&lt;/percentile80&gt;
+  &lt;percentile90&gt;99.0&lt;/percentile90&gt;
+  &lt;percentile95&gt;99.0&lt;/percentile95&gt;
+  &lt;values&gt;1&lt;/values&gt;
+&lt;/ruleScore&gt;
+  </pre>
+
+  <p>See the summary.xml file <a href="summary-2.0.xml" >here</a>.
+  <p>When testing many pages, this is a really pleasent view! Today is used for the summary page, detailed summary and in Jenkins to create charts.</p>
+
+</div>
+
+
+<div class="section" id="harfiles">
+       <div class="page-header">
+      <h2>HAR-files</h2>
+    </div>
+    <p>The HAR-files are created for each page (using PhantomJS) and located in <em>data/har/</em>. You cannot see them in the result page (that will be implemented in later releases), but you can use them and view them yourself in the <a href="http://www.softwareishard.com/har/viewer/" >HARviewer</a>.</p>
+
+    <div class="note note-warning">The HAR files from PhantomJS only displays one timing for each asset (missing specifying DNS lookup and other timings) and is not containing any loading metrics.</div>
+
+
+  </div>
+
+
+<div class="section" id="continuousintegration">
+       <div class="page-header">
+      <h2>Continuous integration</h2>
+    </div>
+    <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the performance best practice rules <em>before</em> your changes are released. Your build can also be broken if your page timings (choose whatever timing you need from the Navigation Timing API or your own custom timing) break your limits.</p>
+
+ </div>
+<div class="section">
+ <div class="page-header">
+      <h2 id="junit">Generating the JUnit XML for continuous integration</h2>
+    </div>
+       <p>Sitespeed can output <em>junit.xml</em> that works perfect with your continuous integration tool. Jenkins, Bamboo and others support it out of the box.
+        To generate the xml, you need to run the script <strong>sitespeed.io-junit</strong> after the normal script (it will take the latest created sitespeed analyze and parse it to junit.xml files).
+        The JUnit script takes the following parameters:</p>
+        <pre>
+OPTIONS:
+-h      Help
+-o      The output dir
+-r      The result base directory, default is sitespeed-result [optional]
+-l      The page rule score limit. Below this page score it will be a failure. Default is 90. [optional]
+-a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]
+-s      Skip these rule tests. A comma separated list of the key name of the rules; for example "ycsstop,yjsbottom" [optional]
+-t      The XML timing limit file, setting limits when a timing fails. Default file is dependencies/timing-limits-default.xml [optional]</pre>
+   <p><em>Note:</em> the key name used when skipping tests is the rule key, you can see that on the <a href="/rules/#allrules">rule</a> page (all keys are in parenthesis after the rule name) . </p>
+
+</div>
+
+
+<div class="section">
+      <h2 id="jenkinsplugin">Jenkins plugin</h2>
+       <p><a href="http://jenkins-ci.org/" >Jenkins</a> is a great open source continuous integration server that have a plugin for almost everything and now also sitespeed.io! The plugin wraps the sitespeed-junit.io script and
+      sets up all the paths so the result files ends up in Jenkins workspace. The plugin can also send  metrics to <a href="http://graphite.wikidot.com/" >Graphite</a>.
+
+  </p>
+
+      <h3>Installation</h3>
+      <p>
+        The plugin is not distributed with Jenkins at the moment, you need to manually install it. </p>
+        <ol>
+          <li><a href="https://github.com/sitespeedio/jenkins.sitespeed.io/releases">Download</a> the latest version of the plugin from Github.</li>
+          <li>Install the HPI file in Jenkins.</li>
+          <li><a href="https://github.com/sitespeedio/sitespeed.io/releases" >Download</a> the latest version of sitespeed.io and add it to the same server that runs Jenkins.</li>
+          <li>Make sure that the user in <strong>Jenkins</strong> that runs the job, have <a>PhantomJS</a> in the path.</lI>
+          <li>Configure the plugin and set it up to run as often as you need.</li>
+        </ol>
+
+        <div class="note note-info">The Jenkins plugin has been tested on Mac OS X, Ubuntu & CentOS. When Using CentOS you need to make sure all your normal binaries is in the path for the user that runs the job, you do that by  adding them to
+          the PATH in the Jenkins configuration page http://JENKINS/configure . Then go to <em>Global properties -> Environment variables -> List of key-value pairs -> Add  </em> and add your path, something like
+          <em>name</em> <strong>PATH</strong> <em>value</em> <strong>/usr/local/bin:/bin/:/usr/bin:$PATH </strong>. Then if you have problems with the right to execute the sitespeed.io scripts, put them in your Jenkins workspace.</div>
+
+
+        <h3>Configuration</h3>
+        <p>You have four different parts:</p>
+        <ol>
+          <li><em>Home dir of sitespeed.io</em> - locate where you have installed sitespeed.io on your server.</li>
+          <li><em>Sitespeed.io configuration</em> - add the parameters passed to the sitespeed.io script, exact the same way as you do locally. Only exception is that you don't set the result base directory (with the parameter <em>-r</em>) that is done automatically. </li>
+         <li><em> JUnit configuration</em> - the parameters sent to the JUnit script. The result base directory (<em>-r</em>) and the output dir (<em>-o</em>) is set automatically, so that the result ends up in Jenkins workspace.</li>
+          <li><em>Send to Graphite</em> - choose if you want to send the metrics to Graphite.</li>
+        </ol>
+
+        <p>It looks like this:</p>
+        <p class="text-center">
+       <a href="plugin-configuration.png"><img src="plugin-configuration.png" alt="Sitespeed.io plugin configuration" class="img-thumbnail"/></a>
+      </p>
+
+      <h3>Running headless</h3>
+      <p>You want to run headless (without opening a browser window). On Linux you can do that easily by installing the Jenkins <a href="https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin" target="blank">Xvfb plugin</a>. Configure it with the default configuration and it will
+        work out of the box.</p>
+
+         <h3>Configuring JUnit</h3>
+                 <p>Add a <em>Post-build Action</em> that will publish the JUnit test result report, and choose the output files from the script. Add this (if you are running both rules and timing metrics, if you are using only rules, specify only that XML file):</p>
+
+  <p class="text-center">
+       <a href="post-build-adding-junit.png"><img src="post-build-adding-junit.png" alt="Adding the post build action" class="img-thumbnail"/></a>
+      </p>
+
+
+  <p>Sitespeed.io will produce two different JUnit XML files, one with the result of the rules and one with the timings (if you configured to fetch browser timings). The timings will use an XML file to set the limits on when to break the build. By default, the file <em>dependencies/timing-limits-default.xml</em> will be used. But you can choose to use your own configuration with the parameter <em>t</em> pointing out the file to use. The limit file looks like this:</p>
+  <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;limits type="median"&gt;
+  &lt;default&gt;
+  &lt;!-- All timings are in ms --&gt;
+  &lt;serverResponseTime&gt;300&lt;/serverResponseTime&gt;
+  &lt;domContentLoadedTime&gt;800&lt;/domContentLoadedTime&gt;
+  &lt;redirectionTime&gt;0&lt;/redirectionTime&gt;
+  &lt;/default&gt;
+  &lt;!-- Example setup for setting values for a specific url --&gt;
+  &lt;urls&gt;
+    &lt;page&gt;
+     &lt;url&gt;http://www.cybercom.com&lt;/url&gt;
+     &lt;limits&gt;
+     &lt;serverResponseTime&gt;250&lt;/serverResponseTime&gt;
+     &lt;domContentLoadedTime&gt;500&lt;/domContentLoadedTime&gt;
+     &lt;/limits&gt;
+    &lt;/page&gt;
+  &lt;/urls&gt;
+&lt;/limits&gt;</pre>
+  <p>You can setup default values that will be used for all URL:s but they will be overridden if you have a matching URL in the URLs section. With the <em>limits type</em> you can choose if you want to compare median, max or different percentiles (the values from the browser time).</p>
+
+    <p>The name of the XML timing fields match fields from BrowserTime, so if you have a custom user measurement named <em>headerTime</em> the field needs to named the same.</p>
+
+
+ <p>Each sitespeed.io test, is a JUnit testcase, each page tested is a test suite and the whole test bundled as test suites. The cool thing is that you will get a good overview: you can see the failures for all pages, and you can also drill down the result page by page.
+</p>
+       <p class="text-center">
+       <a href="jenkins-test-all-pages.jpg"><img src="jenkins-test-all-pages.jpg" alt="All the tested pages" class="img-thumbnail"/></a>
+      </p>
+
+      <p>
+        And for a specific page:</p>
+       <p class="text-center">
+        <a href="jenkins-tests-for-one-page-full.jpg"><img src="jenkins-tests-for-one-page.jpg" alt="One full test" class="img-thumbnail"/></a>
+      </p>
+
+         <h3>Graphite</h3>
+         <p>To be able to send metrics to Graphite you need to configure your Graphite <strong>host</strong>, <strong>port</strong> and the <strong>namespace</strong> of the keys sent to
+          Graphite (the namespace is the first part of the key so that you can identify the keys sent from Jenkins).
+          You also choose what kind of metrics you want to send:</p>
+<ul>
+  <li><em>Rule score per page</em> - Each score per rule is sent for all pages.</li>
+  <li><em>Timing metrics per page</em> -  Each page that has been tested will have have all metrics from the Navigation Timing API and custom User Timings.</li>
+<li><em>Page metrics per page</em> - The following metrics per page: Number of hosts, number of assets per type (js/css/images etc) and the size per type.</li>
+<li><em>Site summary</em> -   You will have a summary of the rules score and the Navigation Timing metrics reported with median and different percentiles.</li>
+</ul>
+
+
+<p>What will the data look like? This is the timings you get when you fetch http://www.sitespeed.io/documentation/:</p>
+     <p class="text-center">
+        <img src="graphite/timings.png" alt="Navigation Timings in Graphite" class="img-thumbnail"/>
+      </p>
+
+      <p >The  Graphite key in this case is created like this:  <small>&lt;NAMESPACE&gt;.timings.&lt;BROWSER&gt;.&lt;PROTOCOL&gt;.&lt;PATH&gt;.&lt;METRIC&gt;.&lt;STATISTIC&gt;</small></p>
+
+      <div class="note note-info">If you want nicer looking graphs with Graphite, check out <a href="http://dashboarddude.com/blog/2013/01/23/dashboards-for-graphite/" >this</a> blog  post by Dashboard Dude.</div>
+
+         <h3>Graphs without using Graphite</h3>
+      <p>If you don't use Graphite, you can still create simple graphs in Jenkins. The script will copy the <em>summary.xml</em> file to Jenkins workspace directory. Using the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" >Jenkins plot plugin</a> will then create graphs between builds of the metrics you choose (and you can choose between all that you have in the <a href="summary-2.0.xml">summary.xml</a> file. For every metric you want (also browser timings), add the XPATH to the value you want to fetch. If you want to fetch the median value of the page weight, add the XPath <strong style="word-wrap: break-word; white-space: normal;">//site/metrics/pageweight/median</strong>.</p>
+<p class="text-center">
+   <a href="jenkins-plot-setup2.png"><img src="jenkins-plot-setup2.png" alt="Setup the plot plugin" class="img-thumbnail"/></a>
+</p>
+
+<p>And the graphs:</p>
+<p class="text-center">
+<a href="plot-graph-example.png"><img src="plot-graph-example.png" alt="The graph" class="img-thumbnail"/></a>
+</p>
+
+<p >You can also setup graphs for the timings. This one is fetching median (xpath <em>//site/metrics/domContentLoadedTime/median</em>) & the 90th percentile (xpath <em>//site/metrics/domContentLoadedTime/percentile90</em>) for domContentLoadedTime:</p>
+<p class="text-center">
+<a href="domContentLoadedTime.png"><img src="domContentLoadedTime.png" alt="Timings graph" class="img-thumbnail"/></a>
+</p>
+
+  </div>
+
+<div class="section">
+
+      <h2 id="travis">Travis integration</h2>
+      <p>
+      <a href="https://travis-ci.org/" >Travis</a> doesn't have a built in support for JUnit XML right now (read this
+      <a href="https://github.com/travis-ci/travis-ci/issues/239" >issue</a> about the plan for supporting it).
+      But you can still use sitespeed.io with Travis. Travis will breake your build if your pages breakes your rule limits or break the timing limits you have setup. To get it to
+      work, you need to do three things:
+      </p>
+      <ol><li>Add the latest sitespeed.io tar in your project (in this example, it is in the folder <em>/test/</em>)</li>
+      <li>Create a <strong>.travis.yml</strong> file in your project that looks something like this (changing the URL/parameters as you want):
+<pre>
+before_install:
+## We need the xsltproc for the XSLT transformation
+- sudo apt-get update
+- sudo apt-get install xsltproc
+## Display used by Firefox
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+
+before_script:
+- "tar -xzf test/sitespeed.io-2.3.tar.gz"
+- "./sitespeed.io-2.3/bin/sitespeed.io -u http://www.peterhedenskog.com -c true -j 5 -z \"-n 5 \""
+- "./sitespeed.io-2.3/bin/sitespeed.io-junit -o ../ -t ../test/timings.xml -s textcontent"
+
+script:
+- "./sitespeed.io-2.3/bin/travis-ci.sh junit/sitespeed.io-rules-junit.xml"
+- "./sitespeed.io-2.3/bin/travis-ci.sh junit/sitespeed.io-timings-junit.xml"
+</pre>
+</li>
+<li>Edit your own timings.xml file (put it in the test folder) and setup the timing levels you want.</li>
+</ol>
+ <p style="word-wrap: break-word;">You can check the example project <a href="https://github.com/sitespeedio/travis-ci-example" >https://github.com/sitespeedio/travis-ci-example</a> to see a working example.</p>
+
+<div class="note note-info">Travis-CI has Firefox installed by default on their boxes so that will work out of the box. Chrome is not supported.</div>
+</div>
+
+
+<!--
+<div class="section">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="page-header">
+      <h2 id="csv">Export as CSV</h2>
+    </div>
+    <p>You can export the data showed on the <a href="pages">detailed site report</a> as a plain CSV file. The CSV file is a comma separated list, tested in Excel & Open Office. To generate the CSV file, use the
+      <a href="imgandcsv"></a>
+
+      #pages Detailed site report
+    </p>
+
+    </div>
+</div>
+</div>
+-->
+<div class="section">
+
+      <div class="page-header">
+      <h2 id="developers">Developers</h2>
+    </div>
+    <p style="word-wrap: break-word;">
+    You can fork the project at <a href="https://github.com/soulgalore/sitespeed.io" >https://github.com/soulgalore/sitespeed.io</a> and create
+    your own version or contribute to the existing one.
+    The master branch is the latest release and/or in production-ready state.
+    Clone that and you know it will always work. The next coming branch is named version-wip (3.0-wip).
+    </p>
+
+    </div>
+
+
+
+<div class="section">
+
+      <div class="page-header">
+      <h2 id="dependencies" style="word-wrap: break-word;">Dependencies</h2>
+    </div>
+      <p>
+        Here are the dependencies for running sitespeed.io:
+      </p>
+      <dl class="dl-horizontal">
+        <dt>Linux/Unix</dt>
+        <dd>Linux/Unix or a Linux-like environment for Windows like Git Bash.</dd>
+
+        <dt>PhantomJS</dt>
+      <dd><a href="http://phantomjs.org/" >PhantomJS</a> is a headless WebKit with JavaScript API. It is really cool product where you can do browser things without a browser. You need to have it installed to be able to run sitespeed.io.</dd>
+
+      <dt>Java 1.6</dt>
+      <dd>You need to have Java 1.6 (or higher) installed because many components used are written in Java.</dd>
+
+      <dt>cURL</dt>
+        <dd>cURL is used to fetch the time to first byte and the size of a gzipped page.</dd>
+        <dt>xsltproc</dt>
+        <dd>xsltproc is used to match the JUnit XSL file with the XML result from the analyze to create the JUNit XML file</dd>
+
+        </dl>
+</div>
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="components">Components</h2>
+</div>
+
+      <p>The following components are used by sitespeed.io:</p>
+      <dl class="dl-horizontal">
+         <dt>YSlow</dt>
+      <dd>Sitespeed.io uses the rule engine of <a href="http://yslow.org" >YSlow</a>, because it is great! YSlow was originally developed by Yahoo and now maintained by <strong>Marcel Duran</strong>, a rule engine & browser plugin created to test your web page against <a href="http://yslow.org/#web_performance_best_practices_and_rules" >best practices rules</a>. The version used is the <a href="https://github.com/marcelduran/yslow/wiki/PhantomJS" >YSlow/PhantomJs</a> version. Sitespeed uses it own ruleset of best practice performance rules, and the code can be found  <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" >here</a>.</dd>
+      <dt>Bootstrap</dt>
+      <dd><a href="http://getbootstrap.com/" >Bootstrap</a> is a front end framework to create nice looking HTML, all the front end of the result pages produced by sitespeed are built with Bootstrap.</dd>
+      <dt>HTMLCompressor</dt>
+      <dd>The <a href="http://code.google.com/p/htmlcompressor/" >HTMLCompressor</a> Compress/minifies the HTML result pages, to do them as clean & small as possible.</dd>
+      <dt>Velocity</dt>
+      <dd><a href="http://velocity.apache.org/" >Apache Velocity</a> is an (old but great  Java template engine, the reason it is used, it because gives the possibility of getting hold of whatever Java library that is needed to do things in the front end. The statistics calculated on the summary page (median & averages) are using the Apache Commons <a href="http://commons.apache.org/math/" >Math library</a>. </dd>
+      <dt>Crawler</dt>
+      <dd>This is a simple  <a href="https://github.com/soulgalore/crawler" >Java crawler</a> that output all links within a domain to a file, it can follow a specific path or make sure urls containing X not will be fetched. In the backend it uses Java:s best HTTP framework: <a href="http://hc.apache.org/" >HttpComponents</a> that makes sure it can do whatever you want.</dd>
+      <dt>XMLToVelocity</dt>
+      <dd><a href="https://github.com/soulgalore/xml-velocity" >XMLToVelocity</a> is a small Java component that parses a XML-file with a Velocity template.</dd>
+      <dt>Stupid Table Plugin</dt>
+      <dd><a href="https://github.com/joequery/Stupid-Table-Plugin" >Stupid Table Plugin</a> by Joseph McCullough is a really small table column sorter. </dd>
+       <dt>BrowserTime</dt>
+        <dd><a href="https://github.com/tobli/browsertime" >BrowserTime</a> collects browser timings using the Navigation Timing API.</dd>
+
+      </dl>
+
+</div>
+
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="feature" style="word-wrap: break-word;">Create a new feature/improvement request</h2>
+    </div>
+    <p>
+      If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=&milestone=&page=1&state=open" >issue list</a>.
+    </p>
+
+    </div>
+
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="bug">Report a bug</h2>
+    </div>
+    <p style="word-wrap: break-word;">
+     If you find a bug, go through the current known bug list <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open" >https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open</a>. If it doesn't exist there, please add it!
+    </p>
+
+    </div>
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="configurerulelimits">Configure rule limits</h2>
+    </div>
+    <p>There are two different rules & limits. One is the rules system implemented in the YSlow engine, the other is the rules that chooses the colors on the summary page (green/yellow/red). You can configure & change these with a property file, located in the <pre>dependencies</pre> directory. There are two files, one for desktop & one for mobile rules:</p>
+      <pre>
+dependencies/rules-desktop.properties
+dependencies/rules-mobile.properties
+      </pre>
+      <p>
+        The rules are defined with keys & values. The keys are the rule box name, the same name you use to decide which boxes that should be shown. The values are three values separated by a <strong>;</strong> character. The direction, the limit to get green and the limit to get yellow.
+    </p>
+    <pre>
+# The sitesped score
+ruleScore=GREATER_THAN;89.99;80
+    </pre>
+    <p>You need to have a rule score greater than 89.99 to get green, and greater than 80 to get yellow.
+    </p>
+
+    <pre>
+# The number of css images
+cssImagesPerPage=LESS_THAN;2;5
+    </pre>
+<p>You need to have less than two CSS images per page to get green and you need less than five to get yellow.
+</p>
+</div>
+
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="createboxes">Create your own box on the summary page</h2>
+      <p>
+      You create your own box by adding your own metrics to the summary.xml file. For Browser metrics, it will be added automatically (yes!), for rule metrics you need to add them yourself:</p>
+      <ol>
+        <li>Create a file (or preferable a symbolic link) <pre>report/velocity/logic/custom/site.summary.xml.logic.vm</pre> file. Do that so you can keep the changes betweeb releases.</li>
+        <li>Create your own statistics object (<em style="word-wrap: break-word; white-space: normal;">com.soulgalore.velocity.NamedDescriptiveStatistics</em>):
+          <pre>#set($statsCriticalPath = $stats.newInstance("criticalPathScore","Critical Rendering Path Score","","","",1))</pre>
+        </li>
+        <li>Add the stats object to the statistics holder, a simple Map that holds all objects
+          <pre>#set($hide = $allStats.add($statsCriticalPath))</pre>
+        </li>
+
+        <li>Now loop through the YSlow/sitespeed.io xml, and add the data you want. In this example we take the rule score for the critical path rule and adds it to the statistics
+          <pre>
+#foreach ($results in $document.getRootElement().getChildren())
+  #if($!{results.getChild("g").getChild("criticalpath").getChild("score")})
+    $statsCriticalPath.addValue($math.toInteger($results.getChild("g").getChild("criticalpath").getChild("score").getValue()))
+  #end
+#end
+          </pre>
+        </li>
+        <li>Voila, now the stats will end up in the summary.xml file and you can add it to your views with the parameters to the script.</li>
+      </ol>
+
+    </div>
+ </div>
+
+ <div class="section">
+      <div class="page-header">
+      <h2 id="createcolumns">Create your column for the pages table</h2>
+      <p>It is possible to add your own columns with whatever data you want in the pages table. If you want to add your own Browser Time metrics, you just have to name your metric name end with <em>time</em> then it will automatically be possible to view. Say that you on your page has added your own measurement called <em>atfTime</em>, then you just add that as a column like this</p>
+      <pre class="bash">./bin/sitespeed.io -u http://www.peterhedenskog.com -c true -g aftTime</pre>
+
+      <p>Adding a column for rules needs a little more work, you need to create a file for the column headers and a file for displaying the actual column data. More info will be added later!</p>
+      <!--
+        <li>Create a symbolic link to
+          <pre>report/velocity/inc/pages/column-headers/custom/largeImage.vm</pre>
+        </li>
+        <li>Also create a symbolic link to <pre>report/velocity/inc/pages/columns/custom/example.vm</pre>
+        </li>
+      </ol>
+    -->
+    </div>
+ </div>
+
+<div class="section" id="addrule">
+      <div class="page-header">
+      <h2>Add your own rules</h2>
+    </div>
+    <p style="word-wrap: break-word;">
+      Sitspeed uses <a href="http://yslow.org/" >YSlow</a> as the engine for creating and managing the rules that decides how good the web page is optimized for performance.  <a href="https://twitter.com/stoyanstefanov" >Stoyan Stefanov</a> has written three good blog posts of how you develop and write rules for YSlow:
+    </p>
+      <ul>
+        <li><a href="http://www.phpied.com/yslow-development-getting-started/" >Getting started</a></li>
+        <li><a href="http://www.phpied.com/yslow-development-setup/" >Setup</a></li>
+        <li><a href="http://www.phpied.com/yslow-development-custom-rulesets/" >Custom ruleset</a></li>
+      </ul>
+
+      <p>
+      To do it for sitespeed, this is what you need:
+      </p>
+      <ol>
+        <li><p>Clone the project:
+          <pre>git clone git@github.com:soulgalore/yslow.git</pre>
+        </p>
+        </li>
+        <li><p style="word-wrap: break-word;">There are two files that you need to change, first the rule file, where you add your own rule:
+          <a href="https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" >https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js</a>. </p>
+
+          <p>You need to do two changes: Add your rule <i>YSLOW.registerRule(...)</i> and register your rule to the ruleset <i>YSLOW.registerRuleset(...)</i></p>
+          <p>In this example, I will add a rule called <b>cssprint</b> that will check for css files used only for printing the page:</p>
+<pre class="prettyprint">
+YSLOW.registerRule({
+id: 'cssprint',
+name: 'Do not load print stylesheets, use @media type print instead',
+info: 'Loading a specific stylesheet for printing slows down the page, ' +
+      'even though it is not used',
+category: ['css'],
+config: {points: 20},
+url: 'http://sitespeed.io/rules/#cssprint',
+
+lint: function (doc, cset, config) {
+var i, media, score,url,
+      offenders = [],
+      hash = {},
+      comps = cset.getComponentsByType('css'),
+      links = doc.getElementsByTagName('link');
+
+       for (i = 0, len = links.length; i < len; i += 1) {
+
+        if (links[i].media === 'print') {
+          url = links[i].href;
+          hash[url] = 1;
+        }
+      }
+
+   for (var i = 0; i < comps.length; i++) {
+    if (hash[comps[i].url]) {
+      offenders.push(comps[i]);
+    }
+  }
+    score = 100 - offenders.length * parseInt(config.points, 20);
+
+    return {
+    score: score,
+    message: (offenders.length > 0) ? YSLOW.util.plural(
+        'There %are% %num% print css files included on the page, that should be @media query instead',
+        offenders.length
+    ) : '',
+    components: offenders
+  };
+ }
+});
+</pre>
+
+<p>When you have written your rule, register it to the ruleset and give it a proper weight (the lines with <b>cssprint</b> are the new ones, the rest exists already):</p>
+
+<pre>
+YSLOW.registerRuleset({
+  id: 'sitespeed.io-X.Y',
+  name: 'Sitespeed.io rules vX.Y',
+  rules: {
+  ...
+ cssprint: {},
+ ...
+ weights: {
+ ...
+ cssprint: 3,
+ ...
+ </pre>
+
+        </li>
+
+        <li><p style="word-wrap: break-word;">The next step is adding the documentation for the rule, you do that in the file: <a href="https://github.com/soulgalore/yslow/blob/master/src/common/doc.js" >https://github.com/soulgalore/yslow/blob/master/src/common/doc.js</a>.</p> <p>You add one row where you put in the rule info:
+          <pre>YSLOW.doc.addRuleInfo('rulename','title','description')</pre>
+
+          For the <b>cssprint</b> rule, it looks like this:
+          <pre>YSLOW.doc.addRuleInfo('cssprint','Avoid loading specific css for print','Loading a specific stylesheet for print, can block rendering in your browser (depending on browser version) and will for almost all browsers, block the onload event to fire (even though the print stylesheet is not even used!).');
+          </pre>
+
+         It is used when you run sitespeed to create the rule definition HTML file that is put into the results, so you always can backtrack which rules you use. </p>
+        </li>
+        <li>Create the new YSlow javascript file: <pre>make phantomjs</pre></li>
+        <li>Test that it works on one url (standing in root for YSlow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-desktop -f xml http://yoururl.com</pre></li>
+        <li>Move the newly created rulefile into your dependencies directory for sitespeed, on my local I do it this way:
+          <pre>cp build/phantomjs/yslow.js ../sitespeed.io/dependencies/yslow-3.1.5-sitespeed.js</pre>
+         </li>
+         <li>Run sitespeed: <pre>./bin/sitespeed.io -u http://yoururl.com</pre></li>
+       </ol>
+
+
+    </div>
+</div>
+</div>
+
+
+
+
+
