@@ -36,6 +36,7 @@ twitterdescription: Documentation for the coming 3.0 release.
         <li class="toc"><a href="#mobile">Setting explicit viewport/user agent & mobile</a></li>
         <li class="toc"><a href="#limitpages">Limit pages to test</a></li>
         <li class="toc"><a href="#browsertimemetrics">Collect timing metrics</a></li>
+        <li class="toc"><a href="#connectionspeed">Throttle the connection</a></li>
         <li class="toc"><a href="#gpsi">Fetch data Google Page Speed Insights</a></li>
         <li class="toc"><a href="#wpt">Fetch data from WebPageTest</a></li>
         <li class="toc"><a href="#graphite">Send your data to Graphite</a></li>
@@ -348,6 +349,23 @@ Chrome, Firefox and PhantomJS 2.0. And hopefully more browsers in the future.</p
 <p>If you want to test in multiple browsers, you add them in a comma separated list:</p>
 <pre class="bash">$ sitespeed.io -u http://yoursite.com  -b firefox,chrome -n 7</pre>
 
+<div class="section" id="connectionspeed">
+    <div class="page-header">
+ <h2>Throttle the connection</h2>
+</div>
+<p>
+  You can throttle the connection when you are fetching metrics using the browse. Choose between:
+  <ul>
+    <li><strong>mobile3g</strong> - 1.6 Mbps/768 Kbps - 300 RTT</li>
+    <li><strong>mobile3gfast</strong> - 1.6 Mbps/768 Kbps - 150 RTT</li>
+    <li><strong>cable</strong> - 5 Mbps/1 Mbps - 28 RTT</li>
+    <li><strong>native</strong> - the current connection</li>
+  </ul>
+  And do like this:
+</p>
+<pre class="bash">$ sitespeed.io -u http://yoursite.com -b chrome --connection mobile3g</pre>
+
+</div>
 
 
 <div class="section" id="gpsi">
