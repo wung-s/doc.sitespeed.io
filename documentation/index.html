@@ -40,10 +40,13 @@ twitterdescription: Documentation for the coming 3.0 release.
         <li class="toc"><a href="#wpt">Fetch data from WebPageTest</a></li>
         <li class="toc"><a href="#graphite">Send your data to Graphite</a></li>
         <li class="toc"><a href="#requestHeaders">Set request headers</a></li>
+        <li class="toc"><a href="#config-boxes">Configure boxes on summary page</a></li>
+        <li class="toc"><a href="#config-columns">Configure columns on pages page</a></li>
       </ul>
     </ul>
    <li class="toc"><a href="#usingwpt">Using WebPageTest</a></li>
-   <li class="toc"><a href="#usinggpsi">Fetch data from Google Page Speed Insights</a></li>
+   <li class="toc"><a href="#usinggpsi">Using Google Page Speed Insights</a></li>
+   <li class="toc"><a href="#phantomjs">Using PhantomJS 2</a></li>
    <li class="toc"><a href="#continuousintegration">Continuous integration</a></li>
   <ul>
      <li class="toc"><a href="#junitandTAP">JUnit and TAP</a></li>
@@ -410,6 +413,38 @@ You configure four things: the host, port, the namespace and which data to send.
 <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io --requestHeaders {\"mysupercoolheader\":\"value\",\"coolheader2\":\"value2\"}</pre>
 </div>
 
+<div class="section" id="config-boxes">
+    <div class="page-header">
+ <h2>Configure boxes on summary page</h2>
+</div>
+<p>You can choose which boxes you want to show on the summary page by configure them by their name. You can choose to
+  show to configure them exactly as you want. Then you need to pass every name to the script:
+</p>
+<pre class="bash">$ sitespeed.io -u http://www.sitespeed.io --boxes thirdpartyversions,ycdn</pre>
+<p>Or if you want to add boxes to the already pre-configured ones, you can add a plus sign before the name(it is perfect
+  if you have your own User Timings that you want to show):
+<pre class="bash">$ sitespeed.io -u http://www.sitespeed.io -b chrome --boxes +logoTime,headerTime</pre>
+<p>These boxes will then end up in the end of the list.</p>
+</div>
+
+<div class="section" id="config-columns">
+    <div class="page-header">
+ <h2>Configure columns on pages page</h2>
+ <p>You can choose what kind of data you want to show in the colum pages.</p>
+ <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io -b chrome -c logoTime,headerTime</pre>
+</div>
+
+</div>
+
+<div class="section" id="requestHeaders">
+    <div class="page-header">
+ <h2>Set request headers</h2>
+</div>
+<p>The headers can be set if you collect rule and timings. It will not work for WPT and GPSI.
+</p>
+<pre class="bash">$ sitespeed.io -u http://www.sitespeed.io --requestHeaders {\"mysupercoolheader\":\"value\",\"coolheader2\":\"value2\"}</pre>
+</div>
+
 <div class="section" id="usingwpt">
        <div class="page-header">
       <h2>Using WebPageTest</h2>
@@ -424,6 +459,12 @@ You configure four things: the host, port, the namespace and which data to send.
     <p>To be added.</p>
 </div>
 
+<div class="section" id="phantomjs">
+       <div class="page-header">
+      <h2>PhantomsJS 2</h2>
+    </div>
+    <p>To be added.</p>
+</div>
 
 
 <div class="section" id="continuousintegration">
@@ -432,7 +473,7 @@ You configure four things: the host, port, the namespace and which data to send.
     </div>
     <p>Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don't break the performance best practice rules <em>before</em> your changes are released.
       Your build can also be broken if your page timings (choose whatever timing you need from the Navigation Timing API or your own custom timing) break your limits. And of course, if you use WebPageTest or
-      Google Page Speed Insighhs, you can use the metrics from them to break your build.
+      Google Page Speed Insights, you can use the metrics from them to break your build.
     </p>
     <p>
       Sitespeed.io outputs <a href="http://help.catchsoftware.com/display/ET/JUnit+Format">JUnit XML</a> and <a href="http://testanything.org/">TAP</a> that test your metrics against your configured limits.
@@ -514,9 +555,9 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
 
 
 <div class="section">
-      <h2 id="runinjenkins">Jenkins </h2>
+      <h2 id="jenkins">Jenkins</h2>
        <p>You may love or you may hate <a href="http://jenkins-ci.org/">Jenkins</a>, we think it is a great open source continuous integration server.
-  And to get sitespeed.io up and running is easy. And combine it with Graphite will add ou some super power.
+  And to get sitespeed.io up and running is easy. And combine it with Graphite will add some super power.
   </p>
   <p>
     <ol>
@@ -590,9 +631,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
 
   <p>
       Here's a couple of examples of what ut can look like. Here we test one site, something like this:
-<pre class="bash">
-sitespeed.io -u http://www.cybercom.com --graphiteHost localhost -m 5 --graphiteNamespace cybercom -b chrome -n 11
-</pre>
+<pre class="bash">sitespeed.io -u http://www.cybercom.com --graphiteHost localhost -m 5 --graphiteNamespace cybercom -b chrome -n 11</pre>
 
 And setup the following graphs:
 <p class="text-center">
@@ -606,9 +645,7 @@ And setup the following graphs:
 
 <p>
   In this example, we compare four Swedish newspapers, runing it like this
-  <pre>
-sitespeed.io  --sites /Users/peter/swedish.txt --graphiteHost localhost --graphiteNamespace newspapers -b chrome -n 7
-</pre>
+  <pre class="bash">$ sitespeed.io  --sites /Users/peter/swedish.txt --graphiteHost localhost --graphiteNamespace newspapers -b chrome -n 7</pre>
 and the result:
 <p class="text-center">
   <a href="grafana-swedish-newspapers.png"><img src="grafana-swedish-newspapers.png" alt="sitespeed.io comparing multiple sites" class="img-thumbnail"/></a>
