@@ -22,6 +22,9 @@ twitterdescription: Documentation for the coming 3.0 release.
 <ul id="toc" class="hidden-xs">
   <li class="toc"><a href="#introduction">Introduction</a></li>
   <li class="toc"><a href="#installation">Download and installation</a></li>
+  <ul>
+  <li class="toc"><a href="#installationUbuntu">Installation fresh Ubuntu 14</a></li>
+  </ul>
     <li class="toc"><a href="#configuration">Configuration</a></li>
     <ul>
       <li class="toc"><a href="#theoptions">The options</a></li>
@@ -37,6 +40,9 @@ twitterdescription: Documentation for the coming 3.0 release.
         <li class="toc"><a href="#limitpages">Limit pages to test</a></li>
         <li class="toc"><a href="#browsertimemetrics">Collect timing metrics</a></li>
         <li class="toc"><a href="#connectionspeed">Throttle the connection</a></li>
+      </ul>
+      <li class="toc"><a href="#nerdy">A little more nerdy</a></li>
+        <ul>
         <li class="toc"><a href="#gpsi">Fetch data Google Page Speed Insights</a></li>
         <li class="toc"><a href="#wpt">Fetch data from WebPageTest</a></li>
         <li class="toc"><a href="#graphite">Send your data to Graphite</a></li>
@@ -60,6 +66,21 @@ twitterdescription: Documentation for the coming 3.0 release.
 
 </ul>
   <li class="toc"><a href="#graphite">Graphite</a></li>
+
+<li class="toc">Metrics</li>
+<ul>
+  <li class="toc"><a href="#timingMetrics">Timing metrics</a></li>
+  <li class="toc"><a href="#timingMetricsWPT">Timing metrics from WebPageTest</a></li>
+</ul>
+
+    <li class="toc">Use cases</li>
+<ul>
+      <li class="toc">Crawl and test one site</li>
+      <li class="toc">Test specific URL:s for one site</li>
+      <li class="toc">Compare your site and benchmark against other sites</li>
+      <li class="toc">Performance budget</li>
+  </ul>
+
 
 
  <li class="toc"><a href="#developers">Developers</a></li>
@@ -93,7 +114,7 @@ twitterdescription: Documentation for the coming 3.0 release.
       <h1>Download and installation</h1>
     </div>
     <h3>Install on Mac, Linux & Windows</h3>
-        <p>Prerequisites: Install <a href="http://nodejs.org/download/">NodeJS</a> (<a href="https://github.com/creationix/nvm">Ubuntu</a>) and make sure you have <a href="https://github.com/npm/npm">NPM</a> installed.</p>
+        <p>Prerequisites: Install <a href="http://nodejs.org/download/">NodeJS</a> (<a href="https://github.com/creationix/nvm">Ubuntu</a>) and make sure you have <a href="https://github.com/npm/npm">npm</a> installed.</p>
 <pre class="bash">
 $ npm install sitespeed.io
 </pre>
@@ -109,7 +130,36 @@ $ npm install sitespeed.io -g
         <pre class="bash">$ sitespeed.io -h</pre>
         <p>or on Windows:</p>
         <pre class="bash">$ nodejs sitespeed.io -h</pre>
+</div>
 
+<div class="section" id="installationUbuntu">
+
+  <div class="page-header">
+
+    <h1>Install on a clean Ubuntu 14</h1>
+  </div>
+    <p>Here are the steps you need to do to install on a newly installed Ubuntu 14:</p>
+    <p>
+        Install nodejs (using nvm)
+        <pre class="bash">$ sudo apt-get update</pre>
+        <pre class="bash">$ sudo apt-get install curl</pre>
+        <pre class="bash">$ curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh</pre>
+        <pre class="bash">$ nvm install 0.11.14</pre>
+        Install java
+        <pre class="bash">$ sudo apt-get install default-jre</pre>
+        Install sitespeed.io
+        <pre class="bash">$ npm install sitespeed.io@3.0.0-beta-4 -g</pre>
+        Install Firefox (if you want to test using Firefox)
+        <pre class="bash">$ sudo apt-get install firefox</pre>
+        Install Chrome
+        <pre class="bash">$ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -</pre>
+        <pre class="bash">$ sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'</pre>
+        <pre class="bash">$ sudo apt-get update</pre>
+        <pre class="bash">$ sudo apt-get install google-chrome-stable</pre>
+        And follow <a href="http://yizeng.me/2014/04/20/install-chromedriver-and-phantomjs-on-linux-mint/">these</a> instructions to install the Chrome driver.
+        TODO missing instructions for Xvfb.
+    </p>
+</div>
 
 <div class="section" id="configuration">
 
@@ -467,14 +517,90 @@ You configure four things: the host, port, the namespace and which data to send.
        <div class="page-header">
       <h2>Using WebPageTest</h2>
     </div>
-    <p>To be added.</p>
+    <p>Yep we all love WebPageTest (WPT), so we made it possible to drive an instance of and collect the data from it.
+    Out of the it will collect <a href="https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/webpagetest">these</a> metrics
+    that can be displayed on the summary page. By default, these will be shown:</p>
+
+    <p class="text-center">
+      <a href="wpt-summary.png"><img src="wpt-summary.png" alt="" class="img-thumbnail"/></a>
+    </p>
+    <p>
+      On the pages summary, you will also automatically get the SpeedIndex score:
+    </p>
+
+    <p class="text-center">
+      <a href="wpt-pages.png"><img src="wpt-pages.png" alt="" class="img-thumbnail"/></a>
+    </p>
+
+    <p>
+      And on the detailed summary page, we show some interesting metrics and the waterfalls
+      for the median result of both first and repeated view:
+    </p>
+
+    <p class="text-center">
+      <a href="wpt-detailed-page-info.png"><img src="wpt-detailed-page-info.png" alt="" class="img-thumbnail"/></a>
+    </p>
+
+    <div class="page-header">
+    <h2>Configuration<h2>
+    </div>
+    <p>Coming soon!</p>
+
+    <div class="page-header">
+   <h2>Performance budget</h2>
+ </div>
+ <p>Yep, the data collected from WPT can be used to break your build test using TAP or JUnit.xml output!
+
+
+ </p>
+
+<div class="page-header">
+<h2>Graph the WPT metrics</h2>
+</div>
+<p>
+  The data collected and showed, will also be sent to Graphite.
+</p>
+
 </div>
 
 <div class="section" id="usinggpsi">
        <div class="page-header">
       <h2>Using Google Page Speed Insights</h2>
     </div>
-    <p>To be added.</p>
+    <p>Google Page Speed Insights (GPSI) is Google:s rule/best practices rules to build a web site that are as fast as possible.
+      Follow the rules and your site will be fast.</p>
+    <p>
+      Sitespeed.io integrates GPSI so you can fetch how good your site is doing. Two things: Your site needs to reachable from the internet (and no basic authentication) and
+      you need to supply your own <a href="https://console.developers.google.com/project">Google key</a>.</p>
+      <p>
+          Run it like this:
+          <pre class="bash">$ sitespeed.io -u http://yoursite.com  --gpsiKey MY_SECRET_KEY</pre>
+      </p>
+      <p>
+        Sitespeed.io will collect all availible data from GPSI. On the summary page,
+        the GPSI score will be shown. We also collect number of requests. You can check the implementation
+        <a href="https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/gpsi">here</a> and add
+        an issue if you want us to collect more data:</p>
+        <p class="text-center">
+          <a href="gpsi-summary.png"><img src="gpsi-summary.png" alt="" class="img-thumbnail"/></a>
+        </p>
+        <p>
+          On the pages summary, you will also automatically the GPSI score:
+        </p>
+
+        <p class="text-center">
+          <a href="gpsi-pages.png"><img src="gpsi-pages.png" alt="" class="img-thumbnail"/></a>
+        </p>
+
+        <p>
+          And on the detailed summary page, we show all the data that are provided by GPSI, it
+          looks like this:
+        </p>
+
+        <p class="text-center">
+          <a href="gpsi-detailed-page-info.png"><img src="gpsi-detailed-page-info.png" alt="" class="img-thumbnail"/></a>
+        </p>
+
 </div>
 
 <div class="section" id="phantomjs">
@@ -613,6 +739,10 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
     </ol>
   </p>
 
+  <p>
+    If you want the browsers to run headless, use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin">Xvfb plugin</a>.
+  </p>
+
   </div>
 
 <div class="section" id="travis">
@@ -678,6 +808,42 @@ and the result:
 </p>
 </div>
 
+<div class="section">
+      <div class="page-header">
+      <h2 id="timingMetrics">Timing metrics</h2>
+    </div>
+    <p>
+      All the metrics are collected using an empty cache.</p>
+    <ul>
+      <li><em>backEndTime</em> - The time it takes for the network and the server to generate and start sending the HTML. Definition: responseStart - navigationStart</li>
+      <li><em>domContentLoadedTime</em> - The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the users location to your server. Definition: domContentLoadedEventStart - navigationStart</li>
+      <li><em>domInteractiveTime</em> - The time the browser takes to parse the document, including the network time from the users location to your server. Definition: domInteractive - navigationStart</li>
+      <li><em>domainLookupTime</em> - The time it takes to do the DNS lookup. Definition: domainLookupEnd - domainLookupStart</li>
+      <li><em>frontEndTime</em> - The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd</li>
+      <li><em>pageDownloadTime</em> - How long time does it take to download the page (the HTML). Definition: responseEnd - responseStart</li>
+      <li><em>pageLoadTime</em> - The time it takes for page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Definition: loadEventStart - navigationStart</li>
+      <li><em>redirectionTime</em> - Time spent on redirects. Definition: fetchStart - navigationStart</li>
+      <li><em>serverConnectionTime</em> - How long time it takes to connect to the server. Definition: connectEnd - connectStart</li>
+      <li><em>firstPaint</em> - This is when the first paint happens on the screen. If the browser support this metric, we use that. Else we use the time of the last non-async script or css from the head. You can easily verify if the first paint metrics is valid for you, by record a video using WebPageTest, and then check exactly when the first paint happens and compare that with the timing from the browser.</li>
+      <li> <a href="https://github.com/WPO-Foundation/RUM-SpeedIndex">RUM-SpeedIndex</a> - created by Pat Meenan
+        and calculate SpeedIndex measurements using Resource Timings. Itsn't as perfect as Speed Index in WPT but a good start.</li>
+    </ul>
+    </div>
+
+<div class="section">
+      <div class="page-header">
+      <h2 id="timingMetricsWPT">Timing metrics collected using WPT</h2>
+    </div>
+    <p>
+      All the metrics are collected both for first and repeated view.</p>
+    <ul>
+      <li><em>firstPaint</em></li>
+      <li><em>loadTime</em></li>
+      <li><em>TTFB</em></li>
+      <li><em>SpeedIndex</em> - is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. You need to <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index">read more</a> to fully understand how it works.</li>
+      <li><em>VisualComplete</em></li>
+    </ul>
+</div>
 
 <div class="section">
       <div class="page-header">
