@@ -21,6 +21,8 @@ nav: faq
   <section>
     <ul>
       <li><a href="#30">WTF when will 3.0 be released as stable?</a></li>
+      <li><a href="#graphite">I don't get all values in Graphite?</a></li>
+      <li><a href="#ffprofile">Firefox don't work on Linux</a></a></li>
       <li><a href="#page-header">I have a URL that can't be analyzed, what should I do?</a></li>
       <li><a href="#knownbugs">Are there any known bugs?</a></li>
       <li><a href="#unsupported">I get java.io.UnsupportedEncodingException: gzip, what does that mean?</a></li>
@@ -39,6 +41,23 @@ nav: faq
   <section id="30">
         <div class="page-header"><h3>WTF when will 3.0 be released as stable?</h3></div>
         <p>We can promise it will be released in December 2014. We have some fixes left to make the runs more stable, stay tuned!</p>
+      </section>
+
+      <section id="graphite">
+        <div class="page-header"><h3>I don't get all values in Graphite?</h3></div>
+        <p>
+          Doesn't all values reach Gaphite (are you missing values), then you should check your <strong>carbon.conf</strong> file.
+          The configuration <strong>MAX_CREATES_PER_MINUTE</strong> needs to be set to high (we have seen that 50 is too low). To make sure it works, set it like this:
+          <pre>MAX_CREATES_PER_MINUTE = inf</pre>
+        </p>
+      </section>
+
+      <section id="ffprofile">
+        <div class="page-header"><h3>Firefox don't work on Linux</h3></div>
+        <p>If you run on Linux without a graphical desktop, remember that you need to use
+          <a href="http://www.x.org/archive/current/doc/man/man1/Xvfb.1.xhtml">Xvfb</a> to get it to work.
+          If you don't, the error you will get is that Firefox can't install the profile. Something like this: <em>Failed to install profile; firefox terminated ...</em>
+        </p>
       </section>
 
   <section id="urldontwork">
