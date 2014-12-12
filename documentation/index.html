@@ -78,7 +78,7 @@ twitterdescription: Documentation for the coming 3.0 release.
       <li class="toc">Crawl and test one site</li>
       <li class="toc">Test specific URL:s for one site</li>
       <li class="toc">Compare your site and benchmark against other sites</li>
-      <li class="toc">Performance budget</li>
+      <li class="toc"><a href="#perfBudget">Performance budget</a></li>
   </ul>
 
 
@@ -123,7 +123,7 @@ $ npm install sitespeed.io
 If you want it installed globally (running it from wherever):
 </p>
 <pre class="bash">
-$ npm install sitespeed.io -g
+$ npm install -g sitespeed.io
 </pre>
 
         <p>Run</p>
@@ -148,7 +148,7 @@ $ npm install sitespeed.io -g
         Install java
         <pre class="bash">$ sudo apt-get install default-jre</pre>
         Install sitespeed.io
-        <pre class="bash">$ npm install sitespeed.io@3.0.0-beta-6 -g</pre>
+        <pre class="bash">$ npm install -g sitespeed.io</pre>
         Install Firefox (if you want to test using Firefox)
         <pre class="bash">$ sudo apt-get install firefox</pre>
         Install Chrome
@@ -725,7 +725,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
       <li>
         In the execute shell form:
         <pre>sitespeed.io -u http://stage.cybercom.com --junit > $WORKSPACE/junit.xml</pre>
-        And in the post task <strong>Test report XMLs</strong>add:
+        And in the post task <strong>Test report XMLs</strong> add:
         <pre>junit.xml</pre>
       </li>
       <li>
@@ -853,6 +853,90 @@ and the result:
       <li><em>SpeedIndex</em> - is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. You need to <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index">read more</a> to fully understand how it works.</li>
       <li><em>VisualComplete</em></li>
     </ul>
+</div>
+
+<div class="section">
+  <div class="page-header">
+    <h2 id="oneSite">Crawl and test one site</h2>
+  </div>
+  <p>
+    // TODO
+  </p>
+</div>
+
+<div class="section">
+  <div class="page-header">
+    <h2 id="specificUrls">Test specific URL:s for one site</h2>
+  </div>
+  <p>
+    // TODO
+  </p>
+</div>
+
+<div class="section">
+  <div class="page-header">
+    <h2 id="compareAndBench">Compare your site and benchmark against other sites</h2>
+  </div>
+  <p>
+    // TODO
+  </p>
+</div>
+
+<div class="section">
+  <div class="page-header">
+    <h2 id="perfBudget">Performance budget</h2>
+  </div>
+  <p>
+    Have you heard of a performance budget? If not, please read the excellent posts by Tim Kadlec:
+    <a href="http://timkadlec.com/2013/01/setting-a-performance-budget/">Setting a performance budget</a> and <a href="http://timkadlec.com/2014/01/fast-enough/">Fast enough</a>. Also read Daniel Malls
+    <a href="http://danielmall.com/articles/how-to-make-a-performance-budget/">How to make a performance budget</a>. After that, continue setup sitespeed.io :)
+  </p>
+
+  <h3>Testing timings</h3>
+  <p>
+    If you have a budget where you want to test the (RUM) speed index, you add a file like this:
+    <pre>
+{
+  "timings": {
+    "speedIndex": 1000
+  }
+}</pre>
+      You can test all timings produced by BrowserTime like <em>domContentLoadedTime</em>
+      or <em>backEndTime</em>.
+    </p>
+
+    <h3>Testing user timings</h3>
+    <p>
+      You can have a budget for your own User Timings metrics. For www.sitespeed.io we have
+      two user timing metrics: <em>logoTime</em> and <em>headerTime</em>. You can add them
+      to the budget like thisy
+      <pre>
+{
+  "timings": {
+    "headerTime": 800,
+    "logoTime": 500
+  }
+}</pre>
+        And they will be tested and matched against your configured value.
+      </p>
+
+  <h3>Using WebPageTest</h3>
+  <p>If you are using WebPageTest, you can setup a budget matching almost whatever WPT fetches but the most usuable
+    things are testing the number of requests, size, TTFB and the speed index score. To test all these four things,
+    you add a JSON file looking like this:
+    <pre>
+{
+  "wpt" : {
+    "requests": 60,
+    "TTFB": 200,
+    "bytesIn": 1000000,
+    "SpeedIndex" : 1000
+  }
+}</pre>
+    And change the values to what you want to test. In this example the budget will blow if we have more that 60 requests on a page,
+    a time to first byte larger than 200 ms, a page weight more than 1000 kb and a speed index score larger than 1000.
+  </p>
+
 </div>
 
 <div class="section">
