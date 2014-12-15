@@ -231,7 +231,7 @@ Options:
 --gpsiKey                                              Your Google API Key, configure it to also fetch data from Google Page Speed Insights.
 --noYslow                                              Set to true to turn of collecting metrics using YSlow.
 --wptConfig &lt;FILE&gt;                                     WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method
---wptUrl &lt;URL&gt;                                         The URL to your private webpagetest instance.
+--wptHost &lt;URL&gt;                                         The host domain of the webpagetest instance.
 --wptKey &lt;KEY&gt;                                         The API key if running on webpagetest on the public instances.
 --requestHeaders &lt;FILE&gt;                                Any request headers to use, a file with JSON form of {"name":"value","name2":"value"}. Not supported for WPT & GPSI.
    </pre>
@@ -440,7 +440,7 @@ Chrome, Firefox and PhantomJS 2.0. And hopefully more browsers in the future.</p
 
 <p>Yep, it is true! You can drive WebPageTest from sitespeed.io. You need to either have your own private instance or an API key.
 </p>
-<pre class="bash">$ sitespeed.io -u http://yoursite.com  --wptUrl www.webpagetest.org --wptKey MY_SECRET_API_KEY</pre>
+<pre class="bash">$ sitespeed.io -u http://yoursite.com  --wptHost www.webpagetest.org --wptKey MY_SECRET_API_KEY</pre>
 <p>
   In the background Marcel Durans WPT API is used, specific the <a href="https://github.com/marcelduran/webpagetest-api#user-content-test-works-for-test-command-only">runTest</a> method.
   You can pass all the parameters in the runTest through sitespeed.io by the <strong>--wptConfig</strong> parameter and supply a JSON file.
