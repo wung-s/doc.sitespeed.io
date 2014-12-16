@@ -2,7 +2,7 @@
 layout: default
 title: Documentation - sitespeed.io 3.0
 description: Here's the documentation of sitespeed.io 3.0 the workflow.
-keywords: documentation, workflow, sitespeed.io, jenkins, navigation timing api
+keywords: documentation, web performance, sitespeed.io, jenkins, graphite, navigation timing api
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
@@ -407,7 +407,7 @@ Chrome, Firefox and PhantomJS 2.0. And hopefully more browsers in the future.</p
  <h2>Throttle the connection</h2>
 </div>
 <p>
-  You can throttle the connection when you are fetching metrics using the browse. Choose between:
+  You can throttle the connection when you are fetching metrics using the browser. Choose between:
   <ul>
     <li><strong>mobile3g</strong> - 1.6 Mbps/768 Kbps - 300 RTT</li>
     <li><strong>mobile3gfast</strong> - 1.6 Mbps/768 Kbps - 150 RTT</li>
@@ -554,24 +554,49 @@ And the run like this:
     <div class="page-header">
     <h2>Configuration<h2>
     </div>
-    <p>Coming soon!</p>
-
-    <div class="page-header">
-   <h2>Performance budget</h2>
- </div>
- <p>Yep, the data collected from WPT can be used to break your build test using TAP or JUnit.xml output!
-
-
- </p>
+    <p>There are some default configuration that is passed to WebPageTest. It looks like this:
+<pre>
+{
+  pollResults: 10,
+  timeout: 600,
+  firstViewOnly: false,
+  runs: n, // the number of times passed by -n, default 3
+  private: true,
+  aftRenderingTime: true,
+  location: 'Dulles:Chrome',
+  video: true
+}</pre>
+And if basic auth is set, it is passed as basic auth.</p>
+<p>
+  In the background the test method in Marcel Durans webpagetest-api is used, so you can configure almost everyting. Checkout the docs <a href="https://github.com/marcelduran/webpagetest-api#user-content-test-works-for-test-command-only">here</a>.
+  You configure your own stuff by feeding sitespeed.io with a JSON file. Say you want to test form Dulles using a throttled 3G connection:
+<pre>
+{
+  location: 'Dulles:Firefox',
+  connectivity: '3G'
+}</pre>
+The default location will be overriden and the connectivty will be set to 3G.
+Feed it with: <code>--wptConfig yourFile.json</code>
+</p>
 
 <div class="page-header">
 <h2>Graph the WPT metrics</h2>
 </div>
 <p>
-  The data collected and showed, will also be sent to Graphite.
+  The data collected and showed can also be sent to Graphite. Checkout the Graphite <a href="#graphite">section</a>.
 </p>
 
 </div>
+
+<div class="page-header">
+  <h2>WPT performance budget</h2>
+</div>
+<p>
+  The timings and metrics collected by WebPageTest can also be used in you performance budget. More info <a href="#perfBudget">here</a>.
+</p>
+
+</div>
+
 
 <div class="section" id="usinggpsi">
        <div class="page-header">
@@ -849,9 +874,9 @@ and the result:
     <p>
       All the metrics are collected both for first and repeated view.</p>
     <ul>
-      <li><em>firstPaint</em></li>
-      <li><em>loadTime</em></li>
-      <li><em>TTFB</em></li>
+      <li><em>firstPaint</em> - the time from the start of navigation until the first non-white content was painted to the screen</li>
+      <li><em>loadTime</em> - the time from the start of the initial navigation until the beginning of the window load event (onload).</li>
+      <li><em>TTFB</em> - the time from the start of navigation until the first byte of the base page is returned (after following any redirects)</li>
       <li><em>SpeedIndex</em> - is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. You need to <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index">read more</a> to fully understand how it works.</li>
       <li><em>VisualComplete</em></li>
     </ul>
@@ -903,6 +928,9 @@ and the result:
     "speedIndex": 1000
   }
 }</pre>
+Then run it like this:
+<pre class="bash">$ sitespeed.io -u http://www.sitespeed.io --budget myBudget.json -b chrome -n 11</pre>
+
       You can test all timings produced by BrowserTime like <em>domContentLoadedTime</em>
       or <em>backEndTime</em>.
     </p>
