@@ -52,6 +52,9 @@ twitterdescription: Documentation for the coming 3.0 release.
       </ul>
     </ul>
    <li class="toc"><a href="#usingwpt">Using WebPageTest</a></li>
+   <ul>
+     <li class="toc"><a href="#wptconfig">Configuration</a></li>
+   </ul>
    <li class="toc"><a href="#usinggpsi">Using Google Page Speed Insights</a></li>
    <li class="toc"><a href="#phantomjs">Using PhantomJS 2</a></li>
    <li class="toc"><a href="#continuousintegration">Continuous integration</a></li>
@@ -552,7 +555,7 @@ And the run like this:
     </p>
 
     <div class="page-header">
-    <h2>Configuration<h2>
+    <h2 id="wptconfig">Configuration<h2>
     </div>
     <p>There are some default configuration that is passed to WebPageTest. It looks like this:
 <pre>
@@ -572,8 +575,8 @@ And if basic auth is set, it is passed as basic auth.</p>
   You configure your own stuff by feeding sitespeed.io with a JSON file. Say you want to test form Dulles using a throttled 3G connection:
 <pre>
 {
-  location: 'Dulles:Firefox',
-  connectivity: '3G'
+  "location": "Dulles:Firefox",
+  "connectivity": "3G"
 }</pre>
 The default location will be overriden and the connectivty will be set to 3G.
 Feed it with: <code>--wptConfig yourFile.json</code>
