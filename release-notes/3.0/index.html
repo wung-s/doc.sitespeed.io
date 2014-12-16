@@ -27,8 +27,11 @@ so much easier to maintain.</p>
   <li><strong>PostTask</strong> - when sitespeed.io has analyzed all pages and collected the metrics, you can run your own code to handle the result. This can be used to store the data in a database
     or create your own reports.
   </li>
-  <li><strong>Drive WebPageTest</strong> - you can now feed <a href="http://www.webpagetest.org/">WebPageTest</a> with URL:s to test and collect the metrics and include them in your sitespeed.io report.</li>
+  <li><strong>Drive WebPageTest</strong> - you can now feed <a href="http://www.webpagetest.org/">WebPageTest</a> with URL:s to test and collect the metrics and include them in your sitespeed.io report.
+    <img src="/documentation/wpt-summary.png" class="img-thumbnail"/>
+  </li>
   <li><strong>Google Page Speed Insights</strong> - collect the score and other data and show it in your sitespeed.io report.
+    <img src="/documentation/gpsi-detailed-page-info.png" class="img-thumbnail"/>
   </li>
   <li><strong>Support for PhantomJS 2</strong> - yep we know, 2.0 is not released yet and we are really looking forward to it, so
     we added the functionality to use it already. What's extra cool with 2.0 (except that it is much faster) is that it supports the Navigation Timing API.</li>
@@ -37,7 +40,18 @@ so much easier to maintain.</p>
   <li><strong>TAP</strong> - you can now generate <a href="http://testanything.org/">TAP</a> reports, making your CI tool break your build if you don't follow the web performance best practice rules</li>
   <li><strong>Performance budget</strong> - we kind of had support for a performance bugdget before with the JUnitXML. With the new version it is much cleaner: <a href="/documentation/#perfBudget">specify</a> which values
   you will test against and run. </li>
+  <li><strong>Throttle the connection</strong> - You can throttle the connection when you are fetching timing metrics from the browser. Choose between:
+    <ul>
+      <li><strong>mobile3g</strong> - 1.6 Mbps/768 Kbps - 300 RTT</li>
+      <li><strong>mobile3gfast</strong> - 1.6 Mbps/768 Kbps - 150 RTT</li>
+      <li><strong>cable</strong> - 5 Mbps/1 Mbps - 28 RTT</li>
+      <li><strong>native</strong> - the current connection</li>
+    </ul>
+  </li>
 </ul>
+
+<p>Tobias and me (Peter) has worked really hard the last half year to make the 3.0 release happen. We hope that you will love it as much as we do.
+  There's still bugs out there, if you find them, please add an <a href="https://github.com/sitespeedio/sitespeed.io/issues">issue</a> at Github and solve it with a pull request :)
 
 <div class="note note-warning">The input parameters has changed since 2.5. Yep we know it is bad practice, the reason is that the old version
 had a really bad CLI handling where you could only fetch a input parameter with a character and we where running out of characters! To see the new parameters see
