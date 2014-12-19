@@ -15,7 +15,7 @@ twitterdescription: The new sitespeed.io has support for driving WebPageTest, se
 so much easier to maintain.</p>
 <p>Here's a list of the new things:</p>
 <ul>
-  <li><strong>NodeJS</strong> - We moved (almost) everything to NodeJS. We are still dependent on Java, because the (old) Java crawler is still used and we will
+  <li><strong>NodeJS</strong> - We moved (almost) everything to NodeJS. We are still dependent on Java, because the (old) Java crawler is still used and we will try to remove it in the future.
      The new version is faster than the old one. And so much easier to change and better separation between logic and </li>
   <li><strong>Send metrics to Graphite</strong> - one of the number one feature requests for sitespeed.io has been to collect data over time and graph it. Sitespeed.io now supports sending the metrics to Graphite  It can looks something like this
     <img src="/documentation/grafana-timing-metrics.png" class="img-thumbnail"/>
@@ -34,11 +34,11 @@ so much easier to maintain.</p>
     <img src="/documentation/gpsi-detailed-page-info.png" class="img-thumbnail"/>
   </li>
   <li><strong>Support for PhantomJS 2</strong> - yep we know, 2.0 is not released yet and we are really looking forward to it, so
-    we added the functionality to use it already. What's extra cool with 2.0 (except that it is much faster) is that it supports the Navigation Timing API.</li>
+    we added the functionality to use it already. What's extra cool with 2.0 (except that it is much faster) is that it supports the Navigation Timing API. You can use it by pointing out your binary by <code>--phantomjsPath</code></li>
   <li><strong>Two new rules</strong> - check if connection is closed and don't set private headers on static assets.</li>
   <li><strong>Two new summary pages</strong> - slowest domains and hotlist (find troublesome assets fast)</li>
   <li><strong>TAP</strong> - you can now generate <a href="http://testanything.org/">TAP</a> reports, making your CI tool break your build if you don't follow the web performance best practice rules</li>
-  <li><strong>Performance budget</strong> - we kind of had support for a performance bugdget before with the JUnitXML. With the new version it is much cleaner: <a href="/documentation/#perfBudget">specify</a> which values
+  <li><strong>Performance budget</strong> - we kind of had support for a performance budget before with the JUnitXML. With the new version it is much cleaner: <a href="/documentation/#perfBudget">specify</a> which values
   you will test against and run. </li>
   <li><strong>Throttle the connection</strong> - You can throttle the connection when you are fetching timing metrics from the browser. Choose between:
     <ul>
@@ -50,8 +50,8 @@ so much easier to maintain.</p>
   </li>
 </ul>
 
-<p>Tobias and me (Peter) has worked really hard the last half year to make the 3.0 release happen. We hope that you will love it as much as we do.
-  There's still bugs out there, if you find them, please add an <a href="https://github.com/sitespeedio/sitespeed.io/issues">issue</a> at Github and solve it with a pull request :)
+<p>Tobias and me (Peter) have worked really hard the last half year to make the 3.0 release happen. We hope that you will love it as much as we do.
+  There are still bugs out there, if you find them, please add an <a href="https://github.com/sitespeedio/sitespeed.io/issues">issue</a> at GitHub and solve it with a pull request :)
 
 <div class="note note-warning">The input parameters has changed since 2.5. Yep we know it is bad practice, the reason is that the old version
 had a really bad CLI handling where you could only fetch a input parameter with a character and we where running out of characters! To see the new parameters see
