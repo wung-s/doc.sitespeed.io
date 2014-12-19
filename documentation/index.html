@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Documentation - sitespeed.io 3.0
-description: Here's the documentation of sitespeed.io 3.0 the workflow.
-keywords: documentation, web performance, sitespeed.io, jenkins, graphite, navigation timing api
+description: Here's the documentation of how to use sitespeed.io 3.0.
+keywords: documentation, web performance, sitespeed.io, graphite, navigation timing api
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Documentation for the coming 3.0 release.
+twitterdescription: Documentation for the sitespeed.io 3.0.
 ---
  <div class="row">
     <div class="col-lg-12">
@@ -78,9 +78,9 @@ twitterdescription: Documentation for the coming 3.0 release.
 
     <li class="toc">Use cases</li>
 <ul>
-      <li class="toc">Crawl and test one site</li>
-      <li class="toc">Test specific URL:s for one site</li>
-      <li class="toc">Compare your site and benchmark against other sites</li>
+      <li class="toc"><a href="#oneSite">Crawl and test one site</a></li>
+      <li class="toc"><a href="#specificUrls">Test specific URL:s for one site</a></li>
+      <li class="toc"><a href="#compareAndBench">Compare and benchmark your site against other sites</a></li>
       <li class="toc"><a href="#perfBudget">Performance budget</a></li>
   </ul>
 
@@ -89,6 +89,7 @@ twitterdescription: Documentation for the coming 3.0 release.
  <li class="toc"><a href="#developers">Developers</a></li>
   <ul>
   <li class="toc"><a href="#postTasks">Add your own post tasks</a></li>
+  <li class="toc"><a href="#addRules">Add your own rules</a></li>
   <li class="toc"><a href="#dependencies">Dependencies</a></li>
      <li class="toc"><a href="#components">Components</a></li>
      <li class="toc"><a href="#feature">Create a new feature request</a></li>
@@ -530,9 +531,17 @@ And the run like this:
        <div class="page-header">
       <h2>Using WebPageTest</h2>
     </div>
-    <p>Yep we all love WebPageTest (WPT), so we made it possible to drive an instance of and collect the data from it.
+    <p>Yep we all love <a href="http://www.webpagetest.org">WebPageTest</a> (WPT), so we made it possible to drive an instance of and collect the data from it.
+    </p>
+    <p>
+    To use WPT you can either get an <a href="http://www.webpagetest.org/getkey.php">API key</a>(sponsored by Akamai) for the global version
+    or follow Pat Meenans instructions on <a href="http://calendar.perfplanet.com/2014/webpagetest-private-instances-in-five-minutes/">how to get a private version up and running in 5 minutes</a>.
+    </p>
+
+    <p>
     Out of the it will collect <a href="https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/webpagetest">these</a> metrics
     that can be displayed on the summary page. By default, these will be shown:</p>
+
 
     <p class="text-center">
       <a href="wpt-summary.png"><img src="wpt-summary.png" alt="" class="img-thumbnail"/></a>
@@ -890,7 +899,21 @@ and the result:
     <h2 id="oneSite">Crawl and test one site</h2>
   </div>
   <p>
-    // TODO
+    One of the most common use case is to crawl a site and analyze and measure the URL:s.
+    Crawling a site is good because it will find new pages that are linked for the pages you crawl.
+  </p>
+  <p>
+    I use this for sites where the
+    content team create new pages directly in the CMS and I as developer are out of control of
+    which pages that exist. Crawling will make sure we pick up new pages and measure them.
+    I usually use this in production to pick up pages that could/should be faster.
+  </p>
+  <p>
+    Crawling too deep can take long time. One way to handle that is to test specific
+    sections one at a time. Say we want to test sport pages for New York Times:
+    <pre class="bash">
+sitespeed.io -u http://www.nytimes.com/pages/sports/ -c /sports/ -d 2</pre>
+  Will make sure we only pick up pages under /sports/.
   </p>
 </div>
 
@@ -899,17 +922,66 @@ and the result:
     <h2 id="specificUrls">Test specific URL:s for one site</h2>
   </div>
   <p>
-    // TODO
+    Testing the same URL over and over again is good so you can benchmark it. I use it
+    in my continous integration tool (to check the performance before changes is released) and
+    when I compare sites to its competitors (mathing start pages, product pages, purcahse flows etc).
   </p>
+  <h3>How do I choose which URL:s to test?</h3>
+  <p>I usually use Google Analytics to check which are the most pages or talk to the business to check that we have
+  the same understanding of which pages are the most important of our site. If we gonna test the URL:s
+  in our continous integration, I try to keep the list of URL:s small, max 10, so we can test
+  each URL many times to get timings that consistent between runs.</p>
+  <h3>Setup</h3>
+  <p>
+    I create a text file named amazon.txt with all the URL:s
+<pre>
+http://www.amazon.com/
+http://www.amazon.com/gp/site-directory/
+http://www.amazon.com/dp/B00I15SB16/ref=ods_gw_comb_xmas_kindle
+</pre>
+And run it like this
+<pre class="bash">sitespeed.io -f amazon.txt -b chrome -n 11</pre>
+  </p>
+
 </div>
 
 <div class="section">
   <div class="page-header">
-    <h2 id="compareAndBench">Compare your site and benchmark against other sites</h2>
+    <h2 id="compareAndBench">Compare and benchmark your site against other sites</h2>
   </div>
   <p>
-    // TODO
+  Comparing your site against competitors is often very intresting. I usually use it to compare how fast pages are loaded
+  and also how the pages are built (how many requests, how much javascript etc).
   </p>
+    <h3>Setup the files</h3>
+    <p>
+      I create one file containing the urls for each site that I want to test. Testing
+      amazon.com I create file named apple.txt with the URL:s I want to test:
+<pre>
+http://www.apple.com/
+http://www.apple.com/iphone/
+http://www.apple.com/iphone-6/
+</pre>
+and I compare it to Sony Mobile. I create a new text file named sony.txt with the following content:
+<pre>
+http://www.sonymobile.com/se/
+http://www.sonymobile.com/se/products/phones/
+http://www.sonymobile.com/se/products/phones/xperia-z3-compact/
+</pre>
+And then I create a master file linking in the other two files:
+<pre>
+apple.txt
+sony.txt
+</pre>
+    </p>
+    <h3>Run the test</h3>
+    <p>
+      Then I run it like this:
+<pre class="bash">sitespeed.io --sites master.txt</pre>
+Of course you can add all the parameters as usual to sitespeed, testing your site using
+chrome, test 11 times and also test with WebPageTest and Google Page Speed Insights and sending the data to Graphite looks like this:
+<pre class="bash">sitespeed.io --sites master.txt -b chrome -n 11 --wptHost your.webpagetest.com --gpsiKey YOUR_GOOGLE_KEY --graphiteHost mygraphitehost.com</pre>
+</p>
 </div>
 
 <div class="section">
@@ -1035,6 +1107,108 @@ The task will be called with the following:
 
     </div>
 
+    <div class="section" id="addrule">
+      <div class="page-header">
+        <h2>Add your own rules</h2>
+      </div>
+      <p style="word-wrap: break-word;">
+        Sitspeed uses <a href="http://yslow.org/" >YSlow</a> as the engine for creating and managing the rules that decides how good the web page is optimized for performance.  <a href="https://twitter.com/stoyanstefanov" >Stoyan Stefanov</a> has written three good blog posts of how you develop and write rules for YSlow:
+      </p>
+      <ul>
+        <li><a href="http://www.phpied.com/yslow-development-getting-started/" >Getting started</a></li>
+        <li><a href="http://www.phpied.com/yslow-development-setup/" >Setup</a></li>
+        <li><a href="http://www.phpied.com/yslow-development-custom-rulesets/" >Custom ruleset</a></li>
+      </ul>
+
+      <p>
+        To do it for sitespeed, this is what you need:
+      </p>
+      <ol>
+        <li><p>Clone the project:
+          <pre>git clone git@github.com:sitespeedio/yslow.git</pre>
+        </p>
+      </li>
+      <li><p style="word-wrap: break-word;">There are two files that you need to change, first the rule file, where you add your own rule:
+        <a href="https://github.com/sitespeedio/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js" >https://github.com/sitespeedio/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js</a>. </p>
+
+        <p>You need to do two changes: Add your rule <i>YSLOW.registerRule(...)</i> and register your rule to the ruleset <i>YSLOW.registerRuleset(...)</i></p>
+        <p>In this example, I will add a rule called <b>cssprint</b> that will check for css files used only for printing the page:</p>
+        <pre class="prettyprint">
+YSLOW.registerRule({
+  id: 'cssprint',
+  name: 'Do not load print stylesheets, use @media type print instead',
+  info: 'Loading a specific stylesheet for printing slows down the page, ' +
+  'even though it is not used',
+  category: ['css'],
+  config: {points: 20},
+  url: 'http://sitespeed.io/rules/#cssprint',
+  lint: function (doc, cset, config) {
+    var i, media, score,url,
+    offenders = [],
+    hash = {},
+    comps = cset.getComponentsByType('css'),
+    links = doc.getElementsByTagName('link');
+
+    for (i = 0, len = links.length; i < len; i += 1) {
+      if (links[i].media === 'print') {
+        url = links[i].href;
+        hash[url] = 1;
+      }
+    }
+
+    for (var i = 0; i < comps.length; i++) {
+      if (hash[comps[i].url]) {
+        offenders.push(comps[i]);
+      }
+    }
+
+    score = 100 - offenders.length * parseInt(config.points, 20);
+
+    return {
+      score: score,
+      message: (offenders.length > 0) ? YSLOW.util.plural(
+        'There %are% %num% print css files included on the page, that should be @media query instead',
+        offenders.length
+        ) : '',
+      components: offenders
+      };
+    }
+});</pre>
+
+        <p>When you have written your rule, register it to the ruleset and give it a proper weight (the lines with <b>cssprint</b> are the new ones, the rest exists already):</p>
+
+        <pre>
+YSLOW.registerRuleset({
+  id: 'sitespeed.io-X.Y',
+  name: 'Sitespeed.io rules vX.Y',
+  rules: {
+    ...
+    cssprint: {},
+    ...
+    weights: {
+      ...
+      cssprint: 3,
+      ...</pre>
+</li>
+
+            <li><p style="word-wrap: break-word;">The next step is adding the documentation for the rule, you do that in the file: <a href="https://github.com/soulgalore/yslow/blob/master/src/common/doc.js" >https://github.com/soulgalore/yslow/blob/master/src/common/doc.js</a>.</p> <p>You add one row where you put in the rule info:
+              <pre>YSLOW.doc.addRuleInfo('rulename','title','description')</pre>
+
+              For the <b>cssprint</b> rule, it looks like this:
+              <pre>YSLOW.doc.addRuleInfo('cssprint','Avoid loading specific css for print','Loading a specific stylesheet for print, can block rendering in your browser (depending on browser version) and will for almost all browsers, block the onload event to fire (even though the print stylesheet is not even used!).');
+              </pre>
+
+              It is used when you run sitespeed to create the rule definition HTML file that is put into the results, so you always can backtrack which rules you use. </p>
+            </li>
+            <li>Create the new YSlow javascript file: <pre>make phantomjs</pre></li>
+            <li>Test that it works on one url (standing in root for YSlow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-desktop -f xml http://yoururl.com</pre></li>
+            <li>Move the newly created rulefile into your dependencies directory for sitespeed, on my local I do it this way:
+              <pre>cp build/phantomjs/yslow.js /tmp/myYslow.js</pre>
+            </li>
+            <li>Run sitespeed in your folder: <pre>sitespeed.io -u http://yoururl.com -y /tmp/myYslow.js</pre></li>
+          </ol>
+</div>
+
 
 <div class="section">
     <div class="page-header">
@@ -1080,8 +1254,8 @@ The task will be called with the following:
       <dd><a href="https://github.com/tobli/browsertime">BrowserTime</a> collects browser timings using the Navigation Timing API.</dd>
       <dt>WPT-wrapper</dt>
       <dd><a href="https://www.npmjs.org/package/webpagetest">WebPageTest API wrapper</a> for NodeJS by Marcel Duran.</dd>
-      <dt></dt>
-      <dd></dd>
+      <dt>BrowserMobProxy</dt>
+      <dd>To collect the HAR files we use the <a href="">BrowserMobProxy</a>. We would love to move to a NodeJS proxy (BMP is Java), help and feedback would be very apreciated</dd>
       </dl>
 
 </div>
