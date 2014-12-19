@@ -216,7 +216,7 @@ Options:
 --junit                                                Create JUnit output to the console.
 --tap                                                  Create TAP output to the console.
 --skipTest &lt;ruleid1,ruleid2,...&gt;                       A comma separated list of rules to skip when generating JUnit/TAP output.
---testData                                             Choose which data to send test when generating TAP/JUnit output. Default is all availible [rules,timings,wpt,gpsi]  [all]
+--testData                                             Choose which data to send test when generating TAP/JUnit output. Default is all available [rules,timings,wpt,gpsi]  [all]
 --budget &lt;FILE&gt;                                        A file containing the web perf budget rules. See http://www.sitespeed.io/documentation/#budget
 -m &lt;NUMBEROFPAGES&gt;, --maxPagesToTest &lt;NUMBEROFPAGES&gt;   The max number of pages to test. Default is no limit.
 --storeJson                                            Store all collected data as JSON.
@@ -260,7 +260,7 @@ Options:
     <div class="page-header">
     <h2>Analyze by crawling</h2>
 </div>
-<p>The crawler need a start URL (the parameter <strong>u</strong>, from where it will start the crawl). It will fetch all links within the same domain as the URL that you provide. You can then choose how deep you want to crawl with the <strong>d</strong> parameter. Zero will fetch only the
+<p>The crawler needs a start URL (the parameter <strong>u</strong>, from where it will start the crawl). It will fetch all links within the same domain as the URL that you provide. You can then choose how deep you want to crawl with the <strong>d</strong> parameter. Zero will fetch only the
   URL that you provide. One will fetch all links on that page and analyze these, two will go one level deeper and so on. If you want to analyze a site and the links with a depth of two, you do like this:
 </p>
 <pre class="bash">$ sitespeed.io -u http://www.yoursite.com -d 2</pre>
@@ -282,7 +282,7 @@ http://www.yoursite.com/where/we/are/
 </pre>
 <p>Then you feed the file to the script:</p>
 <pre class="bash">$ sitespeed.io -f myurls.txt</pre>
-<div class="note note-info">This is good for testing and keep track of your site in production and you have a LARGE site with many pages and a couple of them are more important than the rest. </div>
+<div class="note note-info">This is good for testing and keep tracks of your site in production and you have a LARGE site with many pages and a couple of them are more important than the rest. </div>
 </div>
 
 <div class="section" id="analyzesites">
@@ -301,7 +301,7 @@ http://www.mycompetition2.com/
 
 <p>
    If you instead want to compare a couple of URL:s between sites (pre defined URLS instead of crawling), do like this:
-   Create a master plain text file. Each row of this file points out another file that contains the specif URLs for that site.
+   Create a master plain text file. Each row of this file points out another file that contains the specific URLs for that site.
    The master looks like this (master.txt):
    <pre>
 theguardian.txt
@@ -353,7 +353,7 @@ http://www.nytimes.com/pages/fashion/index.html
  <h2>Shortcut: test as desktop or mobile</h2>
 </div>
 <p>By default you test as desktop, if you turn on mobile by just setting the profile. If you do that, you will automatically test with
-with mobile rules, an IOS user agent, view port of 320x444 and on a throttled connection simulating a mobile 3g connection.</p>
+mobile rules, an IOS user agent, view port of 320x444 and on a throttled connection simulating a mobile 3g connection.</p>
 <pre class="bash">$ sitespeed.io -u http://yoursite.com  --profile desktop</pre>
 <pre class="bash">$ sitespeed.io -u http://yoursite.com  --profile mobile</pre>
 </div>
@@ -385,7 +385,7 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
     <div class="page-header">
  <h2>Set a name of your test</h2>
 </div>
-    <p>You can give your test run a name, that will be showed on all the pages.</p>
+    <p>You can give your test run a name that will be showed on all the pages.</p>
     <pre class="bash">$ sitespeed.io -u http://yoursite.com/ --name "Swedens top 100 sites"</pre>
 </div>
 
@@ -474,7 +474,7 @@ If you pass your own <strong>--wptConfig</strong>, a fields matching will overri
 </div>
 
 <p>You can choose to send your data to Graphite, to keep track of your performance over time.
-You configure four things: the host, port, the namespace and which data to send. Default vaule for the port is 2003, namespace (the start of the key) is sitespeed and send all collected data.</p>
+You configure four things: the host, port, the namespace and which data to send. Default value for the port is 2003, namespace (the start of the key) is sitespeed and send all collected data.</p>
 </p>
 <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io --graphiteHost localhost</pre>
 </div>
@@ -512,7 +512,7 @@ And the run like this:
 <div class="section" id="config-columns">
     <div class="page-header">
  <h2>Configure columns on pages page</h2>
- <p>You can choose what kind of data you want to show in the colum pages.</p>
+ <p>You can choose what kind of data you want to show in the column pages.</p>
  <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io -b chrome -c logoTime,headerTime</pre>
 </div>
 
@@ -566,7 +566,7 @@ And the run like this:
     <div class="page-header">
     <h2 id="wptconfig">Configuration<h2>
     </div>
-    <p>There are some default configuration that is passed to WebPageTest. It looks like this:
+    <p>There is some default configuration that is passed to WebPageTest. It looks like this:
 <pre>
 {
   pollResults: 10,
@@ -580,14 +580,14 @@ And the run like this:
 }</pre>
 And if basic auth is set, it is passed as basic auth.</p>
 <p>
-  In the background the test method in Marcel Durans webpagetest-api is used, so you can configure almost everyting. Checkout the docs <a href="https://github.com/marcelduran/webpagetest-api#user-content-test-works-for-test-command-only">here</a>.
+  In the background the test method in Marcel Durans webpagetest-api is used, so you can configure almost everything. Checkout the docs <a href="https://github.com/marcelduran/webpagetest-api#user-content-test-works-for-test-command-only">here</a>.
   You configure your own stuff by feeding sitespeed.io with a JSON file. Say you want to test form Dulles using a throttled 3G connection:
 <pre>
 {
   "location": "Dulles:Firefox",
   "connectivity": "3G"
 }</pre>
-The default location will be overriden and the connectivty will be set to 3G.
+The default location will be overidden and the connectivity will be set to 3G.
 Feed it with: <code>--wptConfig yourFile.json</code>
 </p>
 
@@ -624,7 +624,7 @@ Feed it with: <code>--wptConfig yourFile.json</code>
           <pre class="bash">$ sitespeed.io -u http://yoursite.com  --gpsiKey MY_SECRET_KEY</pre>
       </p>
       <p>
-        Sitespeed.io will collect all availible data from GPSI. On the summary page,
+        Sitespeed.io will collect all available data from GPSI. On the summary page,
         the GPSI score will be shown. We also collect number of requests. You can check the implementation
         <a href="https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/gpsi">here</a> and add
         an issue if you want us to collect more data:</p>
@@ -820,7 +820,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
   </ul>
 
   <p>
-      Here's a couple of examples of what ut can look like. Here we test one site, something like this:
+      Here are a couple of examples of what ut can look like. Here we test one site, something like this:
 <pre class="bash">sitespeed.io -u http://www.cybercom.com --graphiteHost localhost -m 5 --graphiteNamespace cybercom -b chrome -n 11</pre>
 
 And setup the following graphs:
@@ -834,7 +834,7 @@ And setup the following graphs:
   </p>
 
 <p>
-  In this example, we compare four Swedish newspapers, runing it like this
+  In this example, we compare four Swedish newspapers, running it like this
   <pre class="bash">$ sitespeed.io  --sites /Users/peter/swedish.txt --graphiteHost localhost --graphiteNamespace newspapers -b chrome -n 7</pre>
 and the result:
 <p class="text-center">
@@ -850,7 +850,7 @@ and the result:
 </p>
 
 <div class="note note-warning">
-  Doesn't all values reach Gaphite (are you missing values), then you should check your <strong>carbon.conf</strong> file.
+  Doesn't all values reach Graphite (are you missing values), then you should check your <strong>carbon.conf</strong> file.
   The configuration <strong>MAX_CREATES_PER_MINUTE</strong> needs to be set to high (we have seen that 50 is too low). To make sure it works, set it like this:
   <pre>MAX_CREATES_PER_MINUTE = inf</pre>
 </div>
@@ -870,12 +870,12 @@ and the result:
       <li><em>domainLookupTime</em> - The time it takes to do the DNS lookup. Definition: domainLookupEnd - domainLookupStart</li>
       <li><em>frontEndTime</em> - The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd</li>
       <li><em>pageDownloadTime</em> - How long time does it take to download the page (the HTML). Definition: responseEnd - responseStart</li>
-      <li><em>pageLoadTime</em> - The time it takes for page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Definition: loadEventStart - navigationStart</li>
+      <li><em>pageLoadTime</em> - The time it takes for page to load, from initiation of the page view (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Definition: loadEventStart - navigationStart</li>
       <li><em>redirectionTime</em> - Time spent on redirects. Definition: fetchStart - navigationStart</li>
       <li><em>serverConnectionTime</em> - How long time it takes to connect to the server. Definition: connectEnd - connectStart</li>
       <li><em>firstPaint</em> - This is when the first paint happens on the screen. If the browser support this metric, we use that. Else we use the time of the last non-async script or css from the head. You can easily verify if the first paint metrics is valid for you, by record a video using WebPageTest, and then check exactly when the first paint happens and compare that with the timing from the browser.</li>
       <li> <a href="https://github.com/WPO-Foundation/RUM-SpeedIndex">RUM-SpeedIndex</a> - created by Pat Meenan
-        and calculate SpeedIndex measurements using Resource Timings. Itsn't as perfect as Speed Index in WPT but a good start.</li>
+        and calculate SpeedIndex measurements using Resource Timings. It iss not as perfect as Speed Index in WPT but a good start.</li>
     </ul>
     </div>
 
@@ -904,7 +904,7 @@ and the result:
   </p>
   <p>
     I use this for sites where the
-    content team create new pages directly in the CMS and I as developer are out of control of
+    content team creates new pages directly in the CMS and I as developer are out of control of
     which pages that exist. Crawling will make sure we pick up new pages and measure them.
     I usually use this in production to pick up pages that could/should be faster.
   </p>
@@ -923,13 +923,13 @@ sitespeed.io -u http://www.nytimes.com/pages/sports/ -c /sports/ -d 2</pre>
   </div>
   <p>
     Testing the same URL over and over again is good so you can benchmark it. I use it
-    in my continous integration tool (to check the performance before changes is released) and
-    when I compare sites to its competitors (mathing start pages, product pages, purcahse flows etc).
+    in my continuous integration tool (to check the performance before changes is released) and
+    when I compare sites to its competitors (matching start pages, product pages, purchase flows etc).
   </p>
   <h3>How do I choose which URL:s to test?</h3>
   <p>I usually use Google Analytics to check which are the most pages or talk to the business to check that we have
-  the same understanding of which pages are the most important of our site. If we gonna test the URL:s
-  in our continous integration, I try to keep the list of URL:s small, max 10, so we can test
+  the same understanding of which pages are the most important of our site. If we going to test the URL:s
+  in our continuous integration, I try to keep the list of URL:s small, max 10, so we can test
   each URL many times to get timings that consistent between runs.</p>
   <h3>Setup</h3>
   <p>
@@ -950,7 +950,7 @@ And run it like this
     <h2 id="compareAndBench">Compare and benchmark your site against other sites</h2>
   </div>
   <p>
-  Comparing your site against competitors is often very intresting. I usually use it to compare how fast pages are loaded
+  Comparing your site against competitors is often very interesting. I usually use it to compare how fast pages are loaded
   and also how the pages are built (how many requests, how much javascript etc).
   </p>
     <h3>Setup the files</h3>
@@ -1026,7 +1026,7 @@ Then run it like this:
       </p>
 
   <h3>Using WebPageTest</h3>
-  <p>If you are using WebPageTest, you can setup a budget matching almost whatever WPT fetches but the most usuable
+  <p>If you are using WebPageTest, you can setup a budget matching almost whatever WPT fetches but the most useable
     things are testing the number of requests, size, TTFB and the speed index score. To test all these four things,
     you add a JSON file looking like this:
     <pre>
@@ -1064,7 +1064,7 @@ Then run it like this:
     You can fork the project at <a href="https://github.com/sitespeedio/sitespeed.io" >https://github.com/sitespeedio/sitespeed.io</a> and create
     your own version or contribute to the existing one.
     The master branch is the latest release and/or in production-ready state.
-    Clone that and you know it will always work. The next coming branch is named version-wip (3.1-wip).
+    Clone that and you know it will always work.
     </p>
 
     </div>
@@ -1074,7 +1074,7 @@ Then run it like this:
       <h2 id="postTasks">Add your own post tasks</h2>
     </div>
     <p>When sitespeed.io collected all the metrics, you have the possibility to add your own post tasks,
-      meaning writing your own nodejs code to take all the metrics and do whatever you want with it (store it to a database etc).
+      meaning writing your own NodeJS code to take all the metrics and do whatever you want with it (store it to a database etc).
       </p>
       <p>
         You add your own post task (you can have multiple) in an directory and feed the directory name and path to sitespeed, like this:
@@ -1093,7 +1093,7 @@ exports.task = function(result, config, cb) {
 The task will be called with the following:
 <ul>
   <li>
-    <strong>result</strong> - a JSON containg all the metrics collected. Print it out to see exactly how it is constructed
+    <strong>result</strong> - a JSON that contains all the metrics collected. Print it out to see exactly how it is constructed
   </li>
   <li>
     <strong>config</strong> -  the sitespeed.io configuration object, contains info about the run and where to store the data
