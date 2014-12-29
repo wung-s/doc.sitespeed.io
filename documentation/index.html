@@ -654,7 +654,24 @@ Feed it with: <code>--wptConfig yourFile.json</code>
        <div class="page-header">
       <h2>PhantomsJS 2</h2>
     </div>
-    <p>To be added.</p>
+    <p><a href="http://phantomjs.org/">PhantomJS</a> is used by default when validating the web performance best practice rules. Soon (!) the 2.0 version will be released of Phantom and the new version
+    is much (yep much) faster than the old version and supports (most of) the Navigation Timing API, meaning you can test the speed of your site. It's always better to use a real browser when collecting timings, but it is cool because PhantomJS 2 is so fast so you can test alot of pages/sites. The 2.0 has not a stable release yet, but you can build it yourself and use it when you run sitespeed.io:</p>
+    <p>
+      <ol>
+        <li>Follow <a href="https://github.com/ariya/phantomjs/wiki/PhantomJS-2">these</a> instructions to build PhantomJS 2.</li>
+        <li>Run sitespeed.io and configure it to use your own version of PhantomJS:
+        <pre class="bash">sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin</pre>
+        </li>
+        <li>If you also want to collect timings using PhantomJS, run it like this:
+          <pre class="bash">sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin -b phantomjs</pre>
+        </li>
+      </ol>
+    </p>
+    <div class="note note-warning">
+      We have tested PhantomJS 2 on Mac OS X and it works really good when testing the site against the best practice rules. However, it seems
+      to be a couple of timings that don't work as expected. If you have time to test and find things that don't work, please
+      let us know and we will update the docs.
+    </div>
 </div>
 
 
