@@ -51,6 +51,7 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
         <li class="toc"><a href="#config-columns">Configure columns on pages page</a></li>
       </ul>
     </ul>
+   <li class="toc"><a href="#browsertime">Fetching browser timings</a></li>
    <li class="toc"><a href="#usingwpt">Using WebPageTest</a></li>
    <ul>
      <li class="toc"><a href="#wptconfig">Configuration</a></li>
@@ -525,6 +526,32 @@ And the run like this:
 <p>The headers can be set if you collect rule and timings. It will not work for WPT and GPSI.
 </p>
 <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io --requestHeaders {\"mysupercoolheader\":\"value\",\"coolheader2\":\"value2\"}</pre>
+</div>
+
+<div class="section" id="browsertime">
+  <div class="page-header">
+    <h2>Fetching browser timings</h2>
+  </div>
+  <p>You can fetch timings (Navigation Timing and User Timings) using real browsers using the <code>-b</code> flag. We use
+    <a href="https://github.com/tobli/browsertime">BrowserTime</a> to collect the data. By a default
+    installation you can fetch timings using Chrome and Firefox (as long as you have them installed on your machine).
+  </p>
+  <p>There's also prepared support for Safari and Internet Explorer (Windows only). To test them out,
+    you need to run your start your own <a href="http://www.seleniumhq.org/download/">Selenium server</a>. By default
+    sitespeed.io will try to reach it at <code>http://localhost:4444/wd/hub</code>.
+    </p>
+    <p>
+  To get Safari to work, you need to install the <a href="https://github.com/SeleniumHQ/selenium/tree/master/javascript/safari-driver">SafariDriver extension</a> in the browser. We haven't
+  tested this yet, please help us out and update the doc on how to do it.
+  </p>
+  <p>To get Internet Explorer to work, follow the <a href="https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration">instructions</a>.
+  </p>
+
+  <div class="note note-warning">
+    There's a couple of bugs in sitespeed.io/BrowserTime that makes Internet Explorer not working,
+    we will try to fix that asap.
+  </div>
+
 </div>
 
 <div class="section" id="usingwpt">
