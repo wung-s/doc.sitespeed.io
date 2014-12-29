@@ -109,7 +109,7 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
       You can also drive <a href="http://www.webpagetest.org/">WebPageTest</a> using sitespeed.io, collecting data from
       multiple URL:s tested using WebPageTest.
     </p>
-      Sitespeed.io outputs tthe information as HTML/JSON or JUnit XML or <a href="http://testanything.org/">TAP</a>. And can automatically send the collected metrics to <a href="http://graphite.wikidot.com/">Graphite</a>.
+      Sitespeed.io outputs the information as HTML/JSON or JUnit XML or <a href="http://testanything.org/">TAP</a>. And can automatically send the collected metrics to <a href="http://graphite.wikidot.com/">Graphite</a>.
     </p>
  </div>
 <div class="section" id="installation">
@@ -395,7 +395,7 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
  <h2>Collect timing metrics</h2>
 </div>
 <p>Sitespeed.io collect timing metrics using the Navigation Timing API and the User Timing API. Today you can use
-Chrome, Firefox and PhantomJS 2.0. And hopefully more browsers in the future.</p>
+Chrome, Firefox and PhantomJS 2.0. We also have exprimental support for Internet Explorer (ie) and Safari.</p>
 
 <p>Add the parameter <em>c</em> followed by the browser name. </p>
 <pre class="bash">$ sitespeed.io -u http://yoursite.com  -b firefox</pre>
@@ -688,7 +688,7 @@ Feed it with: <code>--wptConfig yourFile.json</code>
     <div class="note note-warning">
       We have tested PhantomJS 2 on Mac OS X and it works really good when testing the site against the best practice rules. However, it seems
       to be a couple of timings that don't work as expected. If you have time to test and find things that don't work, please
-      let us know and we will update the docs.
+      let us know and we will update the docs. We aim to give this more love when the stable 2.0 is released.
     </div>
 </div>
 
