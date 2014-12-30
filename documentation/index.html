@@ -25,7 +25,7 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
   <ul>
   <li class="toc"><a href="#installationUbuntu">Installation fresh Ubuntu 14</a></li>
   </ul>
-    <li class="toc"><a href="#configuration">Configuration</a></li>
+    <li class="toc"><a href="#configuration">Configuration</a>
     <ul>
       <li class="toc"><a href="#theoptions">The options</a></li>
       <li class="toc"><a href="#basic">The basics</a></li>
@@ -41,7 +41,7 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
         <li class="toc"><a href="#browsertimemetrics">Collect timing metrics</a></li>
         <li class="toc"><a href="#connectionspeed">Throttle the connection</a></li>
       </ul>
-      <li class="toc"><a href="#nerdy">A little more nerdy</a></li>
+      <li class="toc"><a href="#nerdy">A little more nerdy</a>
         <ul>
         <li class="toc"><a href="#gpsi">Fetch data Google Page Speed Insights</a></li>
         <li class="toc"><a href="#wpt">Fetch data from WebPageTest</a></li>
@@ -77,7 +77,7 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
   <li class="toc"><a href="#timingMetricsWPT">Timing metrics from WebPageTest</a></li>
 </ul>
 
-    <li class="toc">Use cases</li>
+    <li class="toc">Use cases
 <ul>
       <li class="toc"><a href="#oneSite">Crawl and test one site</a></li>
       <li class="toc"><a href="#specificUrls">Test specific URL:s for one site</a></li>
@@ -145,7 +145,7 @@ $ npm install -g sitespeed.io
   </div>
     <p>Here are the steps you need to do to install on a newly installed Ubuntu 14:</p>
     <p>
-        Install nodejs (using nvm)
+        Install nodejs (using nvm)    </p>
         <pre class="bash">$ sudo apt-get update</pre>
         <pre class="bash">$ sudo apt-get install curl</pre>
         <pre class="bash">$ curl https://raw.githubusercontent.com/creationix/nvm/v0.18.0/install.sh | sh</pre>
@@ -168,7 +168,7 @@ $ npm install -g sitespeed.io
         <pre class="bash">$ sudo apt-get install xvfb</pre>
         <pre class="bash">$ sudo apt-get install libgl1-mesa-dri</pre>
         <pre class="bash">$ sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic</pre>
-    </p>
+
 </div>
 
 <div class="section" id="configuration">
@@ -582,7 +582,7 @@ And the run like this:
     </p>
 
     <div class="page-header">
-    <h2 id="wptconfig">Configuration<h2>
+    <h2 id="wptconfig">Configuration</h2>
     </div>
     <p>There is some default configuration that is passed to WebPageTest. It looks like this:
 <pre>
@@ -832,7 +832,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
       <p>Coming soon!</p>
 </div>
 
-<div class="section" id="graphite">
+<div class="section" id="graphite-2">
     <div class="page-header">
  <h2>Graphite</h2>
 </div>
@@ -1084,7 +1084,7 @@ Then run it like this:
       <h2 id="feature" style="word-wrap: break-word;">Create a new feature/improvement request</h2>
     </div>
     <p>
-      If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=&milestone=&page=1&state=open" >issue list</a>.
+      If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=&amp;milestone=&amp;page=1&amp;state=open" >issue list</a>.
     </p>
 
     </div>
@@ -1184,14 +1184,14 @@ YSLOW.registerRule({
     comps = cset.getComponentsByType('css'),
     links = doc.getElementsByTagName('link');
 
-    for (i = 0, len = links.length; i < len; i += 1) {
+    for (i = 0, len = links.length; i &lt; len; i += 1) {
       if (links[i].media === 'print') {
         url = links[i].href;
         hash[url] = 1;
       }
     }
 
-    for (var i = 0; i < comps.length; i++) {
+    for (var i = 0; i &lt; comps.length; i++) {
       if (hash[comps[i].url]) {
         offenders.push(comps[i]);
       }
@@ -1299,10 +1299,10 @@ YSLOW.registerRuleset({
 
 <div class="section">
       <div class="page-header">
-      <h2 id="feature" style="word-wrap: break-word;">Create a new feature/improvement request</h2>
+      <h2 id="feature-2" style="word-wrap: break-word;">Create a new feature/improvement request</h2>
     </div>
     <p>
-      If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=&milestone=&page=1&state=open" >issue list</a>.
+      If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=&amp;milestone=&amp;page=1&amp;state=open" >issue list</a>.
     </p>
 
     </div>
@@ -1313,7 +1313,7 @@ YSLOW.registerRuleset({
       <h2 id="bug">Report a bug</h2>
     </div>
     <p style="word-wrap: break-word;">
-     If you find a bug, go through the current known bug list <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open" >https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&state=open</a>. If it doesn't exist there, please add it!
+     If you find a bug, go through the current known bug list <a href="https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&amp;state=open">https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&amp;state=open</a>. If it doesn't exist there, please add it!
     </p>
 
     </div>
