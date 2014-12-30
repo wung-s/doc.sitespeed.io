@@ -1,4 +1,4 @@
-permalink: /title
+permalink: /:title/
 ftp_host: ftp.soulislove.com
 ftp_dir: /
 production_url : http://sitespeed.io
