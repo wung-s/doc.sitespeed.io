@@ -150,6 +150,14 @@ $ npm install -g sitespeed.io
         <pre class="bash">$ sudo apt-get install curl</pre>
         <pre class="bash">$ curl https://raw.githubusercontent.com/creationix/nvm/v0.18.0/install.sh | sh</pre>
         <pre class="bash">$ nvm install stable</pre>
+        Set a default version, make sure to use the latest 0.10.X version
+        <pre class="bash">$ nvm alias default 0.10.35</pre>
+        Then, make sure the nmv use your version each time you login
+        <pre class="bash">$ nano .profile</pre>
+        Add the default version
+        <pre class="bash">nvm use default</pre>
+        Make sure your user has the recent changes
+        <pre class="bash">source ~/.profile</pre>
         Install java
         <pre class="bash">$ sudo apt-get install default-jre</pre>
         Install git
@@ -163,12 +171,15 @@ $ npm install -g sitespeed.io
         <pre class="bash">$ sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'</pre>
         <pre class="bash">$ sudo apt-get update</pre>
         <pre class="bash">$ sudo apt-get install google-chrome-stable</pre>
-        And follow <a href="http://yizeng.me/2014/04/20/install-chromedriver-and-phantomjs-on-linux-mint/">these</a> instructions to install the Chrome driver.
+        And follow <a href="http://yizeng.me/2014/04/20/install-chromedriver-and-phantomjs-on-linux-mint/">these</a> instructions to install the Chrome driver (make sure to choose 32 or 64, in this example the 64 version is downloaded).
         And if you want to run headless using <a href="http://manpages.ubuntu.com/manpages/natty/man1/Xvfb.1.html">Xvfb</a>
         <pre class="bash">$ sudo apt-get install xvfb</pre>
         <pre class="bash">$ sudo apt-get install libgl1-mesa-dri</pre>
         <pre class="bash">$ sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic</pre>
 
+        Run like this (if you want to test with a headless browser):
+        <pre class="bash">$ xvfb-run sitespeed.io -u http://www.sitespeed.io -b firefox</pre>
+      </p>
 </div>
 
 <div class="section" id="configuration">
