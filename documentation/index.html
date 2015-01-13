@@ -69,7 +69,7 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
   <li class="toc"><a href="#grunt">Grunt</a></li>
 
 </ul>
-  <li class="toc"><a href="#graphite">Graphite</a></li>
+  <li class="toc"><a href="#graphite-full">Graphite</a></li>
 
 <li class="toc">Metrics</li>
 <ul>
@@ -596,7 +596,7 @@ Feed it with: <code>--wptConfig yourFile.json</code>
 <h2>Graph the WPT metrics</h2>
 </div>
 <p>
-  The data collected and showed can also be sent to Graphite. Checkout the Graphite <a href="#graphite">section</a>.
+  The data collected and showed can also be sent to Graphite. Checkout the Graphite <a href="#graphite-full">section</a>.
 </p>
 
 </div>
@@ -815,7 +815,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
       <p>Coming soon!</p>
 </div>
 
-<div class="section" id="graphite-2">
+<div class="section" id="graphite-full">
     <div class="page-header">
  <h2>Graphite</h2>
 </div>
@@ -824,7 +824,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
   </p>
   <ul>
     <li>
-      Install Graphite - if you are on Mac OS X and want to test it out, use <a href=""></a> or another Vagrant setup.
+      Install Graphite - if you are on Mac OS X and want to test it out, use a Vagrant setup.
     </li>
     <li>
       Install Grafana - either by Vagrant or just download and install InfluxDb & ElasticSearch
@@ -833,7 +833,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
       Send the data from sitespeed.io to Graphite
     </li>
     <li>
-      Create the graphs in Grafana. We will soon add a video of how to do it.
+      Create the graphs in Grafana. We will soonish add a video of how to do it.
     </li>
   </ul>
 
@@ -866,6 +866,10 @@ and the result:
     <a href="grafana-wpt-dark.png"><img src="grafana-wpt-dark.png" alt="sitespeed.io running WebPageTest and graphing the data" class="img-thumbnail"/></a>
   </p>
 </p>
+
+
+<div class="note note-info">If you send all the metrics and don't need the other output (HTML/JSON, it can be quite extensive if you run it often), put all the output in <em>/tmp</em> with the <em>r</em> switch like this <code>-r /tmp</code>.</div>
+</div>
 
 <div class="note note-warning">
   Doesn't all values reach Graphite (are you missing values), then you should check your <strong>carbon.conf</strong> file.
