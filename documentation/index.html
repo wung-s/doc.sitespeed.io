@@ -1,4 +1,4 @@
---
+---
 layout: default
 title: Documentation - sitespeed.io 3.0
 description: Here's the documentation of how to use sitespeed.io 3.0.
@@ -187,11 +187,11 @@ Options:
 --outputFolderName                                     Default the folder name is a date of format yyyy-mm-dd-HH-MM-ss
 --userAgent &lt;USER-AGENT&gt;                               The full User Agent string, default is Chrome for MacOSX. [userAgent|ipad|iphone].  [Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36]
 --viewPort &lt;WidthxHeight&gt;                              The view port, the page viewport size WidthxHeight like 400x300.  [1280x800]
--y &lt;FILE&gt;, --yslow &lt;FILE&gt;                              The compiled YSlow file. Use this if you have your own rules.  [phantomjs/yslow-3.1.8-sitespeed.js]
+-y &lt;FILE&gt;, --yslow &lt;FILE&gt;                              The compiled YSlow file. Use this if you have your own rules.  headless/yslow-3.1.8-sitespeed.js]
 --ruleSet &lt;RULE-SET&gt;                                   Which ruleset to use.  [sitespeed.io-desktop]
 --limitFile &lt;PATH&gt;                                     The path to the limit configuration file.
 --basicAuth &lt;USERNAME:PASSWORD&gt;                        Basic auth user & password.
--b &lt;BROWSER&gt;, --browser &lt;BROWSER&gt;                      Choose which browser to use to collect timing data. Use multiple browsers in a comma separated list (firefox|chrome|phantomjs)
+-b &lt;BROWSER&gt;, --browser &lt;BROWSER&gt;                      Choose which browser to use to collect timing data. Use multiple browsers in a comma separated list (firefox|chrome|headless)
 --connection                                           Limit the speed by simulating connection types. Choose between mobile3g,mobile3gfast,cable,native  [native]
 --btConfig &lt;FILE&gt;                                      Additional BrowserTime JSON configuration as a file
 --profile &lt;desktop|mobile&gt;                             Choose between testing for desktop or mobile. Testing for desktop will use desktop rules & user agents and vice verca.  [desktop]
@@ -222,6 +222,7 @@ Options:
 --wptConfig &lt;FILE&gt;                                     WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method
 --wptHost &lt;URL&gt;                                         The host domain of the webpagetest instance.
 --wptKey &lt;KEY&gt;                                         The API key if running on webpagetest on the public instances.
+--headless                                             Choose which backend to use for headless [phantomjs|slimerjs]  [phantomjs]
 --requestHeaders &lt;FILE&gt;                                Any request headers to use, a file with JSON form of {"name":"value","name2":"value"}. Not supported for WPT & GPSI.
    </pre>
    <p>
@@ -379,7 +380,7 @@ Mobile testing is always best on mobile devices. For tips on how to best do that
  <h2>Collect timing metrics</h2>
 </div>
 <p>Sitespeed.io collect timing metrics using the Navigation Timing API and the User Timing API. Today you can use
-Chrome, Firefox and PhantomJS 2.0. We also have exprimental support for Internet Explorer (ie) and Safari.</p>
+Chrome, Firefox, PhantomJS 2.0 and SlimerJS. We also have exprimental support for Internet Explorer (ie) and Safari.</p>
 
 <p>Add the parameter <em>b</em> followed by the browser name. </p>
 <pre class="bash">$ sitespeed.io -u http://yoursite.com  -b firefox</pre>
@@ -664,7 +665,7 @@ Feed it with: <code>--wptConfig yourFile.json</code>
         <pre class="bash">sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin</pre>
         </li>
         <li>If you also want to collect timings using PhantomJS, run it like this:
-          <pre class="bash">sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin -b phantomjs</pre>
+          <pre class="bash">sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin -b headless</pre>
         </li>
       </ol>
     </p>
@@ -1224,7 +1225,7 @@ YSLOW.registerRuleset({
             </li>
             <li>Create the new YSlow javascript file: <pre>make phantomjs</pre></li>
             <li>Test that it works on one url (standing in root for YSlow): <pre>phantomjs build/phantomjs/yslow.js d -r sitespeed.io-desktop -f xml http://yoururl.com</pre></li>
-            <li>Move the newly created rulefile into your dependencies directory for sitespeed, on my local I do it this way:
+            <li>Move the newly created rulefile into a new directory:
               <pre>cp build/phantomjs/yslow.js /tmp/myYslow.js</pre>
             </li>
             <li>Run sitespeed in your folder: <pre>sitespeed.io -u http://yoururl.com -y /tmp/myYslow.js</pre></li>
