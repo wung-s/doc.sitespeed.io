@@ -592,6 +592,23 @@ And if basic auth is set, it is passed as basic auth.</p>
 The default location will be overidden and the connectivity will be set to 3G.
 Feed it with: <code>--wptConfig yourFile.json</code>
 </p>
+<p>
+  If you want to test from multiple locations, browsers or different connectivity, pass an
+  array as configuration:
+<pre>
+[
+  {
+    "location": "Dulles:Firefox",
+    "connectivity": "3G"
+  },
+  {
+    "location": "Dulles:Chrome",
+    "connectivity": "Cable"
+  }
+]
+</pre>
+</p>
+
 
 <div class="page-header">
 <h2>Graph the WPT metrics</h2>
