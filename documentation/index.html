@@ -498,8 +498,19 @@ And the run like this:
 <div class="section" id="config-columns">
     <div class="page-header">
  <h2>Configure columns on pages page</h2>
- <p>You can choose what kind of data you want to show in the column pages.</p>
- <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io -b chrome -c logoTime,headerTime</pre>
+ <p>You can choose what kind of data you want to show in the column pages. The naming is far from perfect today or you could say it's broken, lets change that in coming major releases.</p>
+ <p>If you want to show data that are collected from YSlow, like number of javascripts, you do that like this:
+   <pre class="bash">$ sitespeed.io -u http://www.sitespeed.io -c yslow.assets.js,yslow.assets.css,yslow.requests,yslow.pageWeight</pre>
+
+<p>
+  If you want to fetch timings from your browser, they are following this pattern (headerTime is a User Timing):
+</p>
+<pre class="bash">$ sitespeed.io -u http://www.sitespeed.io -c timings.serverResponseTime.median,timings.domContentLoadedTime.median,timings.headerTime.median -b chrome</pre>
+
+<p>
+  If you have problem, create an issue and we will help you.
+</p>
+
 </div>
 
 </div>
