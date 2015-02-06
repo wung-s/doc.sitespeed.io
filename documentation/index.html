@@ -810,7 +810,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
       </li>
       <li>
         In the execute shell form:
-        <pre>sitespeed.io -u http://stage.cybercom.com --junit > $WORKSPACE/junit.xml</pre>
+        <pre>sitespeed.io -u http://stage.cybercom.com --resultBaseDir ${WORKSPACE}/${BUILD_NUMBER} --junit > junit.xml</pre>
         And in the post task <strong>Test report XMLs</strong> add:
         <pre>junit.xml</pre>
       </li>
@@ -819,7 +819,7 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
       </li>
 
       <li>Run the execute shell like this:
-        <pre>sitespeed.io -u http://stage.cybercom.com --tap > $WORKSPACE/sitespeed.tap</pre>
+        <pre>sitespeed.io -u http://stage.cybercom.com --resultBaseDir ${WORKSPACE}/${BUILD_NUMBER} --tap > sitespeed.tap</pre>
       </li>
       <li>
         And choose the post task <strong>Publish TAP Results</strong> and in the Test Results box add:
@@ -840,8 +840,11 @@ And finally, if you use Goggle Page Speed Insights, the score must be 90 or bett
 </div>
 
 <div class="section" id="grunt">
-      <h2>Grunt integration</h2>
-      <p>Coming soon!</p>
+      <h2>Grunt plugin</h2>
+      <p>There's a Grunt plugin <a href="https://github.com/sitespeedio/grunt-sitespeedio"></a>grunt-sitespeedio
+      where you can do all the things you usually do with sitespeed.io. Use it create
+      HTML-reports, send metrics to Graphite or test your performance budget.
+      </p>
 </div>
 
 <div class="section" id="graphite-full">
