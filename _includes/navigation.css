@@ -9,10 +9,10 @@ body {
 
 .nav ul {
   list-style: none;
-  background-color: #0095d2;
   text-align: center;
   padding: 0;
   margin: 0;
+  background-color: #0095d2;
 }
 .nav li {
   font-size: 1em;
@@ -62,11 +62,11 @@ max-width: 250px;
   }
 
   .nav li {
-    width: 160px;
     border-bottom: none;
     height: 50px;
     line-height: 50px;
     font-size: 1em;
+    float: left;
   }
 
   /* Option 1 - Display Inline */
@@ -80,6 +80,13 @@ max-width: 250px;
     z-index: 10;
     width: 100%;
     top: 0;
+    background-color: #0095d2;
+  }
+
+  .nav a {
+    padding-left: 20px;
+    padding-right: 20px;
+
   }
 
   #header {    margin-top: 50px; }
