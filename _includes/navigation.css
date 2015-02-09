@@ -39,6 +39,11 @@ body {
 }
 
 @media screen and (min-width: 600px) {
+
+  body {
+    padding-top: 50px;
+  }
+
   .nav li {
     width: 160px;
     border-bottom: none;
@@ -52,4 +57,13 @@ body {
     display: inline-block;
     margin-right: -4px;
   }
+
+  .nav {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+  }
+
+  #header {    margin-top: 50px; }
 }
