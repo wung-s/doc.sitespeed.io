@@ -37,10 +37,28 @@ body {
   cursor: default;
 }
 
+.brand {
+  text-align: center;
+  background-color: #0095d2;
+}
+
+.navbar-brand {
+padding: 0px 0px;
+font-size: 18px;
+max-width: 250px;
+}
+
 @media screen and (min-width: 600px) {
 
   body {
     padding-top: 50px;
+  }
+
+  .navbar-brand {
+  padding: 0px 0px;
+  font-size: 18px;
+  float: left;
+  max-width: 250px;
   }
 
   .nav li {
