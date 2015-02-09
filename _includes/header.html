@@ -1,41 +1,30 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-
-<div class="navbar-header">
-    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sitespeed-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
 
 
-    <!-- Be sure to leave the brand out there if you want it shown -->
-    <!--<a class="navbar-brand" href="#">sitespeed.io</a>-->
-    <a href="http://www.sitespeed.io"><img src="/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" width="162" height="50"/></a>
-  </div>
-    <!-- Place everything within .navbar-collapse to hide it until above 768px -->
-    <nav class="collapse navbar-collapse sitespeed-collapse">
-       <ul class="nav navbar-nav">
-            <li {% if page.nav == 'start' %}class="active" {% endif %}>
-               <a href="/">Start</a>
-            </li>
-	   <li {% if page.nav == 'documentation' %} class="active" {% endif %}>
-             <a href="/documentation/">Documentation</a>
+<header>
+  <div class="nav">
+    <ul>
+      <li>
+        <a href="http://www.sitespeed.io"><img src="/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" width="162" height="50"/></a>
       </li>
-            <li {% if page.nav == 'rules' %}class="active" {% endif %}>
-                  <a href="/rules/">Rules</a>
-            </li>
-             <li {% if page.nav == 'examples' %}class="active" {% endif %}>
-                  <a href="/example/">Examples</a>
-            </li>
-             <li {% if page.nav == 'faq' %}class="active" {% endif %}>
-                  <a href="/faq/">FAQ</a>
-            </li>
-          </ul>
-    </nav><!-- /.nav-collapse -->
-  </div><!-- /.container -->
-</nav><!-- /.navbar -->
+      <li>
+         <a href="/" {% if page.nav == 'start' %}class="active" {% endif %}>Start</a>
+      </li>
+      <li>
+         <a href="/documentation/" {% if page.nav == 'documentation' %}class="active" {% endif %}>Documentation</a>
+      </li>
+      <li>
+         <a href="/rules/" {% if page.nav == 'rules' %}class="active" {% endif %}>Rules</a>
+      </li>
+      <li>
+         <a href="/example/" {% if page.nav == 'examples' %}class="active" {% endif %}>Examples</a>
+      </li>
+      <li>
+         <a href="/faq/" {% if page.nav == 'faq' %}class="active" {% endif %}>FAQ</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
 <script type="text/javascript">
   markUserTime('headerTime');
 </script>

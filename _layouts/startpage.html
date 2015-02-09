@@ -47,11 +47,34 @@ layout: compress
 </head>
 <body>
 	{% include header.html %}
+	<div class="blue">
 	<div class="grid">
 		<div class="col-1-1">
-		{{ content }}
+			{{ content }}
 		</div>
 	</div>
+</div>
+	<div class="grid">
+		<div class="col-1-3">
+			{% markdown index/box1.md %}
+		</div>
+		<div class="col-1-3">
+			{% markdown index/box2.md %}
+		</div>
+		<div class="col-1-3">
+			{% markdown index/box3.md %}
+		</div>
+		<div class="col-1-3">
+			{% markdown index/box4.md %}
+		</div>
+		<div class="col-1-3">
+			{% markdown index/box5.md %}
+		</div>
+		<div class="col-1-3">
+			{% markdown index/box6.md %}
+		</div>
+	</div>
+
 	<div class="blue">
 	<div class="grid">
 		<div class="col-1-1">
@@ -59,5 +82,6 @@ layout: compress
 		</div>
 	</div>
 </div>
+
 </body>
 </html>
