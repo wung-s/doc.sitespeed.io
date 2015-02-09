@@ -25,7 +25,6 @@ body {
   text-decoration: none;
   color: #fff;
   display: block;
-  transition: .3s background-color;
 }
 
 .nav a:hover {
@@ -41,21 +40,21 @@ body {
 @media screen and (min-width: 600px) {
 
   body {
-    padding-top: 50px;
+    padding-top: 60px;
   }
 
   .nav li {
     width: 160px;
     border-bottom: none;
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    line-height: 50px;
     font-size: 1em;
   }
 
   /* Option 1 - Display Inline */
   .nav li {
     display: inline-block;
-    margin-right: -4px;
+    margin-right: 0px;
   }
 
   .nav {
