@@ -862,16 +862,122 @@ All post tasks runs in parallell.
 If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the [issue list](https://github.com/sitespeedio/sitespeed.io/issues?labels=&amp;milestone=&amp;page=1&amp;state=open").
 
 ## Add your own rules
-Sitspeed uses [YSlow](http://yslow.org/) as the engine for creating and managing the rules that decides how good the web page is optimized for performance. [Stoyan Stefanov](https://twitter.com/stoyanstefanov) has written three good blog posts of how you develop and write rules for YSlow:
+Sitspeed uses [YSlow](http://yslow.org/) as the engine for creating and managing the rules that decides how good the web page is optimized for performance.  [Stoyan Stefanov](https://twitter.com/stoyanstefanov) has written three good blog posts of how you develop and write rules for YSlow:
 
-* [Getting started](http://www.phpied.com/yslow-development-getting-started)
+* [Getting started](http://www.phpied.com/yslow-development-getting-started/)
 * [Setup](http://www.phpied.com/yslow-development-setup/)
 * [Custom ruleset](http://www.phpied.com/yslow-development-custom-rulesets/)
 
-To do it for sitespeed, you will find the rule file in the sitespeed YSlow fork: *git clone git@github.com:sitespeedio/yslow.git*
+To do it for sitespeed, this is what you need:
 
-The [specific rule file](https://github.com/sitespeedio/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js) is where you add your rule. Then follow the instructions in Stoyans blog posts, compile your new rule set by *make phantomjs* and use the produced javascript file in sitespeed, using the
-*y* swicth.
+Clone the project
+
+~~~
+git clone git@github.com:sitespeedio/yslow.git
+~~~
+
+There are two files that you need to change, first the [rule file](https://github.com/sitespeedio/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js), where you add your own rule.
+
+You need to do two changes: Add your rule *YSLOW.registerRule(...)* and register your rule to the ruleset *YSLOW.registerRuleset(...)*
+
+In this example, I will add a rule called **cssprint** that will check for css files used only for printing the page:
+
+~~~
+YSLOW.registerRule({
+id: 'cssprint',
+name: 'Do not load print stylesheets, use @media type print instead',
+info: 'Loading a specific stylesheet for printing slows down the page, ' +
+'even though it is not used',
+category: ['css'],
+config: {points: 20},
+url: 'http://sitespeed.io/rules/#cssprint',
+lint: function (doc, cset, config) {
+var i, media, score,url,
+offenders = [],
+hash = {},
+comps = cset.getComponentsByType('css'),
+links = doc.getElementsByTagName('link');
+
+for (i = 0, len = links.length; i &lt; len; i += 1) {
+  if (links[i].media === 'print') {
+    url = links[i].href;
+    hash[url] = 1;
+  }
+}
+
+for (var i = 0; i &lt; comps.length; i++) {
+  if (hash[comps[i].url]) {
+    offenders.push(comps[i]);
+  }
+}
+
+score = 100 - offenders.length * parseInt(config.points, 20);
+
+return {
+  score: score,
+  message: (offenders.length > 0) ? YSLOW.util.plural(
+    'There %are% %num% print css files included on the page, that should be @media query instead',
+    offenders.length
+    ) : '',
+  components: offenders
+  };
+}
+});
+~~~
+
+When you have written your rule, register it to the ruleset and give it a proper weight (the lines with **cssprint** are the new ones, the rest exists already):
+
+~~~
+YSLOW.registerRuleset({
+id: 'sitespeed.io-X.Y',
+name: 'Sitespeed.io rules vX.Y',
+rules: {
+...
+cssprint: {},
+...
+weights: {
+  ...
+  cssprint: 3,
+  ...
+~~~  
+
+The next step is adding the documentation for the rule, you do that [here](https://github.com/soulgalore/yslow/blob/master/src/common/doc.js). You add one row where you put in the rule info:
+
+~~~
+YSLOW.doc.addRuleInfo('rulename','title','description')
+~~~
+
+For the **cssprint** rule, it looks like this:
+
+~~~
+YSLOW.doc.addRuleInfo('cssprint','Avoid loading specific css for print','Loading a specific stylesheet for print, can block rendering in your browser (depending on browser version) and will for almost all browsers, block the onload event to fire (even though the print stylesheet is not even used!).');
+~~~
+
+It is used when you run sitespeed to create the rule definition HTML file that is put into the results, so you always can backtrack which rules you use.
+
+Create the new YSlow javascript file:
+
+~~~
+make phantomjs
+~~~
+
+Test that it works on one url (standing in root for YSlow):
+
+~~~
+phantomjs build/phantomjs/yslow.js d -r sitespeed.io-desktop -f xml http://yoururl.com
+~~~
+
+Move the newly created rulefile into a new directory:
+
+~~~
+cp build/phantomjs/yslow.js /tmp/myYslow.js
+~~~
+
+Run sitespeed in your folder:
+
+~~~
+sitespeed.io -u http://yoururl.com -y /tmp/myYslow.js
+~~~
 
 ## Dependencies
 Here are the dependencies for running sitespeed.io:
