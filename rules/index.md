@@ -19,6 +19,9 @@ Sitespeed.io uses performance best practices rules to decide if a page is optimi
 
 Sitespeed.io is very demanding on your site, it will test/analyze and punish hard if you have broken the most important rules.
 
+Sitespeed.io uses about 20 of the basic rules from YSlow (read about them
+        [here](http://yslow.org#web_performance_best_practices_and_rules) and [here](https://github.com/marcelduran/yslow/wiki/Ruleset-Matrix) and then there are the sitespeed.io specific rules.
+
 ## The rules
 {:.no_toc}
 
@@ -98,8 +101,7 @@ Read more about asynchronously third party scripts [here](http://www.phpied.com/
 <!-- Genererated from a sitespeed run -->
 
 <h2>The rules</h2>
-<p>Sitespeed.io uses about 20 of the basic rules from YSlow (read about them
-        [here](http://yslow.org#web_performance_best_practices_and_rules) and [here](https://github.com/marcelduran/yslow/wiki/Ruleset-Matrix) and then there are the sitespeed.io specific rules. Here's a list off all the rules.</p>
+ <p>The rules are a mashup between classic YSlow rules & new sitespeed.io rules, all are based on performance best practices. The current version of the rules is sitespeed.io-desktop.
 
      <h3 id="Avoid slowing down the critical rendering path">Avoid slowing down the critical rendering path<em class="url"> (criticalpath)</em></h3>
      <p>Every request fetched inside of HEAD, will postpone the rendering of the page! Do not load javascript synchronously inside of head, load files from the same domain as the main document (to avoid DNS lookups) and inline CSS for a really fast rendering path. The scoring system for this rule, will give you minus score for synchronously loaded javascript inside of head, css files requested inside of head and minus score for every DNS lookup inside of head.<em>Weight: 15</em></p>
