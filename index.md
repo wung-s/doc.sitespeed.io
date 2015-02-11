@@ -3,7 +3,7 @@ layout: startpage
 title: Sitespeed.io - Analyze your website speed and performance
 description: Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices. Run it locally or use it in your continous integration. Download or fork it on Github!
 author: Peter Hedenskog
-keywords: sitespeed.io, wpo, fast, site, speed, web performance optimization, analyze, best practices, continous integration
+keywords: sitespeed.io, wpo, webperf, perfmatters, fast, site, speed, web performance optimization, analyze, best practices, continous integration
 nav: start
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 ---
