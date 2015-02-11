@@ -81,6 +81,8 @@ max-width: 250px;
     width: 100%;
     top: 0;
     background-color: #0095d2;
+    margin: 0 auto;
+    padding-left: 145px;
   }
 
   .nav a {
@@ -89,5 +91,4 @@ max-width: 250px;
 
   }
 
-  #header {    margin-top: 50px; }
 }
