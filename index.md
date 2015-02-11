@@ -22,4 +22,4 @@ $ npm install -g sitespeed.io
 $ sitespeed.io -h
 ~~~
 
-Else you can  <a class="btn btn-success btn-xlg" href="https://github.com/sitespeedio/sitespeed.io">clone or fork</a> and if you like sitespeed.io, please <a class="btn btn-success btn-xlg" href="https://github.com/sitespeedio/sitespeed.io">star</a> the project on GitHub!
+Else you can  <a class="btn  btn--positive" href="https://github.com/sitespeedio/sitespeed.io">clone or fork</a> and if you like sitespeed.io, please <a class="btn  btn--positive" href="https://github.com/sitespeedio/sitespeed.io">star</a> the project on GitHub!
