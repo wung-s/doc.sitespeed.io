@@ -56,6 +56,10 @@ We have a couple of [Vagrant](https://github.com/sitespeedio/sitespeed.io-vagran
 * [Ubuntu 14](https://github.com/sitespeedio/sitespeed.io-vagrant/tree/master/sitespeed-ubuntu14)
 * [CentOS 7](https://github.com/sitespeedio/sitespeed.io-vagrant/tree/master/sitespeed-centos7)
 
+## Docker
+
+We have a docker [image](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-docker/) with sitespeed.io, Chrome and Firefox.
+
 # Configuration
 Sitespeed.io is highly configurable, let's check it out!
 
