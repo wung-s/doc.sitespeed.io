@@ -110,3 +110,7 @@ footer ul {
 a btn {
   margin-top: 10px;
 }
+
+.photo {
+border-radius: 10px;
+}
