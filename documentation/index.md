@@ -58,7 +58,7 @@ We have a couple of [Vagrant](https://github.com/sitespeedio/sitespeed.io-vagran
 
 ## Docker
 
-We have a docker [image](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-docker/) with sitespeed.io, Chrome and Firefox.
+We have a docker [image](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-docker/) with sitespeed.io, Chrome, Firefox and Xvfb.
 
 # Configuration
 Sitespeed.io is highly configurable, let's check it out!
@@ -781,6 +781,26 @@ sitespeed.io --sites master.txt -b chrome -n 11 --wptHost your.webpagetest.com -
 
 ## Performance budget
 Have you heard of a performance budget? If not, please read the excellent posts by Tim Kadlec [Setting a performance budget](http://timkadlec.com/2013/01/setting-a-performance-budget/) and [Fast enough](http://timkadlec.com/2014/01/fast-enough/). Also read Daniel Malls [How to make a performance budget](http://danielmall.com/articles/how-to-make-a-performance-budget/). After that, continue setup sitespeed.io :)
+
+### How it works
+When you run sitespeed.io configured with a budget, the script will exit with a exit status > 0 if the budget fails. It will log the budget items that are failing and the ones that are working, and create a HTML report for the budget.
+
+The log will look something like this:
+
+~~~
+error: The budget for js requests http://www.cybercom.com/da/Denmark/ failed. The number of js requests 10 the limit is 5
+error: The budget for css requests http://www.cybercom.com/da/Denmark/ failed. The number of css requests 2 the limit is 1
+error: The budget for requests per page http://www.cybercom.com/da/Denmark/ failed. The number of requests is 28 and the limit is 10
+info: The budget for image requests http://www.cybercom.com/da/Denmark/ passed [5]
+error: The budget for js requests http://www.cybercom.com/Cases-and-clients/SF-BIO-app/ failed. The number of js requests 10 the limit is 5
+...
+~~~
+
+And the report looks like this.
+![Example of the budget](budget.png)
+{: .img-thumbnail}
+
+Lets see how you can configure your budgets.
 
 
 ### Testing timings
