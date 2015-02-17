@@ -115,6 +115,10 @@ footer ul {
   margin: 0;
 }
 
+footer li {
+  padding-bottom: 4px;
+}
+
 footer a {
   color: #0095d2;
 }
