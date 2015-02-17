@@ -15,7 +15,7 @@ Sitespeed.io is an open source tool ([Apache License Version 2.0](https://github
 
 You can analyze one site, analyze and compare multiple sites or let your continuous integration server break your build when your performance budget is exceeded.
 
-Install using [npm](https://www.npmjs.org/) (Need help? [How to install](/documentation/#download-and-installation)):
+Install using [npm](https://www.npmjs.org/) ([need help?](/documentation/#download-and-installation)):
 
 ~~~ bash
 $ npm install -g sitespeed.io
