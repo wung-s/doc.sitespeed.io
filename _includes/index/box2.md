@@ -1,5 +1,3 @@
-## Development
+## Performance budget
 * * *
-Checkout issues and coming features at [Github](https://github.com/sitespeedio/sitespeed.io/issues) and follow sitespeed.io on [Twitter](https://twitter.com/SiteSpeedio) to get information about new releases.
-
-Sitspeed.io is developed & tested on Mac OS X 10.10.
+You can test your performance budget in you CLI, use the [GruntJS plugin](https://www.npmjs.com/package/grunt-sitespeedio) or use the TAP/JUnit XML output in your continuous integration server to make sure that you are not breaking your budgets.
