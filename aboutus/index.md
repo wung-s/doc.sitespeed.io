@@ -7,7 +7,7 @@ keywords: sitespeed.io, about, peter hedenskog, tobias lidskog
 nav: aboutus
 ---
 
-# About Us - The Team
+# About Us
 
 We are a two member team that works on sitespeed.io in our free time. New contributors and team members are very welcomed!
 
