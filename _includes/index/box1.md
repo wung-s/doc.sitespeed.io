@@ -1,4 +1,4 @@
-## The result
+## Results for everyone
 * * *
 You will get results on a high level (red/yellow and green) that your boss will understand. And of course the in depth metrics so you can make your site better. Get the result as HTML or send the metrics to Graphite.
 
