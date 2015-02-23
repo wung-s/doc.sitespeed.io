@@ -21,4 +21,6 @@ I'm one of the organizers of the [Stockholm Web Performance meetups](http://www.
 
 
 ## Tobias Lidskog
-<img src="tobias.jpg" class="photo pull-left" width="200" height="200">
+<img src="tobias.jpg" class="photo pull-left" width="200" height="200"> Having been supporter of sitespeed.io from the sidelines for some time, I joined Peter as we started working on version 3.0. I've been working professionally with the web for about 15 years, and open source tools have been an indispensable help all along. Now it's nice to be able to give something back.
+
+In my work at [iZettle](https://www.izettle.com/) I spend most of my time enabling the dev teams to shine. Working on sitespeed.io is a great complement, letting me get my hands dirty with range of tools and techniques; from [controlling browsers with WebDriver](http://www.browsertime.net) to [learning how to use Docker](https://github.com/sitespeedio/sitespeed.io-docker).
