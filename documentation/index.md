@@ -58,7 +58,7 @@ We have a couple of [Vagrant](https://github.com/sitespeedio/sitespeed.io-vagran
 
 ## Docker
 
-We have a docker [image](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-docker/) with sitespeed.io, Chrome, Firefox and Xvfb.
+We have a Docker [image](https://registry.hub.docker.com/repos/sitespeedio/) with sitespeed.io, Chrome, Firefox and Xvfb.
 
 # Configuration
 Sitespeed.io is highly configurable, let's check it out!
@@ -412,6 +412,9 @@ There's a problem using sitespeed.io/BrowserTime on Windows, where the BrowserMo
 {: .note .note-warning}
 
 # Performance Dashboard
+Coming soon!
+
+<!--
 We have put a lot of love into making it easy to create your own performance dashboard.
 The base is two Docker images. One with sitespeed.io, Chrome and Firefox. The other image
 has Graphite and Grafana.
@@ -441,6 +444,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 ~~~
 Make sure to edit your YOUR_IP
 
+-->
 
 # Using WebPageTest
 Yep we all love [WebPageTest](http://www.webpagetest.org) (WPT), so we made it possible to drive an instance of and collect the data from it.
