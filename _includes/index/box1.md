@@ -1,5 +1,9 @@
-## New rules
+## The result
 * * *
+The result of the analyze will a couple of HTML pages and/or metrics send to Graphite.
+
+[![The result](/img/sitespeed-boss-page.png)](/documentation/#the-result)
+{: .img-thumbnail}
 
 <!--
 ## Performance dashboard
