@@ -1,3 +1,7 @@
+## New rules
+* * *
+
+<!--
 ## Performance dashboard
 * * *
 In 5 minutes you can have your own performance dashboard up and running using our
@@ -5,3 +9,5 @@ In 5 minutes you can have your own performance dashboard up and running using ou
 
 [![A web performance dashboard](/img/dashboard.jpg)](/img/dashboard.jpg)
 {: .img-thumbnail}
+
+-->

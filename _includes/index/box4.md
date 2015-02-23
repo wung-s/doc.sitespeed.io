@@ -1,6 +1,3 @@
-## Development
+## WebPageTest
 * * *
-Checkout issues and coming features at [![Github](/img/GitHub-Mark-32px.png)](https://github.com/sitespeedio/sitespeed.io/issues){: .middle} and follow sitespeed.io on [![Sitespeed.io Twitter](/img/twitter.png)](https://twitter.com/SiteSpeedio){: .middle} to get information about new releases.
-
-
-Sitspeed.io is developed & tested on Mac OS X 10.10.
+Do you love [WebPageTest](http://www.webpagetest.org)? We do too and made it possible to drive it using sitespeed.io. The WebPageTest data will be included in your sitespeed report.

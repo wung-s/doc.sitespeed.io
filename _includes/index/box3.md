@@ -1,3 +1,3 @@
-## The latest release
+## Real browsers
 * * *
-The latest stable release is 3.1, read all about the new things [here](/release-notes/3.1/). And check the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for the changes in patch releases.
+Fetching timings will use the browsers on your machine. That is cool because you will then be able to test with the latest released versions. Today we support [Chrome & Firefox](/documentation/#fetching-browser-timings).

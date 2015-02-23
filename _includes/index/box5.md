@@ -1,7 +1,3 @@
-## Thank you!
+## The latest release
 * * *
-sitespeed.io is built on top of three fantastic tools/products, thank you guys for building them:
-
-* *Steve Souders*, *Stoyan Stefanov* & *Marcel Duran* (and all others that have been involved) - [YSlow](https://github.com/marcelduran/yslow/)
-* *Ariya Hidayat* - [PhantomJS](https://github.com/ariya/phantomjs)
-* *Mark Otto* and *Jacob Thornton* - [Bootstrap](https://github.com/twbs/bootstrap/)
+The latest stable release is 3.1, read all about the new things [here](/release-notes/3.1/). And check the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for the changes in patch releases.
