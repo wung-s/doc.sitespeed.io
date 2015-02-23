@@ -1,6 +1,6 @@
 ## The result
 * * *
-The result of the analyze will a couple of HTML pages and/or metrics send to Graphite.
+You will get results on a high level (red/yellow and green) that your boss will understand. And of course the in depth metrics so you can make your site better. Get the result as HTML or send the metrics to Graphite.
 
 [![The result](/img/sitespeed-boss-page.png)](/documentation/#the-result)
 {: .img-thumbnail}
