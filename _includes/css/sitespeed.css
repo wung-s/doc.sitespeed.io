@@ -133,6 +133,12 @@ margin-right: 20px;
 margin-bottom: 10px;
 }
 
+.language-help {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
 @media screen and (max-width: 600px) {
   .small {
     text-align: center;
