@@ -7,6 +7,10 @@ body {
   line-height: 1.618em;
 }
 
+.nav {
+  background: #0095d2;
+}
+
 .nav ul {
   list-style: none;
   text-align: center;
@@ -49,6 +53,17 @@ max-width: 250px;
 }
 
 @media screen and (min-width: 600px) {
+
+  body
+  { padding-top: 50px; }
+
+  .nav {
+    height: 50px;
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+  }
 
   .navbar-brand {
   padding: 0px 0px;
