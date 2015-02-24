@@ -135,9 +135,10 @@ margin-bottom: 10px;
   white-space: pre;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 820px) {
   .small {
     text-align: center;
+    font-size: 19px;
   }
 
   ul {
