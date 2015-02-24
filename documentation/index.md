@@ -799,6 +799,7 @@ There's a Grunt plugin [grunt-sitespeedio](https://github.com/sitespeedio/grunt-
 
 ## Timing metrics
 All the metrics are collected using an empty cache
+
 * *backEndTime* - The time it takes for the network and the server to generate and start sending the HTML. Definition: responseStart - navigationStart
 * *domContentLoadedTime* - The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the users location to your server. Definition: domContentLoadedEventStart - navigationStart
 * *domInteractiveTime* - The time the browser takes to parse the document, including the network time from the users location to your server. Definition: domInteractive - navigationStart
@@ -814,6 +815,7 @@ All the metrics are collected using an empty cache
 
 ## Timing metrics collected using WPT
 All the metrics are collected both for first and repeated view.
+
 * *firstPaint* - the time from the start of navigation until the first non-white content was painted to the screen
 * *loadTime* - the time from the start of the initial navigation until the beginning of the window load event (onload)
 * *TTFB* - the time from the start of navigation until the first byte of the base page is returned (after following any redirects)
