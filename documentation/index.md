@@ -151,6 +151,7 @@ http://www.yoursite.com/where/we/are/
 ~~~
 
 Then you feed the file to the script:
+
 ~~~ bash
 $ sitespeed.io -f myurls.txt
 ~~~
@@ -846,6 +847,7 @@ http://www.amazon.com/dp/B00I15SB16/ref=ods_gw_comb_xmas_kindle
 ~~~
 
 And run it like this
+
 ~~~bash
 sitespeed.io -f amazon.txt -b chrome -n 11
 ~~~
