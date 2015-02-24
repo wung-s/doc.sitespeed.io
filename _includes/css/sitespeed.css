@@ -137,4 +137,9 @@ margin-bottom: 10px;
   .small {
     text-align: center;
   }
+
+  ul {
+    padding-left: 10px;
+    margin-left: 10px;
+  }
 }
