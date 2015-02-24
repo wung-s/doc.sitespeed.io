@@ -141,6 +141,10 @@ margin-bottom: 10px;
     font-size: 19px;
   }
 
+  h1 {
+    line-height: 1em;
+  }
+
   ul {
     padding-left: 10px;
     margin-left: 10px;
