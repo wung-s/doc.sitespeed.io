@@ -404,8 +404,8 @@ $ sitespeed.io -u http://www.sitespeed.io -c timings.serverResponseTime.median,t
 If you have problem, create an issue and we will help you.
 
 # The result
-By default a couple of HTML pages will be created as the result of the analyze. Or you can
-choose to send the metrics to [Graphite](#graphite). Lets checkout the different HTML views.
+The result of an analyze can be a couple of HTML pages, JUnit XML/TAP and you can
+send the metrics to [Graphite](#graphite). Lets first checkout the different HTML pages.
 
 ## Site summary page
 

@@ -22,4 +22,4 @@ $ npm install -g sitespeed.io
 $ sitespeed.io -h
 ~~~
 
-Else you can clone or fork the project at [![Github](/img/GitHub-Mark-64px.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/issues) and if you like sitespeed.io, please [![Give us a star](/img/star3.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/stargazers) us!
+You can clone or fork the project at [![Github](/img/GitHub-Mark-64px.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/issues) and if you like sitespeed.io, please give us a [![Give us a star](/img/star3.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/stargazers)!
