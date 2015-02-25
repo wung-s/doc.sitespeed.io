@@ -10,13 +10,7 @@ nav: logo
 
 # Logo
 
-Do you you want use the sitespeed.io logo in your blog post or in report? Right click on the images and choose *Save as*. You can download the transparent sitespeed.io logo to be used for <a href="sitespeed.io-logo-web.png">web</a> or <a href="sitespeed.io-logo.png">print</a>.
+Do you you want use the sitespeed.io logo in your blog post or in a report? Click on the image (or choose *Save link as*) and the zip will be saved to your disk. There's a transparent sitespeed.io logo to be used for web and one for print in the zip file.
 
-<div class="grid">
-  <div class="col-1-2">
-  <a href="sitespeed.io-logo-web.png"><img src="sitespeed.io-logo-web.png" class="img-big" width="200"></a>
-  </div>
-  <div class="col-1-2">
-  <a href="sitespeed.io-logo.png"><img src="sitespeed.io-logo.png" width="200" class="img-big"></a>
-  </div>
-</div>  
+
+[![Sitespeed.io logos](sitespeed.io-logo-web.png){: .img-big}](sitespeed.io-logo.zip)
