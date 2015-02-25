@@ -18,7 +18,7 @@ If you don't find the answer here or in the [documentation](/documentation/), pl
 
 
 ## I don't get all values in Graphite?
-Doesn't all values reach Gaphite (are you missing values), then you should check your **carbon.conf** file. The configuration **MAX_CREATES_PER_MINUTE** needs to be set to high (we have seen that 50 is too low). To make sure it works, set it like this:
+Doesn't all values reach Graphite (are you missing values), then you should check your **carbon.conf** file. The configuration **MAX_CREATES_PER_MINUTE** needs to be set to high (we have seen that 50 is too low). To make sure it works, set it like this:
 *MAX_CREATES_PER_MINUTE = inf*
 
 
@@ -26,9 +26,12 @@ Doesn't all values reach Gaphite (are you missing values), then you should check
 If you run on Linux without a graphical desktop, remember that you need to use [Xvfb](http://www.x.org/archive/current/doc/man/man1/Xvfb.1.xhtml) to get it to work.
 If you don't, the error you will get is that Firefox can't install the profile. Something like this: *Failed to install profile; firefox terminated ...*
 
+## Chrome/Chromedriver failing on Ubuntu?
+Yep, when running many tests after each other (2000+), sometimes the Selenium NodeJS version fails
+starting Chrome (issue reported [here](https://code.google.com/p/selenium/issues/detail?id=8261)). We are working on a workaround.
 
 ## I have a URL that can't be analyzed, what should I do?
-Please report it as an [issue](https://github.com/sitespeedio/sitespeed.io/issues/new).
+First make sure you run the [latest version](https://www.npmjs.com/package/sitespeed.io) of sitespeed.io. If you do and you still get the error, please report it as an [issue](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 ## Are there any known bugs?
 
@@ -63,11 +66,11 @@ You can check out the projects Travis configuration [file](https://github.com/si
 The crawler has a configurable timeout time (you find it in *dependencies/crawler.properties*).  The crawler crawls your site by first fetching the start page and then the rest of the pages using a thread pool (that you can configure in the same property file). Default is five threads, meaning that it will be maximum five concurrent threads accessing your site. If your site has problem with five (yes that has actually happen) concurrent users, the crawler can timeout. The solution is to increase the timeout time in the properties file.
 
 ## I want to add my own rules, how do I do that?
-Check out the [documentation](/documentation/#addrule).
+Check out the [documentation](/documentation/#add-your-own-rules).
 
 
 ## Is there a option to exclude a given directory?
-Yes, kind of, checkout the [include/exclude section](/documentation/#includeexclude). Use the option **-s** that will skip urls that contains the specified text in the path.
+Yes, kind of, checkout the [include/exclude section](/documentation/#includeexclude-urls-when-crawling). Use the option **-s** that will skip urls that contains the specified text in the path.
 
 ## I want to test only one page, how do I do that?
 ~~~ bash
@@ -75,4 +78,4 @@ $ sitespeed.io -u http://mysite.com -d 0
 ~~~
 
 ## Can I use sitespeed on Windows?
-Yes we hope it will work!
+Yes we hope it will work! We don't have any continous integration setup for Windows, so it is hard for us to test that it really work.
