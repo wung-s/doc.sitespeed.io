@@ -753,7 +753,7 @@ Fetching timings using PhantomJS 2.0 is headless by default. If you run on Linux
 * Start Xvfb: **sh -e /etc/init.d/xvfb start**
 
 ## Jenkins
-You have can use sitespeed.io in [Jenkins](http://jenkins-ci.org/") either by running as a CLI or by using the [sitespeed.io plugin](https://github.com/sitespeedio/jenkins.sitespeed.io).
+You have can use sitespeed.io in [Jenkins](http://jenkins-ci.org/") either by running as a CLI (*Execute shell*) or by using the [sitespeed.io plugin](https://github.com/sitespeedio/jenkins.sitespeed.io).
 
 You want the browsers to run headless, use the [Xvfb plugin](https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin) to make it happen!
 
@@ -774,19 +774,23 @@ sitespeed.io -u http://www.cybercom.com --graphiteHost localhost --graphiteNames
 * And choose the post task **Publish TAP Results** and in the Test Results box add: *sitespeed.tap*
 
 ### Jenkins plugin
-The Jenkins plugin is not yet distributed within Jenkins, so you need to build and install it yourself. Follow [these](https://github.com/sitespeedio/jenkins.sitespeed.io#how-to-run-in-jenkins) instructions on how to do it.
+The Jenkins plugin is not yet distributed within Jenkins, so you need to build and install it yourself. Follow [these](https://github.com/sitespeedio/jenkins.sitespeed.io#how-to-run-in-jenkins) instructions on how to do it. Remember that you need to have NodeJS in the path for the user running the plugin and make sure the user has the rights to execute the sitespeed.io executable.
 
-Then you can add sitespeed.io as a build step like this:
+The plugin focus on breaking your build if your budget doesnt't match the real world. You can choose to output the result as JUnit XML (the file is named **sitespeed.io-junit.xml*), TAP (**sitespeed.io-junit.tap**) or a budget file. If you run *budget* the script will return with a error return code, if your budget breaks. JUnit & TAP will always return ok, so then you need to setup the **Test report XMLs** or the **Publish TAP Results** task to break your build.
+
+
+Add sitespeed.io in your build step:
 
 ![Add sitespeed.io as a build step](add-build-step-jenkins.png)
 {: .img-thumbnail}
 
-Then you can configure the plugin like this:
+You can configure the plugin like this:
 
 ![Configure the plugin](jenkins-plugin-configuration.png)
 {: .img-thumbnail}
 
 And remember, if you output TAP, use the [TAP plugin](https://wiki.jenkins-ci.org/display/JENKINS/TAP+Plugin) or JUnit use the built in **Publish JUnit test result report**.
+
 
 ## Travis integration
 Coming soon!
@@ -1148,4 +1152,4 @@ The following components are used by sitespeed.io:
 
 
 ## Report a bug
-If you find a bug, please go through the current known [bug list](https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&amp;state=open). If it doesn't exist there, please add it!
+If you find a bug, please first make sure you run the [latest version](https://www.npmjs.com/package/sitespeed.io) of sitespeed.io. Then go through the current known [bug list](https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&amp;state=open). If it doesn't exist there, please add it!
