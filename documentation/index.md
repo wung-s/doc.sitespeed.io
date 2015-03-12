@@ -20,7 +20,7 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
  * [Performance Dashboard](/documentation/performance-dashboard/)
  * [Performance Budget](/documentation/performance-budget/)
  * [Graphs](/documentation/graphs/) - graph you webperf metrics using Graphite and Grafana.
- * [Continuous Integration](/documentation/continous-integration/) - generate JUnit XML/TAP and use the Jenkins or Grunt plugin.
+ * [Continuous Integration](/documentation/continuous-integration/) - generate JUnit XML/TAP and use the Jenkins or Grunt plugin.
  * [WebPageTest](/documentation/webpagetest/) - drive WebPageTest and fetch metrics and graph them.
  * [Google Page Speed Insights](/documentation/gpsi/)
  * [Developers](/documentation/developers/) - more info on how to do custom changes.
