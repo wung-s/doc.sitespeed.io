@@ -26,6 +26,7 @@ has Graphite and Grafana.
 You can run these images on your own machine or in the cloud. In this example we will use Digital Ocean, just because it they are super fast. Today they have datacenters in San Francisco, New York, London, Amsterdam and Singapore, so you can choose to deploy on one of them or many.
 
 If you are gonna test you site many times, you need to have the $20 instance, we have seen that the Chrome process eats alot of the CPU.
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04
 
 1. Create a new droplet, choose the one with *2 GB / 2 CPUs 40 GB SSD Disk* and the region you want.
 2. Click on the *Application* tab and choose *Docker on 14.04*
