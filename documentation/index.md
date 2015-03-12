@@ -16,11 +16,11 @@ twitterdescription: Documentation for the sitespeed.io 3.0.
  * [The result](/documentation/result/) - get the result as HTML, TAP, JUnit XML or send the metrics to Graphite.
  * [Browsers](/documentation/browsers/) - collect timings using real browsers. We support Firefox, Chrome, Internet Explorer and Safari.
  * [Headless](/documentation/headless/) - collect metrics using PhantomJS, SlimerJS or use Xvfb for your browser.
- * [Use Cases](/documentation/use-cases/)
+ * [Use Cases](/documentation/use-cases/) - find out best practices for testing a site an compare with other sites.
  * [Performance Dashboard](/documentation/performance-dashboard/)
- * [Performance Budget](/documentation/performance-budget/)
+ * [Performance Budget](/documentation/performance-budget/) - make sure you are within your performance budget.
  * [Graphs](/documentation/graphs/) - graph you webperf metrics using Graphite and Grafana.
  * [Continuous Integration](/documentation/continuous-integration/) - generate JUnit XML/TAP and use the Jenkins or Grunt plugin.
  * [WebPageTest](/documentation/webpagetest/) - drive WebPageTest and fetch metrics and graph them.
- * [Google Page Speed Insights](/documentation/gpsi/)
+ * [Google Page Speed Insights](/documentation/gpsi/) - include GPSI metrics in your reports.
  * [Developers](/documentation/developers/) - more info on how to do custom changes.
