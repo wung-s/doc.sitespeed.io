@@ -1,22 +1,22 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
+title: The result - Documentation - sitespeed.io
+description: Result from an analyze using sitespeed.io.
 keywords: configuration, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Result from an analyze using sitespeed.io.
 ---
 [Documentation](/documentation/) / Result
 
-# Result
+# The Result
 {:.no_toc}
 
 * Lets place the TOC here
 {:toc}
 
-# The result
+# HTML
 The result of an analyze can be a couple of HTML pages, JUnit XML/TAP and you can
 send the metrics to [Graphite](#graphite). Lets first checkout the different HTML pages.
 
@@ -74,4 +74,11 @@ If you fetch timings using your browser, the domains page will be created, that 
 
 You can choose to take screenshots of every tested page for the used viewport.
 
-## Graphite
+# JSON
+All collected data will be stored as a fat JSON file in your data directory if you add *storeJson* when you run sitespeed.io. That is good if you yourself want to harvest the data from the result.
+
+# Graphite
+Most of the collected metrics can be stored in Graphite, making it easy for you to graph the metrics. Checkout the [Graph section](/documentation/graphs/).
+
+# TAP and JUnit XML
+You can create TAP or JUnit XML from your analyze, head over to the [Continuous Integration section](/documentation/continuous-integration/#generating-junit-xml-or-tap).

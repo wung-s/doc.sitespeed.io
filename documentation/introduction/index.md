@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: Introduction - Documentation - sitespeed.io
+description: Introduction for sitespeed.io.
+keywords: introduction, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Introduction for sitespeed.io.
 ---
 [Documentation](/documentation/) / Introduction
 

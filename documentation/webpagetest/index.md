@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: WebPageTest - Documentation - sitespeed.io
+description: Drive WebPageTest using sitespeed.io and include the teh metrics in your sitespeed.io report.
+keywords: webpagetest, wpt, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Drive WebPageTest using sitespeed.io and include the teh metrics in your sitespeed.io report.
 ---
 [Documentation](/documentation/) / WebPageTest
 

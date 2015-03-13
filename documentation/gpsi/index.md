@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: Run Google Page Speed Insights - Documentation - sitespeed.io
+description: Fetch Google Page Speed Insights metrics and include them in your sitespeed.io report.
+keywords: gpsi, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Fetch Google Page Speed Insights metrics and include them in your sitespeed.io report.
 ---
 [Documentation](/documentation/) / GPSI
 

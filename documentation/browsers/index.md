@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Browsers - Documentation - sitespeed.io
-description: How to get browser timings using sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+description: How to get browser timings using sitespeed.io for Firefox, Chrome, Safari and Internet Explorer.
+keywords: browsers, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
@@ -38,7 +38,7 @@ You can fetch timings ([Navigation Timing](http://www.w3.org/TR/navigation-timin
 $ sitespeed.io -u http://yoursite.com  -b firefox
 ~~~
 
-What we do is run a couple of [Javascripts](https://github.com/tobli/browsertime/tree/master/lib/scripts) that collects metrics from the browser. The session ends when the *window.performance.timing.loadEventEnd* happens (but you can configure that yourself). 
+What we do is run a couple of [Javascripts](https://github.com/tobli/browsertime/tree/master/lib/scripts) that collects metrics from the browser. The session ends when the *window.performance.timing.loadEventEnd* happens (but you can configure that yourself).
 
 ## Simulate the connection speed
 

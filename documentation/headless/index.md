@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: Headless - Documentation - sitespeed.io
+description: Collect browser timings headless using sitespeed.io.
+keywords: headless, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Collect browser timings headless using sitespeed.io.
 ---
 [Documentation](/documentation/) / Headless
 
@@ -21,18 +21,19 @@ twitterdescription: Configuration for the sitespeed.io.
  If you run on Linux and want to emulate a screen (a.k.a running a browser without a screen), you need to do this before running:
 
 * Install [Xvfb](http://www.x.org/releases/current/doc/man/man1/Xvfb.1.xhtml).
-* Setup a start script, checkout how we do it in our   [Docker container](https://github.com/sitespeedio/sitespeed.io-docker/blob/master/all/scripts/start.sh)
+* Setup a start script, checkout how we do it in our   [Docker container](https://github.com/sitespeedio/sitespeed.io-docker/blob/master/all/scripts/start.sh).
 
 
 ## PhantomsJS 2
 [PhantomJS](http://phantomjs.org/) is used by default when validating the web performance best practice rules. Soon (!) we will upgrade to the (almost) released 2.0 version. If you want to try out the 2.0 and use it when you run sitespeed.io, do like this:
 
-* Follow <a href="https://github.com/ariya/phantomjs/wiki/PhantomJS-2">these</a> instructions to build PhantomJS 2.
+* Follow [these](https://github.com/ariya/phantomjs/wiki/PhantomJS-2) instructions to build PhantomJS 2 or [download](https://bitbucket.org/ariya/phantomjs/downloads) the compiled versions.
 * Run sitespeed.io and configure it to use your own version of PhantomJS
 
 ~~~bash
 sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin
 ~~~
+
 * If you also want to collect timings using PhantomJS, run it like this:
 
 ~~~bash
@@ -43,4 +44,8 @@ We have tested PhantomJS 2 on Mac OS X and it works really good when testing the
 {: .note .note-warning}
 
 ## SlimerJS
- SlimerJS is kind of headless, but you will need Xvfb to have it real headless.
+SlimerJS is kind of headless, but you will need Xvfb to have it real headless. Run it like this to collect timing metrics:
+
+~~~bash
+sitespeed.io -u http://www.sitespeed.io --headless slimerjs -b headless
+~~~

@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: Use Cases - Documentation - sitespeed.io
+description: Use Cases for running sitespeed.io.
+keywords: use case, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Use Cases for running sitespeed.io.
 ---
 [Documentation](/documentation/) / Use Cases
 

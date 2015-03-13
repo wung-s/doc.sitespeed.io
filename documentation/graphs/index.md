@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: Graphs - Documentation - sitespeed.io
+description: Create graphs for your web performance metrics using Graphite and Grafana.
+keywords: graphs, graphite, grafana, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Create graphs for your web performance metrics using Graphite and Grafana.
 ---
 [Documentation](/documentation/) / Graphs
 

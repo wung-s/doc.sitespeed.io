@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: Developers - Documentation - sitespeed.io
+description: How to add your own post tasks, create rules and other cool stuff.
+keywords: developers, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: How to add your own post tasks, create rules and other cool stuff.
 ---
 [Documentation](/documentation/) / Developers
 

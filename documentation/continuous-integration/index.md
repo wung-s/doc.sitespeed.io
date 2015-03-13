@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Continous integration - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+title: Continuous integration - Documentation - sitespeed.io
+description: Use sitespeed.io in your Continuous Integration setup with Jenkins, Grunt or Team City.
+keywords:  Continuous Integration, jenkins, grunt, team city, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Use sitespeed.io in your Continuous Integration setup.
 ---
 [Documentation](/documentation/) / Continous Intergration
 

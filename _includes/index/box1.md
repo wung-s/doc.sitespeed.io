@@ -2,7 +2,7 @@
 * * *
 You will get results on a high level (red/yellow and green) that your boss will understand. And of course the in depth metrics so you can make your site better. Get the result as HTML or send the metrics to Graphite.
 
-[![The result](/img/sitespeed-boss-page.png)](/documentation/#the-result)
+[![The result](/img/sitespeed-boss-page.png)](/documentation/result/)
 {: .img-thumbnail}
 
 <!--

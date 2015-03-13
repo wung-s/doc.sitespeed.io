@@ -357,4 +357,4 @@ If you want to fetch timings from your browser, they are following this pattern 
 $ sitespeed.io -u http://www.sitespeed.io -c timings.serverResponseTime.median,timings.domContentLoadedTime.median,timings.headerTime.median -b chrome
 ~~~
 
-If you have problem, create an issue and we will help you.
+If you have problem, [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) and we will help you.

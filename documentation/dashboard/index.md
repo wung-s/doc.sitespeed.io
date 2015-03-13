@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Dashboard - Documentation - sitespeed.io
-description: How to configure sitespeed.io
-keywords: configuration, documentation, web performance, sitespeed.io
+description: Web performance dashboard using sitespeed.io.
+keywords: dashboard, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for the sitespeed.io.
+twitterdescription: Web performance dashboard using sitespeed.io.
 ---
 # Performance Dashboard
 {:.no_toc}
