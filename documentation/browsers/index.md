@@ -77,9 +77,9 @@ Then to pick up the script, run like this:
 sitespeed.io -u http://www.sitespeed.io --scriptPath scripts -b firefox
 ~~~
 
-The basename of the file *script* will be used as the metric name in the json.
+The basename of the file *script* will be used as the metric name. If the script return a number, the value will be sent to Graphite and will be summarized on the summary page. Other values will be shown on the specific result page.
 
-## Collected timing metrics
+# Collected timing metrics
 All the metrics are collected using an empty cache.
 
 * *backEndTime* - The time it takes for the network and the server to generate and start sending the HTML. Definition: responseStart - navigationStart
