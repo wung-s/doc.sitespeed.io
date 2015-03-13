@@ -66,11 +66,11 @@ You can check out the projects Travis configuration [file](https://github.com/si
 The crawler has a configurable timeout time (you find it in *dependencies/crawler.properties*).  The crawler crawls your site by first fetching the start page and then the rest of the pages using a thread pool (that you can configure in the same property file). Default is five threads, meaning that it will be maximum five concurrent threads accessing your site. If your site has problem with five (yes that has actually happen) concurrent users, the crawler can timeout. The solution is to increase the timeout time in the properties file.
 
 ## I want to add my own rules, how do I do that?
-Check out the [documentation](/documentation/#add-your-own-rules).
+Check out the [documentation](/documentation/developers/#add-your-own-rules).
 
 
 ## Is there a option to exclude a given directory?
-Yes, kind of, checkout the [include/exclude section](/documentation/#includeexclude-urls-when-crawling). Use the option **-s** that will skip urls that contains the specified text in the path.
+Yes, kind of, checkout the [include/exclude section](/documentation/configuration/#includeexclude-urls-when-crawling). Use the option **-s** that will skip urls that contains the specified text in the path.
 
 ## I want to test only one page, how do I do that?
 ~~~ bash
