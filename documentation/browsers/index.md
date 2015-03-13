@@ -38,14 +38,46 @@ You can fetch timings ([Navigation Timing](http://www.w3.org/TR/navigation-timin
 $ sitespeed.io -u http://yoursite.com  -b firefox
 ~~~
 
-What we do is run a couple of [Javascripts](https://github.com/tobli/browsertime/tree/master/lib/scripts) that collects metrics from the browser. The session ends when the *window.performance.timing.loadEventEnd* happens (but you can configure that yourself).
+What we do is run a couple of [Javascripts](https://github.com/tobli/browsertime/tree/master/lib/scripts) that collects metrics from the browser. The browser stops collecting metrics when the *window.performance.timing.loadEventEnd* happens (but you can configure that yourself).
 
 ## Simulate the connection speed
+You can throttle the connection when you are fetching metrics using the browser. Choose between:
+
+* **mobile3g** - 1.6 Mbps/768 Kbps - 300 RTT
+* **mobile3gfast** - 1.6 Mbps/768 Kbps - 150 RTT
+* **cable** - 5 Mbps/1 Mbps - 28 RTT
+* **native** - the current connection
+
+And run it like this:
+
+~~~ bash
+$ sitespeed.io -u http://yoursite.com -b chrome --connection mobile3g
+~~~
 
 ## Choose when to end your test
+By default the browser will collect data until the *window.performance.timing.loadEventEnd* happens. That is perfectly fine for most sites, but if you do ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (*--waitScript*). When the scripts returns true the browser will close or if the timeout time (default 60 seconds) will be reached:
+
+~~~ bash
+sitespeed.io -u http://www.sitespeed.io -b chrome --waitScript 'return window.performance.timing.loadEventEnd>0'
+~~~
+
 
 ## Fetch your own metrics from the browser
+You can collect your own metrics in the browser by supplying a directory with Jacascript files. Each file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc). Check out the [scripts](https://github.com/tobli/browsertime/tree/master/lib/scripts/metrics) we use.
 
+Say we have a folder called *scripts* and in there we have one file called *scripts.js* that checks how many javascript that is loaded. The script looks like this:
+
+~~~
+return document.getElementsByTagName("script").length;
+~~~
+
+Then to pick up the script, run like this:
+
+~~~ bash
+sitespeed.io -u http://www.sitespeed.io --scriptPath scripts -b firefox
+~~~
+
+The basename of the file *script* will be used as the metric name in the json.
 
 ## Collected timing metrics
 All the metrics are collected using an empty cache.
