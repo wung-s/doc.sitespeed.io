@@ -60,7 +60,4 @@ $ sudo docker pull sitespeedio/sitespeed.io
 $ sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://www.sitespeed.io -b firefox
 ~~~
 
-That will output the data from the run in the current directory.
-
-Note: running on Mac OS X and Windows, Boot2Docker have rights to write data in your */Users* or *C:\Users* directory. Read more [here](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume).
-{: .note .note-warning}
+That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/docker/).
