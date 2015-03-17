@@ -62,8 +62,8 @@ sitespeed.io -u http://www.sitespeed.io -b chrome --waitScript 'return window.pe
 ~~~
 
 
-## Fetch your own metrics from the browser
-You can collect your own metrics in the browser by supplying a directory with Jacascript files. Each file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc). Check out the [scripts](https://github.com/tobli/browsertime/tree/master/lib/scripts/metrics) we use.
+## Custom metrics
+You can collect your own metrics in the browser by supplying a directory with Jacascript files. Each file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc). Check out the [scripts](https://github.com/tobli/browsertime/tree/master/scripts) we use.
 
 Say we have a folder called *scripts* and in there we have one file called *scripts.js* that checks how many javascript that is loaded. The script looks like this:
 
@@ -74,7 +74,7 @@ return document.getElementsByTagName("script").length;
 Then to pick up the script, run like this:
 
 ~~~ bash
-sitespeed.io -u http://www.sitespeed.io --scriptPath scripts -b firefox
+sitespeed.io -u http://www.sitespeed.io --customScripts scripts -b firefox
 ~~~
 
 The basename of the file *script* will be used as the metric name. If the script return a number, the value will be sent to Graphite and will be summarized on the summary page. Other values will be shown on the specific result page.
