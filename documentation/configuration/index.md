@@ -28,7 +28,7 @@ Usage: node sitespeed.js [options]
 Options:
    -u <URL>, --url <URL>                                  The start url that will be used when crawling.
    -f <FILE>, --file <FILE>                               The path to a plain text file with one URL on each row. Each URL will be analyzed.
-   --sites <FILE>                                         The path to a plain text file with one URL on each row. Each URL is crawled.
+   --sites <FILE>                                         The path to a plain text file with one URL on each row.
    -V, --version                                          Display the sitespeed.io version.
    --silent                                               Only output info in the logs, not to the console.
    -v, --verbose                                          Enable verbose logging.
@@ -38,7 +38,7 @@ Options:
    -s <KEYWORD>, --skip <KEYWORD>                         Do not crawl pages that contains this in the path.
    -t <NOOFTHREADS>, --threads <NOOFTHREADS>              The number of threads/processes that will analyze pages.  [5]
    --name <NAME>                                          Give your test a name, it will be added to all HTML pages.
-   --memory <INTEGER>                                     How much memory the Java processed will have (in mb).  [1024]
+   --memory <INTEGER>                                     How much memory the Java processed will have (in mb).  [256]
    -r <DIR>, --resultBaseDir <DIR>                        The result base directory, the base dir where the result ends up.  [sitespeed-result]
    --outputFolderName                                     Default the folder name is a date of format yyyy-mm-dd-HH-MM-ss
    --suppressDomainFolder                                 Do not use the domain folder in the output directory
@@ -51,6 +51,8 @@ Options:
    --basicAuth <USERNAME:PASSWORD>                        Basic auth user & password.
    -b <BROWSER>, --browser <BROWSER>                      Choose which browser to use to collect timing data. Use multiple browsers in a comma separated list (firefox|chrome|headless)
    --connection                                           Limit the speed by simulating connection types. Choose between mobile3g,mobile3gfast,cable,native  [cable]
+   --waitScript                                           Supply a javascript that decides when a browser run is finished. Use it to fetch timings happening after the loadEventEnd.  [return window.performance.timing.loadEventEnd > 0]
+   --customScripts                                        The path to an extra script folder with scripts that will be executed in the browser. See http://www.sitespeed.io/documentation/#customScripts
    --btConfig <FILE>                                      Additional BrowserTime JSON configuration as a file
    --profile <desktop|mobile>                             Choose between testing for desktop or mobile. Testing for desktop will use desktop rules & user agents and vice verca.  [desktop]
    -n <NUMBEROFTIMES>, --no <NUMBEROFTIMES>               The number of times you should test each URL when fetching timing metrics. Default is 3 times.  [3]
@@ -73,7 +75,7 @@ Options:
    --graphiteHost <HOST>                                  The Graphite host.
    --graphitePort <INTEGER>                               The Graphite port.  [2003]
    --graphiteNamespace <NAMESPACE>                        The namespace of the data sent to Graphite.  [sitespeed.io]
-   --graphiteData                                         Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings]  [all]
+   --graphiteData                                         Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings,requesttimings]  [all]
    --gpsiKey                                              Your Google API Key, configure it to also fetch data from Google Page Speed Insights.
    --noYslow                                              Set to true to turn off collecting metrics using YSlow.
    --html                                                 Create HTML reports. Default to true. Set no-html to disable HTML reports.  [true]
@@ -135,15 +137,10 @@ Then you feed the file to the script and each URL will be crawled. You can run t
 $ sitespeed.io --sites mysitesurls.txt
 ~~~
 
-If you instead want to compare a couple of URL:s between sites (pre defined URLS instead of crawling), do like this: Create a master plain text file. Each row of this file points out another file that contains the specific URLs for that site. The master looks like this (master.txt):
+If you instead want to compare a couple specific URL:s between sites (pre defined URL:s instead of crawling), do like this: Create multiple plain text files with URL:s on each line:
 
-~~~
-theguardian.txt
-nytimes.txt
-...
-~~~
 
-Then create the specific files (theguardian.txt):
+Here's theguardian.txt:
 
 ~~~
 http://www.theguardian.com/uk
@@ -162,9 +159,10 @@ http://www.nytimes.com/pages/fashion/index.html
 You can of course add how many URL:s and sites you want. Then you run the whole thing like this:
 
 ~~~ bash
-$ sitespeed.io --sites master.txt
+$ sitespeed.io --sites theguardian.txt --sites nytimes.txt -d 0
 ~~~
-Checkout the Graphite section to see how you can graph the runs nicely.
+
+Notice the -d 0 will tell sitespeed that we want to test the exact URL:s.
 
 
 ### Include/exclude URL:s when crawling

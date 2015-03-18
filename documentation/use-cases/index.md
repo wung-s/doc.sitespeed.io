@@ -55,7 +55,7 @@ sitespeed.io -f amazon.txt -b chrome -n 11
 Comparing your site against competitors is often very interesting. I usually use it to compare how fast pages are loaded and also how the pages are built (how many requests, how much javascript etc).
 
 ### Setup the files
-I create one file containing the urls for each site that I want to test. Testing amazon.com I create file named apple.txt with the URL:s I want to test:
+I create one file containing the urls for each site that I want to test. Testing apple.com I create file named **apple.txt** with the URL:s I want to test:
 
 ~~~
 http://www.apple.com/
@@ -63,7 +63,7 @@ http://www.apple.com/iphone/
 http://www.apple.com/iphone-6/
 ~~~
 
-and I compare it to Sony Mobile. I create a new text file named sony.txt with the following content:
+and I compare it to Sony Mobile. I create a new text file named **sony.txt** with the following content:
 
 ~~~
 http://www.sonymobile.com/se/
@@ -71,23 +71,15 @@ http://www.sonymobile.com/se/products/phones/
 http://www.sonymobile.com/se/products/phones/xperia-z3-compact/
 ~~~
 
-And then I create a master file linking in the other two files:
-
-~~~
-apple.txt
-sony.txt
-~~~
-
 ### Run the test
 Then I run it like this:
 
 ~~~bash
-sitespeed.io --sites master.txt
+sitespeed.io --sites apple.txt --sites sony.txt -d 0
 ~~~
 
-Of course you can add all the parameters as usual to sitespeed, testing your site using
-chrome, test 11 times and also test with WebPageTest and Google Page Speed Insights and sending the data to Graphite looks like this:
+Of course you can add all the parameters as usual to sitespeed, testing your site using Chrome, test 11 times and also test with WebPageTest and Google Page Speed Insights and sending the data to Graphite looks like this:
 
 ~~~bash
-sitespeed.io --sites master.txt -b chrome -n 11 --wptHost your.webpagetest.com --gpsiKey YOUR_GOOGLE_KEY --graphiteHost mygraphitehost.com
+sitespeed.io --sites apple.txt --sites sony.txt -d 0 -b chrome -n 11 --wptHost your.webpagetest.com --gpsiKey YOUR_GOOGLE_KEY --graphiteHost mygraphitehost.com
 ~~~
