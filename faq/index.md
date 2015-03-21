@@ -39,17 +39,13 @@ Checkout the [buglist](https://github.com/sitespeedio/sitespeed.io/issues?labels
 
 There are one inherited bugs from PhantomJS/YSlow:
 
-* The gzipped size of a component is not working so right now the unzipped size is showed everywhere. See original defect [here](http://code.google.com/p/phantomjs/issues/detail?id=156).
+* The gzipped size of a component is not working so right now the unzipped size is showed everywhere. See original defect [here](http://code.google.com/p/phantomjs/issues/detail?id=156). If you only collect rule score, this defect will affect you. But if you fetch timings from the browser or WebPageTest you will get correct values.
 
 If you find other bugs, please report them [here](https://github.com/sitespeedio/sitespeed.io/issues).
 
 
 ## I get java.io.UnsupportedEncodingException: gzip, what does that mean?
 The crawler used in sitespeed.io doesn't fetch content using GZIP (sending header that accepts gzip), however some sites sends content gzipped to all clients and then is when you get this exception.
-
-
-## My HAR files don't look right when I test a HTTPS site?
-There's a known problem collecting HAR data for HTTPS. Checkout [BrowserMobProxy](https://github.com/lightbody/browsermob-proxy) of how you can handle it.
 
 ## I get *Error: no display specified*
 If you run on Linux and want to emulate a display (a.k.a running a browser without a screen) then you can do two things. If you are using Jenkins, then  use the [Xvfb plugin](https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin).
@@ -77,5 +73,5 @@ Yes, kind of, checkout the [include/exclude section](/documentation/configuratio
 $ sitespeed.io -u http://mysite.com -d 0
 ~~~
 
-## Can I use sitespeed on Windows?
-Yes we hope it will work! We don't have any continous integration setup for Windows, so it is hard for us to test that it really work.
+## Can I use sitespeed.io on Windows?
+Yes we hope it will work! We don't have any continous integration setup for Windows, so it is hard for us to test that it really works. 
