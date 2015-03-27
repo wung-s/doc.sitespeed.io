@@ -1,32 +1,115 @@
 ---
 layout: default
 title: Dashboard - Documentation - sitespeed.io
-description: Performance Dashboard using sitespeed.io
-keywords: webperf, dashboard , documentation, web performance, sitespeed.io
+description: Web performance dashboard using sitespeed.io.
+keywords: dashboard, docker, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Performance Dashboard using sitespeed.io.
+twitterdescription: Web performance dashboard using sitespeed.io.
 ---
-[Documentation](/documentation/) / Performance Dashboard
-
 # Performance Dashboard
 {:.no_toc}
 
 * Lets place the TOC here
 {:toc}
 
-Coming soon!
+We have put a lot of love into making it easy to create your own performance dashboard. To run them you need [Docker](https://www.docker.com/). That's it :)
 
-<!--
-We have put a lot of love into making it easy to create your own performance dashboard.
-The base is two Docker images. One with sitespeed.io, Chrome and Firefox. The other image
-has Graphite and Grafana.
+The base is these three Docker images:
 
-You can run these images on your own machine or in the cloud. In this example we will use Digital Ocean, just because it they are super fast. Today they have datacenters in San Francisco, New York, London, Amsterdam and Singapore, so you can choose to deploy on one of them or many.
+  * [Sitespeed.io with Chrome, Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io/).
+  * [Graphite that stores the collected metrics](https://registry.hub.docker.com/u/sitespeedio/graphite/). If you have an Graphite server up and running already you can use that one.
+  * [The official Grafana image, making it possible to create nice graphs of your metrics](https://registry.hub.docker.com/u/grafana/grafana/).
 
-If you are gonna test you site many times, you need to have the $20 instance, we have seen that the Chrome process eats alot of the CPU.
-https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04
+You can run these images on your own machine(s) or in the cloud. You only need Docker. But what will you get? We have setup an example site so you can try it out yourself. We are proud to present
+[dashboard.sitespeed.io](http://dashboard.sitespeed.io:3000/dashboard/db/american-airlines-summary).
+
+## Setup the containers
+
+It is extremely easy to setup the containers. The only thing you need to do is setup directories where you store the data.
+
+### Graphite
+First we want to have have Graphite to store the metrics. You want to store the data outside of your containers, so create an directory where you store the data
+**sudo mkdir -p /data/graphite/storage/whisper**.
+
+Then start it.
+
+~~~
+sudo docker run -d \
+  --name graphite \
+  -p 8080:80 \
+  -p 2003:2003 \
+  --restart="always" \
+  -v /data/graphite/storage/whisper:/opt/graphite/storage/whisper  \
+  sitespeedio/graphite
+~~~
+
+Your Graphite instance will be behind Basic Auth (guest/guest), if your server is public you should change that by generating your own .httpwd file. You can do that with [apache2-utils](http://httpd.apache.org/docs/2.2/programs/htpasswd.html). You run it like this:
+
+~~~
+sudo apt-get install apache2-utils
+sudo htpasswd -c .htpasswd YOUR_USERNAME
+~~~
+
+And add this line when you start the Graphite docker image:
+
+~~~
+-v /your/path/.htpasswd:/etc/nginx/.htpasswd \
+~~~
+
+#### Configure how long to store the metrics
+By default the metrics are stored for 60 days and you can change that. First [read]((https://github.com/etsy/statsd/blob/master/docs/graphite.md)) how you configure Graphite. Create your own [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) file and feed it to the image on startup like this:-
+
+~~~
+-v /path/to/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
+~~~
+
+### Grafana
+Start Grafana
+
+~~~
+sudo docker run -d -p 3000:3000 \
+--name grafana \
+--restart="always" \
+grafana/grafana:develop
+~~~
+
+TODO Map the database
+
+## Collect metrics
+Now we need to collect that precious metrics. Easiest to do it is run sitespeed in your crontab. Edit your crontab:
+
+~~~
+crontab -e
+~~~
+
+And add something like this (make sure to change the URL and the host):
+
+~~~
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://mysite.com -b chrome -n 2 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt
+~~~
+
+You can of course fetch URL:s from a file and store the output if you want.
+
+### Collect from multiple locations
+It works perfectly to collect data from different servers/locations and send the data to the same Graphite server. What you need to do is give the keys in Graphite different names so that the don't collide. You do that by setting the **graphiteNamespace** when you run sitespeed and you have unique namespaces.
+
+~~~
+sitespeed.io -u http://mysite.com -b firefox --graphiteHost YOUR_GRAPHITE_HOST --graphiteNamespace sitespeed.newyork
+~~~
+
+## Setup your dashboards
+To get up and running fast we have a [zip file]() with example JSON:s that you can use to. Remember though that you need to change the keys in to match your keys so you can see values.
+
+
+# Example: Digital Ocean
+
+In this example we will use Digital Ocean, just because it they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore, so you can choose to deploy on one of them or many.
+
+If you are gonna test your site many times, you need to have the $20 instance, we have seen that the Chrome process eats a lot of the CPU.
 
 1. Create a new droplet, choose the one with *2 GB / 2 CPUs 40 GB SSD Disk* and the region you want.
 2. Click on the *Application* tab and choose *Docker on 14.04*
@@ -48,5 +131,3 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0,15,30,45 * * * * docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io-docker sitespeed.io -f urls.txt -b chrome -n 11 --graphiteHost YOUR_IP --memory 256 --connection cable --graphiteNamespace test -r /tmp/ >> /tmp/sitespeed-run.txt
 ~~~
 Make sure to edit your YOUR_IP
-
--->

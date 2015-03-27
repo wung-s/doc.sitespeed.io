@@ -19,6 +19,13 @@ twitterdescription: How to add your own post tasks, create rules and other cool 
 
 You can fork the project at [GitHub](https://github.com/sitespeedio/sitespeed.io)  and create your own version or contribute to the existing one. The master branch is the latest release and/or in production-ready state. Clone that and you know it will always work.
 
+## The map
+
+![The sitespeed.io universe](the-sitespeed.io-universe.png)
+{: .img-thumbnail}
+
+
+
 ## Add your own post tasks
 
 When sitespeed.io collected all the metrics, you have the possibility to add your own post tasks, meaning writing your own NodeJS code to take all the metrics and do whatever you want with it (store it to a database etc).
