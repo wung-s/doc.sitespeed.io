@@ -89,7 +89,7 @@ And add something like this (make sure to change the URL and the host):
 ~~~
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://mysite.com -b chrome -n 2 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt
+0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://mysite.com -b firefox -n 5 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
 ~~~
 
 You can of course fetch URL:s from a file and store the output if you want.
@@ -126,8 +126,6 @@ docker run -d -p 80:80 -p 2003:2003 -p 8125:8125/udp -p 8126:8126 --name sitespe
 8. **crontab -e** (choose nano)
 
 ~~~crontab
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-0,15,30,45 * * * * docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io-docker sitespeed.io -f urls.txt -b chrome -n 11 --graphiteHost YOUR_IP --memory 256 --connection cable --graphiteNamespace test -r /tmp/ >> /tmp/sitespeed-run.txt
+
 ~~~
 Make sure to edit your YOUR_IP
