@@ -29,7 +29,7 @@ You need to install Chrome and the [Chromedriver](https://sites.google.com/a/chr
 Windows only. To get Internet Explorer to work, follow the [instructions](https://code.google.com/p/selenium/wiki/InternetExplorerDriver#Required_Configuration).
 
 ## Safari
-You need Safari 8 to get timiings from your browser (Mac only). To get it to work, you need to install the [SafariDriver extension - SafariDriver.safariextz](http://selenium-release.storage.googleapis.com/index.html?path=2.45/) in your browser. With the current version no HAR-file is created.
+You need Safari 8 to get timings from your browser (Mac only). To get it to work, you need to install the [SafariDriver extension - SafariDriver.safariextz](http://selenium-release.storage.googleapis.com/index.html?path=2.45/) in your browser. With the current version no HAR-file is created.
 
 # Fetching timings
 You can fetch timings ([Navigation Timing](http://www.w3.org/TR/navigation-timing/) and [User Timings](http://www.w3.org/TR/user-timing/)) using using the **-b** flag. We use [Browsertime](https://github.com/tobli/browsertime) to collect the data.
