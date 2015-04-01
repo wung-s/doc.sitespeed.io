@@ -7,7 +7,7 @@ keywords: sitespeed.io, wpo, webperf, perfmatters, fast, site, speed, web perfor
 nav: start
 image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 ---
-<img src="img/sitespeed.io-logo-large2.png" class="pull-left img-big" alt="Sitespeed.io logo" width="188" height="200" onLoad="markUserTime('logoTime')">
+<img src="img/sitespeed.io-logo-large2.png" class="pull-left img-big" alt="Sitespeed.io logo" width="188" height="200" onLoad="window.performance.mark('logoTime');">
 
 ## Analyze your website speed and performance
 
