@@ -98,7 +98,7 @@ sitespeed.io -u http://www.cybercom.com --graphiteHost localhost --graphiteNames
 ### Jenkins plugin
 The Jenkins plugin is not yet distributed within Jenkins, so you need to build and install it yourself. Follow [these](https://github.com/sitespeedio/jenkins.sitespeed.io#how-to-run-in-jenkins) instructions on how to do it. Remember that you need to have NodeJS in the path for the user running the plugin and make sure the user has the rights to execute the sitespeed.io executable.
 
-The plugin focus on breaking your build if your budget doesnt't match the real world. You can choose to output the result as JUnit XML (the file is named **sitespeed.io-junit.xml*), TAP (**sitespeed.io-junit.tap**) or a budget file. If you run *budget* the script will return with a error return code, if your budget breaks. JUnit & TAP will always return ok, so then you need to setup the **Test report XMLs** or the **Publish TAP Results** task to break your build.
+The plugin focus on breaking your build if your budget doesnt't match the real world. You can choose to output the result as JUnit XML (the file is named **sitespeed.io-junit.xml**), TAP (**sitespeed.io-junit.tap**) or a budget file. If you run *budget* the script will return with a error return code, if your budget breaks. JUnit & TAP will always return ok, so then you need to setup the **Test report XMLs** or the **Publish TAP Results** task to break your build.
 
 
 Add sitespeed.io in your build step:
