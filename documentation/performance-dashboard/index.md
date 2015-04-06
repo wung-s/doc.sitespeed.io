@@ -34,7 +34,9 @@ It is extremely easy to setup the containers. The only thing you need to do is s
 ### Graphite
 First we want to have have Graphite to store the metrics. You want to store the data outside of your containers, so create an directory where you store the data. In this example we put it in */data/graphite*
 
-`sudo mkdir -p /data/graphite/storage/whisper`.
+~~~
+sudo mkdir -p /data/graphite/storage/whisper
+~~~
 
 Then start the image.
 
@@ -84,25 +86,39 @@ By default the metrics are stored for 60 days and you can change that. First [re
 
 
 ### Grafana
-Start Grafana
+Before you start Grafana you want to make sure that the the dashboard data is stored on disk. Create a directory that will hold the Grafana database:
+
+~~~
+sudo mkdir -p /data/grafana/data
+~~~
+
+And then start Grafana, map the directory, add a new admin user & password
 
 ~~~
 sudo docker run -d -p 3000:3000 \
+-v /data/grafana/data:/opt/grafana/data \
+-e "GF_SECURITY_ADMIN_USER=myuser" \
+-e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
 --name grafana \
 --restart="always" \
-grafana/grafana:develop
+grafana/grafana
 ~~~
 
-TODO Map the database
 
 ## Collect metrics
-Now we need to collect that precious metrics. Easiest to do it is run sitespeed in your crontab. Edit your crontab:
+Now we need to collect that precious metrics. Easiest to do it is run sitespeed in your crontab. But first create a data dir where you can put the input/output files for sitespeed.io:
+
+~~~
+sudo mkdir /sitespeed.io
+~~~
+
+Then edit your crontab:
 
 ~~~
 crontab -e
 ~~~
 
-And add something like this (make sure to change the URL and the host):
+And add something like this (make sure to change the URL and the host). In this example we run every 15 minutes, but you can of course change it:
 
 ~~~
 SHELL=/bin/bash
@@ -110,7 +126,13 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://mysite.com -b firefox -n 5 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
 ~~~
 
-You can of course fetch URL:s from a file and store the output if you want.
+You can of course fetch URL:s from a file and store the output if you want. To do that add a file in you */sitespeed.io/* directory containing all the URL:s and run it like this:
+
+~~~
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
+~~~
 
 ### Collect from multiple locations
 It works perfectly to collect data from different servers/locations and send the data to the same Graphite server. What you need to do is give the keys in Graphite different names so that the don't collide. You do that by setting the *graphiteNamespace* when you run sitespeed and you have unique namespaces.
@@ -120,14 +142,14 @@ sitespeed.io -u http://mysite.com -b firefox --graphiteHost YOUR_GRAPHITE_HOST -
 ~~~
 
 ## Setup your dashboards
-To get up and running fast we have a [zip file]() with example JSON:s that you can use to. Remember though that you need to change the keys in to match your keys so you can see values.
+To get up and running fast we have a [zip file](dashboards.zip) with example JSON:s that you can use to. Remember though that you need to change the keys in to match your keys so you can see values.
 
 
 # Example: Digital Ocean
 
-In this example we will use Digital Ocean, just because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore, so you can choose to deploy on one of them or all of them.
+In this example we will use [Digital Ocean](https://www.digitalocean.com/), because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore, so you can choose to deploy on one of them or all of them.
 
-If you are gonna test your site many times, you need to have the $20 instance, we have seen that the Chrome process eats a lot of the CPU.
+When we've been testing, we have seen that Firefox can run on a $5 instance and Chrome needs at least a $10 instance. In this example we will use a $20 instance and put everything on that.
 
 1. Create a new droplet, choose the one with *2 GB / 2 CPUs 40 GB SSD Disk* and the region you want.
 2. Click on the *Application* tab and choose *Docker on 14.04*
@@ -137,14 +159,54 @@ If you are gonna test your site many times, you need to have the $20 instance, w
 6. Pull the Docker images needed:
 *docker pull sitespeedio/sitespeeed.io* ,
 *docker pull sitespeedio/graphite* and *docker pull grafana/grafana*
-7. Start Grafana & Graphite:
+7. Create the dirs needed:
 
 ~~~
+mkdir -p /data/graphite/storage/whisper
+mkdir -p /data/grafana/data
+mkdir /sitespeed.io
+~~~
+
+8. Start Grafana & Graphite (first create your own .htpasswd file and change the user and admin user password):
 
 ~~~
-8. **crontab -e** (choose nano)
+docker run -d \
+  --name graphite \
+  -p 8080:80 \
+  -p 2003:2003 \
+  --restart="always" \
+  -v /data/graphite/storage/whisper:/opt/graphite/storage/whisper \
+  -v /your/path/.htpasswd:/etc/nginx/.htpasswd \
+  sitespeedio/graphite
 
-~~~crontab
+docker run -d -p 3000:3000 \
+-v /data/grafana/data:/opt/grafana/data \
+-e "GF_SECURITY_ADMIN_USER=myuser" \
+-e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
+--name grafana \
+--restart="always" \
+grafana/grafana
+~~~
+
+9. Create a file with the URL:s you want to test by *nano /sitespeed.io/urls.txt*:
 
 ~~~
-Make sure to edit your YOUR_IP
+http://www.myfirsturl.com
+http://www.myfirsturl.com/1/
+http://www.myfirsturl.com/2/
+http://www.myfirsturl.com/3/
+~~~
+
+10. **crontab -e** (choose nano)
+
+~~~
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
+~~~
+
+Make sure to edit your YOUR_GRAPHITE_HOST to the IP of your server.
+
+# Extras
+
+## WebPageTest
