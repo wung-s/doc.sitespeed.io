@@ -143,6 +143,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
 ~~~
 
+Note: If you are using Chrome you need to configure which Selenium server to use (there are bugs running it straight with NodeJS and Linux). You do that by adding --**seleniumServer http://127.0.0.1:4444/wd/hub** to your run.
+{: .note .note-warning}
+
 #### Collect from multiple locations
 It works perfectly to collect data from different servers/locations and send the data to the same Graphite server. What you need to do is give the keys in Graphite different names so that the don't collide. You do that by setting the *graphiteNamespace* when you run sitespeed and you have unique namespaces.
 
