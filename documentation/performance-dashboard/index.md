@@ -113,6 +113,11 @@ sudo docker run -d -p 3000:3000 \
 grafana/grafana
 ~~~
 
+The next step is to access your Grafana instance and configure to use your Graphite instance as backend. Choose *Grafana admin* > *Data Sources* > *Add new*. And then make sure to set it as default and enable Basic Auth.
+
+![Configure Grafana to use Graphite](configure-grafana.jpg)
+{: .img-thumbnail}
+
 
 ### Collect metrics
 Now we need to collect that precious metrics. Do it by the old crontab. But first create a data dir where you can put the input/output files for sitespeed.io:
@@ -156,6 +161,8 @@ sitespeed.io -u http://mysite.com -b firefox --graphiteHost YOUR_GRAPHITE_HOST -
 ## Setup your dashboards
 To get up and running fast we have a [zip file](dashboards.zip) with example JSON:s that you can use to. Remember though that you need to change the keys in to match your keys so you can see values.
 
+If you need help, checkout the [Grafana documentation](http://docs.grafana.org/).
+
 ## Limit the amount of data in Graphite
 If you test many pages you will have a lot of data stored in Graphite, make sure you set it up correctly for what you need.
 
@@ -188,9 +195,9 @@ You can also configure how data is aggregated over time. Check out the default c
 
 # Example setup: Digital Ocean
 
-In this example we will use [Digital Ocean](https://www.digitalocean.com/), because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore, so you can choose to deploy on one of them or all of them.
+In this example we will use [Digital Ocean](https://www.digitalocean.com/), because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore. You can choose to deploy on one of them or all of them.
 
-When we've been testing, we have seen that Firefox can run on a $5 instance and Chrome needs at least a $10 instance. In this example we will use a $20 instance and put everything on that.
+When we've been testing, we have seen that Firefox can run on a $5 instance and Chrome needs a $20 instance. In this example we will use a $20 instance and put everything on that.
 
 * Create a new droplet, choose the one with *2 GB / 2 CPUs 40 GB SSD Disk* and the region you want.
 Click on the *Application* tab and choose *Docker on 14.04*
@@ -237,7 +244,7 @@ http://www.myfirsturl.com/2/
 http://www.myfirsturl.com/3/
 ~~~
 
-* **crontab -e** (choose nano)
+* **crontab -e** (choose nano and make sure to edit your YOUR_GRAPHITE_HOST to the IP of your server).
 
 ~~~
 SHELL=/bin/bash
@@ -245,4 +252,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
 ~~~
 
-Make sure to edit your YOUR_GRAPHITE_HOST to the IP of your server.
+
+* The next step is to log into your Grafana instance and configure Graphite as your backend. Then you can start creating your own dashboards.
