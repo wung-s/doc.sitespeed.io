@@ -105,7 +105,7 @@ And then start Grafana, map the directory, add a new admin user & password.
 
 ~~~
 sudo docker run -d -p 3000:3000 \
--v /data/grafana/data:/opt/grafana/data \
+-v /data/grafana/data:/usr/share/grafana/data \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
 --name grafana \
@@ -192,7 +192,6 @@ By default the metrics are stored for 60 days (except request timings they are o
 
 You can also configure how data is aggregated over time. Check out the default configuration [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) and reread Etsys nice writeup :)
 
-
 # Example setup: Digital Ocean
 
 In this example we will use [Digital Ocean](https://www.digitalocean.com/), because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore. You can choose to deploy on one of them or all of them.
@@ -204,6 +203,7 @@ Click on the *Application* tab and choose *Docker on 14.04*
 * Remember to add the **SSH keys** for your user. Follow the [tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets) of how to create your SSH keys.
 * Start your droplet.
 * When it is up and running, log into your server *ssh root@YOUR_IP*
+* Setup the server following Digital Oceans [Initial Server Setup Guide](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04)
 * Pull the Docker images needed:
 *docker pull sitespeedio/sitespeeed.io* ,
 *docker pull sitespeedio/graphite* and *docker pull grafana/grafana*
@@ -227,7 +227,7 @@ docker run -d \
   sitespeedio/graphite
 
 docker run -d -p 3000:3000 \
--v /data/grafana/data:/opt/grafana/data \
+-v /data/grafana/data:/usr/share/grafana/data \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
 --name grafana \
