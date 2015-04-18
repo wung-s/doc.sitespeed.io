@@ -215,6 +215,7 @@ Click on the *Application* tab and choose *Docker on 14.04*
 * Start your droplet.
 * When it is up and running, log into your server *ssh root@YOUR_IP*
 * Setup the server following Digital Oceans [Initial Server Setup Guide](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04)
+* [Add a swap](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04)
 * Pull the Docker images needed:
 *docker pull sitespeedio/sitespeeed.io* ,
 *docker pull sitespeedio/graphite* and *docker pull grafana/grafana*
