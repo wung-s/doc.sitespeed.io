@@ -207,7 +207,7 @@ Change the LOGIN and PASSWORD to the Basic Auth you are using for Graphite and t
 
 In this example we will use [Digital Ocean](https://www.digitalocean.com/), because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore. You can choose to deploy on one of them or all of them.
 
-When we've been testing, we have seen that Firefox can run on a $5 instance and Chrome needs a $20 instance. In this example we will use a $20 instance and put everything on that.
+When we've been testing, we have seen that you can Firefox or Chrome on a $5 instance (remember to setup the swap space!). In this example we will use a $20 instance and put everything on that.
 
 * Create a new droplet, choose the one with *2 GB / 2 CPUs 40 GB SSD Disk* and the region you want.
 Click on the *Application* tab and choose *Docker on 14.04*
@@ -217,19 +217,19 @@ Click on the *Application* tab and choose *Docker on 14.04*
 * Setup the server following Digital Oceans [Initial Server Setup Guide](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04) to make your server a little more secure.
 * [Add swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04) and avoid out pf memory errors.
 * Pull the Docker images:
-*docker pull sitespeedio/sitespeeed.io* ,
-*docker pull sitespeedio/graphite* and *docker pull grafana/grafana*
+*sudo docker pull sitespeedio/sitespeeed.io* ,
+*sudo docker pull sitespeedio/graphite* and *sudo docker pull grafana/grafana*
 * Create the directories:
 
 ~~~
-mkdir -p /data/graphite/storage/whisper
-mkdir -p /data/grafana/data
-mkdir /sitespeed.io
+sudo mkdir -p /data/graphite/storage/whisper
+sudo mkdir -p /data/grafana/data
+sudo mkdir /sitespeed.io
 ~~~
 * Start Grafana & Graphite (first create your own .htpasswd file and change the user and admin user password):
 
 ~~~
-docker run -d \
+sudo docker run -d \
   --name graphite \
   -p 8080:80 \
   -p 2003:2003 \
@@ -238,7 +238,7 @@ docker run -d \
   -v /your/path/.htpasswd:/etc/nginx/.htpasswd \
   sitespeedio/graphite
 
-docker run -d -p 3000:3000 \
+sudo docker run -d -p 3000:3000 \
 -v /data/grafana/data:/usr/share/grafana/data \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
@@ -247,7 +247,7 @@ docker run -d -p 3000:3000 \
 grafana/grafana
 ~~~
 
-* Create a file with the URL:s you want to test by *nano /sitespeed.io/urls.txt*:
+* Create a file with the URL:s you want to test by *sudo nano /sitespeed.io/urls.txt*:
 
 ~~~
 http://www.myfirsturl.com
@@ -256,7 +256,7 @@ http://www.myfirsturl.com/2/
 http://www.myfirsturl.com/3/
 ~~~
 
-* **crontab -e** (choose nano and make sure to edit your YOUR_GRAPHITE_HOST to the IP of your server).
+* **sudo crontab -e** (choose nano and make sure to edit your YOUR_GRAPHITE_HOST to the IP of your server).
 
 ~~~
 SHELL=/bin/bash
