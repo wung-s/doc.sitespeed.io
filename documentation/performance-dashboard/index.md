@@ -41,7 +41,7 @@ There's a lot of metrics collected, lets check what kind of views of the data yo
 
 * [Timings per domain](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-domain) - a way to check how your third party content.
 
-* [Timings per asset](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-asset) - here you can graph every request on a page and the timings: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets.
+* [Timings per asset](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-asset) - here you can graph every request on a page and the timings: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets from a 3rd party.
 
 
 ## Setup the containers
@@ -137,7 +137,7 @@ And add something like this (make sure to change the URL and the host). In this 
 ~~~
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://mysite.com -b firefox -n 5 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
+0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://mysite.com -b firefox -n 5 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST --seleniumServer http://127.0.0.1:4444/wd/hub >> /tmp/sitespeed-run.txt 2>&1
 ~~~
 
 You can of course fetch URL:s from a file and store the output if you want. To do that add a file in you */sitespeed.io/* directory containing all the URL:s and run it like this:
@@ -145,10 +145,10 @@ You can of course fetch URL:s from a file and store the output if you want. To d
 ~~~
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
+0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST --seleniumServer http://127.0.0.1:4444/wd/hub >> /tmp/sitespeed-run.txt 2>&1
 ~~~
 
-Note: If you are using Chrome you need to configure which Selenium server to use (there are bugs running it straight with NodeJS and Linux). You do that by adding --**seleniumServer http://127.0.0.1:4444/wd/hub** to your run.
+Note: You need to configure the selenium server to use (there are bugs running it straight with NodeJS and Linux). You do that by adding --**seleniumServer http://127.0.0.1:4444/wd/hub** to your run. Using the selenium server will make your runs more stable.
 {: .note .note-warning}
 
 #### Collect from multiple locations
@@ -214,12 +214,12 @@ Click on the *Application* tab and choose *Docker on 14.04*
 * Remember to add the **SSH keys** for your user. Follow the [tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets) of how to create your SSH keys.
 * Start your droplet.
 * When it is up and running, log into your server *ssh root@YOUR_IP*
-* Setup the server following Digital Oceans [Initial Server Setup Guide](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04)
-* [Add a swap](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04)
-* Pull the Docker images needed:
+* Setup the server following Digital Oceans [Initial Server Setup Guide](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04) to make your server a little more secure.
+* [Add swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04) and avoid out pf memory errors.
+* Pull the Docker images:
 *docker pull sitespeedio/sitespeeed.io* ,
 *docker pull sitespeedio/graphite* and *docker pull grafana/grafana*
-* Create the directories needed:
+* Create the directories:
 
 ~~~
 mkdir -p /data/graphite/storage/whisper
@@ -261,7 +261,7 @@ http://www.myfirsturl.com/3/
 ~~~
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST >> /tmp/sitespeed-run.txt 2>&1
+0,15,30,45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f urls.txt -b firefox -n 11 --connection cable -r /tmp/ --graphiteHost YOUR_GRAPHITE_HOST --seleniumServer http://127.0.0.1:4444/wd/hub >> /tmp/sitespeed-run.txt 2>&1
 ~~~
 
 

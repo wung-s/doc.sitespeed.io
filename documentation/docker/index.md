@@ -33,10 +33,10 @@ The simplest way to run is like this (fetching the box with Chrome and Firefox):
 sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://www.sitespeed.io -b chrome
 ~~~
 
-If you want to feed sitespeed with a list of URL:s in a file (here named *myurls.txt*), add the file to your current directory and do like this: 
+If you want to feed sitespeed with a list of URL:s in a file (here named *myurls.txt*), add the file to your current directory and do like this:
 
 ~~~ bash
-sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f myurls.txt -b chrome
+sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f myurls.txt -b chrome --seleniumServer http://127.0.0.1:4444/wd/hub
 ~~~
 
 ## Setup the volume
