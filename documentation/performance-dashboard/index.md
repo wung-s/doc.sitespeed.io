@@ -184,7 +184,7 @@ By default all timings are sent. If you want to change that, remove the ones of 
 
 ### Configure Graphite what data to keep
 
-By default the metrics are stored for 60 days (except request timings they are only stored for 7 days by default) and you can change that. First [read]((https://github.com/etsy/statsd/blob/master/docs/graphite.md)) Etsy:s nice writeup on how you configure Graphite. Create your own [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) file and feed it to the image on startup like this:
+By default the metrics are stored for 60 days (except request timings they are only stored for 7 days by default) and you can change that. First [read](https://github.com/etsy/statsd/blob/master/docs/graphite.md) Etsy:s nice writeup on how you configure Graphite. Create your own [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) file and feed it to the image on startup like this:
 
 ~~~
 -v /path/to/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
