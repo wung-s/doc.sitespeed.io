@@ -217,7 +217,7 @@ Change the LOGIN and PASSWORD to the Basic Auth you are using for Graphite and t
 ## Known problems
 Modern browsers uses a lot of CPU and memory, so to avoid browser problems, run the browsers on a dedicated machine or instance. That works the best.
 
-Internet can fail. Yep I guess you may know that already. Today we have a fail fast 
+Internet can fail. Yep I guess you may know that already. Today we have a fail fast setup, meaning if we get an error when we fetch a page that we can't handle or was prepared for, we fail and stop the run. That's good in a way because we will try it the next run. But it's bad because if we have a problem, we don't retry (it could be a problem that only exists for a second). In coming releases we will add retry and better error handling, hoping to fetch
 
 
 
