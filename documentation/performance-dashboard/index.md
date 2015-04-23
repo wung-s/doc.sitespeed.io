@@ -20,22 +20,22 @@ We have put a lot of love into making it easy to create your own performance das
 
 The base is the Docker images:
 
-  * To collect metrics you use one of the three images: [sitespeed.io with Chrome, Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io/),  [sitespeed.io with Chrome & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-chrome/) or  [sitespeed.io with Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-firefox/).
-  * [Store the metrics using Graphite ](https://registry.hub.docker.com/u/sitespeedio/graphite/). If you have an Graphite server up and running already you can use that one, just make sure to configure *storage-schemas* and *storage-aggregations*.
+  * To collect metrics, use one of the three images: [sitespeed.io with Chrome, Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io/), [sitespeed.io with Chrome & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-chrome/) or [sitespeed.io with Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-firefox/).
+  * [Store the metrics using Graphite ](https://registry.hub.docker.com/u/sitespeedio/graphite/). If you have a Graphite server up and running already you can use that one, just make sure to configure *storage-schemas* and *storage-aggregations*.
   * [Graph the metrics using Grafana](https://registry.hub.docker.com/u/grafana/grafana/).
 
-You can run these images on your own machine(s) or in the cloud. You only need Docker. But what will you get? We have setup an example site so you can try it out yourself. We are proud to present
+You can run these images on your own machine(s) or in the cloud. You only need Docker. But what will you get? We have set up an example site that you can try out yourself. We are proud to present
 [dashboard.sitespeed.io](http://dashboard.sitespeed.io:3000/). Login using *viewer/viewer*.
 
 ## Metrics and what you can graph
 
-There's a lot of metrics collected, lets check what kind of views of the data you can create:
+There are lots of metrics collected, lets check what kind of views of the data you can create:
 
 * [Show how each and every page is built (number of requests, request types etc), how the page score for rules and  timing metrics (Navigation Timing & User Timing)](http://dashboard.sitespeed.io:3000/dashboard/db/metric-for-one-page-american-airlines-home-page). Use this to keep track of important pages on your site.
 [![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io:3000/dashboard/db/metric-for-one-page-american-airlines-home-page)
 {: .img-thumbnail}
 
-* [Summary for a whole site]((http://dashboard.sitespeed.io:3000/dashboard/db/summary-of-a-site-america-airlines)), showing how your site is built, rules & timings. Use this to keep track of your site or your most imported pages over time.
+* [Summary for a whole site]((http://dashboard.sitespeed.io:3000/dashboard/db/summary-of-a-site-america-airlines)), showing how your site is built, rules & timings. Use this to keep track of your site or your most important pages over time.
 [![Summary](summary.png)](http://dashboard.sitespeed.io:3000/dashboard/db/summary-of-a-site-america-airlines)
 {: .img-thumbnail}
 
@@ -43,7 +43,7 @@ There's a lot of metrics collected, lets check what kind of views of the data yo
 [![Compare](compare.png)](http://dashboard.sitespeed.io:3000/dashboard/db/compare-multiple-sites)
 {: .img-thumbnail}
 
-* [Fetch metrics using WebPageTest](http://dashboard.sitespeed.io:3000/dashboard/db/using-webpagetest), will collect things like SpeedIndex, firstPaint, TTFB, render, visualComplete, domContentLoadedEventEnd, loadTime, page size, image size, number of requests for first and repeat view.
+* [Fetch metrics using WebPageTest](http://dashboard.sitespeed.io:3000/dashboard/db/using-webpagetest), will collect things like SpeedIndex, firstPaint, TTFB, render, visualComplete, domContentLoadedEventEnd, loadTime, page size, image size, number of requests for first and repeated views.
 [![WebPageTest](webpagetest.png)](http://dashboard.sitespeed.io:3000/dashboard/db/using-webpagetest)
 {: .img-thumbnail}
 
@@ -58,7 +58,7 @@ There's a lot of metrics collected, lets check what kind of views of the data yo
 
 ## Setup the containers
 
-It is easy to setup the containers. The only thing you need to do is setup directories where you store the data and start the containers.
+It is easy to setup the containers. The only thing you need to do is set up directories where you store the data and start the containers.
 
 ### Graphite
 First we want to have have Graphite to store the metrics. You want to store the data outside of your containers, so create an directory where you store the data. In this example we put it in */data/graphite/storage/whisper*
@@ -79,7 +79,7 @@ sudo docker run -d \
   sitespeedio/graphite
 ~~~
 
-Your Graphite instance will be behind Basic Auth (*guest/guest*), if your server is public you should change that by generating your own .httpwd file. You can do that with [apache2-utils](http://httpd.apache.org/docs/2.2/programs/htpasswd.html). You run it like this:
+Your Graphite instance will be behind Basic Auth (*guest/guest*), if your server is public you should change that by generating your own .htpasswd file. You can do that with [apache2-utils](http://httpd.apache.org/docs/2.2/programs/htpasswd.html). You run it like this:
 
 ~~~
 sudo apt-get install apache2-utils
@@ -113,7 +113,7 @@ Before you start Grafana you want to make sure that the dashboard data is stored
 sudo mkdir -p /data/grafana/data
 ~~~
 
-And then start Grafana, map the directory, add a new admin user & password.
+And then start Grafana, map the directory, and add a new admin user & password.
 
 ~~~
 sudo docker run -d -p 3000:3000 \
@@ -125,7 +125,7 @@ sudo docker run -d -p 3000:3000 \
 grafana/grafana
 ~~~
 
-The next step is to access your Grafana instance and configure to use your Graphite instance as backend. Choose *Grafana admin* > *Data Sources* > *Add new*. And then make sure to set it as default and enable Basic Auth.
+The next step is to access your Grafana instance and configure it to use your Graphite instance as backend. Choose *Grafana admin* > *Data Sources* > *Add new*. And then make sure to set it as default and enable Basic Auth.
 
 ![Configure Grafana to use Graphite](configure-grafana.jpg)
 {: .img-thumbnail}
@@ -164,14 +164,14 @@ Note: You need to configure the selenium server to use (there are bugs running i
 {: .note .note-warning}
 
 #### Collect from multiple locations
-It works perfectly to collect data from different servers/locations and send the data to the same Graphite server. What you need to do is give the keys in Graphite different names so that the don't collide. You do that by setting the *graphiteNamespace* when you run sitespeed and you have unique namespaces.
+It works perfectly to collect data from different servers/locations and send the data to the same Graphite server. What you need to do is give the keys in Graphite different names so that they don't collide. You do that by setting the *graphiteNamespace* when you run sitespeed and you'll have unique namespaces.
 
 ~~~
 sitespeed.io -u http://mysite.com -b firefox --graphiteHost YOUR_GRAPHITE_HOST --graphiteNamespace sitespeed.io.newyork
 ~~~
 
 ## Setup your dashboards
-To get up and running fast we have a [zip file](dashboards.zip) with example JSON:s that you can use to. Remember though that you need to change the keys in to match your keys so you can see values.
+To get up and running fast we have a [zip file](dashboards.zip) with example JSON:s that you can use to. Remember though that you need to change the keys to match your keys so you can see values.
 
 If you need help, checkout the [Grafana documentation](http://docs.grafana.org/).
 
@@ -188,7 +188,7 @@ You can choose to send the following metrics to Graphite:
 * *timings* - the timings for every page fetched using the Navigation Timing API and User Timings
 * *requests* - send the timings and size data for each and every request: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. This will generate a lot of data.
 
-By default all timings are sent. If you want to change that, remove the ones of the metrics you don't need:
+By default all timings are sent. If you want to change that, remove the metrics you don't need:
 
 ~~~
 --graphiteData summary,rules,pagemetrics,timings,timings
@@ -196,17 +196,17 @@ By default all timings are sent. If you want to change that, remove the ones of 
 
 ### Configure Graphite what data to keep
 
-By default the metrics are stored for 60 days (except request timings they are only stored for 7 days by default) and you can change that. First [read](https://github.com/etsy/statsd/blob/master/docs/graphite.md) Etsy:s nice writeup on how you configure Graphite. Create your own [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) file and feed it to the image on startup like this:
+By default the metrics are stored for 60 days (except request timings they are only stored for 7 days by default) and you can change that. First [read](https://github.com/etsy/statsd/blob/master/docs/graphite.md) Etsy's nice writeup on how you configure Graphite. Create your own [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) file and feed it to the image on startup like this:
 
 ~~~
 -v /path/to/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
 ~~~
 
-You can also configure how data is aggregated over time. Check out the default configuration [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) and reread Etsys nice writeup :)
+You can also configure how data is aggregated over time. Check out the default configuration [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) and reread Etsy's nice writeup :)
 
 ## Add events/annotations to the graphs
 
-Graphite comes with an [event API](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events) so you can mark specfic events like releases. You can simply do that with a curl!
+Graphite comes with an [event API](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events) so you can mark specific events like releases. You can simply do that with a curl!
 
 ~~~
 curl -u LOGIN:PASSWORD -X POST "http://HOSTNAME:8080/events/" -d '{"what": "Deploy", "tags": "production deploy example", "data": "deploy of master branch, version 1.0.0"}'
@@ -215,7 +215,7 @@ curl -u LOGIN:PASSWORD -X POST "http://HOSTNAME:8080/events/" -d '{"what": "Depl
 Change the LOGIN and PASSWORD to the Basic Auth you are using for Graphite and the HOSTNAME to your host. Then for each dashboard choose *Annotations* and the one you use by the tag(s).
 
 ## Known problems
-Modern browsers uses a lot of CPU and memory, so to avoid browser problems, run the browsers on a dedicated machine or instance. That works the best.
+Modern browsers uses a lot of CPU and memory, so to avoid browser problems, run the browsers on a dedicated machine or instance. That works best.
 
 Internet can fail. Yep I guess you may know that already. Today we have a fail fast setup, meaning if we get an error when we fetch a page that we can't handle or was prepared for, we fail and stop the run. That's good in a way because we will try it the next run. But it's bad because if we have a problem, we don't retry (it could be a problem that only exists for a second). In coming releases we will add retry and better error handling, hoping to fetch
 
@@ -223,7 +223,7 @@ Internet can fail. Yep I guess you may know that already. Today we have a fail f
 
 # Example setup: Digital Ocean
 
-In this example we will use [Digital Ocean](https://www.digitalocean.com/), because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore. You can choose to deploy on one of them or all of them.
+In this example we will use [Digital Ocean](https://www.digitalocean.com/), because they are super fast. Today they have data centers in San Francisco, New York, London, Amsterdam and Singapore. You can choose to deploy on one or all of them.
 
 When we've been testing, we have seen that you can Firefox or Chrome on a $5 instance (remember to setup the swap space!). In this example we will use a $20 instance and put everything on that.
 
@@ -283,4 +283,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 ~~~
 
 
-* The next step is to log into your Grafana instance and configure Graphite as your backend. Then you can start creating your own dashboards.
+* The next step is to log in to your Grafana instance and configure Graphite as your backend. Then you can start creating your own dashboards.
