@@ -18,7 +18,7 @@ twitterdescription: Documentation for the sitespeed.io.
  * [Browsers](/documentation/browsers/) - collect timings using real browsers. We support Firefox, Chrome, Internet Explorer and Safari.
  * [Headless](/documentation/headless/) - collect metrics using PhantomJS, SlimerJS or use Xvfb for your browser.
  * [Use Cases](/documentation/use-cases/) - find out best practices for testing a site, compare with other sites.
- <!--* [Performance Dashboard](/documentation/performance-dashboard/) - keep tracks of your metrics.-->
+ <!-- * [Performance Dashboard](/documentation/performance-dashboard/) - keep tracks of your metrics.-->
  * [Performance Budget](/documentation/performance-budget/) - make sure you are within your performance budget.
  * [Graphs](/documentation/graphs/) - graph you webperf metrics using Graphite and Grafana.
  * [Continuous Integration](/documentation/continuous-integration/) - generate JUnit XML/TAP and use the Jenkins or Grunt plugin.

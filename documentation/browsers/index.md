@@ -55,7 +55,7 @@ $ sitespeed.io -u http://yoursite.com -b chrome --connection mobile3g
 ~~~
 
 ## Choose when to end your test
-By default the browser will collect data until the *window.performance.timing.loadEventEnd* happens. That is perfectly fine for most sites, but if you do ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (*--waitScript*). When the scripts returns true the browser will close or if the timeout time (default 60 seconds) will be reached:
+By default the browser will collect data until the *window.performance.timing.loadEventEnd* happens + aprox 2 seconds more. That is perfectly fine for most sites, but if you do ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (*--waitScript*). When the scripts returns true the browser will close or if the timeout time (default 60 seconds) will be reached:
 
 ~~~ bash
 sitespeed.io -u http://www.sitespeed.io -b chrome --waitScript 'return window.performance.timing.loadEventEnd>0'
