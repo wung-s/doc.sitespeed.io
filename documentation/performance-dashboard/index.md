@@ -20,7 +20,7 @@ We have put a lot of love into making it easy to create your own performance das
 
 The base is the Docker images:
 
-  * To collect metrics you use one of the three images: [sitespeed.io with Chrome, Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io/),  [sitespeed.io with Chrome, & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-chrome/) or  [sitespeed.io with Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-firefox/).
+  * To collect metrics you use one of the three images: [sitespeed.io with Chrome, Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io/),  [sitespeed.io with Chrome & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-chrome/) or  [sitespeed.io with Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-firefox/).
   * [Store the metrics using Graphite ](https://registry.hub.docker.com/u/sitespeedio/graphite/). If you have an Graphite server up and running already you can use that one, just make sure to configure *storage-schemas* and *storage-aggregations*.
   * [Graph the metrics using Grafana](https://registry.hub.docker.com/u/grafana/grafana/).
 
@@ -32,17 +32,29 @@ You can run these images on your own machine(s) or in the cloud. You only need D
 There's a lot of metrics collected, lets check what kind of views of the data you can create:
 
 * [Show how each and every page is built (number of requests, request types etc), how the page score for rules and  timing metrics (Navigation Timing & User Timing)](http://dashboard.sitespeed.io:3000/dashboard/db/metric-for-one-page-american-airlines-home-page). Use this to keep track of important pages on your site.
+[![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io:3000/dashboard/db/metric-for-one-page-american-airlines-home-page)
+{: .img-thumbnail}
 
 * [Summary for a whole site]((http://dashboard.sitespeed.io:3000/dashboard/db/summary-of-a-site-america-airlines)), showing how your site is built, rules & timings. Use this to keep track of your site or your most imported pages over time.
+[![Summary](summary.png)](http://dashboard.sitespeed.io:3000/dashboard/db/summary-of-a-site-america-airlines)
+{: .img-thumbnail}
 
 * [Compare multiple sites](http://dashboard.sitespeed.io:3000/dashboard/db/compare-multiple-sites) and see how they are doing. Compare timings and how the pages are built.
+[![Compare](compare.png)](http://dashboard.sitespeed.io:3000/dashboard/db/compare-multiple-sites)
+{: .img-thumbnail}
 
 * [Fetch metrics using WebPageTest](http://dashboard.sitespeed.io:3000/dashboard/db/using-webpagetest), will collect things like SpeedIndex, firstPaint, TTFB, render, visualComplete, domContentLoadedEventEnd, loadTime, page size, image size, number of requests for first and repeat view.
+[![WebPageTest](webpagetest.png)](http://dashboard.sitespeed.io:3000/dashboard/db/using-webpagetest)
+{: .img-thumbnail}
 
-* [Timings per domain](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-domain) - a way to check how your third party content.
+* [3rd party ](http://dashboard.sitespeed.io:3000/dashboard/db/3rd-party-america-airlines) and see how they are doing. Compare timings and how the pages are built.
+[![3rd party](3rdparty.png)](http://dashboard.sitespeed.io:3000/dashboard/db/3rd-party-america-airlines)
+{: .img-thumbnail}
+
 
 * [Timings per asset](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-asset) - here you can graph every request on a page and the timings: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets from a 3rd party.
-
+[![Timings per asset](perasset.png)](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-asset)
+{: .img-thumbnail}
 
 ## Setup the containers
 
@@ -174,12 +186,12 @@ You can choose to send the following metrics to Graphite:
 * *rules* - how each and every tested page match against the web performance best practice rules
 * *pagemetrics* - how each and every page is built, like the number of javascripts, css etc
 * *timings* - the timings for every page fetched using the Navigation Timing API and User Timings
-* *requesttimings* - send the timings data for each and every request: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. This will generate a lot of data.
+* *requests* - send the timings and size data for each and every request: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. This will generate a lot of data.
 
 By default all timings are sent. If you want to change that, remove the ones of the metrics you don't need:
 
 ~~~
---graphiteData summary,rules,pagemetrics,timings,requesttimings
+--graphiteData summary,rules,pagemetrics,timings,timings
 ~~~
 
 ### Configure Graphite what data to keep
@@ -201,6 +213,12 @@ curl -u LOGIN:PASSWORD -X POST "http://HOSTNAME:8080/events/" -d '{"what": "Depl
 ~~~
 
 Change the LOGIN and PASSWORD to the Basic Auth you are using for Graphite and the HOSTNAME to your host. Then for each dashboard choose *Annotations* and the one you use by the tag(s).
+
+## Known problems
+Modern browsers uses a lot of CPU and memory, so to avoid browser problems, run the browsers on a dedicated machine or instance. That works the best.
+
+Internet can fail. Yep I guess you may know that already. Today we have a fail fast 
+
 
 
 # Example setup: Digital Ocean
