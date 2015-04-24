@@ -110,14 +110,14 @@ sudo docker run -d \
 Before you start Grafana you want to make sure that the dashboard data is stored on disk. Create a directory that will hold the Grafana database:
 
 ~~~
-sudo mkdir -p /data/grafana/data
+sudo mkdir -p /data/grafana
 ~~~
 
 And then start Grafana, map the directory, and add a new admin user & password.
 
 ~~~
 sudo docker run -d -p 3000:3000 \
--v /data/grafana/data:/usr/share/grafana/data \
+-v /data/grafana:/var/lib/grafana \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
 --name grafana \
@@ -241,7 +241,7 @@ Click on the *Application* tab and choose *Docker on 14.04*
 
 ~~~
 sudo mkdir -p /data/graphite/storage/whisper
-sudo mkdir -p /data/grafana/data
+sudo mkdir -p /data/grafana
 sudo mkdir /sitespeed.io
 ~~~
 * Start Grafana & Graphite (first create your own .htpasswd file and change the user and admin user password):
@@ -257,7 +257,7 @@ sudo docker run -d \
   sitespeedio/graphite
 
 sudo docker run -d -p 3000:3000 \
--v /data/grafana/data:/usr/share/grafana/data \
+-v /data/grafana:/var/lib/grafana \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
 --name grafana \
