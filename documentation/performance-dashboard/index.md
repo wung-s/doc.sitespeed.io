@@ -25,35 +25,35 @@ The base is the Docker images:
   * [Graph the metrics using Grafana](https://registry.hub.docker.com/u/grafana/grafana/).
 
 You can run these images on your own machine(s) or in the cloud. You only need Docker. But what will you get? We have set up an example site that you can try out yourself. We are proud to present
-[dashboard.sitespeed.io](http://dashboard.sitespeed.io:3000/). Login using *viewer/viewer*.
+[dashboard.sitespeed.io](http://dashboard.sitespeed.io/). Login using *viewer/viewer*.
 
 ## Metrics and what you can graph
 
 There are lots of metrics collected, lets check what kind of views of the data you can create:
 
-* [Show how each and every page is built (number of requests, request types etc), how the page score for rules and  timing metrics (Navigation Timing & User Timing)](http://dashboard.sitespeed.io:3000/dashboard/db/metric-for-one-page-american-airlines-home-page). Use this to keep track of important pages on your site.
-[![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io:3000/dashboard/db/metric-for-one-page-american-airlines-home-page)
+* [Show how each and every page is built (number of requests, request types etc), how the page score for rules and  timing metrics (Navigation Timing & User Timing)](http://dashboard.sitespeed.io/dashboard/db/metric-for-one-page-american-airlines-home-page). Use this to keep track of important pages on your site.
+[![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io/dashboard/db/metric-for-one-page-american-airlines-home-page)
 {: .img-thumbnail}
 
-* [Summary for a whole site]((http://dashboard.sitespeed.io:3000/dashboard/db/summary-of-a-site-america-airlines)), showing how your site is built, rules & timings. Use this to keep track of your site or your most important pages over time.
-[![Summary](summary.png)](http://dashboard.sitespeed.io:3000/dashboard/db/summary-of-a-site-america-airlines)
+* [Summary for a whole site]((http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)), showing how your site is built, rules & timings. Use this to keep track of your site or your most important pages over time.
+[![Summary](summary.png)](http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)
 {: .img-thumbnail}
 
-* [Compare multiple sites](http://dashboard.sitespeed.io:3000/dashboard/db/compare-multiple-sites) and see how they are doing. Compare timings and how the pages are built.
-[![Compare](compare.png)](http://dashboard.sitespeed.io:3000/dashboard/db/compare-multiple-sites)
+* [Compare multiple sites](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites) and see how they are doing. Compare timings and how the pages are built.
+[![Compare](compare.png)](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites)
 {: .img-thumbnail}
 
-* [Fetch metrics using WebPageTest](http://dashboard.sitespeed.io:3000/dashboard/db/using-webpagetest), will collect things like SpeedIndex, firstPaint, TTFB, render, visualComplete, domContentLoadedEventEnd, loadTime, page size, image size, number of requests for first and repeated views.
-[![WebPageTest](webpagetest.png)](http://dashboard.sitespeed.io:3000/dashboard/db/using-webpagetest)
+* [Fetch metrics using WebPageTest](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest), will collect things like SpeedIndex, firstPaint, TTFB, render, visualComplete, domContentLoadedEventEnd, loadTime, page size, image size, number of requests for first and repeated views.
+[![WebPageTest](webpagetest.png)](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest)
 {: .img-thumbnail}
 
-* [3rd party ](http://dashboard.sitespeed.io:3000/dashboard/db/3rd-party-america-airlines) and see how they are doing. Compare timings and how the pages are built.
-[![3rd party](3rdparty.png)](http://dashboard.sitespeed.io:3000/dashboard/db/3rd-party-america-airlines)
+* [3rd party ](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines) and see how they are doing. Compare timings and how the pages are built.
+[![3rd party](3rdparty.png)](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines)
 {: .img-thumbnail}
 
 
-* [Timings per asset](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-asset) - here you can graph every request on a page and the timings: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets from a 3rd party.
-[![Timings per asset](perasset.png)](http://dashboard.sitespeed.io:3000/dashboard/db/load-timings-per-asset)
+* [Timings per asset](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset) - here you can graph every request on a page and the timings: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets from a 3rd party.
+[![Timings per asset](perasset.png)](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset)
 {: .img-thumbnail}
 
 ## Setup the containers
@@ -116,7 +116,7 @@ sudo mkdir -p /data/grafana
 And then start Grafana, map the directory, and add a new admin user & password.
 
 ~~~
-sudo docker run -d -p 3000:3000 \
+sudo docker run -d -p 3000 \
 -v /data/grafana:/var/lib/grafana \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
@@ -256,7 +256,7 @@ sudo docker run -d \
   -v /your/path/.htpasswd:/etc/nginx/.htpasswd \
   sitespeedio/graphite
 
-sudo docker run -d -p 3000:3000 \
+sudo docker run -d -p 3000 \
 -v /data/grafana:/var/lib/grafana \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
