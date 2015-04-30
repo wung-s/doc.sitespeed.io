@@ -31,28 +31,34 @@ You can run these images on your own machine(s) or in the cloud. You only need D
 
 There are lots of metrics collected, lets check what kind of views of the data you can create:
 
-* [Show how each and every page is built (number of requests, request types etc), how the page score for rules and  timing metrics (Navigation Timing & User Timing)](http://dashboard.sitespeed.io/dashboard/db/metric-for-one-page-american-airlines-home-page). Use this to keep track of important pages on your site.
+* [Indeep info about your most important pages](http://dashboard.sitespeed.io/dashboard/db/metric-for-one-page-american-airlines-home-page) - you can graph and keep track how your page is built (things like number of requests, request types and sizes) and how fast your page is using the Navigation Timing and User Timings.
 [![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io/dashboard/db/metric-for-one-page-american-airlines-home-page)
 {: .img-thumbnail}
 
-* [Summary for a whole site]((http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)), showing how your site is built, rules & timings. Use this to keep track of your site or your most important pages over time.
+* [Keep track how your whole site is doing]((http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)) - summary for a whole site helps you see keep track of all tested pages. Use it to catch pages that are underperforming. And to keep track for your whole site over time. Do you see the red boxes in the image? That is budgets that haven't been met. You can configure budgets for all metrics making it super easy for all users to understand if the site is doing good or bad.
 [![Summary](summary.png)](http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)
 {: .img-thumbnail}
 
-* [Compare multiple sites](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites) and see how they are doing. Compare timings and how the pages are built.
+* [Competition ain't nothing](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites) - compare multiple sites and keep track of them. This is an awesome way to keep track of your competition, how fast they are and how they are building their web sites.
 [![Compare](compare.png)](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites)
 {: .img-thumbnail}
 
-* [Fetch metrics using WebPageTest](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest), will collect things like SpeedIndex, firstPaint, TTFB, render, visualComplete, domContentLoadedEventEnd, loadTime, page size, image size, number of requests for first and repeated views.
+* [ WebPageTest](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest) -  yes we love WebPageTest and in this example we drive WebPageTest through sitespeed.io and graph the data. We use the <a href="http://www.webpagetest.org/getkey.php">free limited API key</a> provided by Akamai and you should setup your own WebPageTest instance so you can test all your important pages, as often as you need.
 [![WebPageTest](webpagetest.png)](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest)
 {: .img-thumbnail}
 
-* [3rd party ](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines) and see how they are doing. Compare timings and how the pages are built.
+* [Keep track of your third party content](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines) - today most of the consumer web pages have about 40% of third party content. You don't want them to slow you down and so you need to keep track of how they are doing. Thanks <a href="https://twitter.com/JrnVdb">Jeroen Vd Berghe</a> for the help and inspiration with the graphs.
 [![3rd party](3rdparty.png)](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines)
 {: .img-thumbnail}
 
+* [Collect Custom Metrics](http://dashboard.sitespeed.io/dashboard/db/user-timing-and-custom-metrics) - collect your own defined metrics using the User Timing API and running your own Javascript snippets in the browser and the values will automatically be sent to Graphite (both for ach page and a summary for all pages). This is perfect if there's a metric that is super important for your site or if there's a metric that is missing in sitespeed.io. You can add it yourself, as long as you can fetch it using Javascript.
+[![Custom metrics](custom-metrics2.jpg)](http://dashboard.sitespeed.io/dashboard/db/user-timing-and-custom-metrics)
+{: .img-thumbnail}
 
-* [Timings per asset](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset) - here you can graph every request on a page and the timings: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets from a 3rd party.
+
+* [Keep track of every page and every request](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset) -
+this is maybe a little bit crazy but you can collect
+<a href="http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset">timings per request</a> You can graph things like time spent in *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets from a 3rd party.
 [![Timings per asset](perasset.png)](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset)
 {: .img-thumbnail}
 
@@ -116,7 +122,7 @@ sudo mkdir -p /data/grafana
 And then start Grafana, map the directory, and add a new admin user & password.
 
 ~~~
-sudo docker run -d -p 3000 \
+sudo docker run -d -p 3000:3000 \
 -v /data/grafana:/var/lib/grafana \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
@@ -196,13 +202,13 @@ By default all timings are sent. If you want to change that, remove the metrics 
 
 ### Configure Graphite what data to keep
 
-By default the metrics are stored for 60 days (except request timings they are only stored for 7 days by default) and you can change that. First [read](https://github.com/etsy/statsd/blob/master/docs/graphite.md) Etsy's nice writeup on how you configure Graphite. Create your own [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) file and feed it to the image on startup like this:
+By default the metrics are stored for 60 days (except request timings they are only stored for 7 days by default) and you can change that. First [read](https://github.com/etsy/statsd/blob/master/docs/graphite.md) Etsy's nice write-up on how you configure Graphite. Create your own [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf) file and feed it to the image on startup like this:
 
 ~~~
 -v /path/to/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
 ~~~
 
-You can also configure how data is aggregated over time. Check out the default configuration [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) and reread Etsy's nice writeup :)
+You can also configure how data is aggregated over time. Check out the default configuration [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) and reread Etsy's nice write-up :)
 
 ## Add events/annotations to the graphs
 
@@ -217,8 +223,9 @@ Change the LOGIN and PASSWORD to the Basic Auth you are using for Graphite and t
 ## Known problems
 Modern browsers uses a lot of CPU and memory, so to avoid browser problems, run the browsers on a dedicated machine or instance. That works best.
 
-Internet can fail. Yep I guess you may know that already. Today we have a fail fast setup, meaning if we get an error when we fetch a page that we can't handle or was prepared for, we fail and stop the run. That's good in a way because we will try it the next run. But it's bad because if we have a problem, we don't retry (it could be a problem that only exists for a second). In coming releases we will add retry and better error handling, hoping to fetch
+Internet can fail. Yep I guess you may know that already. Today we have a fail fast setup, meaning if we get an error when we fetch a page that we can't handle or was prepared for, we fail and stop the run. That's good in a way because we will try it the next run. But it's bad because if we have a problem, we don't retry (it could be a problem that only exists for a second). In coming releases we will add retry and even better error handling.
 
+We use [Loggly](http://loggly.com/) to keep track of errors, you should use something like that to make sure everything works fine.
 
 
 # Example setup: Digital Ocean
@@ -233,7 +240,7 @@ Click on the *Application* tab and choose *Docker on 14.04*
 * Start your droplet.
 * When it is up and running, log into your server *ssh root@YOUR_IP*
 * Setup the server following Digital Oceans [Initial Server Setup Guide](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04) to make your server a little more secure.
-* [Add swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04) and avoid out pf memory errors.
+* [Add swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04) and avoid out of memory errors.
 * Pull the Docker images:
 *sudo docker pull sitespeedio/sitespeeed.io* ,
 *sudo docker pull sitespeedio/graphite* and *sudo docker pull grafana/grafana*
@@ -256,7 +263,7 @@ sudo docker run -d \
   -v /your/path/.htpasswd:/etc/nginx/.htpasswd \
   sitespeedio/graphite
 
-sudo docker run -d -p 3000 \
+sudo docker run -d -p 3000:3000 \
 -v /data/grafana:/var/lib/grafana \
 -e "GF_SECURITY_ADMIN_USER=myuser" \
 -e "GF_SECURITY_ADMIN_PASSWORD=MY_SUPER_STRONG_PASSWORD" \
