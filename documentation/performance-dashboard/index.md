@@ -25,7 +25,7 @@ The base is the Docker images:
   * [Graph the metrics using Grafana](https://registry.hub.docker.com/u/grafana/grafana/).
 
 You can run these images on your own machine(s) or in the cloud. You only need Docker. But what will you get? We have set up an example site that you can try out yourself. We are proud to present
-[dashboard.sitespeed.io](http://dashboard.sitespeed.io/). Login using *viewer/viewer*.
+[dashboard.sitespeed.io](http://dashboard.sitespeed.io/).
 
 ## Metrics and what you can graph
 
