@@ -220,6 +220,29 @@ curl -u LOGIN:PASSWORD -X POST "http://HOSTNAME:8080/events/" -d '{"what": "Depl
 
 Change the LOGIN and PASSWORD to the Basic Auth you are using for Graphite and the HOSTNAME to your host. Then for each dashboard choose *Annotations* and the one you use by the tag(s).
 
+## Memcached (optional)
+If you setup a dashboard and you collect many different graphs on one page, it is good to add *memcached* in your setup, that will cache queries done to Graphite. Download and start it. In this example we just open the port, if you have a system reachable from the outside you should link the containers.
+
+~~~
+sudo docker pull memcached
+sudo docker run --name memcache -p 11211:11211 -d memcached
+~~~
+
+The next step is to configure Graphite. You do that by changing your *local_settings.py*. Take a copy of the default one located [here](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/scripts/local_settings.py) and edit it. You can add multiple *memcached* instances.
+
+~~~
+# Array of memcache hosts. domain/ip and port ['10.10.10.10:11211', '10.10.10.11:11211']
+MEMCACHE_HOSTS = ['$MY_IP:11211']
+# Cache for 1 minute
+DEFAULT_CACHE_DURATION = 60
+~~~
+
+And then when you start Graphite, make sure to link in the new file.
+
+~~~
+-v /my/path/local_settings.py:/opt/graphite/webapp/graphite/local_settings.py \
+~~~
+
 ## Known problems
 Modern browsers uses a lot of CPU and memory, so to avoid browser problems, run the browsers on a dedicated machine or instance. That works best.
 
