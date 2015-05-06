@@ -31,8 +31,8 @@ You can run these images on your own machine(s) or in the cloud. You only need D
 
 There are lots of metrics collected, lets check what kind of views of the data you can create:
 
-* [Indeep info about your most important pages](http://dashboard.sitespeed.io/dashboard/db/metric-for-one-page-american-airlines-home-page) - you can graph and keep track how your page is built (things like number of requests, request types and sizes) and how fast your page is using the Navigation Timing and User Timings.
-[![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io/dashboard/db/metric-for-one-page-american-airlines-home-page)
+* [Indeep info about your most important pages](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page) - you can graph and keep track how your page is built (things like number of requests, request types and sizes) and how fast your page is using the Navigation Timing and User Timings.
+[![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page)
 {: .img-thumbnail}
 
 * [Keep track how your whole site is doing]((http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)) - summary for a whole site helps you see keep track of all tested pages. Use it to catch pages that are underperforming. And to keep track for your whole site over time. Do you see the red boxes in the image? That is budgets that haven't been met. You can configure budgets for all metrics making it super easy for all users to understand if the site is doing good or bad.
@@ -228,7 +228,7 @@ sudo docker pull memcached
 sudo docker run --name memcache -p 11211:11211 -d memcached
 ~~~
 
-The next step is to configure Graphite. You do that by changing your *local_settings.py*. Take a copy of the default one located [here](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/scripts/local_settings.py) and edit it. You can add multiple *memcached* instances.
+The next step is to configure Graphite. You do that by changing your *local_settings.py*. Take a copy of the default one located [here](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/scripts/local_settings.py) and edit it. You can add multiple *memcached* instances, if you want but lets start with one, change *$MY_IP* to the IP of your server running memcached.
 
 ~~~
 # Array of memcache hosts. domain/ip and port ['10.10.10.10:11211', '10.10.10.11:11211']
