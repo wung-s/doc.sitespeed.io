@@ -55,6 +55,10 @@ And the last example, we fetch data from WebPageTest and create the following:
 ![sitespeed.io running WebPageTest and graphing the data](grafana-wpt-dark.png)
 {: .img-thumbnail}
 
+~~~bash
+$ sitespeed.io -u http://www.cybercom.com  --wptHost www.webpagetest.org --wptKey MY_SECRET_API_KEY --graphiteHost localhost --graphiteNamespace wpt
+~~~
+
 If you send all the metrics and don't need the other output (HTML/JSON, it can be quite extensive if you run it often), put all the output in **/tmp** with the **r** switch like this **-r /tmp**.
 {: .note .note-info}
 
