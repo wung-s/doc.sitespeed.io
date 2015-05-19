@@ -206,7 +206,7 @@ $ sitespeed.io -u http://yoursite.com  --viewPort 400x300 --userAgent "My SUPER 
 ~~~
 
 
-Mobile testing is always best on mobile devices. For tips on how to best do that, read Andy Davies [blog](http://andydavies.me/").
+Mobile testing is always best on mobile devices. For tips on how to best do that, read Andy Davies [blog](http://andydavies.me/).
 {: .note .note-warning}
 
 ### Limit pages to test
