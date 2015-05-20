@@ -21,7 +21,7 @@ Yep we all love [WebPageTest](http://www.webpagetest.org) (WPT), so we made it p
 
 To use WPT you can either get an [API key](http://www.webpagetest.org/getkey.php) (sponsored by Akamai) for the global version or follow Pat Meenans instructions on [how to get a private version up and running in 5 minutes](http://calendar.perfplanet.com/2014/webpagetest-private-instances-in-five-minutes/).
 
-Out of the it will collect [these](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/webpagetest") metrics that can be displayed on the summary page. By default, these will be shown:
+Out of the it will collect [these](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/webpagetest) metrics that can be displayed on the summary page. By default, these will be shown:
 
 ![WebPageTest summary](wpt-summary.png)
 {: .img-thumbnail}
