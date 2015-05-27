@@ -197,7 +197,7 @@ You can choose to send the following metrics to Graphite:
 By default all timings are sent. If you want to change that, remove the metrics you don't need:
 
 ~~~
---graphiteData summary,rules,pagemetrics,timings,timings
+--graphiteData summary,rules,pagemetrics,timings,requests
 ~~~
 
 ### Configure Graphite what data to keep
@@ -275,7 +275,7 @@ Click on the *Application* tab and choose *Docker on 14.04*
 * Setup the server following Digital Oceans [Initial Server Setup Guide](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04) to make your server a little more secure.
 * [Add swap space](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04) and avoid out of memory errors.
 * Pull the Docker images:
-*sudo docker pull sitespeedio/sitespeeed.io* ,
+*sudo docker pull sitespeedio/sitespeed.io* ,
 *sudo docker pull sitespeedio/graphite* and *sudo docker pull grafana/grafana*
 * Create the directories:
 
