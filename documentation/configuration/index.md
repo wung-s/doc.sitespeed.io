@@ -355,4 +355,12 @@ If you want to fetch timings from your browser, they are following this pattern 
 $ sitespeed.io -u http://www.sitespeed.io -c timings.serverResponseTime.median,timings.domContentLoadedTime.median,timings.headerTime.median -b chrome
 ~~~
 
+If you want to show metric collected from WebPageTest they are published under the following structure: <i>wpt[location][browser][connectivity][view][timing]</i> and the metrics names are the exact same they have in the WebPageTest API (we collect 'SpeedIndex', 'firstPaint', 'render', 'TTFB', 'visualComplete', 'domContentLoadedEventEnd' and 'loadTime').
+
+So if you want to display speed index for first and repeated view tested from Dulles using Chrome and Cable, you need to configure the columns like this:
+
+~~~ bash
+-c wpt.dulles.chrome.cable.firstView.SpeedIndex,wpt.dulles.chrome.cable.repeatView.SpeedIndex
+~~~
+
 If you have problem, [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) and we will help you.
