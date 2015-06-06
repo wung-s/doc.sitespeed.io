@@ -82,14 +82,67 @@ If you want to test from multiple locations, browsers or different connectivity,
 ]
 ~~~
 
+### WebPageTest scripting
+WebPageTest has scripting capability where you can automate a multi-step test (=login the user and do stuff). That is supported by sitespeed.io by supplying the script. Do like this. Create your script file (checkout WebPageTest [documentation](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting)). It can look something like this (wptScript.txt):
 
-### Graph the WPT metrics
-The data collected and showed can also be sent to Graphite. Checkout the Graphite [section](#graphite-full)>.
+~~~
+logData    0
 
-### WPT performance budget
+// put any urls you want to navigate
+navigate    www.aol.com
+navigate    news.aol.com
+
+logData    1
+
+// this step will get recorded
+navigate    news.aol.com/world
+~~~
+
+Then change your URL you want test (probably the last one) to {{{URL}}} and then all occurrences of &#123;&#123;&#123;URL&#125;&#125;&#125; will then be replaced with the current URL that should be tested.
+Then run sitespeed:
+
+~~~
+sitespeed.io --wptScript wptScript.txt --wptHost my.wpt.host.com
+~~~
+
+
+### Custom metrics
+Hey we love custom metrics and you can fetch them using WPT. Checkout the [metrics docs](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/custom-metrics) for WPT and then create a file containing your metrics:
+
+~~~
+[iframe-count]
+return document.getElementsByTagName("iframe").length;
+
+[script-tag-count]
+return document.getElementsByTagName("script").length;
+
+[meta-viewport]
+var viewport = undefined;
+var metaTags=document.getElementsByTagName("meta");
+for (var i = 0; i < metaTags.length; i++) {
+    if (metaTags[i].getAttribute("name") == "viewport") {
+        viewport = metaTags[i].getAttribute("content");
+        break;
+    }
+}
+return viewport;
+~~~
+
+Then run sitespeed.io like this:
+
+~~~
+sitespeed.io --wptCustomMetrics myScriptFile.txt --wptHost my.wpt.host.com
+~~~
+
+The custom metrics will show up on the individual page and sent to Graphite.
+
+## Graph the WPT metrics
+The data collected and showed can also be sent to Graphite. Checkout the Graphite [section](#graphite-full).
+
+## WPT performance budget
 The timings and metrics collected by WebPageTest can also be used in you performance budget. More info [budget](#budget).
 
-### Timing metrics collected using WPT
+## Timing metrics collected using WPT
 All the metrics are collected both for first and repeated view.
 
 * *firstPaint* - the time from the start of navigation until the first non-white content was painted to the screen
