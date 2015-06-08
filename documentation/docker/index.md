@@ -64,7 +64,7 @@ docker pull sitespeedio/sitespeed.io:X.Y.Z
 Or alternatively pull the latest version:
 
 ~~~ bash
-docker pull sitespeedio/sitespeed.io:latest
+docker pull sitespeedio/sitespeed.io
 ~~~
 
 And then change your start script (or where you start your container) to use the new version number.
