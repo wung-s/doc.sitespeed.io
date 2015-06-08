@@ -61,6 +61,12 @@ Updating to a newer version is easy, change X.Y.Z to the version you want to use
 docker pull sitespeedio/sitespeed.io:X.Y.Z
 ~~~
 
+Or alternatively pull the latest version:
+
+~~~ bash
+docker pull sitespeedio/sitespeed.io:latest
+~~~
+
 And then change your start script (or where you start your container) to use the new version number.
 
 If you don't use version number (you should!) then just pull the container and you will run the latest version.
