@@ -27,7 +27,7 @@ We have a couple of Docker containers you can use to run sitespeed.io. We have s
 
 
 ## Running in Docker
-The simplest way to run is like this (fetching the box with Chrome and Firefox):
+The simplest way to run is like this fetching the box with Chrome and Firefox:
 
 ~~~ bash
 sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://www.sitespeed.io -b chrome
@@ -39,9 +39,28 @@ If you want to feed sitespeed with a list of URL:s in a file (here named *myurls
 sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -f myurls.txt -b chrome --seleniumServer http://127.0.0.1:4444/wd/hub
 ~~~
 
+In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version all the time (else you will download the latest tag, meaning you can have old and new versions running on the server and you don't know it). Specify the tag after the container name(X.Y.Z) in this example. The tag/version number will be the same number as the sitespeed.io release:
+
+~~~ bash
+sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z sitespeed.io -u http://www.sitespeed.io -b chrome
+~~~
+
+
+
 ## Setup the volume
 
 If you want to feed sitespeed.io with a file with URL:s or if you want the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located */sitespeed.io*. To setup your current working directory add the *-v "$(pwd)":/sitespeed.io* to your parameter list
 
 Note: running on Mac OS X and Windows, Boot2Docker have rights to write data in your */Users* or *C:\Users* directory. Read more [here](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 {: .note .note-warning}
+
+## Update version (download newer sitespeed.io version)
+Updating to a newer version is easy, change X.Y.Z to the version you want to use:
+
+~~~ bash
+docker pull sitespeedio/sitespeed.io:X.Y.Z
+~~~
+
+And then change your start script (or where you start your container) to use the new version number.
+
+If you don't use version number (you should!) then just pull the container and you will run the latest version.
