@@ -81,6 +81,8 @@ Options:
    --html                                                 Create HTML reports. Default to true. Set no-html to disable HTML reports.  [true]
    --wptConfig <FILE>                                     WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method
    --wptHost <domain>                                     The domain of your WebPageTest instance.
+   --wptScript <FILE>                                     WebPageTest scripting. Every occurance of {{{URL}}} will be replaced with the real URL.
+   --wptCustomMetrics <FILE>                              Fetch metrics from your page using Javascript.
    --wptKey <KEY>                                         The API key if running on webpagetest on the public instances.
    --requestHeaders <FILE>                                Any request headers to use, a file with JSON form of {"name":"value","name2":"value"}. Not supported for WPT & GPSI.
    --phantomjsPath <PATH>                                 The full path to the phantomjs binary, to override the supplied version
