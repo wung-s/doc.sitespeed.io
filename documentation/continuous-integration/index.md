@@ -113,6 +113,32 @@ You can configure the plugin like this:
 
 And remember, if you output TAP, use the [TAP plugin](https://wiki.jenkins-ci.org/display/JENKINS/TAP+Plugin) or JUnit use the built in **Publish JUnit test result report**.
 
+## TeamCity
+
+### Running as CLI
+
+* Choose **Create build configuration** or edit an existing build configuration.
+* Choose **Add build step** under Build Configuration Settings \ Build Step and add a **Command Line** build step. Add your call to sitespeed.io in the **Custom script** box. Remember that the build agent user needs to have NodeJS in their path and have sitespeed.io installed already. The command line could look like this:
+
+~~~
+sitespeed.io.cmd -u http://www.sitespeed.io
+~~~
+
+**Screenshot of adding a build step in TeamCity**
+![Adding a build step in TeamCity](teamcity-build-step.png)
+{: .img-thumbnail}
+
+### JUnit Reporting
+* If you want to have sitespeed.io report back results to TeamCity so your build can break if tests fail you first need to edit your command line to make sitespeed.io generate a JUnit XML file like this:
+~~~
+sitespeed.io.cmd -u http://www.sitespeed.io --junit > sitespeedio_result.xml
+~~~
+* Then choose **Add build feature** under Build Configuration Settings \ Build Features and add **XML report processing** feature. Set **Report type** to **Ant JUnit** and specify the generated XML report filename in the **Monitoring rules** box.
+* TeamCity should now run sitespeed.io and report back its results.
+
+**Screenshot of adding JUnit reporting in TeamCity**
+![Adding JUnit reporting in TeamCity](teamcity-build-feature.png)
+{: .img-thumbnail}
 
 ## Travis integration
 Coming soon!
