@@ -115,6 +115,8 @@ And remember, if you output TAP, use the [TAP plugin](https://wiki.jenkins-ci.or
 
 ## TeamCity
 
+Here's an example of setting up Team City running sitespeed.io on Windows, thanks [Gustav Tonér](https://github.com/gazab)!
+
 ### Running as CLI
 
 * Choose **Create build configuration** or edit an existing build configuration.
@@ -146,3 +148,6 @@ Coming soon!
 
 ## Grunt plugin
 There's a Grunt plugin [grunt-sitespeedio](https://github.com/sitespeedio/grunt-sitespeedio) where you can do all the things you usually do with sitespeed.io. Use it create HTML-reports, send metrics to Graphite or test your performance budget.
+
+## Gulp plugin
+Checkout the  [gulp-sitespeedio](https://www.npmjs.com/package/gulp-sitespeedio) plugin created by [Ankit Singhal](https://github.com/dreamzmaster).
