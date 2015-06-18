@@ -21,7 +21,7 @@ twitterdescription: Documentation for the sitespeed.io.
 * [Performance Dashboard](/documentation/performance-dashboard/) - keep track of your metrics and performance.
  * [Performance Budget](/documentation/performance-budget/) - make sure you are within your performance budget.
  * [Graphs](/documentation/graphs/) - graph you webperf metrics using Graphite and Grafana.
- * [Continuous Integration](/documentation/continuous-integration/) - generate JUnit XML/TAP and use the Jenkins or Grunt plugin.
+ * [Continuous Integration](/documentation/continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Team City, Grunt or the Gulp plugin.
  * [Docker](/documentation/docker/) - how to use our Docker containers.
  * [WebPageTest](/documentation/webpagetest/) - drive WebPageTest and fetch metrics and graph them.
  * [Google Page Speed Insights](/documentation/gpsi/) - include GPSI metrics in your reports.
