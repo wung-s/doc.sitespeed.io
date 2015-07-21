@@ -63,7 +63,7 @@ sitespeed.io -u http://www.sitespeed.io -b chrome --waitScript 'return window.pe
 
 
 ## Custom metrics
-You can collect your own metrics in the browser by supplying a directory with Jacascript files. Each file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc). Check out the [scripts](https://github.com/tobli/browsertime/tree/master/scripts) we use.
+You can collect your own metrics in the browser by supplying a directory with Javascript files. Each file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc). Check out the [scripts](https://github.com/tobli/browsertime/tree/master/scripts) we use.
 
 Say we have a folder called *scripts* and in there we have one file called *scripts.js* that checks how many javascript that is loaded. The script looks like this:
 
