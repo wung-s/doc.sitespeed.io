@@ -5,7 +5,7 @@ description: Here is examples of what the result looks like, when you run sitess
 author: Peter Hedenskog
 keywords: sitespeed.io, examples, results, wpo, web performance optimization
 nav: examples
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 ---
 
 # Examples

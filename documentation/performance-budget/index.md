@@ -5,7 +5,7 @@ description: Performance budget with sitespeed.io.
 keywords: performance, budget, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Performance budget with sitespeed.io.
 ---
 [Documentation](/documentation/) / Performance Budget
@@ -53,7 +53,7 @@ If you have a budget where you want to test the (RUM) speed index, you add a fil
 Then run it like this:
 
 ~~~bash
-$ sitespeed.io -u http://www.sitespeed.io --budget myBudget.json -b chrome -n 11
+$ sitespeed.io -u https://www.sitespeed.io --budget myBudget.json -b chrome -n 11
 ~~~
 
 You can test all timings produced by BrowserTime like *domContentLoadedTime* or *backEndTime*.

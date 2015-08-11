@@ -5,7 +5,7 @@ description: Here's the documentation of how to use sitespeed.io.
 keywords: documentation, web performance, sitespeed.io, graphite, navigation timing api
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for the sitespeed.io.
 ---
 # Documentation

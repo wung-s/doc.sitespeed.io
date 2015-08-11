@@ -5,7 +5,7 @@ description: Fetch Google Page Speed Insights metrics and include them in your s
 keywords: gpsi, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Fetch Google Page Speed Insights metrics and include them in your sitespeed.io report.
 ---
 [Documentation](/documentation/) / GPSI

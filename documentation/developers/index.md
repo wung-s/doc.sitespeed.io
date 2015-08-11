@@ -5,7 +5,7 @@ description: How to add your own post tasks, create rules and other cool stuff.
 keywords: developers, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: How to add your own post tasks, create rules and other cool stuff.
 ---
 [Documentation](/documentation/) / Developers
@@ -33,7 +33,7 @@ When sitespeed.io collected all the metrics, you have the possibility to add you
 You add your own post task (you can have multiple) in an directory and feed the directory name and path to sitespeed, like this:
 
 ~~~bash
-$ sitespeed.io -u http://www.sitespeed.io --postTasksDir myPostTaskDir
+$ sitespeed.io -u https://www.sitespeed.io --postTasksDir myPostTaskDir
 ~~~
 
 In that directory, create a file and follow the following standard:

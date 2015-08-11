@@ -5,7 +5,7 @@ description: How to get browser timings using sitespeed.io for Firefox, Chrome, 
 keywords: browsers, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Browser timings for the sitespeed.io.
 ---
 [Documentation](/documentation/) / Browsers
@@ -58,7 +58,7 @@ $ sitespeed.io -u http://yoursite.com -b chrome --connection mobile3g
 By default the browser will collect data until the *window.performance.timing.loadEventEnd* happens + aprox 2 seconds more. That is perfectly fine for most sites, but if you do ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (*--waitScript*). When the scripts returns true the browser will close or if the timeout time (default 60 seconds) will be reached:
 
 ~~~ bash
-sitespeed.io -u http://www.sitespeed.io -b chrome --waitScript 'return window.performance.timing.loadEventEnd>0'
+sitespeed.io -u https://www.sitespeed.io -b chrome --waitScript 'return window.performance.timing.loadEventEnd>0'
 ~~~
 
 
@@ -74,7 +74,7 @@ return document.getElementsByTagName("script").length;
 Then to pick up the script, run like this:
 
 ~~~ bash
-sitespeed.io -u http://www.sitespeed.io --customScripts scripts -b firefox
+sitespeed.io -u https://www.sitespeed.io --customScripts scripts -b firefox
 ~~~
 
 The basename of the file *script* will be used as the metric name. If the script return a number, the value will be sent to Graphite and will be summarized on the summary page. Other values will be shown on the specific result page.

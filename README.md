@@ -5,4 +5,4 @@ Documentation for sitespeed.io
 
 To run it locally: <code>jekyll serve</code>. 
 
-Checkout http://www.sitespeed.io/
+Checkout https://www.sitespeed.io/

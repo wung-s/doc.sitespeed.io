@@ -5,7 +5,7 @@ description: Introduction for sitespeed.io.
 keywords: introduction, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Introduction for sitespeed.io.
 ---
 [Documentation](/documentation/) / Introduction

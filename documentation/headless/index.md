@@ -5,7 +5,7 @@ description: Collect browser timings headless using sitespeed.io.
 keywords: headless, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Collect browser timings headless using sitespeed.io.
 ---
 [Documentation](/documentation/) / Headless
@@ -31,13 +31,13 @@ twitterdescription: Collect browser timings headless using sitespeed.io.
 * Run sitespeed.io and configure it to use your own version of PhantomJS
 
 ~~~bash
-sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin
+sitespeed.io -u https://www.sitespeed.io --phantomjsPath /the/path/to/your/bin
 ~~~
 
 * If you also want to collect timings using PhantomJS, run it like this:
 
 ~~~bash
-sitespeed.io -u http://www.sitespeed.io --phantomjsPath /the/path/to/your/bin -b headless
+sitespeed.io -u https://www.sitespeed.io --phantomjsPath /the/path/to/your/bin -b headless
 ~~~
 
 We have tested PhantomJS 2 on Mac OS X and it works really good when testing the site against the best practice rules. However, it seems to be a couple of timings that don't work as expected. If you have time to test and find things that don't work, please let us know and we will update the docs. We aim to give this more love when the stable 2.0 is released.
@@ -47,5 +47,5 @@ We have tested PhantomJS 2 on Mac OS X and it works really good when testing the
 SlimerJS is kind of headless, but you will need Xvfb to have it real headless. Run it like this to collect timing metrics:
 
 ~~~bash
-sitespeed.io -u http://www.sitespeed.io --headless slimerjs -b headless
+sitespeed.io -u https://www.sitespeed.io --headless slimerjs -b headless
 ~~~

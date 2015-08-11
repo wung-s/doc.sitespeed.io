@@ -5,7 +5,7 @@ description: Create graphs for your web performance metrics using Graphite and G
 keywords: graphs, graphite, grafana, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Create graphs for your web performance metrics using Graphite and Grafana.
 ---
 [Documentation](/documentation/) / Graphs

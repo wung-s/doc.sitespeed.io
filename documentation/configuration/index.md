@@ -5,7 +5,7 @@ description: How to configure sitespeed.io
 keywords: configuration, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Configuration for the sitespeed.io.
 ---
 [Documentation](/documentation/) / Configuration
@@ -52,7 +52,7 @@ Options:
    -b <BROWSER>, --browser <BROWSER>                      Choose which browser to use to collect timing data. Use multiple browsers in a comma separated list (firefox|chrome|headless)
    --connection                                           Limit the speed by simulating connection types. Choose between mobile3g,mobile3gfast,cable,native  [cable]
    --waitScript                                           Supply a javascript that decides when a browser run is finished. Use it to fetch timings happening after the loadEventEnd.  [return window.performance.timing.loadEventEnd > 0]
-   --customScripts                                        The path to an extra script folder with scripts that will be executed in the browser. See http://www.sitespeed.io/documentation/#customScripts
+   --customScripts                                        The path to an extra script folder with scripts that will be executed in the browser. See https://www.sitespeed.io/documentation/#customScripts
    --btConfig <FILE>                                      Additional BrowserTime JSON configuration as a file
    --profile <desktop|mobile>                             Choose between testing for desktop or mobile. Testing for desktop will use desktop rules & user agents and vice verca.  [desktop]
    -n <NUMBEROFTIMES>, --no <NUMBEROFTIMES>               The number of times you should test each URL when fetching timing metrics. Default is 3 times.  [3]
@@ -61,14 +61,14 @@ Options:
    --tap                                                  Create TAP output to the console.
    --skipTest <ruleid1,ruleid2,...>                       A comma separated list of rules to skip when generating JUnit/TAP/budget output.
    --testData                                             Choose which data to send test when generating TAP/JUnit output or testing a budget. Default is all available [rules,page,timings,wpt,gpsi]  [all]
-   --budget <FILE>                                        A file containing the web perf budget rules. See http://www.sitespeed.io/documentation/#performance-budget
+   --budget <FILE>                                        A file containing the web perf budget rules. See https://www.sitespeed.io/documentation/#performance-budget
    -m <NUMBEROFPAGES>, --maxPagesToTest <NUMBEROFPAGES>   The max number of pages to test. Default is no limit.
    --storeJson                                            Store all collected data as JSON.
    -p <PROXY>, --proxy <PROXY>                            http://proxy.soulgalore.com:80
    --cdns <cdn1.com,cdn.cdn2.net>                         A comma separated list of additional CDNs.
    --postTasksDir <DIR>                                   The directory where you have your extra post tasks.
-   --boxes <box1,box2>                                    The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#configure-boxes-on-summary-page
-   -c <column1,column2>, --columns <column1,column2>      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#configure-columns-on-pages-page
+   --boxes <box1,box2>                                    The boxes showed on site summary page, see https://www.sitespeed.io/documentation/#configure-boxes-on-summary-page
+   -c <column1,column2>, --columns <column1,column2>      The columns showed on detailed page summary table, see https://www.sitespeed.io/documentation/#configure-columns-on-pages-page
    --configFile <PATH>                                    The path to a sitespeed.io config.json file, if it exists all other input parameters will be overridden.
    --aggregators <PATH>                                   The path to a directory with extra aggregators.
    --collectors <PATH>                                    The path to a directory with extra collectors.
@@ -307,7 +307,7 @@ You can choose to send your data to Graphite, to keep track of your performance 
 You configure four things: the host, port, the namespace and which data to send. Default value for the port is 2003, namespace (the start of the key) is sitespeed and send all collected data.
 
 ~~~ bash
-$ sitespeed.io -u http://www.sitespeed.io --graphiteHost localhost
+$ sitespeed.io -u https://www.sitespeed.io --graphiteHost localhost
 ~~~
 
 ### Set request headers
@@ -323,21 +323,21 @@ The headers can be set if you collect rules and timings. It will not work for WP
 And the run like this:
 
 ~~~ bash
-$ sitespeed.io -u http://www.sitespeed.io --requestHeaders myheaders.txt
+$ sitespeed.io -u https://www.sitespeed.io --requestHeaders myheaders.txt
 ~~~
 
 ### Configure boxes on summary page
 You can choose which boxes you want to show on the summary page by configure them by their name. You can choose to show to configure them exactly as you want. Then you need to pass every name to the script:
 
 ~~~ bash
-$ sitespeed.io -u http://www.sitespeed.io --boxes thirdpartyversions,ycdn
+$ sitespeed.io -u https://www.sitespeed.io --boxes thirdpartyversions,ycdn
 ~~~
 
 Or if you want to add boxes to the already pre-configured ones, you can add a plus sign before the name(it is perfect
   if you have your own User Timings that you want to show):
 
 ~~~ bash
-$ sitespeed.io -u http://www.sitespeed.io -b chrome --boxes +logoTime,headerTime
+$ sitespeed.io -u https://www.sitespeed.io -b chrome --boxes +logoTime,headerTime
 ~~~
 
 These boxes will then end up in the end of the list.
@@ -348,13 +348,13 @@ You can choose what kind of data you want to show in the column pages. The namin
 If you want to show data that are collected from YSlow, like number of javascripts, you do that like this:
 
 ~~~ bash
-$ sitespeed.io -u http://www.sitespeed.io -c yslow.assets.js,yslow.assets.css,yslow.requests,yslow.pageWeight
+$ sitespeed.io -u https://www.sitespeed.io -c yslow.assets.js,yslow.assets.css,yslow.requests,yslow.pageWeight
 ~~~
 
 If you want to fetch timings from your browser, they are following this pattern (headerTime is a User Timing):
 
 ~~~ bash
-$ sitespeed.io -u http://www.sitespeed.io -c timings.serverResponseTime.median,timings.domContentLoadedTime.median,timings.headerTime.median -b chrome
+$ sitespeed.io -u https://www.sitespeed.io -c timings.serverResponseTime.median,timings.domContentLoadedTime.median,timings.headerTime.median -b chrome
 ~~~
 
 If you want to show metric collected from WebPageTest they are published under the following structure: <i>wpt[location][browser][connectivity][view][timing]</i> and the metrics names are the exact same they have in the WebPageTest API (we collect 'SpeedIndex', 'firstPaint', 'render', 'TTFB', 'visualComplete', 'domContentLoadedEventEnd' and 'loadTime').

@@ -5,7 +5,7 @@ description: How to to install sitespeed.io. Use npm, our Vagrant files or Docke
 keywords: installation, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: How to to install sitespeed.io. Use npm, our Vagrant files or Docker.
 ---
 [Documentation](/documentation/) / Installation
@@ -57,7 +57,7 @@ We have [Docker images](https://registry.hub.docker.com/repos/sitespeedio/) with
 
 ~~~ bash
 $ sudo docker pull sitespeedio/sitespeed.io
-$ sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://www.sitespeed.io -b firefox
+$ sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u https://www.sitespeed.io -b firefox
 ~~~
 
 That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/docker/).

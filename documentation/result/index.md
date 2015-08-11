@@ -5,7 +5,7 @@ description: Result from an analyze using sitespeed.io.
 keywords: configuration, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Result from an analyze using sitespeed.io.
 ---
 [Documentation](/documentation/) / Result

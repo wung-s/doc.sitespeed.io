@@ -5,7 +5,7 @@ description: New key structure for the URL:s in Graphite.
 author: Peter Hedenskog
 keywords: sitespeed.io, release, release-notes, 3.5
 nav:
-image:  http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: New key structure for the URL:s in Graphite.
 ---
 

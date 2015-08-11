@@ -5,7 +5,7 @@ description: Say hello to scripts and custom metrics for WebPageTest.
 author: Peter Hedenskog
 keywords: sitespeed.io, release, release-notes, 3.6
 nav:
-image:  http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Say hello to scripts and custom metrics for WebPageTest.
 ---
 

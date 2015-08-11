@@ -5,7 +5,7 @@ description: Here is 3.2 making it easier to test multiple sites and running you
 author: Peter Hedenskog
 keywords: sitespeed.io, release, release-notes, 3.2
 nav:
-image:  http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: THere is 3.2 making it easier to test multiple sites and running your custom Javascript to collect metrics.
 ---
 

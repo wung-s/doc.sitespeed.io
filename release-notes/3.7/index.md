@@ -5,7 +5,7 @@ description: More data and metrics to Graphite please!
 author: Peter Hedenskog
 keywords: sitespeed.io, release, release-notes, 3.7
 nav:
-image:  http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: More data and metrics to Graphite please!
 ---
 

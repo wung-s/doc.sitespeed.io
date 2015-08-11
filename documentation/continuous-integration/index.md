@@ -5,7 +5,7 @@ description: Use sitespeed.io in your Continuous Integration setup with Jenkins,
 keywords:  Continuous Integration, jenkins, grunt, team city, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use sitespeed.io in your Continuous Integration setup.
 ---
 [Documentation](/documentation/) / Continous Intergration
@@ -26,13 +26,13 @@ Sitespeed.io outputs [JUnit XML](http://help.catchsoftware.com/display/ET/JUnit+
 Sitespeed can output **junit.xml** that works perfect with your continuous integration tool. Jenkins, Bamboo and others support it out of the box.
 
 ~~~bash
-$ sitespeed.io -u http://www.sitespeed.io --junit
+$ sitespeed.io -u https://www.sitespeed.io --junit
 ~~~
 
 Or if you rather prefer TAP:
 
 ~~~bash
-$ sitespeed.io -u http://www.sitespeed.io --tap
+$ sitespeed.io -u https://www.sitespeed.io --tap
 ~~~
 
 ## Configure when to break a test
@@ -64,14 +64,14 @@ domContentLoadedTime to be faster than 700 ms. If you use WebPageTest, the speed
 You can configure to point out a JSON file containing all the values:
 
 ~~~bash
-$ sitespeed.io -u http://www.sitespeed.io --tap --budget myBudget.json
+$ sitespeed.io -u https://www.sitespeed.io --tap --budget myBudget.json
 ~~~
 
 ## Skip rule tests
 By default a all rules is tested against the default number you specify, meaning all rules needs to be 90 or better. Sometimes you have some rules you don't care about and can skip. You do that by feeding the rule names to the script. You find all the names [here](https://github.com/sitespeedio/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js).
 
 ~~~bash
-$ sitespeed.io -u http://www.sitespeed.io --skipTest ycdn,textcontent --tap
+$ sitespeed.io -u https://www.sitespeed.io --skipTest ycdn,textcontent --tap
 ~~~
 
 ## Jenkins
@@ -123,7 +123,7 @@ Here's an example of setting up Team City running sitespeed.io on Windows, thank
 * Choose **Add build step** under Build Configuration Settings \ Build Step and add a **Command Line** build step. Add your call to sitespeed.io in the **Custom script** box. Remember that the build agent user needs to have NodeJS in their path and have sitespeed.io installed already. The command line could look like this:
 
 ~~~
-sitespeed.io.cmd -u http://www.sitespeed.io
+sitespeed.io.cmd -u https://www.sitespeed.io
 ~~~
 
 **Screenshot of adding a build step in TeamCity**
@@ -133,7 +133,7 @@ sitespeed.io.cmd -u http://www.sitespeed.io
 ### JUnit Reporting
 * If you want to have sitespeed.io report back results to TeamCity so your build can break if tests fail you first need to edit your command line to make sitespeed.io generate a JUnit XML file like this:
 ~~~
-sitespeed.io.cmd -u http://www.sitespeed.io --junit > sitespeedio_result.xml
+sitespeed.io.cmd -u https://www.sitespeed.io --junit > sitespeedio_result.xml
 ~~~
 * Then choose **Add build feature** under Build Configuration Settings \ Build Features and add **XML report processing** feature. Set **Report type** to **Ant JUnit** and specify the generated XML report filename in the **Monitoring rules** box.
 * TeamCity should now run sitespeed.io and report back its results.

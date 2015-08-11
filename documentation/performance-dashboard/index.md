@@ -5,7 +5,7 @@ description: Web performance dashboard using sitespeed.io.
 keywords: dashboard, docker, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Web performance dashboard using sitespeed.io.
 ---
 # Performance Dashboard
@@ -259,7 +259,7 @@ SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0,30 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io --sites urls/united.txt --sites urls/aa.txt --sites urls/ryanair.txt --sites urls/lufthansa.txt -b firefox -n 3 --connection cable -r /tmp/ -d 0 --graphiteHost MY_SECRET_HOST --no-html --seleniumServer http://127.0.0.1:4444/wd/hub --phantomjsPath /usr/local/phantomjs/bin/phantomjs >> /tmp/sitespeed-run.txt 2>&1
 15 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io-standalone sitespeed.io -f urls/nytimes.txt --wptHost www.webpagetest.org --wptKey MY_SUPER_SECRET_KEY --graphiteNamespace webpagetest -d 0 -r /tmp/ --graphiteHost MY_SECRET_HOST --noYslow --wptConfig wpt.json >> /tmp/sitespeed-run-wpt.txt 2>&1
-45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://www.sitespeed.io -d 0 -n 3 -b chrome --connection mobile3g -r /tmp/ -d 0 --graphiteHost MY_SECRET_HOST --no-html --customScripts scripts --graphiteNamespace sitespeed.io.custom.mobile3g --seleniumServer http://127.0.0.1:4444/wd/hub --phantomjsPath /usr/local/phantomjs/bin/phantomjs >> /tmp/sitespeed.io-run.txt 2>&1
+45 * * * * docker run --privileged --rm -v /sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u https://www.sitespeed.io -d 0 -n 3 -b chrome --connection mobile3g -r /tmp/ -d 0 --graphiteHost MY_SECRET_HOST --no-html --customScripts scripts --graphiteNamespace sitespeed.io.custom.mobile3g --seleniumServer http://127.0.0.1:4444/wd/hub --phantomjsPath /usr/local/phantomjs/bin/phantomjs >> /tmp/sitespeed.io-run.txt 2>&1
 ~~~
 
 # Example setup: Digital Ocean

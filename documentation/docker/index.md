@@ -5,7 +5,7 @@ description: Use Docker to run sitespeed.io.
 keywords: docker, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Docker to run sitespeed.io.
 ---
 [Documentation](/documentation/) / Docker
@@ -30,7 +30,7 @@ We have a couple of Docker containers you can use to run sitespeed.io. We have s
 The simplest way to run is like this fetching the box with Chrome and Firefox:
 
 ~~~ bash
-sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u http://www.sitespeed.io -b chrome
+sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io sitespeed.io -u https://www.sitespeed.io -b chrome
 ~~~
 
 If you want to feed sitespeed with a list of URL:s in a file (here named *myurls.txt*), add the file to your current directory and do like this:
@@ -42,7 +42,7 @@ sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespee
 In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version all the time (else you will download the latest tag, meaning you can have old and new versions running on the server and you don't know it). Specify the tag after the container name(X.Y.Z) in this example. The tag/version number will be the same number as the sitespeed.io release:
 
 ~~~ bash
-sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z sitespeed.io -u http://www.sitespeed.io -b chrome
+sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z sitespeed.io -u https://www.sitespeed.io -b chrome
 ~~~
 
 

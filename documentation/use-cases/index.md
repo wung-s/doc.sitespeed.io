@@ -5,7 +5,7 @@ description: Use Cases for running sitespeed.io.
 keywords: use case, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
-image: http://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Cases for running sitespeed.io.
 ---
 [Documentation](/documentation/) / Use Cases

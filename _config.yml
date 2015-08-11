@@ -1,7 +1,7 @@
 permalink: /:title/
 ftp_host: ftp.soulislove.com
 ftp_dir: /
-production_url : http://www.sitespeed.io
+production_url : https://www.sitespeed.io
 markdown: kramdown
 #markdown: redcarpet
 #redcarpet:
@@ -11,7 +11,7 @@ compress_html:
   clippings: all
   endings: all
 kramdown:
-    enable_coderay: false  
+    enable_coderay: false
     coderay:
     coderay_wrap:              div
     coderay_line_numbers:      inline
@@ -19,4 +19,3 @@ kramdown:
     coderay_tab_width:         4
     coderay_bold_every:        10
     coderay_css:               style
-
