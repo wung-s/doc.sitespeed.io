@@ -49,9 +49,9 @@ sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespee
 
 ## Setup the volume
 
-If you want to feed sitespeed.io with a file with URL:s or if you want the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located */sitespeed.io*. To setup your current working directory add the *-v "$(pwd)":/sitespeed.io* to your parameter list
+If you want to feed sitespeed.io with a file with URL:s or if you want the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located */sitespeed.io*. To setup your current working directory add the *-v "$(pwd)":/sitespeed.io* to your parameter list. Using "$(pwd)" will default to the root user directory. In order to specify the location, simply define an absolute path: *-v /Users/user/path:/sitespeed.io*
 
-Note: running on Mac OS X and Windows, Boot2Docker have rights to write data in your */Users* or *C:\Users* directory. Read more [here](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume).
+Note: running on Mac OS X and Windows, Boot2Docker only has rights to write data in your */Users* or *C:\Users* directory. Read more [here](https://docs.docker.com/userguide/dockervolumes/#mount-a-host-directory-as-a-data-volume).
 {: .note .note-warning}
 
 ## Update version (download newer sitespeed.io version)
