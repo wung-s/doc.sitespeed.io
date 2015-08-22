@@ -53,7 +53,7 @@ We have a couple of [Vagrant](https://github.com/sitespeedio/sitespeed.io-vagran
 
 ## Docker
 
-We have [Docker images](https://registry.hub.docker.com/repos/sitespeedio/) with sitespeed.io, Chrome, Firefox and Xvfb. They are super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/installation/ubuntulinux/) or [Boot2Docker](https://github.com/boot2docker/osx-installer) first and start them).
+We have [Docker images](https://hub.docker.com/u/sitespeedio/) with sitespeed.io, Chrome, Firefox and Xvfb. They are super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/installation/ubuntulinux/) or [Docker toolbox](https://www.docker.com/toolbox) first and start them).
 
 ~~~ bash
 $ sudo docker pull sitespeedio/sitespeed.io

@@ -20,10 +20,10 @@ We have put a lot of love into making it easy to create your own performance das
 
 The base is the Docker images:
 
-  * To collect metrics, use one of the three images: [sitespeed.io with Chrome, Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io/), [sitespeed.io with Chrome & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-chrome/) or [sitespeed.io with Firefox & Xvfb](https://registry.hub.docker.com/u/sitespeedio/sitespeed.io-firefox/).
-  * [Store the metrics using Graphite ](https://registry.hub.docker.com/u/sitespeedio/graphite/). If you have a Graphite server up and running already you can use that one, just make sure to configure *storage-schemas* and *storage-aggregations*.
-  * [Graph the metrics using Grafana](https://registry.hub.docker.com/u/grafana/grafana/).
-  * You can also send your Google Analytics metrics to Grafana using [this container](https://registry.hub.docker.com/u/sitespeedio/gatographite/).
+  * To collect metrics, use one of the three images: [sitespeed.io with Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/), [sitespeed.io with Chrome & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io-chrome/) or [sitespeed.io with Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io-firefox/).
+  * [Store the metrics using Graphite ](https://hub.docker.com/r/sitespeedio/graphite/). If you have a Graphite server up and running already you can use that one, just make sure to configure *storage-schemas* and *storage-aggregations*.
+  * [Graph the metrics using Grafana](https://hub.docker.com/r/grafana/grafana/).
+  * You can also send your Google Analytics metrics to Grafana using [this container](https://hub.docker.com/r/sitespeedio/gatographite/).
 
 You can run these images on your own machine(s) or in the cloud. You only need Docker. But what will you get? We have set up an example site that you can try out yourself. We are proud to present
 [dashboard.sitespeed.io](http://dashboard.sitespeed.io/).
