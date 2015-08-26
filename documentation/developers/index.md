@@ -21,7 +21,7 @@ You can fork the project at [GitHub](https://github.com/sitespeedio/sitespeed.io
 
 ## The map
 
-![The sitespeed.io universe](the-sitespeed.io-universe.png)
+![The sitespeed.io universe](the-sitespeed.io-universe2.png)
 {: .img-thumbnail}
 
 
