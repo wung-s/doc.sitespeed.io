@@ -99,10 +99,10 @@ navigate    news.aol.com/world
 ~~~
 
 Then change your URL you want test (probably the last one) to {{{URL}}} and then all occurrences of &#123;&#123;&#123;URL&#125;&#125;&#125; will then be replaced with the current URL that should be tested.
-Then run sitespeed:
+Then run sitespeed (and add the parameters as you usually do):
 
 ~~~
-sitespeed.io --wptScript wptScript.txt --wptHost my.wpt.host.com
+sitespeed.io --wptScript wptScript.txt --wptHost my.wpt.host.com -u http://example.org
 ~~~
 
 

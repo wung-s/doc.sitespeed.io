@@ -76,7 +76,7 @@ Options:
    --graphiteHost <HOST>                                  The Graphite host.
    --graphitePort <INTEGER>                               The Graphite port.  [2003]
    --graphiteNamespace <NAMESPACE>                        The namespace of the data sent to Graphite.  [sitespeed.io]
-   --graphiteData                                         Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings,requests]  [all]
+   --graphiteData                                         Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings,requests,domains]  [all]
    --graphiteUseQueryParameters                           Choose if you want to use query paramaters from the URL in the Graphite keys or not
    --graphiteUseNewDomainKeyStructure                     Use the updated domain section when sending data to Graphite "http.www.sitespeed.io" to "http.www_sitespeed_io" (issue #651)
    --gpsiKey                                              Your Google API Key, configure it to also fetch data from Google Page Speed Insights.

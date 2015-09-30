@@ -32,7 +32,7 @@ You can run these images on your own machine(s) or in the cloud. You only need D
 
 There are lots of metrics collected, lets check what kind of views of the data you can create:
 
-* [Indeep info about your most important pages](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page) - you can graph and keep track how your page is built (things like number of requests, request types and sizes) and how fast your page is using the Navigation Timing and User Timings.
+* [In deep info about your most important pages](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page) - you can graph and keep track how your page is built (things like number of requests, request types and sizes) and how fast your page is using the Navigation Timing and User Timings.
 [![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page)
 {: .img-thumbnail}
 
@@ -194,6 +194,7 @@ You can choose to send the following metrics to Graphite:
 * *pagemetrics* - how each and every page is built, like the number of javascripts, css etc
 * *timings* - the timings for every page fetched using the Navigation Timing API and User Timings
 * *requests* - send the timings and size data for each and every request: *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. This will generate a lot of data.
+* *domains* - send the usage and timings per domain.
 
 By default all timings are sent. If you want to change that, remove the metrics you don't need:
 
