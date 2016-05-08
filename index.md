@@ -9,17 +9,6 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 ---
 <img src="img/sitespeed.io-logo-large2.png" class="pull-left img-big" alt="Sitespeed.io logo" width="188" height="200" onLoad="window.performance.mark('logoTime');">
 
-## Analyze your website speed and performance
+## Welcome to the wonderful world of Web Performance
 
-Sitespeed.io is an open source tool ([Apache License Version 2.0](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE)) that helps you analyze your website **speed** and **performance** based on **performance best practices** and **timing metrics**. It collects data from multiple pages on your website, analyze them using the [rules](/documentation/rules-and-best-practices/) and output the result as HTML or send the metrics to [Graphite](/documentation/graphs/).
-
-You can analyze one site, analyze and compare multiple sites or let your continuous integration server break your build when your performance budget is exceeded.
-
-Install using [npm](https://www.npmjs.org/) ([need help?](/documentation/installation/)):
-
-~~~ bash
-$ npm install -g sitespeed.io
-$ sitespeed.io -h
-~~~
-
-You can clone or fork the project at [![Github](/img/GitHub-Mark-64px.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/issues) and if you like sitespeed.io, please give us a [![Give us a star](/img/star3.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/stargazers)!
+Sitespeed.io is a set of different Open Source tools that helps you understand the world of performance. [The coach](/coach/) gives you advice of what you can do better on you site. [Browsertime](/browsertime/) collects metrics and HAR files from your Browser. [PageXray](/pagexray/) converts a HAR file to better JSON structure that tells you more about how you page is . And then finally [sitespeed.io](/sitespeed.io/) is the summary of all tools + add supports for testing multiple pages and report the metrics to Graphite/InfluxDB.
