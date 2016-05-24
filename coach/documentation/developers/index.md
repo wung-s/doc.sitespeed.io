@@ -8,19 +8,13 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---
-# The Coach - Developers guide
+[Documentation](/coach/documentation/) / Developers guide
 
-- [Prerequisites](#prerequisites)
-- [Advice](#advice)
-	- [DOM vs HAR advice](#dom-vs-har-advice)
-		- [DOM advice](#dom-advice)
-		- [HAR advice](#har-advice)
-		- [The best of two worlds](#the-best-of-two-worlds)
-- [Testing HTTP/2 vs HTTP/1](#testing-http2-vs-http1)
-- [Test in your browser](#test-in-your-browser)
-- [Add a test case](#add-a-test-case)
-- [Test your changes against a web page](#test-your-changes-against-a-web-page)
-- [Add a new category](#add-a-new-category)
+# The Coach - Developers guide
+{:.no_toc}
+
+* Lets place the TOC here
+{:toc}
 
 ## Prerequisites
 

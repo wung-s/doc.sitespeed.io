@@ -9,6 +9,10 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---
 # The Coach - How to use the coach
+{:.no_toc}
+
+* Lets place the TOC here
+{:toc}
 
 You can use the coach in a couple of different ways.
 
