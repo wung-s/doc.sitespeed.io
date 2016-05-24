@@ -10,7 +10,7 @@ twitterdescription: Documentation for the sitespeed.io.
 ---
 # Tools
 
- * [Browsertime](/tools/browsertime/) - 
- * [The coach](/tools/coach/) -
- * [PageXray](/tools/pagexray/) -
- * [sitespeed.io](/tools/sitespeed.io/) -
+ * [Browsertime](/browsertime/) -
+ * [The coach](/coach/) -
+ * [PageXray](/pagexray/) -
+ * [sitespeed.io](/sitespeed.io/) -
