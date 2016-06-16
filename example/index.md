@@ -13,14 +13,14 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 Crawling, analyzing and fetching timings:
 
 ~~~ bash
-sitespeed.io -u http://www.cybercom.com -b chrome
+sitespeed.io http://www.cybercom.com -b chrome
 ~~~
 Gives the following [report](http://examples.sitespeed.io/3.0/2014-12-15-22-16-30).
 
 Crawling, analyzing and fetching timings using WebPageTest and Google Page Speed Insight:
 
 ~~~ bash
-sitespeed.io -u http://www.cybercom.com -b chrome --wptHost YOUR_HOST --gpsiKey YOUR_KEY
+sitespeed.io http://www.cybercom.com -b chrome --webpagetest.key YOUR_HOST --gpsi.key YOUR_KEY
 ~~~
 
 Gives the following [report](http://examples.sitespeed.io/3.0/2014-12-19-12-18-17/).
