@@ -11,6 +11,8 @@ twitterdescription: Documentation for the sitespeed.io.
 
 # Documentation 4.x
 
+<img src="/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
+
  * [Introduction](/sitespeed.io/documentation/introduction/)
  * [Installation](/sitespeed.io/documentation/installation/) - install using npm, Vagrant or run our Docker containers.
  * [Configuration](/sitespeed.io/documentation/configuration/) - there's alot of things you can do with sitespeed.io, lets checkout how!

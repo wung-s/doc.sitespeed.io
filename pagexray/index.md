@@ -10,7 +10,7 @@ twitterdescription:
 ---
 # PageXray
 
-<img src="/img/logos/pagexray.png" class="pull-left img-big" alt="PageXray logo" width="188" height="134">
+<img src="/img/logos/pagexray.png" class="pull-right img-big" alt="PageXray logo" width="365" height="200">
 
 We love HAR file but it's hard to actually see what the page includes only looking at the file. The PageXray converts a HAR file to a JSON format that is easier to read. We use the format internally in the coach and sitespeed.io.
 
