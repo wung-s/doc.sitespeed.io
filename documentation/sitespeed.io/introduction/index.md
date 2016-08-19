@@ -15,3 +15,7 @@ twitterdescription: Introduction for sitespeed.io.
 
 * Lets place the TOC here
 {:toc}
+
+Sitespeed.io is an open source tool that helps you understand if your site is fast or not. It tests your site against web performance best practice rules (using the coach), get timings using Chrome/Firefox (using the Navigation Timing API and User Timing API).
+
+You can also drive WebPageTest using sitespeed.io, collecting data from multiple URL:s tested using WebPageTest.

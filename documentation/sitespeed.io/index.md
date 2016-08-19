@@ -20,7 +20,8 @@ twitterdescription: Documentation for the sitespeed.io.
  * [Use Cases](use-cases/) - find out best practices for testing a site, compare with other sites.
 * [Performance Dashboard](performance-dasboard/) - keep track of your metrics and performance.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
- * [Plugins](plugins/) - create your own plugin.
+ * [Plugins](plugins/) - list/disable/enable or create your own plugin.
+ * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
  * [Metrics](metrics/) - configure which metrics you want to use.
  * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Team City, Grunt or the Gulp plugin.
  * [Docker](docker/) - how to use our Docker containers.

@@ -10,7 +10,7 @@ twitterdescription: Use Cases for running sitespeed.io.
 ---
 [Documentation](/documentation/sitespeed.io/) / Upgrade
 
-# Use Cases
+# Upgrade
 {:.no_toc}
 
 * Lets place the TOC here

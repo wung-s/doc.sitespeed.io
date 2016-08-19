@@ -167,7 +167,7 @@ You can throttle the connection when you are fetching metrics using the browser.
 * cable - 5000/1000 280 RTT
 * native - your current connection
 
-We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you need Python 2.7 to be able tho throttle the connection.
+We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you need Python 2.7 to be able to throttle the connection.
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -c cable
