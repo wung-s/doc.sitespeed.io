@@ -12,7 +12,7 @@ twitterdescription: Documentation for the sitespeed.io.
 
 Choose tool:
 
- * [sitespeed.io](/sitespeed.io/)
- * [Coach](/coach/)
- * [Browsertime](/browsertime/)
- * [PageXray](/pagexray/)
+ * [sitespeed.io](/documentation/sitespeed.io/)
+ * [Coach](/documentation/coach/)
+ * [Browsertime](/documentation/browsertime/)
+ * [PageXray](/documentation/pagexray/)
