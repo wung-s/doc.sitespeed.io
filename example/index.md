@@ -17,10 +17,10 @@ sitespeed.io http://www.cybercom.com -b chrome
 ~~~
 Gives the following [report](http://examples.sitespeed.io/3.0/2014-12-15-22-16-30).
 
-Crawling, analyzing and fetching timings using WebPageTest and Google Page Speed Insight:
+Crawling, analyzing and fetching timings using WebPageTest:
 
 ~~~ bash
-sitespeed.io http://www.cybercom.com -b chrome --webpagetest.key YOUR_HOST --gpsi.key YOUR_KEY
+sitespeed.io http://www.cybercom.com -b chrome --webpagetest.key YOUR_KEY
 ~~~
 
 Gives the following [report](http://examples.sitespeed.io/3.0/2014-12-19-12-18-17/).

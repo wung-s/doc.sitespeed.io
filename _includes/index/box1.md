@@ -6,10 +6,11 @@ You will get results on a high level (red/yellow and green) that your boss will 
 [![The result](/img/sitespeed-boss-page.png)](/documentation/result/)
 {: .img-thumbnail}
 -->
-
+<!--
 ## Performance dashboard
 * * *
 Setup your own performance dashboard using [Graphite](https://graphite.readthedocs.org/en/latest/), [Grafana](http://grafana.org/) and sitespeed.io (we use [Docker](https://hub.docker.com/u/sitespeedio/)). Checkout the example site [http://dashboard.sitespeed.io](http://dashboard.sitespeed.io) or read the [documentation](/documentation/performance-dashboard/).
 
 [![The web performance dashboard](/img/dashboard.png)](http://dashboard.sitespeed.io)
 {: .img-thumbnail}
+-->
