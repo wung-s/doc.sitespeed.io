@@ -11,6 +11,6 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 
 ## Welcome to the wonderful world of Web Performance
 
-Sitespeed.io is a set of Open Source tools that helps you understand the world of web performance. [The coach](/coach/) gives you advice of what you can do better on your site. [Browsertime](/browsertime/) collects metrics and HAR files from your Browser. [PageXray](/pagexray/) converts a HAR file to a JSON structure we like that tells you more about your page. And finally [sitespeed.io](/sitespeed.io/) that is the main tool that collects uses them all  and add supports for testing multiple pages and report the metrics to Graphite/InfluxDB.
+Sitespeed.io is a set of Open Source tools that helps you understand the world of web performance. [The coach](/documentation/coach/) gives you advice of what you can do better on your site. [Browsertime](/documentation/browsertime/) collects metrics and HAR files from your Browser. [PageXray](/documentation/pagexray/) converts a HAR file to a JSON structure we like that tells you more about your page. And finally [sitespeed.io](/documentation/sitespeed.io/) that is the main tool that collects uses them all  and add supports for testing multiple pages and report the metrics to Graphite/InfluxDB.
 
 We are working hard to get sitespeed.io 4.0 ready for a stable release! You can try out the latest alpha. Do you want run sitespeed.io in production, checkout the [documentation for 3.x](/3.x/)?
