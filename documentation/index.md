@@ -10,7 +10,7 @@ twitterdescription: Documentation for the sitespeed.io.
 ---
 # Documentation
 
-Choose tool:
+At the moment we have four different tools:
 
  * [sitespeed.io](/documentation/sitespeed.io/)
  * [Coach](/documentation/coach/)

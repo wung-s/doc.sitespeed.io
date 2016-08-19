@@ -102,3 +102,73 @@ urlOrFile
 If you installed with the global option (-g), run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples we will use the installed version.
 
 You can analyze a site either by crawling or feed sitespeed.io with the URL:s you want to analyze.
+
+### Analyze by URLs
+You can choose
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io
+~~~
+
+If you wanna test multiple URLs just feed them:
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io https://www.sitespeed.io/documentation/
+~~~
+
+You can also use a plain text file with one URL on each line. Create a file called urls.txt:
+
+~~~
+http://www.yoursite.com/path/
+http://www.yoursite.com/my/really/important/page/
+http://www.yoursite.com/where/we/are/
+~~~
+
+And feed it:
+
+~~~bash
+$ sitespeed.io urls.txt
+~~~
+
+### Analyze by crawling
+
+You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io -d 2
+~~~
+
+### How many runs per URL?
+Collecting timing metrics it's good to test the URL more than one time. You can configure how many runs doing like this (five runs):
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io -n 5
+~~~
+
+### Choose browser
+Choose which browser to use:
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io -b firefox
+~~~
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io -b chrome
+~~~
+
+### Connectivity
+
+You can throttle the connection when you are fetching metrics using the browser. Choose between:
+
+* 3g - 1600/768 300 RTT
+* 3gfast - 1600/768 150 RTT
+* 3gslow - 780/330 200 RTT
+* 2g - 35/328 1300 RTT
+* cable - 5000/1000 280 RTT
+* native - your current connection
+
+We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you need Python 2.7 to be able tho throttle the connection.
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io -c cable
+~~~
